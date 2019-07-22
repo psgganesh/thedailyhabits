@@ -1,4 +1,4 @@
-# atomichabits
+# Atomichabits
 Habit tracker which using aggregation of marginal gains
 
 ## Inspiration
