@@ -1,5 +1,5 @@
 # Atomichabits
-Habit tracker which using aggregation of marginal gains
+Habit tracker which uses aggregation of marginal gains at the system level.
 
 ## Inspiration
 Inspired by the [Atomic habits book by James Clear](https://jamesclear.com/atomic-habits)
