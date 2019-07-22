@@ -1,0 +1,27 @@
+{
+  "name": "atomichabits",
+  "version": "1.0.0",
+  "description": "Habit tracker which uses aggregation of marginal gains at the system level.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psgganesh/atomichabits.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psgganesh/atomichabits/issues"
+  },
+  "homepage": "https://github.com/psgganesh/atomichabits#readme",
+  "dependencies": {
+    "next": "^9.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
