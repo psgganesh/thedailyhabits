@@ -15,8 +15,8 @@ A individual private workspace to log your habits to build upon, to log your hab
 - CORS using express JS
 
 ## Challenges I ran into
-- Sub-domain routing, - WIP
-- Integrating design system and next front-end
+- User specific home routing - WIP
+- Integrating design system and next front-end - WIP
 
 ## Accomplishments that I'm proud of
 - Integrating front-end and back-end a build an amazing Dapp
