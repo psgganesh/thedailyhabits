@@ -1,8 +1,6 @@
 {
   "git.ignoreLimitWarning": true,
   "files.exclude": {
-    "node_modules": true,
-    ".next": true,
     ".vscode": true
   }
 }
