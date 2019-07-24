@@ -22,12 +22,13 @@
   },
   "homepage": "https://github.com/psgganesh/atomichabits#readme",
   "dependencies": {
-    "cross-env": "^5.2.0",
-    "nuxt": "^2.4.0",
-    "express": "^4.16.4",
-    "ant-design-vue": "^1.1.10",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^2.6.0"
+    "@nuxtjs/pwa": "^2.6.0",
+    "ant-design-vue": "^1.1.10",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "nuxt": "^2.4.0",
+    "vuedraggable": "^2.23.0"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",
