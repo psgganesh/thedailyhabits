@@ -4,8 +4,12 @@
 
       <a-col id="habits" :span="6">
         <h2 class="text-white header-15"><a-icon type="retweet" /> Habits</h2>
-          <div class="p-10 habit-form-div" >
+          <!-- <div class="p-10 habit-form-div" >
             <a-input class="habit-form-div-input" placeholder="+ Add any of your habits" tabindex="1" :autofocus="'autofocus'"/>
+            <a-button class="habit-form-div-input" block>+ Add a habit</a-button>
+          </div> -->
+          <div class="align-center m-10">
+            <a-button class="" type="default" shape="circle" :size="large"><b>+</b></a-button>
           </div>
           <draggable
             id="first"
@@ -26,8 +30,8 @@
 
       <a-col id="plans" :span="6">
         <h2 class="text-white header-15"><a-icon type="highlight" /> Plans</h2>
-          <div class="p-10 plan-form-div" >
-            <a-input class="plan-form-div-input" placeholder="+ Put up an action plan" tabindex="2" :autofocus="'autofocus'"/>
+          <div class="ghost-div" >
+            <!-- <a-input class="plan-form-div-input" placeholder="+ Put up an action plan" tabindex="2" :autofocus="'autofocus'"/> -->
           </div>
           <draggable
             id="second"
@@ -48,8 +52,8 @@
 
       <a-col id="dailies" :span="6">
         <h2 class="text-white header-15"><a-icon type="reload" /> Daily actions</h2>
-          <div class="p-10 action-form-div" >
-            <a-input class="action-form-div-input" placeholder="+ Add a daily habits" tabindex="3"/>
+          <div class="ghost-div" >
+            <!-- <a-input class="action-form-div-input" placeholder="+ Add a daily habits" tabindex="3"/> -->
           </div>
           <draggable
             id="third"
@@ -139,12 +143,20 @@ export default {
   background:#00a7ff4a;
   height: 100vh;
 }
+.align-center {
+  text-align: center;
+}
+.m-10 {
+  margin: 10px;
+}
 
 .p-10 {
   padding: 10px;
 }
 
-
+.ghost-div {
+  height: 52px;
+}
 
 .habit-form-div {
   background:#ff000075;
