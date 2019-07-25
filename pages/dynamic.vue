@@ -1,15 +1,45 @@
 <template>
   <div id="content">
     <a-row :gutter="16" class="gutter-row">
-
       <a-col id="habits" :span="6">
         <h2 class="text-white header-15"><a-icon type="retweet" /> Habits</h2>
-          <!-- <div class="p-10 habit-form-div" >
-            <a-input class="habit-form-div-input" placeholder="+ Add any of your habits" tabindex="1" :autofocus="'autofocus'"/>
-            <a-button class="habit-form-div-input" block>+ Add a habit</a-button>
-          </div> -->
-          <div class="align-center m-10">
-            <a-button class="" type="default" shape="circle" :size="large"><b>+</b></a-button>
+          <div class="align-center">
+              <a-modal
+                title="Vertically centered modal dialog"
+                centered
+                v-model="modal2Visible"
+                @ok="() => modal2Visible = false"
+                :footer="null"
+              >
+                <div>
+                  <a-steps :current="current">
+                    <a-step v-for="item in steps" :key="item.title" :title="item.title" />
+                  </a-steps>
+                  <div class="steps-content">{{steps[current].content}}</div>
+                  <div class="steps-action">
+                    <a-button
+                      v-if="current < steps.length - 1"
+                      type="primary" @click="next"
+                    >
+                      Next
+                    </a-button>
+                    <a-button
+                      v-if="current == steps.length - 1"
+                      type="primary"
+                      @click="$message.success('Processing complete!')"
+                    >
+                      Done
+                    </a-button>
+                    <a-button
+                      v-if="current>0"
+                      style="margin-left: 8px"
+                      @click="prev"
+                    >
+                      Previous
+                    </a-button>
+                  </div>
+                </div>
+              </a-modal>
           </div>
           <draggable
             id="first"
@@ -26,13 +56,13 @@
             {{ element.excerpt }}
           </a-card>
         </draggable>
+        <div :style="{ padding: '8px 8px 8px 8px' }" class="dark-blue">
+          <div @click="() => modal2Visible = true" class="dark-blue-input">+ Add another habit</div>
+        </div>
       </a-col>
 
       <a-col id="plans" :span="6">
         <h2 class="text-white header-15"><a-icon type="highlight" /> Plans</h2>
-          <div class="ghost-div" >
-            <!-- <a-input class="plan-form-div-input" placeholder="+ Put up an action plan" tabindex="2" :autofocus="'autofocus'"/> -->
-          </div>
           <draggable
             id="second"
             :list="plans"
@@ -52,9 +82,6 @@
 
       <a-col id="dailies" :span="6">
         <h2 class="text-white header-15"><a-icon type="reload" /> Daily actions</h2>
-          <div class="ghost-div" >
-            <!-- <a-input class="action-form-div-input" placeholder="+ Add a daily habits" tabindex="3"/> -->
-          </div>
           <draggable
             id="third"
             :list="dailies"
@@ -103,11 +130,35 @@ export default {
   layout: 'default',
   data() {
     return {
+      current: 0,
+      modal2Visible: false,
       habits: [
-        { id: 0, name: "Need to cultivate habit of book reading", excerpt: 'This is an example description' },
-        { id: 1, name: "Piano practice", excerpt: 'This is an example description' },
-        { id: 2, name: "Sleep early", excerpt: 'This is an example description' }
+        { 
+          id: 0, 
+          name: "Need to cultivate habit of book reading", 
+          excerpt: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book'
+        },
+        { 
+          id: 1, 
+          name: 'Piano practice', 
+          excerpt: 'Habitant morbi tristique senectus et netus et. Et molestie ac feugiat sed. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. ' 
+        },
+        { 
+          id: 2, 
+          name: 'Sleep early', 
+          excerpt: 'In hac habitasse platea dictumst. Ornare arcu odio ut sem nulla pharetra diam. Nullam eget felis eget nunc lobortis mattis. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Ut aliquam purus sit amet luctus venenatis.' 
+        }
       ],
+      steps: [{
+        title: 'First',
+        content: 'First-content',
+      }, {
+        title: 'Second',
+        content: 'Second-content',
+      }, {
+        title: 'Last',
+        content: 'Last-content',
+      }],
       plans: [
         
       ],
@@ -120,26 +171,44 @@ export default {
     };
   },
   methods: {
-    
+    next() {
+      this.current++
+    },
+    prev() {
+      this.current--
+    }
   }
 };
 </script>
 
 <style>
+.steps-content {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
 #habits {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 100vh;
 }
 #plans {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 100vh;
 }
 #dailies {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 100vh;
 }
 #accomplished {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   background:#00a7ff4a;
   height: 100vh;
 }
@@ -193,8 +262,14 @@ export default {
 }
 .dark-blue-input {
   background: #064877;
+  width: 100%;
+  height: 30px;
+  margin-right: 8px;
+  text-align: center;
+  padding: 5px;
   border: 0;
   color: white;
+  cursor: pointer;
 }
 
 
@@ -214,7 +289,7 @@ export default {
 }
 .gutter-box {
   background: #ffffff4a;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 15px;
 }
 .ant-card {
