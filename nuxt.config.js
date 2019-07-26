@@ -28,8 +28,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: '~assets/sass/app.scss', lang: 'scss' },
-    'ant-design-vue/dist/antd.css'
+    'ant-design-vue/dist/antd.css',
+    { src: '~assets/sass/app.scss', lang: 'scss' }
   ],
 
   /*

@@ -4,3 +4,119 @@
   overflow-x: hidden;
   font-family: 'Merriweather Sans', sans-serif !important;
 }
+
+/* Boards and Panels Styles */
+.ant-layout, .ant-layout-content {
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  background: #0e477b;
+  // height: 100vh;
+}
+
+.gutter-row {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+}
+
+
+.sortable-drag {
+  opacity: 1;
+}
+.ghost {
+  opacity: 0;
+}
+
+// #habits, #plans, #dailies {
+//   height: 100vh;
+// }
+
+// #accomplished {
+//   background:#00a7ff4a;
+//   height: 100vh;
+// }
+
+// .align-center {
+//   text-align: center;
+// }
+
+.m-10 {
+  margin: 10px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.ghost-div {
+  height: 52px;
+}
+
+.habit-form-div {
+  background:#ff000075;
+}
+.habit-form-div-input {
+  background: #79052c;
+  border: 0;
+  color: white;
+}
+
+.plan-form-div {
+  background:#ff00c34a;
+}
+.plan-form-div-input {
+  background: #4a2094;
+  border: 0;
+  color: white;
+}
+
+.action-form-div {
+  background:#2b7723;
+}
+.action-form-div-input {
+  background: #0d6b04;
+  border: 0;
+  color: white;
+}
+
+
+.dark-blue {
+  background:#00a7ff4a;
+}
+.dark-blue-input {
+  background: #064877;
+  width: 100%;
+  height: 30px;
+  margin-right: 8px;
+  text-align: center;
+  padding: 5px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+.header-15 {
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.gutter-box {
+  background: #ffffff4a;
+  /* height: 100vh; */
+  padding: 15px;
+}
+.ant-card {
+  margin-bottom: 15px;
+}
+
+.text-white {
+  color: #fff;
+}
+.list {
+  background: #fff;
+}
