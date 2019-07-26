@@ -27,6 +27,7 @@
     "ant-design-vue": "^1.1.10",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
+    "flexboxgrid": "^6.3.1",
     "nuxt": "^2.4.0",
     "vuedraggable": "^2.23.0"
   },

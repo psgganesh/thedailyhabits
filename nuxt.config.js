@@ -29,7 +29,8 @@ module.exports = {
   */
   css: [
     'ant-design-vue/dist/antd.css',
-    { src: '~assets/sass/app.scss', lang: 'scss' }
+    'flexboxgrid/dist/flexboxgrid.min.css',
+    '~assets/sass/app.scss'
   ],
 
   /*

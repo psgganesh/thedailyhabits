@@ -1,9 +1,11 @@
 <template>
-  <a-layout id="components-layout-top" class="layout">
+  <a-layout>
     <navbar />
-    <a-layout-content>
-      <nuxt />
-    </a-layout-content>
+    <div class="atomic-canvas-root">
+      <a-layout-content>
+        <nuxt />
+      </a-layout-content>
+    </div>
   </a-layout>
 </template>
 
