@@ -1,15 +1,15 @@
 <template>
     <div class="atomic-canvas">
-      <div class="col-xs-3">
+      <div class="col-xs-3 m-65">
           <Goals />
       </div>
-      <div class="col-xs-3">
+      <div class="col-xs-3 m-65">
           <Plans />
       </div>
-      <div class="col-xs-3">
+      <div class="col-xs-3 m-65">
           
       </div>
-      <div class="col-xs-3">
+      <div class="col-xs-3 m-65">
           
       </div>
     </div>
