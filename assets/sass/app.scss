@@ -73,7 +73,7 @@
 
 .goal-description {
   padding: 10px;
-  background: #ffeb3b54;
+  background: #e0e0e05e;
   color: #444;
 }
 
@@ -84,4 +84,10 @@
 }
 .m-65 {
   margin-top: 65px;
+}
+.goals-list .pane .ant-card {
+  cursor: move;
+}
+.planboard-list .pane .ant-card {
+  cursor: pointer;
 }

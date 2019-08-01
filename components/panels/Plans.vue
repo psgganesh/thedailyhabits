@@ -1,14 +1,15 @@
 <template>
   <div>
 
-    <div class="atomic-canvas-list-even">
-      <h2 class="text-white text-center"><a-icon type="retweet" /> Habits</h2>
+    <div class="atomic-canvas-list-even planboard-list">
+      <h2 class="text-white text-center"><a-icon type="highlight" /> Planboard</h2>
         <draggable :list="plans"
           group="atomichabits"
           sort="false"
           class="pane"
           draggable=".item"
           animation="150"
+          easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
@@ -23,7 +24,7 @@
           <h3><a-icon type="pushpin" /> {{ goal.title }}</h3>
           <hr/>
           <p class="goal-description">{{ goal.description }}</p>
-          <CreateTodoForm />
+          <PlannedTodosList />
         </a-modal>
     </div>
 
@@ -31,13 +32,13 @@
 </template>
 
 <script>
-import CreateTodoForm from '~/components/forms/create-todo-form';
+import PlannedTodosList from '~/components/lists/PlannedTodosList';
 
 export default {
-  name: 'plans',
+  name: 'Plans',
   layout: 'simple',
   components: {
-    CreateTodoForm
+    PlannedTodosList
   },
   data() {
     return {
