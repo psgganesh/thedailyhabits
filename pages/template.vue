@@ -7,7 +7,7 @@
           <Plans />
       </div>
       <div class="col-xs-3 m-65">
-          
+          <Habits />
       </div>
       <div class="col-xs-3 m-65">
           
@@ -18,12 +18,14 @@
 <script>
 import Goals from '~/components/panels/Goals';
 import Plans from '~/components/panels/Plans';
+import Habits from '~/components/panels/Habits'
 
 export default {
   layout: 'default',
   components: {
     Goals,
-    Plans
+    Plans,
+    Habits
   }
 }
 </script>

@@ -24,22 +24,26 @@
           <h3><a-icon type="pushpin" /> {{ goal.title }}</h3>
           <hr/>
           <p class="goal-description">{{ goal.description }}</p>
-          <PlannedTodosList />
+          <a-list
+            size="small"
+            bordered
+            :dataSource="goal.todoListData"
+          >
+            <a-list-item slot="renderItem" slot-scope="item">{{item}}</a-list-item>
+          </a-list>
         </a-modal>
     </div>
-
   </div>
 </template>
 
 <script>
-import PlannedTodosList from '~/components/lists/PlannedTodosList';
+import ToDoListData from '~/data/ToDoListData';
+
+const todoListData = ToDoListData;
 
 export default {
   name: 'Plans',
   layout: 'simple',
-  components: {
-    PlannedTodosList
-  },
   data() {
     return {
       openGoalPlanModal: false,
@@ -47,7 +51,8 @@ export default {
       goal: {
         title: null,
         description: null
-      }
+      },
+      todoListData: todoListData
     };
   },
   methods: {
@@ -55,7 +60,8 @@ export default {
       this.openGoalPlanModal = true;
       this.goal = {
         title: goal.name,
-        description: goal.excerpt
+        description: goal.excerpt,
+        todoListData: this.todoListData
       };
     },
     closeGoalPlan: function (){

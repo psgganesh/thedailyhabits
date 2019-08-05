@@ -28,7 +28,7 @@
                 <a-textarea v-decorator="[ 'description', {rules: [{ required: true, message: 'Just describe your goal in just at-least 2 sentences!' }]}]" onValuesChange="" :autosize="{ minRows: 2, maxRows: 6 }" />
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 24, offset: 0 }">
-                <a-button type="primary" block html-type="submit" :size="large"> Submit </a-button>
+                <a-button type="primary" block html-type="submit" > Submit </a-button>
               </a-form-item>
             </a-form>
           </a-modal>
