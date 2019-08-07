@@ -4,15 +4,14 @@
       <a-step v-for="item in steps" :key="item.title" :title="item.title" />
     </a-steps>
     <div class="steps-content">
-      <h2>{{steps[current].subheading}}</h2>
       <div v-show="current === 0">
         <ChooseCategory />
       </div>
       <div v-show="current === 1">
-        <h3>Second</h3>
+        <MeasureProgress />
       </div>
       <div v-show="current === 2">
-        <h3>Third</h3>
+        <SetFrequency />
       </div>
     </div>
     <div class="steps-action">
@@ -41,22 +40,25 @@
 </template>
 <script>
 import ChooseCategory from '~/components/forms/ChooseCategory';
-
+import MeasureProgress from '~/components/forms/MeasureProgress';
+import SetFrequency from '~/components/forms/SetFrequency';
 
 export default {
   components: {
-    ChooseCategory
+    ChooseCategory,
+    MeasureProgress,
+    SetFrequency
   },
   data() {
     return {
       current: 0,
       steps: [{
-        title: 'Choose Category',
+        title: 'Define Your Goal',
       }, {
         title: 'Measure Progress',
         subheading: '',
       }, {
-        title: 'Specify Frequency',
+        title: 'Set Frequency',
         subheading: '',
       }],
     }
@@ -78,8 +80,8 @@ export default {
     /* border-radius: 6px; */
     /* background-color: #fafafa; */
     min-height: 200px;
-    text-align: center;
-    padding-top: 80px;
+    /* text-align: center; */
+    padding: 10px 10px;
   }
 
   .steps-action {

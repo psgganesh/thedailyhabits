@@ -85,6 +85,10 @@
 .m-65 {
   margin-top: 65px;
 }
+.py-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
@@ -94,4 +98,14 @@
 }
 .planboard-list .pane .ant-card {
   cursor: pointer;
+}
+.text-hint {
+  color: #009688;
+}
+.text-muted {
+  color: #00000073;
+}
+.text-underlined {
+  text-decoration: underline;
+  text-decoration-style: dashed;
 }
