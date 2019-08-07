@@ -13,7 +13,7 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in plans" :key="element.name" @click="openGoalPlan(element)">
+        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="(element, index) in plans" :key="element.name" @click="openGoalPlan(index, element)">
           {{ element.excerpt }}
         </a-card>
         
@@ -56,13 +56,14 @@ export default {
     };
   },
   methods: {
-    openGoalPlan: function (goal)  {
+    openGoalPlan: function (index, goal)  {
       this.openGoalPlanModal = true;
       this.goal = {
         title: goal.name,
         description: goal.excerpt,
         todoListData: this.todoListData
       };
+      this.plans[index].todoListData = this.todoListData;
     },
     closeGoalPlan: function (){
       this.openGoalPlanModal = false;

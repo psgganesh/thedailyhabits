@@ -13,18 +13,10 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <!-- <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element" >
-          {{ element.name }}
-          {{ element.todoListData }}
-        </a-card> -->
         <div v-for="element in habits" :key="element.name">
-            <a-list
-              size="small"
-              bordered
-              :dataSource="element.todoListData"
-            >
-            <a-list-item slot="renderItem" slot-scope="item">{{item}}</a-list-item>
-          </a-list>
+
+          <a-card :title="element" class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element" />
+
         </div>
       </draggable>
     </div>
@@ -45,3 +37,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.todo {
+  margin: 10px 0px;
+}
+</style>
+
