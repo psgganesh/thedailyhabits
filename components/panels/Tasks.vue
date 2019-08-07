@@ -1,9 +1,9 @@
 <template>
   <div>
-
     <div class="atomic-canvas-list planboard-list">
-      <h2 class="text-white text-center"><a-icon type="retweet" /> Habits</h2>
-        <draggable :list="habits"
+      <h2 class="text-white text-center"><a-icon type="calendar" /> Today</h2>
+        
+        <draggable :list="tasks"
           group="atomichabits"
           sort="false"
           class="pane"
@@ -13,23 +13,24 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <div v-for="element in habits" :key="element.name">
+        <div v-for="element in tasks" :key="element.name">
 
-          <a-card :title="element" class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element" />
+          <a-card :title="element.task" class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element.task" />
 
         </div>
       </draggable>
+
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Habits',
+  name: 'Tasks',
   layout: 'simple',
   data() {
     return {
-      habits: []
+      tasks: []
     };
   },
   methods: {

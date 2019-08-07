@@ -1,16 +1,16 @@
 <template>
     <div class="atomic-canvas">
-      <div class="col-xs-3 m-65">
-          <Goals />
+      <div class="col-xs-3 m-65 px-0">
+        <Goals />
       </div>
-      <div class="col-xs-3 m-65">
-          <Plans />
+      <div class="col-xs-3 m-65 px-0">
+        <Plans />
       </div>
-      <div class="col-xs-3 m-65">
-          <Habits />
+      <div class="col-xs-3 m-65 px-0">
+        <Tasks />
       </div>
-      <div class="col-xs-3 m-65">
-          
+      <div class="col-xs-3 m-65 px-0">
+        <Accomplishments />
       </div>
     </div>
 </template>
@@ -18,14 +18,16 @@
 <script>
 import Goals from '~/components/panels/Goals';
 import Plans from '~/components/panels/Plans';
-import Habits from '~/components/panels/Habits'
+import Tasks from '~/components/panels/Tasks';
+import Accomplishments from '~/components/panels/Accomplishments';
 
 export default {
   layout: 'default',
   components: {
     Goals,
     Plans,
-    Habits
+    Tasks,
+    Accomplishments
   }
 }
 </script>

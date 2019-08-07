@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="atomic-canvas-list-even planboard-list">
       <h2 class="text-white text-center"><a-icon type="highlight" /> Planboard</h2>
         <draggable :list="plans"
@@ -16,7 +15,6 @@
         <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="(element, index) in plans" :key="element.name" @click="openGoalPlan(index, element)">
           {{ element.excerpt }}
         </a-card>
-        
       </draggable>
     </div>
     <div class="align-center">
@@ -29,7 +27,7 @@
             bordered
             :dataSource="goal.todoListData"
           >
-            <a-list-item slot="renderItem" slot-scope="item">{{item}}</a-list-item>
+            <a-list-item slot="renderItem" slot-scope="item">{{item.task}}</a-list-item>
           </a-list>
         </a-modal>
     </div>
@@ -39,7 +37,7 @@
 <script>
 import ToDoListData from '~/data/ListData';
 
-const todoListData = ToDoListData;
+const todoListData = ToDoListData[0].planboard.steps;
 
 export default {
   name: 'Plans',
