@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h3 class="text-left">Which area would you like to focus your life right now?</h3>
-    
+    <h3 class="text-left">Which area would you like to focus your life right now ?</h3>
     <a-row :gutter="16">
       <a-col :span="12" v-for="category in categories" :key="'col_'+category.id" class="py-5 category" @click="selectCategory(category.id)" :class="[(selectedCategory === category.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+category.id">
