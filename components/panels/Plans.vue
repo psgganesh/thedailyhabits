@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import ToDoListData from '~/data/ToDoListData';
+import ToDoListData from '~/data/ListData';
 
 const todoListData = ToDoListData;
 
