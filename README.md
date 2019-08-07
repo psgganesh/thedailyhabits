@@ -8,15 +8,15 @@ Inspired by the [Atomic habits book by James Clear](https://jamesclear.com/atomi
 A individual private workspace to log your habits to build upon, to log your habits to get rid off. Secure data using blockchain technology to ensure privacy of your journal and keep track of your activities in a non-intrusive private space over blockchain, powered by Blockstack and Gaia.
 
 ## How I built it
-- Next JS to build the whole app
+- Nuxt JS to build the whole app
 - Blockstack for authentication
 - Gaia for storage
 - Express JS for server
 - CORS using express JS
 
 ## Challenges I ran into
-- Sub-domain routing, - WIP
-- Integrating design system and next front-end
+- User specific home routing - WIP
+- Integrating design system and next front-end - WIP
 
 ## Accomplishments that I'm proud of
 - Integrating front-end and back-end a build an amazing Dapp
