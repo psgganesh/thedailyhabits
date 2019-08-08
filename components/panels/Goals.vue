@@ -20,8 +20,8 @@
         </div>
       </draggable>
       <div class="align-center">
-          <a-modal centered v-model="showAddNewGoalModal" @ok="() => showAddNewGoalModal = false" :header="null" :footer="null" :closable="false" width="768px" >
-            <GoalWizard />
+          <a-modal centered v-model="showAddNewGoalModal" :okText="okTitle" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
+            <GoalForm />
           </a-modal>
       </div>
     </div>
@@ -30,16 +30,18 @@
 </template>
 
 <script>
-import GoalWizard from '~/components/wizards/GoalWizard';
+import GoalForm from '~/components/forms/GoalForm';
 
 export default {
   name: 'Goals',
   layout: 'simple',
   components: {
-    GoalWizard
+    GoalForm
   },
   data() {
     return {
+      title: 'Describe your goal',
+      okTitle: 'Add goal',
       showAddNewGoalModal: false,
       goals: [
         { 

@@ -1,6 +1,16 @@
 <template>
   <div>
-    <h3 class="text-left">Which area would you like to focus your life right now ?</h3>
+    <a-row :gutter="16">
+      <a-col :span="24">
+        <a-input size="large" placeholder="Name your goal"/>
+      </a-col>
+    </a-row>
+    <a-row :gutter="16" class="my-10">
+      <a-col :span="24">
+        <a-textarea size="large" placeholder="Goal description (optional)" :rows="3" />
+      </a-col>
+    </a-row>
+    <h3 class="text-left">Which area does this goal focus on ?</h3>
     <a-row :gutter="16">
       <a-col :span="12" v-for="category in categories" :key="'col_'+category.id" class="py-5 category" @click="selectCategory(category.id)" :class="[(selectedCategory === category.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+category.id">
@@ -14,7 +24,7 @@
 </template>
 <script>
 export default {
-  name: 'ChooseCategory',
+  name: 'GoalForm',
   template: 'simple',
   data() {
     return {
@@ -46,6 +56,12 @@ export default {
 .category.active .ant-card {
   background: #f0ffff;
   border: 1px solid #a5d5ff;
+}
+.my-10 {
+  margin:10px 0px;
+}
+textarea {
+  resize: none;
 }
 </style>
 

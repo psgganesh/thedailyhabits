@@ -17,34 +17,42 @@
         </a-card>
       </draggable>
     </div>
+
     <div class="align-center">
+
         <a-modal centered v-model="openGoalPlanModal" @ok="closeGoalPlan" :header="null" :footer="null" width="768px" :closable="false" >
           <h3><a-icon type="pushpin" /> {{ goal.title }}</h3>
           <hr/>
           <p class="goal-description">{{ goal.description }}</p>
-          <a-list
-            size="small"
-            bordered
-            :dataSource="goal.todoListData"
-          >
-            <a-list-item slot="renderItem" slot-scope="item">{{item.task}}</a-list-item>
-          </a-list>
+          <a-button type="dashed" block @click="openPlanWizard">+ Add Action Step</a-button>
         </a-modal>
+
+        <a-modal centered v-model="openPlanWizardModal" @ok="closePlanWizard" :title="addActionStepTitle" :footer="null" width="768px" :closable="false" >
+          <PlanWizard />
+        </a-modal>
+
     </div>
+
   </div>
 </template>
 
 <script>
 import ToDoListData from '~/data/ListData';
+import PlanWizard from '~/components/wizards/PlanWizard';
 
 const todoListData = ToDoListData[0].planboard.steps;
 
 export default {
   name: 'Plans',
   layout: 'simple',
+  components: {
+    PlanWizard
+  },
   data() {
     return {
       openGoalPlanModal: false,
+      openPlanWizardModal: false,
+      addActionStepTitle: 'Add an action step',
       plans: [],
       goal: {
         title: null,
@@ -54,7 +62,7 @@ export default {
     };
   },
   methods: {
-    openGoalPlan: function (index, goal)  {
+    openGoalPlan(index, goal)  {
       this.openGoalPlanModal = true;
       this.goal = {
         title: goal.name,
@@ -63,8 +71,14 @@ export default {
       };
       this.plans[index].todoListData = this.todoListData;
     },
-    closeGoalPlan: function (){
+    closeGoalPlan() {
       this.openGoalPlanModal = false;
+    },
+    openPlanWizard()  {
+      this.openPlanWizardModal = true;
+    },
+    closePlanWizard() {
+      this.openPlanWizardModal = false;
     } 
   }
 };

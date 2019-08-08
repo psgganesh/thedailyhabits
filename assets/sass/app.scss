@@ -93,6 +93,10 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.px-18 {
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+}
 .goals-list .pane .ant-card {
   cursor: move;
 }
@@ -108,4 +112,19 @@
 .text-underlined {
   text-decoration: underline;
   text-decoration-style: dashed;
+}
+.pull-left {
+  text-align: left;
+}
+.pull-right {
+  float: right!important;
+  text-align: right;
+}
+.ant-btn-success,
+.ant-btn-success:hover {
+  color: #fff;
+  background-color: #4CAF50;
+  border-color: #009688;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
