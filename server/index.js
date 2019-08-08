@@ -1,5 +1,6 @@
 const express = require('express')
 const consola = require('consola')
+const cors = require('cors')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
@@ -20,6 +21,12 @@ async function start() {
   } else {
     await nuxt.ready()
   }
+
+  var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+  }
+  app.use(cors(corsOptions))
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
