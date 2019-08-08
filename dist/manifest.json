@@ -1,0 +1,11 @@
+{
+  "short_name": "Atomichabits",
+  "name": "atomichabits",
+  "icons": [
+    {
+      "src": "http://localhost:3000/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
