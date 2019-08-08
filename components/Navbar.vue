@@ -15,7 +15,7 @@
             <a-menu-item key="setting:1"><a-icon type="idcard" /> Profile</a-menu-item>
             <a-menu-item key="setting:2"><a-icon type="setting" /> Preferences</a-menu-item>
           </a-sub-menu>
-          <a-menu-item key="signout">
+          <a-menu-item key="signout" @click="signOut">
             <a-icon type="logout" />Signout
           </a-menu-item>
         </a-menu>
@@ -25,7 +25,17 @@
 
 <script>
 export default {
-  name: 'navbar'
+  name: 'navbar',
+  asyncData({ store, route, userSession }) {
+    return {
+      userSession
+    }
+  },
+  methods: {
+    signOut () {
+      console.log('data');
+    }
+  }
 }
 </script>
 

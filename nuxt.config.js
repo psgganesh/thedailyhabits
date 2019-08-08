@@ -45,7 +45,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/router',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
   ],
@@ -56,6 +56,10 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  router: {
+    middleware: ['auth']
+  },
+  
   /*
   ** Build configuration
   */
