@@ -16,7 +16,9 @@
         <!-- {{ habits }} -->
         <!-- <a-card :title="element.task" class="list-group-item item" :bordered="true" v-for="element in habits.todoListData" :key="element.task" /> -->
         <div v-for="element in habits" :key="element.name" class="list-group">
-          <a-card :title="element.task" class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element.task" />
+          <a-card class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element.task">
+            <a-checkbox @change="onCheckedTask">{{ element.task }}</a-checkbox>
+          </a-card>
         </div>
       </draggable>
     </div>
@@ -36,6 +38,9 @@ export default {
     onAdd (evt) {
       console.log(evt);
     },
+    onCheckedTask(e) {
+      console.log(`checked = ${e.target.checked}`)
+    }
   }
 };
 </script>
