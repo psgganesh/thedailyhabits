@@ -1,18 +1,15 @@
 <template>
   <div>
-    <div class="atomic-canvas-list-even planboard-list">
+    <div class="atomic-canvas-list-even planboard-list list-accomplishments">
       <h2 class="text-white text-center"><a-icon type="trophy" /> Accomplishments</h2>
-        <draggable :list="accomplishments"
-            group="atomichabits"
-            sort="false"
-            class="pane"
-            draggable=".item"
-            animation="150"
-            easing="cubic-bezier(1, 0, 0, 1)"
-            ghostClass="ghost"
-            dragClass="sortable-drag"
-          >
-        </draggable>
+        <div class="pane">
+          <a-row :gutter="16" >
+            <a-col :span="6" class="text-center">{{ accomplishments.habits.drafting }}</a-col>
+            <a-col :span="6" class="text-center">{{ accomplishments.habits.planning }}</a-col>
+            <a-col :span="6" class="text-center">{{ accomplishments.habits.inProgress }}</a-col>
+            <a-col :span="6" class="text-center">{{ accomplishments.habits.completed }}</a-col>
+          </a-row>
+        </div>
     </div>
   </div>
 </template>
@@ -24,7 +21,27 @@ export default {
 
   data: function() {
     return {
-      accomplishments: []
+      accomplishments: {
+        tasks: {
+          total: 10,
+          completed: 2,
+          pending: 8
+        },
+        habits: {
+          drafting: 1,
+          planning: 2,
+          inProgress: 3,
+          completed: 5
+        },
+        streaks: {
+          shortest: 2,
+          longest: 20
+        },
+        balances: {
+          rewardPoints: 2,
+          penatlyPoints: 1
+        }
+      }
     }
   },
 

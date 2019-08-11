@@ -5,7 +5,8 @@
 }
 
 .ant-layout {
-	background: #0e477b;
+  background: #1a1b1f;
+  border: 1px solid #151515;
 }
 
 .text-white {
@@ -17,6 +18,11 @@
 }
 
 /* Atomic canvas layout CSS */
+
+.ant-layout-header {
+  background: #1a1b1f;
+  border: 1px solid #151515;
+}
 
 .atomic-canvas-root {
   display: flex;
@@ -41,6 +47,11 @@
 .atomic-canvas .atomic-canvas-list-even {
 	padding: 0px 20px;
 	background: #2165a2;
+}
+
+.atomic-canvas .atomic-canvas-list-even.list-accomplishments {
+  background: #1a1b1f;
+  border: 1px solid #151515;
 }
 
 .atomic-canvas .pane {

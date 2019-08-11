@@ -36,7 +36,9 @@ export default {
   },
   methods: {
     onAdd (evt) {
-      console.log(evt);
+      if(!this.habits[this.habits.length - 1].hasOwnProperty('todoListData')) {
+        return false;
+      }
     },
     onCheckedTask(e) {
       console.log(`checked = ${e.target.checked}`)
