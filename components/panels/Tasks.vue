@@ -2,24 +2,21 @@
   <div>
     <div class="atomic-canvas-list planboard-list">
       <h2 class="text-white text-center"><a-icon type="calendar" /> Today</h2>
-        <draggable v-model="habits"
+        <draggable :list="habits"
           group="atomichabits"
-          sort="true"
+          sort="false"
           class="pane"
           draggable=".item"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
+          dragoverBubble="false"
           @add="onAdd"
         >
-        <!-- {{ habits }} -->
-        <!-- <a-card :title="element.task" class="list-group-item item" :bordered="true" v-for="element in habits.todoListData" :key="element.task" /> -->
-        <div v-for="element in habits" :key="element.name" class="list-group">
-          <a-card class="list-group-item item" :bordered="true" v-for="element in element.todoListData" :key="element.task">
-            <a-checkbox @change="onCheckedTask">{{ element.task }}</a-checkbox>
-          </a-card>
-        </div>
+        <a-card v-show="todoItems !== null" class="list-group-item item" :bordered="true" v-for="element in tasks" :key="element.task">
+          <a-checkbox @change="onCheckedTask">{{ element.task }}</a-checkbox>
+        </a-card>
       </draggable>
     </div>
   </div>
@@ -36,12 +33,26 @@ export default {
   },
   methods: {
     onAdd (evt) {
-      if(!this.habits[this.habits.length - 1].hasOwnProperty('todoListData')) {
-        return false;
-      }
+      // if(!this.habits[this.habits.length - 1].hasOwnProperty('todoListData')) {
+      //   return false;
+      // }
     },
     onCheckedTask(e) {
       console.log(`checked = ${e.target.checked}`)
+    }
+  },
+  computed: {
+    tasks: {
+      get: function() {
+        let items = this.habits.map(function(item) {
+          return item.todoListData;
+        });
+        this.todoItems = items.shift();
+        return this.todoItems;
+      },
+      set: function() {
+        
+      }
     }
   }
 };

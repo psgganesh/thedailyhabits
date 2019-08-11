@@ -9,6 +9,20 @@
             <a-col :span="6" class="text-center">{{ accomplishments.habits.inProgress }}</a-col>
             <a-col :span="6" class="text-center">{{ accomplishments.habits.completed }}</a-col>
           </a-row>
+          <draggable :list="completedItems"
+              group="atomichabits"
+              sort="false"
+              class="pane"
+              draggable=".item"
+              animation="150"
+              easing="cubic-bezier(1, 0, 0, 1)"
+              ghostClass="ghost"
+              dragClass="sortable-drag"
+            >
+            <a-card :title="element.task" class="list-group-item item" :bordered="true" v-for="element in completedItems" :key="element.task">
+              {{ element.task }}
+            </a-card>
+          </draggable>
         </div>
     </div>
   </div>
@@ -21,6 +35,7 @@ export default {
 
   data: function() {
     return {
+      completedItems: [],
       accomplishments: {
         tasks: {
           total: 10,
