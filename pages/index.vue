@@ -214,38 +214,32 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'landing',
   layout: 'simple',
-  asyncData({ store, route, userSession }) {
-    return {
-      userSession
-    }
-  },
+  computed: mapGetters([
+    'isAuthenticated',
+    'loggedUser'
+  ]),
   beforeMount () {
-    const session = this.userSession
-
-    if(session === undefined) {
-      window.location = `/`
-    }
-
-    if(session.isUserSignedIn()) {
-      // window.location = `/template`
-    }
-
-    if(!session.isUserSignedIn() && session.isSignInPending()) {
-      session.handlePendingSignIn()
-      .then((userData) => {
-        if(!userData.username) {
-          throw new Error('This app requires a username.')
-        }
-        // window.location = `/template`
-      })
+    console.log('Index - authenticated -- '+this.isAuthenticated);
+    console.log('Index - loggedUser -- '+this.loggedUser.isUserSignedIn());
+    if(this.loggedUser.isUserSignedIn()) {
+      this.redirectLoggedInUser();
+    } else if (this.loggedUser.isSignInPending()) {
+      this.loggedUser.handlePendingSignIn().then((userData) => {
+        this.redirectLoggedInUser();
+      });
     }
   },
   methods: {
     signIn () {
-      this.userSession.redirectToSignIn()
+      this.loggedUser.redirectToSignIn()
+    },
+    redirectLoggedInUser() {
+      window.location = `/template`;
     }
   }
 };

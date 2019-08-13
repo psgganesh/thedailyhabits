@@ -14,8 +14,15 @@
     "type": "git",
     "url": "git+https://github.com/psgganesh/atomichabits.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "habit tracker", 
+    "habits", 
+    "atomichabits",
+    "blockchain",
+    "blockstack",
+    "dapps"
+  ],
+  "author": "psgganesh@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/psgganesh/atomichabits/issues"
@@ -27,6 +34,7 @@
     "@nuxtjs/router": "^1.4.0",
     "ant-design-vue": "^1.1.10",
     "blockstack": "^19.2.5",
+    "js-cookie": "2.2.0",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",

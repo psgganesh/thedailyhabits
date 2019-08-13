@@ -24,16 +24,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'navbar',
-  asyncData({ store, route, userSession }) {
-    return {
-      userSession
+  computed: mapGetters([
+    'isAuthenticated',
+    'loggedUser'
+  ]),
+  beforeMount () {
+    console.log('Template - authenticated -- '+this.isAuthenticated);
+    console.log('Template - loggedUser -- '+this.loggedUser.isUserSignedIn());
+    if(!this.loggedUser.isUserSignedIn()) {
+      this.redirectUserToLandingPage();
     }
   },
   methods: {
     signOut () {
-      console.log('data');
+      this.loggedUser.signUserOut(window.location.href);
+    },
+    redirectUserToLandingPage() {
+      window.location = `/`;
     }
   }
 }
