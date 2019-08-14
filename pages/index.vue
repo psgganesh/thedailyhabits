@@ -239,7 +239,7 @@ export default {
       this.loggedUser.redirectToSignIn()
     },
     redirectLoggedInUser() {
-      window.location = `/template`;
+      window.location = `/home`;
     }
   }
 };

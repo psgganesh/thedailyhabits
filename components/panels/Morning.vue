@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list-even planboard-list">
-      <h2 class="text-white text-center"><a-icon type="highlight" /> Planboard</h2>
+      <h2 class="text-white text-center">🌤️ Morning</h2>
         <draggable :list="plans"
           group="atomichabits"
           sort="false"
@@ -28,7 +28,7 @@
         </a-modal>
 
         <a-modal centered v-model="openPlanWizardModal" @ok="closePlanWizard" :title="addActionStepTitle" :footer="null" width="768px" :closable="false" >
-          <PlanWizard />
+          <h2>...Nothing here</h2>
         </a-modal>
 
     </div>
@@ -38,15 +38,14 @@
 
 <script>
 import ToDoListData from '~/data/ListData';
-import PlanWizard from '~/components/wizards/PlanWizard';
 
 const todoListData = ToDoListData[0].planboard.steps;
 
 export default {
-  name: 'Plans',
+  name: 'Morning',
   layout: 'simple',
   components: {
-    PlanWizard
+    
   },
   data() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list goals-list">
-      <h2 class="text-white text-center"><a-icon type="pushpin" /> Goals</h2>
+      <h2 class="text-white text-center">✍️ Habits</h2>
         <draggable :list="goals"
           group="atomichabits"
           sort="false"
@@ -20,8 +20,8 @@
         </div>
       </draggable>
       <div class="align-center">
-          <a-modal centered v-model="showAddNewGoalModal" :okText="okTitle" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
-            <GoalForm />
+          <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
+            <PlanWizard />
           </a-modal>
       </div>
     </div>
@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import GoalForm from '~/components/forms/GoalForm';
+import PlanWizard from '~/components/wizards/PlanWizard';
 
 export default {
-  name: 'Goals',
+  name: 'Habits',
   layout: 'simple',
   components: {
-    GoalForm
+    PlanWizard
   },
   data() {
     return {

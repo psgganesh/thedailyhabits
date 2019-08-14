@@ -2,21 +2,24 @@
   <div>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-steps progressDot :current="current">
+        <a-steps :current="current">
           <a-step v-for="item in steps" :key="item.title" :title="item.title" />
         </a-steps>
         <div class="steps-content">
           <div v-show="current === 0">
+            <GoalForm />
+          </div>          
+          <div v-show="current === 1">
             <MeasureProgress />
           </div>
-          <div v-show="current === 1">
+          <div v-show="current === 2">
             <SetFrequency />
           </div>
         </div>
       </a-col>
     </a-row>
     <a-row :gutter="16" class="my-10">
-      <a-col :span="10" :offset="14" class="px-18 pull-right">
+      <a-col :span="14" :offset="10" class="px-18 pull-right">
         <div class="steps-action">
           <a-button
             v-if="current < steps.length - 1"
@@ -47,6 +50,7 @@
   </div>
 </template>
 <script>
+import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
 import SetFrequency from '~/components/forms/SetFrequency';
 
@@ -54,19 +58,27 @@ export default {
   name: 'PlanWizard',
   layout: 'simple',
   components: {
+    GoalForm,
     MeasureProgress,
     SetFrequency
   },
   data() {
     return {
       current: 0,
-      steps: [{
-        title: 'Define Action',
-        subheading: '',
-      }, {
-        title: 'Set Frequency',
-        subheading: '',
-      }],
+      steps: [
+        {
+          title: 'Describe Habit',
+          subheading: '',
+        },
+        {
+          title: 'Define Action',
+          subheading: '',
+        },
+        {
+          title: 'Set Reminders',
+          subheading: '',
+        }
+      ],
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list planboard-list">
-      <h2 class="text-white text-center"><a-icon type="calendar" /> Today</h2>
+      <h2 class="text-white text-center">☀️ Afternoon</h2>
         <draggable :list="habits"
           group="atomichabits"
           sort="false"
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'Tasks',
+  name: 'Afternoon',
   layout: 'simple',
   data() {
     return {

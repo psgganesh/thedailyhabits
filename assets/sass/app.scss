@@ -2,6 +2,7 @@
 
 *, body {
   font-family: 'Merriweather Sans', sans-serif !important;
+  overflow-y: auto;
 }
 
 .ant-layout {
@@ -93,7 +94,13 @@
 .ghost {
   opacity: 0;
 }
-.m-65 {
+.mt-40 {
+  margin-top: 40px;
+}
+.pt-40 {
+  padding-top: 40px;
+}
+.mt-65 {
   margin-top: 65px;
 }
 .py-5 {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list-even planboard-list list-accomplishments">
-      <h2 class="text-white text-center"><a-icon type="trophy" /> Accomplishments</h2>
+      <h2 class="text-white text-center">🌙 Evening</h2>
         <div class="pane">
           <a-row :gutter="16" >
             <a-col :span="6" class="text-center">{{ accomplishments.habits.drafting }}</a-col>
@@ -31,7 +31,7 @@
 <script>
 export default {
 
-  name: 'Accomplishments',
+  name: 'Evening',
 
   data: function() {
     return {
