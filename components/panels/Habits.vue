@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="atomic-canvas-list goals-list">
-      <h2 class="text-white text-center">✍️ Habits</h2>
-        <draggable :list="goals"
+    <div class="atomic-canvas-list">
+      <h2 class="text-white text-center">✍️ Habits ( {{ habits.length }} )</h2>
+        <draggable :list="habits"
           group="atomichabits"
           sort="false"
           class="pane"
@@ -12,11 +12,11 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in goals" :key="element.name">
+        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
           {{ element.excerpt }}
         </a-card>
         <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
-          <div  class="dark-blue-input"><a-icon type="pushpin" /> Add a new goal</div>
+          <div  class="dark-blue-input"><a-icon type="pushpin" /> Add a new habit</div>
         </div>
       </draggable>
       <div class="align-center">
@@ -25,7 +25,6 @@
           </a-modal>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -40,15 +39,9 @@ export default {
   },
   data() {
     return {
-      title: 'Describe your goal',
-      okTitle: 'Add goal',
+      title: 'Describe your habit',
       showAddNewGoalModal: false,
-      goals: [
-        { 
-          name: "Need to cultivate habit of book reading", 
-          excerpt: 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book'
-        }
-      ]
+      habits: []
     };
   },
   methods: {

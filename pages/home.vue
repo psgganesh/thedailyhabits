@@ -1,6 +1,6 @@
 <template>
   <div id="atomic-app">
-    <div class="row start-xs">
+    <div class="row">
         <div class="col-xs-8">
             <div class="box">
                 Streak graphs
@@ -56,6 +56,7 @@ export default {
   background: url('https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80');
   background-size: cover;
   background-attachment:scroll;
+  padding: 15px;
 }
 
 .atomic-canvas .atomic-canvas-list,
