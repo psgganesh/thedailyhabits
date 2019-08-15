@@ -48,6 +48,7 @@ module.exports = {
     '@nuxtjs/router',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '~/modules/hooks'
   ],
   /*
   ** Axios module configuration
