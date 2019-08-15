@@ -1,34 +1,34 @@
 <template>
   <div id="atomic-app">
     <div class="row">
-        <div class="col-xs-8">
-            <div class="box">
-                Streak graphs
-            </div>
+          <div class="col-xs-3 py-5 text-center box">
+            <h3 class="text-white " ><a-icon type="check" /> Habits</h3>
+          </div>
+          <div class="col-xs-9 py-5 text-center box">
+            <h3 class="text-white " ><a-icon type="calendar" /> Reminders</h3>
+          </div>
         </div>
-        <div class="col-xs-2">
-            <div class="box">
-                Stats 1
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <div class="box">
-                Stats 2
-            </div>
-        </div>
-    </div>
-    <div class="atomic-canvas">
-      <div class="col-xs-3 pt-40 px-0">
+    <div class="atomic-canvas px-5">
+      
+      <div class="col-xs-3 pt-40">
         <Habits />
       </div>
-      <div class="col-xs-3 pt-40 px-0">
-        <Morning />
-      </div>
-      <div class="col-xs-3 pt-40 px-0">
-        <Afternoon />
-      </div>
-      <div class="col-xs-3 pt-40 px-0">
-        <Evening />
+      <div class="col-xs-9 pt-40 px-0">
+        
+        <div class="row">
+          <div class="col-xs-3 px-0">
+            <Morning />
+          </div>
+          <div class="col-xs-3 px-0">
+            <Afternoon />
+          </div>
+          <div class="col-xs-3 px-0">
+            <Evening />
+          </div>
+          <div class="col-xs-3 px-0">
+            <Night />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,6 +38,7 @@ import Habits from '~/components/panels/Habits';
 import Morning from '~/components/panels/Morning';
 import Afternoon from '~/components/panels/Afternoon';
 import Evening from '~/components/panels/Evening';
+import Night from '~/components/panels/Night';
 
 export default {
   name: 'vertical',
@@ -46,7 +47,8 @@ export default {
     Habits,
     Morning,
     Afternoon,
-    Evening
+    Evening,
+    Night
   }
 }
 </script>
@@ -64,9 +66,5 @@ export default {
 .atomic-canvas .atomic-canvas-list-even.list-accomplishments {
   background: transparent;
   border: 1px solid transparent;
-}
-
-.box {
-  background: #ffffff1f;
 }
 </style>

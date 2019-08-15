@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list">
-      <h2 class="text-white text-center">✍️ Habits ( {{ habits.length }} )</h2>
+      <!-- <h3 class="text-white text-center box py-8">✍️ Habits ( {{ habits.length }} )</h3> -->
         <draggable :list="habits"
           group="atomichabits"
           sort="false"
@@ -51,3 +51,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.padded {
+  padding: 10px;
+}
+</style>

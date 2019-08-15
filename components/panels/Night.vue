@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="atomic-canvas-list-even planboard-list">
-      <h2 class="text-white text-center">Evening ( {{ eveningHabits.length }} )</h2>
-        <draggable :list="eveningHabits"
+      <h2 class="text-white text-center">Night ( {{ nightHabits.length }} )</h2>
+        <draggable :list="nightHabits"
           group="atomichabits"
           sort="false"
           class="pane"
@@ -12,7 +12,7 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="(element) in eveningHabits" :key="element.name">
+        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="(element) in nightHabits" :key="element.name">
           {{ element.excerpt }}
         </a-card>
       </draggable>
@@ -22,14 +22,14 @@
 
 <script>
 export default {
-  name: 'Evening',
+  name: 'Night',
   layout: 'simple',
   components: {
     
   },
   data() {
     return {
-      eveningHabits: []
+      nightHabits: []
     };
   },
   methods: {

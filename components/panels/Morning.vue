@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list-even planboard-list">
-      <h2 class="text-white text-center">🌤️ Morning ( {{ morningHabits.length }} )</h2>
+      <h2 class="text-white text-center">Morning ( {{ morningHabits.length }} )</h2>
         <draggable :list="morningHabits"
           group="atomichabits"
           sort="false"
