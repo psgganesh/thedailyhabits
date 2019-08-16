@@ -1,37 +1,46 @@
 <template>
+<div>
+  <div class="row">
+      <div class="col-xs-12">
+        <Navbar />
+      </div>
+    </div>
   <div id="atomic-app">
     <div class="row">
-          <div class="col-xs-3 py-5 text-center box">
-            <h3 class="text-white " ><a-icon type="check" /> Habits</h3>
-          </div>
-          <div class="col-xs-9 py-5 text-center box">
-            <h3 class="text-white " ><a-icon type="calendar" /> Reminders</h3>
-          </div>
-        </div>
-    <div class="atomic-canvas px-5">
-      
-      <div class="col-xs-3 pt-40">
-        <Habits />
+      <div class="col-xs-3 py-5 text-center box">
+        <h3 class="text-white" ><a-icon type="pushpin" /> Habits</h3>
       </div>
-      <div class="col-xs-9 pt-40 px-0">
-        
-        <div class="row">
+      <div class="col-xs-9 py-5 text-center dark-box">
+        <h3 class="text-white " ><a-icon type="calendar" /> Reminders</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 px-0">
+        <div class="atomic-canvas">
           <div class="col-xs-3 px-0">
-            <Morning />
+            <Habits />
           </div>
-          <div class="col-xs-3 px-0">
-            <Afternoon />
-          </div>
-          <div class="col-xs-3 px-0">
-            <Evening />
-          </div>
-          <div class="col-xs-3 px-0">
-            <Night />
+          <div class="col-xs-9">
+            <div class="row">
+              <div class="col-xs-3 dark-box px-0">
+                <Morning />
+              </div>
+              <div class="col-xs-3 box px-0">
+                <Afternoon />
+              </div>
+              <div class="col-xs-3 dark-box px-0">
+                <Evening />
+              </div>
+              <div class="col-xs-3 box px-0">
+                <Night />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 import Habits from '~/components/panels/Habits';
@@ -39,6 +48,7 @@ import Morning from '~/components/panels/Morning';
 import Afternoon from '~/components/panels/Afternoon';
 import Evening from '~/components/panels/Evening';
 import Night from '~/components/panels/Night';
+import Navbar from '~/components/Navbar';
 
 export default {
   name: 'vertical',
@@ -48,7 +58,8 @@ export default {
     Morning,
     Afternoon,
     Evening,
-    Night
+    Night,
+    Navbar
   }
 }
 </script>
@@ -59,6 +70,7 @@ export default {
   background-size: cover;
   background-attachment:scroll;
   padding: 15px;
+  padding-top: 48px;
 }
 
 .atomic-canvas .atomic-canvas-list,

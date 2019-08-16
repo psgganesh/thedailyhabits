@@ -1,7 +1,14 @@
 <template>
   <div>
     <div class="atomic-canvas-list">
-      <!-- <h3 class="text-white text-center box py-8">✍️ Habits ( {{ habits.length }} )</h3> -->
+      <div class="text-white box text-center px-5 py-8">
+        <div class="row">
+          <div class="col-xs-12">
+            <a-input-search placeholder="Filter habits" @search="onSearch" />
+          </div>
+        </div>
+      </div>
+      <div class="py-5">
         <draggable :list="habits"
           group="atomichabits"
           sort="false"
@@ -12,13 +19,14 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
-          {{ element.excerpt }}
-        </a-card>
-        <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
-          <div  class="dark-blue-input"><a-icon type="pushpin" /> Add a new habit</div>
-        </div>
-      </draggable>
+          <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
+            {{ element.excerpt }}
+          </a-card>
+          <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
+            <div  class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
+          </div>
+        </draggable>
+      </div>
       <div class="align-center">
           <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
             <PlanWizard />
@@ -47,6 +55,9 @@ export default {
   methods: {
     addNewGoal(e) {
       e.preventDefault();
+    },
+    onSearch (value) {
+      console.log(value)
     }
   }
 };

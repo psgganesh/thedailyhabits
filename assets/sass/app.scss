@@ -10,19 +10,14 @@
   border: 1px solid #151515;
 }
 
-.text-white {
-  color: #fff;
-}
 
-.text-center {
-  text-align: center;
-}
 
 /* Atomic canvas layout CSS */
 
 .ant-layout-header {
-  background: #1a1b1f;
-  border: 1px solid #151515;
+  background: #00152975;
+  height: 48px;
+  line-height: 48px;
 }
 
 .atomic-canvas-root {
@@ -41,12 +36,10 @@
 }
 
 .atomic-canvas .atomic-canvas-list {
-  padding: 0px 20px;
   background: #0f477b;
 }
 
 .atomic-canvas .atomic-canvas-list-even {
-	padding: 0px 20px;
 	background: #2165a2;
 }
 
@@ -88,6 +81,12 @@
 .box {
   background: #ffffff1f;
 }
+.dark-box {
+  background: #0000002e;
+}
+.transparent-box {
+  background: transparent;
+}
 .ghost {
   opacity: 0;
 }
@@ -126,6 +125,9 @@
 .planboard-list .pane .ant-card {
   cursor: pointer;
 }
+.bb-0 {
+  border-bottom: 0px;
+}
 .text-hint {
   color: #009688;
 }
@@ -135,6 +137,12 @@
 .text-underlined {
   text-decoration: underline;
   text-decoration-style: dashed;
+}
+.text-white {
+  color: #fff;
+}
+.text-center {
+  text-align: center;
 }
 .pull-left {
   text-align: left;
