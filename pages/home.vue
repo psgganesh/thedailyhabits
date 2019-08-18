@@ -66,7 +66,7 @@ export default {
 
 <style>
 #atomic-app {
-  background: url('https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80');
+  background: url('/img/3.jpg');
   background-size: cover;
   background-attachment:scroll;
   padding: 15px;

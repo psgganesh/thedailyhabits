@@ -8,17 +8,19 @@
           </div>
         </div>
         <div class="col-xs-2 pull-right">
-          <a-menu v-model="current" mode="horizontal" class="transparent-box bb-0 text-white" >
+          <a-menu mode="horizontal" class="transparent-box bb-0 text-white" >
             <a-sub-menu>
-              <span slot="title" class="submenu-title-wrapper"><a-icon type="user" />@psgganesh</span>
-              <a-menu-item-group title="Item 1">
-                <a-menu-item key="setting:1">Option 1</a-menu-item>
-                <a-menu-item key="setting:2">Option 2</a-menu-item>
-              </a-menu-item-group>
-              <a-menu-item-group title="Item 2">
-                <a-menu-item key="setting:3">Option 3</a-menu-item>
-                <a-menu-item key="setting:4">Option 4</a-menu-item>
-              </a-menu-item-group>
+              <span slot="title" class="submenu-title-wrapper">
+                
+                <span v-if="user.avatarUrl()">
+                  <template>
+                    <a-avatar :src="user.avatarUrl()" />
+                  </template>
+                </span>
+                
+                {{ username }} </span>
+              <a-menu-item key="setting:1"><a-icon type="setting" /> Preferences</a-menu-item>
+              <a-menu-item key="setting:3" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
             </a-sub-menu>
           </a-menu>
         </div>
@@ -29,12 +31,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { Person } from 'blockstack'
 
 export default {
   name: 'navbar',
   data () {
     return {
-      current: ['mail'],
+      userData: null,
+      user: null,
+      username: null
     }
   },
   computed: mapGetters([
@@ -47,6 +52,11 @@ export default {
     if(!this.loggedUser.isUserSignedIn()) {
       this.redirectUserToLandingPage();
     }
+
+    this.userData = this.loggedUser.loadUserData()
+    this.user = new Person(this.userData.profile)
+    this.username = this.userData.username
+    
   },
   methods: {
     signOut () {

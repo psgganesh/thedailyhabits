@@ -17,11 +17,11 @@ module.exports = function () {
 
     fs.removeSync(publicDir)
 
-    fs.copySync(this.options.buildDir + '/dist/client', publicDir)
+    fs.copySync(this.options.buildDir + '/dist', publicDir)
     fs.writeFileSync(publicDir + '/index.html', html)
 
     try {
-      fs.removeSync(path.resolve('./dist'))
+      //fs.removeSync(path.resolve('./dist'))
     } catch (e) {}
   })
   

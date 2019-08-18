@@ -29,7 +29,7 @@
       </div>
       <div class="align-center">
           <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
-            <PlanWizard />
+            <GoalWizard />
           </a-modal>
       </div>
     </div>
@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import PlanWizard from '~/components/wizards/PlanWizard';
+import GoalWizard from '~/components/wizards/GoalWizard';
 
 export default {
   name: 'Habits',
   layout: 'simple',
   components: {
-    PlanWizard
+    GoalWizard
   },
   data() {
     return {
