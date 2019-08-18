@@ -22,18 +22,19 @@
       <a-col :span="14" :offset="10" class="px-18 pull-right">
         <div class="steps-action">
           <a-button
-            v-if="current < steps.length - 1"
-            type="primary" @click="next"
-          >
-            Continue to next step
-          </a-button>
-          <a-button
             v-if="current>0"
             style="margin-left: 8px"
             @click="prev"
           >
             Jump to previous step
           </a-button>
+          <a-button
+            v-if="current < steps.length - 1"
+            type="primary" @click="next"
+          >
+            Continue to next step
+          </a-button>
+          
           <a-button
             v-if="current == steps.length - 1"
             type="success"
