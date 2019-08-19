@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h3 class="text-left">What is your action plan / step ?</h3>
+    <h3 class="text-left"><a-icon type="warning" /> What is your action plan / step ?</h3>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
         <a-input size="large" placeholder="Example: Walk 10,000 steps"/>
       </a-col>
     </a-row>
-    <h3 class="text-left">How would you measure the progress ?</h3>
+    <h3 class="text-left"><a-icon type="issues-close" /> How would you measure the progress ?</h3>
     <a-row :gutter="16" class="my-10">
       <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="selecttrackingOption(trackingOption.id)" :class="[(selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+trackingOption.id">
@@ -26,7 +26,7 @@
           </a-select>
           <a-input-number :min="1" :max="10" v-model="timesValue" size="default" />
           times in a
-          <a-select defaultValue="day" style="width: 120px" size="default">
+          <a-select defaultValue="day" style="width: 95px" size="default">
             <a-select-option value="day">day</a-select-option>
             <a-select-option value="week">week</a-select-option>
             <a-select-option value="month">month</a-select-option>
@@ -36,7 +36,14 @@
     </a-row>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-textarea size="large" placeholder="Example: Did you walk 10,000 steps today (YES / NO)?" :rows="4" />
+        <a-textarea size="large" :placeholder="trackingQuestion" :rows="4" />
+      </a-col>
+    </a-row>
+    <a-row :gutter="16" class="my-10">
+      <a-col :span="24">
+        <h3 class="text-left">
+          <a-icon type="reload" /> Repeat this habit for <a-input-number :min="1" :max="10" v-model="minDaysToRepeat" size="default" /> days, from today
+        </h3>
       </a-col>
     </a-row>
   </div>
@@ -47,17 +54,33 @@ export default {
   template: 'simple',
   data() {
     return {
+      minDaysToRepeat: 66,
       timesValue: 3,
       selectedTrackingOption: 1,
       trackingOptions: [
-        { id: 1, title: 'With a number as a unit', description: 'How many ___ did you do today ?', avatar: 'https://img.icons8.com/color/96/000000/help.png' },
-        { id: 2, title: 'Simple Yes or No each time', description: 'Did you succeed in ___ today ?', avatar: 'https://img.icons8.com/color/96/000000/true-false.png' }
+        { 
+          id: 1, 
+          title: 'With a number as a unit', 
+          description: 'How many ___ did you do today ?', avatar: 'https://img.icons8.com/color/96/000000/help.png',
+          placeholderQuestion: 'Example: How many times did you walk today ?'
+        },
+        { 
+          id: 2, 
+          title: 'Simple Yes or No each time', 
+          description: 'Did you succeed in ___ today ?', avatar: 'https://img.icons8.com/color/96/000000/true-false.png',
+          placeholderQuestion: 'Example: Did you walk 10,000 steps today (YES / NO)?'
+        }
       ]
     }
   },
   methods: {
     selecttrackingOption(trackingOption) {
       this.selectedTrackingOption = trackingOption;
+    }
+  },
+  computed: {
+    trackingQuestion() {
+      return this.trackingOptions[this.selectedTrackingOption - 1].placeholderQuestion
     }
   }
 }

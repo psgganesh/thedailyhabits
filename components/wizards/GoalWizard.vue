@@ -12,9 +12,6 @@
           <div v-show="current === 1">
             <MeasureProgress />
           </div>
-          <div v-show="current === 2">
-            <SetFrequency />
-          </div>
         </div>
       </a-col>
     </a-row>
@@ -38,7 +35,7 @@
           <a-button
             v-if="current == steps.length - 1"
             type="success"
-            @click="$message.success('Processing complete!')"
+            @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')"
           >
             Finish
           </a-button>
@@ -53,7 +50,6 @@
 <script>
 import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
-import SetFrequency from '~/components/forms/SetFrequency';
 
 export default {
   name: 'GoalWizard',
@@ -61,7 +57,6 @@ export default {
   components: {
     GoalForm,
     MeasureProgress,
-    SetFrequency
   },
   data() {
     return {
@@ -73,10 +68,6 @@ export default {
         },
         {
           title: 'Define Action',
-          subheading: '',
-        },
-        {
-          title: 'Set Reminders',
           subheading: '',
         }
       ],
@@ -97,13 +88,6 @@ export default {
           
           // Validation logic to be added here for Define Action
           
-          console.log('Validated the form for '+this.steps[this.current].title);
-          break;
-        case 2:
-          console.log('Validating form for '+this.steps[this.current].title);
-          
-          // Validation logic to be added here for Set Reminders
-
           console.log('Validated the form for '+this.steps[this.current].title);
           break;
         default:
