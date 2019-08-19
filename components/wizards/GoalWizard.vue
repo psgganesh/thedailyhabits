@@ -84,6 +84,33 @@ export default {
   },
   methods: {
     next() {
+      switch(this.current) {
+        case 0:
+          console.log('Validating form for '+this.steps[this.current].title);
+          
+          // Validation logic to be added here for Describe Habit
+          
+          console.log('Validated the form for '+this.steps[this.current].title);
+          break;
+        case 1:
+          console.log('Validating form for '+this.steps[this.current].title);
+          
+          // Validation logic to be added here for Define Action
+          
+          console.log('Validated the form for '+this.steps[this.current].title);
+          break;
+        case 2:
+          console.log('Validating form for '+this.steps[this.current].title);
+          
+          // Validation logic to be added here for Set Reminders
+
+          console.log('Validated the form for '+this.steps[this.current].title);
+          break;
+        default:
+          console.log('Nothing to validate in here!!');
+          console.log('current: '+this.current);
+          break;
+      }
       this.current++
     },
     prev() {
@@ -95,11 +122,7 @@ export default {
 <style scoped>
   .steps-content {
     margin-top: 16px;
-    /* border: 1px dashed #e9e9e9; */
-    /* border-radius: 6px; */
-    /* background-color: #fafafa; */
     min-height: 200px;
-    /* text-align: center; */
     padding: 10px 10px;
   }
 
