@@ -18,33 +18,18 @@
     <a-row :gutter="16" class="my-10">
       <a-col :span="14" :offset="10" class="px-18 pull-right">
         <div class="steps-action">
-          <a-button
-            v-if="current>0"
-            style="margin-left: 8px"
-            @click="prev"
-          >
+          <a-button v-if="current>0" style="margin-left: 8px" @click="prev" >
             Jump to previous step
           </a-button>
-          <a-button
-            v-if="current < steps.length - 1"
-            type="primary" @click="next"
-          >
+          <a-button class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
-          
-          <a-button
-            v-if="current == steps.length - 1"
-            type="success"
-            @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')"
-          >
+          <a-button class="finish" v-if="current == steps.length - 1" @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')" >
             Finish
           </a-button>
-          
         </div>
       </a-col>
     </a-row>
-
-    
   </div>
 </template>
 <script>
@@ -113,4 +98,19 @@ export default {
   .steps-action {
     margin-top: 24px;
   }
+
+  .next {
+    border-color: #1E88E5;
+    background-color: #1976D2;
+    background-image: linear-gradient(-180deg,#1565C0,#0D47A1 90%);
+    color: #ffffff;
+  }
+
+  .finish, .finish:hover {
+    border-color: #029824;
+    background-color: #28a745;
+    background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
+    color: #ffffff;
+  }
+
 </style>

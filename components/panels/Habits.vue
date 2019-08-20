@@ -23,7 +23,7 @@
             {{ element.excerpt }}
           </a-card>
           <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
-            <div  class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
+            <div class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
           </div>
         </draggable>
       </div>

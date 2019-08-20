@@ -1,22 +1,22 @@
 <template>
   <div>
-    <h3 class="text-left"><a-icon type="warning" /> What is your action plan / step ?</h3>
+    <h3 class="text-left"> What is your action plan / step ?</h3>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-input size="large" placeholder="Example: Walk 10,000 steps"/>
+        <a-input size="large" placeholder="Example: Walk 10,000 steps" v-model="metric.actionStep" />
       </a-col>
     </a-row>
-    <h3 class="text-left"><a-icon type="issues-close" /> How would you measure the progress ?</h3>
+    <h3 class="text-left"> How would you measure the progress ?</h3>
     <a-row :gutter="16" class="my-10">
-      <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="selecttrackingOption(trackingOption.id)" :class="[(selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
+      <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="selectTrackingOption(trackingOption.id)" :class="[(metric.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+trackingOption.id">
-          <a-card-meta :title="trackingOption.title" :description="trackingOption.description" :class="[(selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
+          <a-card-meta :title="trackingOption.title" :description="trackingOption.description" :class="[(metric.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
             <a-avatar slot="avatar" :src="trackingOption.avatar" />
           </a-card-meta>
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="16" class="my-10" v-show="selectedTrackingOption === 1">
+    <a-row :gutter="16" class="my-10" v-show="metric.selectedTrackingOption === 1">
       <a-col :span="24">
         <h3 class="text-left">Mark as successful if number 
           <a-select defaultValue="exactly" style="width: 159px" size="default">
@@ -24,7 +24,7 @@
             <a-select-option value="exactly">is exactly</a-select-option>
             <a-select-option value="not_more_than">not more than</a-select-option>
           </a-select>
-          <a-input-number :min="1" :max="10" v-model="timesValue" size="default" />
+          <a-input-number :min="1" :max="10" v-model="metric.timesValue" size="default" />
           times in a
           <a-select defaultValue="day" style="width: 95px" size="default">
             <a-select-option value="day">day</a-select-option>
@@ -42,7 +42,7 @@
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
         <h3 class="text-left">
-          <a-icon type="reload" /> Repeat this habit for <a-input-number :min="1" :max="10" v-model="minDaysToRepeat" size="default" /> days, from today
+          <a-icon type="reload" /> Repeat this habit for <a-input-number :min="1" :max="10" v-model="metric.minDaysToRepeat" size="default" /> days, from today
         </h3>
       </a-col>
     </a-row>
@@ -54,9 +54,12 @@ export default {
   template: 'simple',
   data() {
     return {
-      minDaysToRepeat: 66,
-      timesValue: 3,
-      selectedTrackingOption: 1,
+      metric: {
+        actionStep: null,
+        selectedTrackingOption: 1,
+        minDaysToRepeat: 66,
+        timesValue: 3,
+      },
       trackingOptions: [
         { 
           id: 1, 
@@ -74,13 +77,13 @@ export default {
     }
   },
   methods: {
-    selecttrackingOption(trackingOption) {
-      this.selectedTrackingOption = trackingOption;
+    selectTrackingOption(trackingOption) {
+      this.metric.selectedTrackingOption = trackingOption;
     }
   },
   computed: {
     trackingQuestion() {
-      return this.trackingOptions[this.selectedTrackingOption - 1].placeholderQuestion
+      return this.trackingOptions[this.metric.selectedTrackingOption - 1].placeholderQuestion
     }
   }
 }

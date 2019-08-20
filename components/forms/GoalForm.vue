@@ -2,17 +2,17 @@
   <div>
     <a-row :gutter="16">
       <a-col :span="24">
-        <a-input size="large" placeholder="Name your goal"/>
+        <a-input size="large" placeholder="Name your goal" v-model="goalFormInput.name" />
       </a-col>
     </a-row>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-textarea size="large" placeholder="Goal description (optional)" :rows="3" />
+        <a-textarea size="large" placeholder="Goal description (optional)" :rows="3" v-model="goalFormInput.description" />
       </a-col>
     </a-row>
     <h3 class="text-left">Which area does this goal focus on ?</h3>
     <a-row :gutter="16">
-      <a-col :span="12" v-for="category in categories" :key="'col_'+category.id" class="py-5 category" @click="selectCategory(category.id)" :class="[(selectedCategory === category.id) ?  'active' : '' ]">
+      <a-col :span="12" v-for="category in categories" :key="'col_'+category.id" class="py-5 category" @click="selectCategory(category)" :class="[(selectedCategory === category.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+category.id">
           <a-card-meta :title="category.title" :description="category.description" :class="[(selectedCategory === category.id) ?  'active' : '' ]">
             <a-avatar slot="avatar" :src="category.avatar" />
@@ -28,6 +28,11 @@ export default {
   template: 'simple',
   data() {
     return {
+      goalFormInput: {
+        name: null,
+        description: null,
+        category: null,
+      },
       selectedCategory: null,
       categories: [
         { id: 1, title: 'Quit a bad habit', description: 'Stop smoking, drinking..', avatar: 'https://img.icons8.com/color/96/000000/no-drugs.png' },
@@ -43,7 +48,8 @@ export default {
   },
   methods: {
     selectCategory(category) {
-      this.selectedCategory = category;
+      this.selectedCategory = category.id;
+      this.goalFormInput.category = category.title
     }
   }
 }
