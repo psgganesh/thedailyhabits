@@ -7,10 +7,10 @@
         </a-steps>
         <div class="steps-content">
           <div v-show="current === 0">
-            <GoalForm />
+            <GoalForm :goalTemplate="newGoalTemplate" />
           </div>          
           <div v-show="current === 1">
-            <MeasureProgress />
+            <MeasureProgress :metricTemplate="newMetricTemplate" />
           </div>
         </div>
       </a-col>
@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
 
@@ -43,8 +44,17 @@ export default {
     GoalForm,
     MeasureProgress,
   },
+  computed: mapGetters([
+    'newHabitTemplate'
+  ]),
+  beforeMount () {
+    this.newGoalTemplate = this.newHabitTemplate.goal
+    this.newMetricTemplate = this.newHabitTemplate.metric
+  },
   data() {
     return {
+      newGoalTemplate: null,
+      newMetricTemplate: null,
       current: 0,
       steps: [
         {

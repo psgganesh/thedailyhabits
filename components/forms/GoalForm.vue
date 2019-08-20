@@ -2,12 +2,12 @@
   <div>
     <a-row :gutter="16">
       <a-col :span="24">
-        <a-input size="large" placeholder="Name your goal" v-model="goalFormInput.name" />
+        <a-input size="large" placeholder="Name your goal" v-model="goalTemplate.name" />
       </a-col>
     </a-row>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-textarea size="large" placeholder="Goal description (optional)" :rows="3" v-model="goalFormInput.description" />
+        <a-textarea size="large" placeholder="Goal description (optional)" :rows="3" v-model="goalTemplate.description" />
       </a-col>
     </a-row>
     <h3 class="text-left">Which area does this goal focus on ?</h3>
@@ -26,9 +26,12 @@
 export default {
   name: 'GoalForm',
   template: 'simple',
+  props: {
+    goalTemplate: { type: Object, default: null },
+  },
   data() {
     return {
-      goalFormInput: {
+      goal: {
         name: null,
         description: null,
         category: null,
@@ -49,7 +52,7 @@ export default {
   methods: {
     selectCategory(category) {
       this.selectedCategory = category.id;
-      this.goalFormInput.category = category.title
+      this.goalTemplate.category = category.title
     }
   }
 }
