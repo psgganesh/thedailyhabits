@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="py-5">
-        <draggable :list="habits"
+        <draggable v-model="habits"
           group="atomichabits"
           sort="false"
           class="pane"
@@ -18,7 +18,6 @@
           easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
-          @end="handleDrop(e)"
         >
           <a-card :title="element.metric.actionStep" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
             {{ element.metric.trackingQuestion }}
@@ -59,7 +58,7 @@ export default {
         return this.$store.state.habits
       },
       set(value) {
-        this.$store.commit('SET_HABITS_LIST', this.habits)
+        this.$store.commit('SET_HABITS_LIST', value)
       }
     }
   },
@@ -67,10 +66,10 @@ export default {
     onSearch (value) {
       console.log(value)
     },
-    handleDrop(e) {
-      e.preventDefault();
-      this.$store.dispatch('updateHabitsList', this.habits)
-    }
+    // handleDrop(e) {
+    //   // e.preventDefault();
+    //   // this.$store.dispatch('updateHabitsList', this.habits)
+    // }
   }
 };
 </script>

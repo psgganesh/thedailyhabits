@@ -96,10 +96,6 @@ export const actions = {
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     commit('CREATE_NEW_HABIT', habit);
     
-  },
-
-  updateHabitsList(habits) {
-    console.log(habits);
   }
 }
 
