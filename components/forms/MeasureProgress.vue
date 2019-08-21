@@ -1,35 +1,34 @@
 <template>
   <div>
-    <h3 class="text-left"> What is your action plan / step ?</h3>
+    <h3 class="text-left"> Describe your habit</h3>
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
-        <a-input size="large" placeholder="Example: Walk 10,000 steps" v-model="metricTemplate.actionStep" />
+        <a-input size="large" placeholder="Example: Walk 10,000 steps" v-model="metric.actionStep" @change="updateActionStep" />
       </a-col>
     </a-row>
     <h3 class="text-left"> How would you measure the progress ?</h3>
     <a-row :gutter="16" class="my-10">
-      <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="selectTrackingOption(trackingOption.id)" :class="[(metricTemplate.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
+      <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="updateTrackingOption(trackingOption.id)" :class="[(metric.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
         <a-card hoverable :key="'card_'+trackingOption.id">
-          <a-card-meta :title="trackingOption.title" :description="trackingOption.description" :class="[(metricTemplate.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
+          <a-card-meta :title="trackingOption.title" :description="trackingOption.description" :class="[(metric.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
             <a-avatar slot="avatar" :src="trackingOption.avatar" />
           </a-card-meta>
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="16" class="my-10" v-show="metricTemplate.selectedTrackingOption === 1">
+    <a-row :gutter="16" class="my-10" v-show="metric.selectedTrackingOption === 1">
       <a-col :span="24">
         <h3 class="text-left">Mark as successful if number 
-          <a-select defaultValue="exactly" style="width: 159px" size="default">
-            <a-select-option value="at_least">at least</a-select-option>
-            <a-select-option value="exactly">is exactly</a-select-option>
-            <a-select-option value="not_more_than">not more than</a-select-option>
+          <a-select defaultValue="1" style="width: 159px" size="default" v-model="metric.timesComparison" @change="updateTimesComparison">
+            <a-select-option value="1">at least</a-select-option>
+            <a-select-option value="2">is exactly</a-select-option>
           </a-select>
-          <a-input-number :min="1" :max="10" v-model="metricTemplate.timesValue" size="default" />
+          <a-input-number :min="1" :max="10" v-model="metric.timesValue" size="default" @change="updateTimesValue"/>
           times in a
-          <a-select defaultValue="day" style="width: 95px" size="default">
-            <a-select-option value="day">day</a-select-option>
-            <a-select-option value="week">week</a-select-option>
-            <a-select-option value="month">month</a-select-option>
+          <a-select defaultValue="1" style="width: 95px" size="default" @change="timesUnit">
+            <a-select-option value="1">day</a-select-option>
+            <a-select-option value="2">week</a-select-option>
+            <a-select-option value="3">month</a-select-option>
           </a-select>
         </h3>
       </a-col>
@@ -42,7 +41,7 @@
     <a-row :gutter="16" class="my-10">
       <a-col :span="24">
         <h3 class="text-left">
-          Repeat this habit for <a-input-number :min="1" :max="10" v-model="metricTemplate.minDaysToRepeat" size="default" /> days, from today
+          Repeat this habit for <a-input-number :min="1" :max="10" v-model="metric.minDaysToRepeat" size="default" @change="updateMinDaysToRepeat" /> days, from today
         </h3>
       </a-col>
     </a-row>
@@ -60,8 +59,10 @@ export default {
       metric: {
         actionStep: null,
         selectedTrackingOption: 1,
-        minDaysToRepeat: 66,
+        timesComparison: 1,
         timesValue: 3,
+        timesUnit: 1,
+        minDaysToRepeat: 66,
       },
       trackingOptions: [
         { 
@@ -80,13 +81,29 @@ export default {
     }
   },
   methods: {
-    selectTrackingOption(trackingOption) {
-      this.metricTemplate.selectedTrackingOption = trackingOption;
+    updateActionStep() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_ACTION_STEP', this.metric.actionStep)
+    },
+    updateTrackingOption(trackingOption) {
+      this.metric.selectedTrackingOption = trackingOption;
+      this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_OPTION', this.metric.selectedTrackingOption)
+    },
+    updateTimesComparison() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_COMPARISON', this.metric.timesComparison)
+    },
+    updateTimesValue() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_VALUE', this.metric.timesValue)
+    },
+    updateTimesUnit() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_UNIT', this.metric.timesUnit)
+    },
+    updateMinDaysToRepeat() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT', this.metric.minDaysToRepeat)
     }
   },
   computed: {
     trackingQuestion() {
-      return this.trackingOptions[this.metricTemplate.selectedTrackingOption - 1].placeholderQuestion
+      return this.trackingOptions[this.metric.selectedTrackingOption - 1].placeholderQuestion
     }
   }
 }

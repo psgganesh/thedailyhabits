@@ -20,6 +20,14 @@
   line-height: 48px;
 }
 
+.ant-modal-body {
+  min-height: 625px;
+}
+
+.steps-content {
+  min-height: 473px !important;
+}
+
 .atomic-canvas-root {
   display: flex;
   display: -webkit-flex;

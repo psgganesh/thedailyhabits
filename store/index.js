@@ -5,18 +5,17 @@ export const state = () => {
     userSession: null,
     newHabitTemplate: {
       goal: {
-        name: null,
-        description: null,
         category: null,
       },
       metric: {
         actionStep: null,
         selectedTrackingOption: 1,
-        minDaysToRepeat: 66,
+        timesComparison: 1,
         timesValue: 3,
+        timesUnit: 1,
+        minDaysToRepeat: 66,
       }
     }
-    
   }
 }
 
@@ -27,9 +26,37 @@ export const mutations = {
   SET_LOADING_STATUS(state, status) {
     state.loadingStatus = status
   },
+
+  // NEW HABIT TEMPLATE
   SET_HABIT_TEMPLATE(state, newHabitTemplate) {
     state.newHabitTemplate = newHabitTemplate
+  },
+
+  // GOALFORM STEP
+  SET_NEW_HABIT_GOAL_CATEGORY(state, newHabitGoalCategory) {
+    state.newHabitTemplate.goal.category = newHabitGoalCategory
+  },
+
+  // METRIC STEP
+  SET_NEW_HABIT_METRIC_ACTION_STEP(state, newHabitMetricActionStep) {
+    state.newHabitTemplate.metric.actionStep = newHabitMetricActionStep
+  },
+  SET_NEW_HABIT_METRIC_TRACKING_OPTION(state, newHabitMetricTrackingOption) {
+    state.newHabitTemplate.metric.selectedTrackingOption = newHabitMetricTrackingOption
+  },
+  SET_NEW_HABIT_METRIC_TIMES_COMPARISON(state, newHabitMetricTimesComparison) {
+    state.newHabitTemplate.metric.timesComparison = newHabitMetricTimesComparison
+  },
+  SET_NEW_HABIT_METRIC_TIMES_VALUE(state, newHabitMetricTimesValue) {
+    state.newHabitTemplate.metric.timesValue = newHabitMetricTimesValue
+  },
+  SET_NEW_HABIT_METRIC_TIMES_UNIT(state, newHabitMetricTimesUnit) {
+    state.newHabitTemplate.metric.timesUnit = newHabitMetricTimesUnit
+  },
+  SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT(state, newHabitMetricMinDaysToRepeat) {
+    state.newHabitTemplate.metric.minDaysToRepeat = newHabitMetricMinDaysToRepeat
   }
+  
 }
 
 export const actions = {
@@ -46,8 +73,5 @@ export const getters = {
   },
   loggedUser (state) {
     return state.userSession
-  },
-  newHabitTemplate(state) {
-    return state.newHabitTemplate
   }
 }

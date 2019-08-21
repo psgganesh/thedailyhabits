@@ -7,10 +7,10 @@
         </a-steps>
         <div class="steps-content">
           <div v-show="current === 0">
-            <GoalForm :goalTemplate="newGoalTemplate" />
+            <GoalForm :goalTemplate="newHabitTemplate.goal" />
           </div>          
           <div v-show="current === 1">
-            <MeasureProgress :metricTemplate="newMetricTemplate" />
+            <MeasureProgress :metricTemplate="newHabitTemplate.metric" />
           </div>
         </div>
       </a-col>
@@ -21,7 +21,7 @@
           <a-button v-if="current>0" style="margin-left: 8px" @click="prev" >
             Jump to previous step
           </a-button>
-          <a-button class="next" v-if="current < steps.length - 1" @click="next" >
+          <a-button v-show="this.newHabitTemplate.goal.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
           <a-button class="finish" v-if="current == steps.length - 1" @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')" >
@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex';
 import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
 
@@ -44,25 +44,20 @@ export default {
     GoalForm,
     MeasureProgress,
   },
-  computed: mapGetters([
-    'newHabitTemplate'
-  ]),
-  beforeMount () {
-    this.newGoalTemplate = this.newHabitTemplate.goal
-    this.newMetricTemplate = this.newHabitTemplate.metric
+  computed: {
+    ...mapState([ 'newHabitTemplate' ])
   },
   data() {
     return {
-      newGoalTemplate: null,
-      newMetricTemplate: null,
+      goalValidationError: false,
       current: 0,
       steps: [
         {
-          title: 'Describe Habit',
+          title: 'Choose a goal',
           subheading: '',
         },
         {
-          title: 'Define Action',
+          title: 'Define actions',
           subheading: '',
         }
       ],
@@ -122,5 +117,4 @@ export default {
     background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
     color: #ffffff;
   }
-
 </style>
