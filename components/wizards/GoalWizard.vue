@@ -24,7 +24,7 @@
           <a-button v-show="this.newHabitTemplate.goal.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
-          <a-button v-show="this.newHabitTemplate.metric.trackingQuestion !== null"  class="finish" v-if="current == steps.length - 1" @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')" >
+          <a-button v-show="this.newHabitTemplate.metric.trackingQuestion !== null"  class="finish" v-if="current == steps.length - 1" @click="addNewHabit" >
             Finish
           </a-button>
         </div>
@@ -49,7 +49,6 @@ export default {
   },
   data() {
     return {
-      goalValidationError: false,
       current: 0,
       steps: [
         {
@@ -65,30 +64,14 @@ export default {
   },
   methods: {
     next() {
-      switch(this.current) {
-        case 0:
-          console.log('Validating form for '+this.steps[this.current].title);
-          
-          // Validation logic to be added here for Describe Habit
-          
-          console.log('Validated the form for '+this.steps[this.current].title);
-          break;
-        case 1:
-          console.log('Validating form for '+this.steps[this.current].title);
-          
-          // Validation logic to be added here for Define Action
-          
-          console.log('Validated the form for '+this.steps[this.current].title);
-          break;
-        default:
-          console.log('Nothing to validate in here!!');
-          console.log('current: '+this.current);
-          break;
-      }
       this.current++
     },
     prev() {
       this.current--
+    },
+    addNewHabit() {
+      this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
+      this.$emit('add-new-habit')
     }
   },
 }

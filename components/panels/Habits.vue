@@ -28,8 +28,8 @@
         </draggable>
       </div>
       <div class="align-center">
-          <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" @ok="() => showAddNewGoalModal = false" :title="title" :closable="false" width="768px" >
-            <GoalWizard />
+          <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" >
+            <GoalWizard @add-new-habit="() => showAddNewGoalModal = false" />
           </a-modal>
       </div>
     </div>
