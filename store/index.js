@@ -14,6 +14,7 @@ export const state = () => {
         timesValue: 3,
         timesUnit: 1,
         minDaysToRepeat: 66,
+        trackingQuestion: null
       }
     }
   }
@@ -50,13 +51,16 @@ export const mutations = {
   SET_NEW_HABIT_METRIC_TIMES_VALUE(state, newHabitMetricTimesValue) {
     state.newHabitTemplate.metric.timesValue = newHabitMetricTimesValue
   },
+  SET_NEW_HABIT_METRIC_TRACKING_QUESTION(state, newHabitMetricTrackingQuestion) {
+    state.newHabitTemplate.metric.trackingQuestion = newHabitMetricTrackingQuestion
+  },
   SET_NEW_HABIT_METRIC_TIMES_UNIT(state, newHabitMetricTimesUnit) {
     state.newHabitTemplate.metric.timesUnit = newHabitMetricTimesUnit
   },
   SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT(state, newHabitMetricMinDaysToRepeat) {
     state.newHabitTemplate.metric.minDaysToRepeat = newHabitMetricMinDaysToRepeat
   }
-  
+
 }
 
 export const actions = {

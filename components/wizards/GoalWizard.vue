@@ -24,7 +24,7 @@
           <a-button v-show="this.newHabitTemplate.goal.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
-          <a-button class="finish" v-if="current == steps.length - 1" @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')" >
+          <a-button v-show="this.newHabitTemplate.metric.trackingQuestion !== null"  class="finish" v-if="current == steps.length - 1" @click="$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')" >
             Finish
           </a-button>
         </div>
