@@ -2,7 +2,7 @@
   <div>
     <div class="atomic-canvas-list-even planboard-list">
       <h2 class="text-white text-center">Morning ( {{ morningHabits.length }} )</h2>
-        <draggable :list="morningHabits"
+        <draggable v-model="morningHabits"
           group="atomichabits"
           sort="false"
           class="pane"
@@ -31,8 +31,18 @@ export default {
   },
   data() {
     return {
-      morningHabits: this.$store.state.morningHabits
+      
     };
+  },
+  computed : {
+    morningHabits: {
+      get() {
+        return this.$store.state.morningHabits
+      },
+      set(value) {
+        this.$store.commit('SET_MORNING_HABITS_LIST', value)
+      }
+    }
   },
   methods: {
     

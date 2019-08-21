@@ -65,11 +65,7 @@ export default {
   methods: {
     onSearch (value) {
       console.log(value)
-    },
-    // handleDrop(e) {
-    //   // e.preventDefault();
-    //   // this.$store.dispatch('updateHabitsList', this.habits)
-    // }
+    }
   }
 };
 </script>

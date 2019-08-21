@@ -84,8 +84,23 @@ export const mutations = {
   },
 
   // UPDATE HABITS LIST
-  SET_HABITS_LIST(state, habits) {
-    state.habits = habits
+  // GLOBAL
+  SET_HABITS_LIST(state, habit) {
+    state.habits = habit
+  },
+
+  // AS PER TIMEZONE
+  SET_MORNING_HABITS_LIST(state, habit) {
+    state.morningHabits = habit
+  },
+  SET_AFTERNOON_HABITS_LIST(state, habit) {
+    state.afternoonHabits = habit
+  },
+  SET_EVENING_HABITS_LIST(state, habit) {
+    state.eveningHabits = habit
+  },
+  SET_NIGHT_HABITS_LIST(state, habit) {
+    state.nightHabits = habit
   }
 
 }
