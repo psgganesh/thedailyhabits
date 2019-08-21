@@ -1,21 +1,9 @@
+import newHabitCreationTemplate from '~/utils/defaultHabitTemplate';
 
 export const state = () => {
   return  {
     userSession: null,
-    newHabitTemplate: {
-      goal: {
-        category: null,
-      },
-      metric: {
-        actionStep: null,
-        selectedTrackingOption: null,
-        timesComparison: 1,
-        timesValue: 3,
-        timesUnit: 1,
-        minDaysToRepeat: 66,
-        trackingQuestion: null
-      }
-    },
+    newHabitTemplate: newHabitCreationTemplate(),
     habits: [],
     morningHabits: [],
     afternoonHabits: [],
@@ -67,20 +55,7 @@ export const mutations = {
   // NEW HABIT
   CREATE_NEW_HABIT(state, habit) {
     state.habits.push(habit)
-    state.newHabitTemplate = {
-      goal: {
-        category: null,
-      },
-      metric: {
-        actionStep: null,
-        selectedTrackingOption: null,
-        timesComparison: 1,
-        timesValue: 3,
-        timesUnit: 1,
-        minDaysToRepeat: 66,
-        trackingQuestion: null
-      }
-    }
+    state.newHabitTemplate = newHabitCreationTemplate()
   },
 
   // UPDATE HABITS LIST
