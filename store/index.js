@@ -1,10 +1,10 @@
-import newHabitCreationTemplate from '~/utils/constants';
+import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants';
 
 export const state = () => {
   return  {
     userSession: null,
     newHabitTemplate: newHabitCreationTemplate(),
-    habits: [],
+    habits: preDefinedTemplate(),
     morningHabits: [],
     afternoonHabits: [],
     eveningHabits: []
@@ -62,27 +62,73 @@ export const mutations = {
   SET_HABITS_LIST(state, habit) {
     state.habits = habit
   },
-
-  // AS PER TIMEZONE
-  SET_MORNING_HABITS_LIST(state, habit) {
-    state.morningHabits = habit
+  UPDATE_HABITS_LIST(state, habit) {
+    // AS PER TIMEZONE
+    switch(habit.key) {
+      case 'morning':
+        state.morningHabits = habit.list
+        break;
+      case 'afternoon':
+        state.afternoonHabits = habit.list
+        break;
+      case 'evening':
+        state.eveningHabits = habit.list
+        break;
+      default:
+        state.habits = habit
+    }
   },
-  SET_AFTERNOON_HABITS_LIST(state, habit) {
-    state.afternoonHabits = habit
-  },
-  SET_EVENING_HABITS_LIST(state, habit) {
-    state.eveningHabits = habit
+  UPDATE_EACH_HABIT_ITEM_POSITION(state, habit) {
+    console.group('UPDATE_EACH_HABIT_ITEM_POSITION')
+      console.log(habit)
+    console.groupEnd
+    // AS PER TIMEZONE
+    // switch(habit.key) {
+    //   case 'morning':
+    //     state.morningHabits = habit.list
+    //     break;
+    //   case 'afternoon':
+    //     state.afternoonHabits = habit.list
+    //     break;
+    //   case 'evening':
+    //     state.eveningHabits = habit.list
+    //     break;
+    //   default:
+    //     state.habits = habit
+    // }
   }
+
+  // TODO ACTIONS
+  // COMPLETE_TODO(state, todo) {
+  //   // state.afternoonHabits = todo
+  //   console.log('completed -> '+todo)
+  // },
+  // SKIP_TODO(state, todo) {
+  //   // state.eveningHabits = todo
+  //   console.log('skipped -> '+todo)
+  // }
 
 }
 
 export const actions = {
-  createHabit({commit}, habit) {
 
+  createHabit({commit}, habit) {
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     commit('CREATE_NEW_HABIT', habit);
-    
+  },
+
+  moveHabit({commit}, habit) {
+    commit('UPDATE_HABITS_LIST', habit);
+    commit('UPDATE_EACH_HABIT_ITEM_POSITION', habit);
   }
+
+  // completeTodo({commit}, todo) {
+  //   commit('COMPLETE_TODO', todo)
+  // },
+  // skipTodo({commit}, todo) {
+  //   commit('SKIP_TODO', todo)
+  // }
+
 }
 
 export const getters = {

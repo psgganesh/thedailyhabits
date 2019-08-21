@@ -10,10 +10,12 @@ export const habitImages = [
   { id: 8, title: 'Me time', description: 'Read, meditate, take a time-out..', avatar: '/img/ellipsis.png' }
 ];
 
-export default function newHabitCreationTemplate() {
+export function newHabitCreationTemplate() {
   return {
     goal: {
       category: null,
+      status: null,
+      parent: 'habits'
     },
     metric: {
       actionStep: null,
@@ -25,4 +27,30 @@ export default function newHabitCreationTemplate() {
       trackingQuestion: null
     }
   }
+}
+
+export function preDefinedTemplate() {
+  return [
+    {
+      goal: {
+        category: {
+          id: 8, 
+          title: 'Me time', 
+          description: 'Read, meditate, take a time-out..', 
+          avatar: '/img/ellipsis.png'
+        },
+        status: 'pending',
+        parent: 'habits'
+      },
+      metric: {
+        actionStep: 'Do breathing today',
+        selectedTrackingOption: 1,
+        timesComparison: 1,
+        timesValue: 3,
+        timesUnit: 1,
+        minDaysToRepeat: 66,
+        trackingQuestion: ''
+      }
+    }
+  ]
 }

@@ -12,15 +12,25 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-        <a-card class="list-group-item item" :bordered="true" v-for="(element) in eveningHabits" :key="element.name">
-          <a-checkbox><strong>{{ element.metric.actionStep }}</strong></a-checkbox>
-        </a-card>
+        <a-card class="list-group-item item" :bordered="true" v-for="element in eveningHabits" :key="element.name">
+            <template class="ant-card-actions" slot="actions">
+              <a-icon type="check"> Yes </a-icon>
+              <a-icon type="close"> No </a-icon>
+            </template>
+            <a-card-meta
+              :title="element.metric.actionStep"
+              :description="element.metric.trackingQuestion">
+              <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
+            </a-card-meta>
+          </a-card>
       </draggable>
     </div>
   </div>
 </template>
 
 <script>
+import { habitImages } from '~/utils/constants';
+
 export default {
   name: 'Evening',
   layout: 'simple',
@@ -38,12 +48,18 @@ export default {
         return this.$store.state.eveningHabits
       },
       set(value) {
-        this.$store.commit('SET_EVENING_HABITS_LIST', value)
+        const data = {
+          key: 'evening',
+          list: value
+        }
+        this.$store.commit('UPDATE_HABITS_LIST', data)
       }
     }
   },
   methods: {
-    
+    avatar(category) {
+      return category.avatar;
+    }
   }
 };
 </script>
