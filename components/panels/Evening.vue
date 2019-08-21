@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      eveningHabits: []
+      eveningHabits: this.$store.state.eveningHabits
     };
   },
   methods: {

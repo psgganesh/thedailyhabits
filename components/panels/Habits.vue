@@ -18,9 +18,10 @@
           easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
+          @end="handleDrop(e)"
         >
-          <a-card :title="element.name" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
-            {{ element.excerpt }}
+          <a-card :title="element.metric.actionStep" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
+            {{ element.metric.trackingQuestion }}
           </a-card>
           <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
             <div class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
@@ -28,7 +29,7 @@
         </draggable>
       </div>
       <div class="align-center">
-          <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" >
+          <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" :destroyOnClose="true" >
             <GoalWizard @add-new-habit="() => showAddNewGoalModal = false" />
           </a-modal>
       </div>
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import GoalWizard from '~/components/wizards/GoalWizard';
 
 export default {
@@ -48,16 +50,26 @@ export default {
   data() {
     return {
       title: 'Describe your habit',
-      showAddNewGoalModal: false,
-      habits: []
+      showAddNewGoalModal: false
     };
   },
+  computed : {
+    habits: {
+      get() {
+        return this.$store.state.habits
+      },
+      set(value) {
+        this.$store.commit('SET_HABITS_LIST', this.habits)
+      }
+    }
+  },
   methods: {
-    addNewGoal(e) {
-      e.preventDefault();
-    },
     onSearch (value) {
       console.log(value)
+    },
+    handleDrop(e) {
+      e.preventDefault();
+      this.$store.dispatch('updateHabitsList', this.habits)
     }
   }
 };

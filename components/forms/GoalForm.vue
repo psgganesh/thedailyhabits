@@ -23,7 +23,7 @@ export default {
   data() {
     return {  
       goal: {
-        category: null,
+        category: this.goalTemplate.category,
       },
       selectedCategory: null,
       categories: [

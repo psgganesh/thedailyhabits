@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Morning',
   layout: 'simple',
@@ -29,7 +31,7 @@ export default {
   },
   data() {
     return {
-      morningHabits: []
+      morningHabits: this.$store.state.morningHabits
     };
   },
   methods: {

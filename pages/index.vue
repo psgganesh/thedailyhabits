@@ -184,7 +184,7 @@
 
       <footer>
         <div class="container">
-          <p>&copy; Atomic Habits 2019</p>
+          <p>Atomic Habits 2019</p>
           <!-- <ul class="list-inline">
             <li class="list-inline-item">
               <a href="#">Privacy</a>

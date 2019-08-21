@@ -1,7 +1,6 @@
 
 export const state = () => {
   return  {
-    loadingStatus: 'idle',
     userSession: null,
     newHabitTemplate: {
       goal: {
@@ -9,23 +8,27 @@ export const state = () => {
       },
       metric: {
         actionStep: null,
-        selectedTrackingOption: 1,
+        selectedTrackingOption: null,
         timesComparison: 1,
         timesValue: 3,
         timesUnit: 1,
         minDaysToRepeat: 66,
         trackingQuestion: null
       }
-    }
+    },
+    habits: [],
+    morningHabits: [],
+    afternoonHabits: [],
+    eveningHabits: [],
+    nightHabits: []
   }
 }
 
 export const mutations = {
+
+  // BLOCKSTACK USER
   SET_USER (state, userSession) {
     state.userSession = userSession || null
-  },
-  SET_LOADING_STATUS(state, status) {
-    state.loadingStatus = status
   },
 
   // NEW HABIT TEMPLATE
@@ -59,15 +62,44 @@ export const mutations = {
   },
   SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT(state, newHabitMetricMinDaysToRepeat) {
     state.newHabitTemplate.metric.minDaysToRepeat = newHabitMetricMinDaysToRepeat
+  },
+
+  // NEW HABIT
+  CREATE_NEW_HABIT(state, habit) {
+    state.habits.push(habit)
+    state.newHabitTemplate = {
+      goal: {
+        category: null,
+      },
+      metric: {
+        actionStep: null,
+        selectedTrackingOption: null,
+        timesComparison: 1,
+        timesValue: 3,
+        timesUnit: 1,
+        minDaysToRepeat: 66,
+        trackingQuestion: null
+      }
+    }
+  },
+
+  // UPDATE HABITS LIST
+  SET_HABITS_LIST(state, habits) {
+    state.habits = habits
   }
 
 }
 
 export const actions = {
-  createNewHabitTemplate(context) {
-    context.commit('SET_LOADING_STATUS', 'loading')
-    context.commit('SET_LOADING_STATUS', 'idle')
-    context.commit('SET_HABITS', newHabitTemplate)
+  createHabit({commit}, habit) {
+
+    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
+    commit('CREATE_NEW_HABIT', habit);
+    
+  },
+
+  updateHabitsList(habits) {
+    console.log(habits);
   }
 }
 

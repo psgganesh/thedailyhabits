@@ -61,13 +61,13 @@ export default {
   data() {
     return {
       metric: {
-        actionStep: null,
-        selectedTrackingOption: null,
-        timesComparison: 1,
-        timesValue: 3,
-        timesUnit: 1,
-        minDaysToRepeat: 66,
-        trackingQuestion: null
+        actionStep: this.metricTemplate.actionStep,
+        selectedTrackingOption: this.metricTemplate.selectedTrackingOption,
+        timesComparison: this.metricTemplate.timesComparison,
+        timesValue: this.metricTemplate.timesValue,
+        timesUnit: this.metricTemplate.timesUnit,
+        minDaysToRepeat: this.metricTemplate.minDaysToRepeat,
+        trackingQuestion: this.metricTemplate.trackingQuestion
       },
       trackingOptions: [
         { 

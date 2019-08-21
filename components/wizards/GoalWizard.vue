@@ -7,10 +7,10 @@
         </a-steps>
         <div class="steps-content">
           <div v-show="current === 0">
-            <GoalForm :goalTemplate="newHabitTemplate.goal" />
+            <GoalForm :goalTemplate="newGoalTemplate" />
           </div>          
           <div v-show="current === 1">
-            <MeasureProgress :metricTemplate="newHabitTemplate.metric" />
+            <MeasureProgress :metricTemplate="newMetricTemplate" />
           </div>
         </div>
       </a-col>
@@ -21,10 +21,10 @@
           <a-button v-if="current>0" style="margin-left: 8px" @click="prev" >
             Jump to previous step
           </a-button>
-          <a-button v-show="this.newHabitTemplate.goal.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
+          <a-button v-show="newGoalTemplate.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
-          <a-button v-show="this.newHabitTemplate.metric.trackingQuestion !== null"  class="finish" v-if="current == steps.length - 1" @click="addNewHabit" >
+          <a-button v-show="newMetricTemplate.trackingQuestion !== null"  class="finish" v-if="current == steps.length - 1" @click="addNewHabit" >
             Finish
           </a-button>
         </div>
@@ -49,6 +49,8 @@ export default {
   },
   data() {
     return {
+      newGoalTemplate: null,
+      newMetricTemplate: null,
       current: 0,
       steps: [
         {
@@ -62,6 +64,10 @@ export default {
       ],
     }
   },
+  created () {
+    this.newGoalTemplate = this.newHabitTemplate.goal
+    this.newMetricTemplate = this.newHabitTemplate.metric
+  },
   methods: {
     next() {
       this.current++
@@ -70,8 +76,24 @@ export default {
       this.current--
     },
     addNewHabit() {
+      this.$store.dispatch('createHabit', { goal: this.newGoalTemplate, metric: this.newMetricTemplate })
       this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
       this.$emit('add-new-habit')
+
+      this.newGoalTemplate = {
+        category: null,
+      }
+
+      this.newMetricTemplate = {
+        actionStep: null,
+        selectedTrackingOption: null,
+        timesComparison: 1,
+        timesValue: 3,
+        timesUnit: 1,
+        minDaysToRepeat: 66,
+        trackingQuestion: null
+      }
+
     }
   },
 }
