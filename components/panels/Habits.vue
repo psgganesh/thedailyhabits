@@ -12,15 +12,19 @@
         <draggable v-model="habits"
           group="atomichabits"
           sort="false"
-          class="pane"
+          class="pane px-8"
           draggable=".item"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-          <a-card :title="element.metric.actionStep" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
-            {{ element.metric.trackingQuestion }}
+          <a-card class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
+            <a-card-meta
+              :title="element.metric.actionStep"
+              :description="element.metric.trackingQuestion">
+              <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
+            </a-card-meta>
           </a-card>
           <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
             <div class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
@@ -38,6 +42,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { habitImages } from '~/utils/constants';
 import GoalWizard from '~/components/wizards/GoalWizard';
 
 export default {
@@ -65,8 +70,12 @@ export default {
   methods: {
     onSearch (value) {
       console.log(value)
+    },
+    avatar(category) {
+      return category.avatar;
     }
-  }
+  },
+  
 };
 </script>
 

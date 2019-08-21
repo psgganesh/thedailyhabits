@@ -22,17 +22,14 @@
           </div>
           <div class="col-xs-9">
             <div class="row">
-              <div class="col-xs-3 dark-box px-0">
+              <div class="col-xs-4 dark-box px-0">
                 <Morning />
               </div>
-              <div class="col-xs-3 box px-0">
+              <div class="col-xs-4 box px-0">
                 <Afternoon />
               </div>
-              <div class="col-xs-3 dark-box px-0">
+              <div class="col-xs-4 dark-box px-0">
                 <Evening />
-              </div>
-              <div class="col-xs-3 box px-0">
-                <Night />
               </div>
             </div>
           </div>
@@ -47,7 +44,6 @@ import Habits from '~/components/panels/Habits';
 import Morning from '~/components/panels/Morning';
 import Afternoon from '~/components/panels/Afternoon';
 import Evening from '~/components/panels/Evening';
-import Night from '~/components/panels/Night';
 import Navbar from '~/components/Navbar';
 
 export default {
@@ -58,7 +54,6 @@ export default {
     Morning,
     Afternoon,
     Evening,
-    Night,
     Navbar
   }
 }

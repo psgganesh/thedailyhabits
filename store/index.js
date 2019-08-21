@@ -1,4 +1,4 @@
-import newHabitCreationTemplate from '~/utils/defaultHabitTemplate';
+import newHabitCreationTemplate from '~/utils/constants';
 
 export const state = () => {
   return  {
@@ -7,8 +7,7 @@ export const state = () => {
     habits: [],
     morningHabits: [],
     afternoonHabits: [],
-    eveningHabits: [],
-    nightHabits: []
+    eveningHabits: []
   }
 }
 
@@ -73,9 +72,6 @@ export const mutations = {
   },
   SET_EVENING_HABITS_LIST(state, habit) {
     state.eveningHabits = habit
-  },
-  SET_NIGHT_HABITS_LIST(state, habit) {
-    state.nightHabits = habit
   }
 
 }
