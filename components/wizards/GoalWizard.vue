@@ -88,7 +88,7 @@ export default {
         actionStep: null,
         selectedTrackingOption: null,
         timesComparison: 1,
-        timesValue: 3,
+        minTimesToRepeat: 3,
         timesUnit: 1,
         minDaysToRepeat: 66,
         trackingQuestion: null

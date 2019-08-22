@@ -21,10 +21,16 @@ export function newHabitCreationTemplate() {
       actionStep: null,
       selectedTrackingOption: null,
       timesComparison: 1,
-      timesValue: 3,
       timesUnit: 1,
+      minTimesToRepeat: 3,
       minDaysToRepeat: 66,
       trackingQuestion: null
+    },
+    audit: {
+      taskCompletedTimes: 0,
+      taskSkippedTimes: 0,
+      taskCompletedDays: 0,
+      taskSkippedDays: 0
     }
   }
 }
@@ -46,10 +52,16 @@ export function preDefinedTemplate() {
         actionStep: 'Do breathing today',
         selectedTrackingOption: 1,
         timesComparison: 1,
-        timesValue: 3,
         timesUnit: 1,
+        minTimesToRepeat: 3,
         minDaysToRepeat: 66,
         trackingQuestion: 'Relaxing and Kapalabhathi breath'
+      },
+      audit: {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskCompletedDays: 0,
+        taskSkippedDays: 0
       }
     }
   ]

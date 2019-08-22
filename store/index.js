@@ -38,8 +38,8 @@ export const mutations = {
   SET_NEW_HABIT_METRIC_TIMES_COMPARISON(state, newHabitMetricTimesComparison) {
     state.newHabitTemplate.metric.timesComparison = newHabitMetricTimesComparison
   },
-  SET_NEW_HABIT_METRIC_TIMES_VALUE(state, newHabitMetricTimesValue) {
-    state.newHabitTemplate.metric.timesValue = newHabitMetricTimesValue
+  SET_NEW_HABIT_METRIC_MIN_TIMES_TO_REPEAT(state, newHabitMetricMinTimesToRepeat) {
+    state.newHabitTemplate.metric.minTimesToRepeat = newHabitMetricMinTimesToRepeat
   },
   SET_NEW_HABIT_METRIC_TRACKING_QUESTION(state, newHabitMetricTrackingQuestion) {
     state.newHabitTemplate.metric.trackingQuestion = newHabitMetricTrackingQuestion

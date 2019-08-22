@@ -25,7 +25,7 @@
                   <a-select-option value="1">at least</a-select-option>
                   <a-select-option value="2">is exactly</a-select-option>
                 </a-select>
-                <a-input-number :min="1" :max="10" v-model="metric.timesValue" size="default" @change="updateTimesValue"/>
+                <a-input-number :min="1" :max="10" v-model="metric.minTimesToRepeat" size="default" @change="updateMinTimesToRepeat"/>
                 times in a
                 <a-select defaultValue="1" style="width: 95px" size="default" @change="updateTimesUnit">
                   <a-select-option value="1">day</a-select-option>
@@ -64,7 +64,7 @@ export default {
         actionStep: this.metricTemplate.actionStep,
         selectedTrackingOption: this.metricTemplate.selectedTrackingOption,
         timesComparison: this.metricTemplate.timesComparison,
-        timesValue: this.metricTemplate.timesValue,
+        minTimesToRepeat: this.metricTemplate.minTimesToRepeat,
         timesUnit: this.metricTemplate.timesUnit,
         minDaysToRepeat: this.metricTemplate.minDaysToRepeat,
         trackingQuestion: this.metricTemplate.trackingQuestion
@@ -96,8 +96,8 @@ export default {
     updateTimesComparison() {
       this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_COMPARISON', this.metric.timesComparison)
     },
-    updateTimesValue() {
-      this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_VALUE', this.metric.timesValue)
+    updateMinTimesToRepeat() {
+      this.$store.commit('SET_NEW_HABIT_METRIC_MIN_TIMES_TO_REPEAT', this.metric.minTimesToRepeat)
     },
     updateTimesUnit() {
       this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_UNIT', this.metric.timesUnit)
