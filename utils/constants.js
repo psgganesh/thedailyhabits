@@ -49,7 +49,7 @@ export function preDefinedTemplate() {
         timesValue: 3,
         timesUnit: 1,
         minDaysToRepeat: 66,
-        trackingQuestion: ''
+        trackingQuestion: 'Relaxing and Kapalabhathi breath'
       }
     }
   ]

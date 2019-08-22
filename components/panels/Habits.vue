@@ -26,7 +26,7 @@
               <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
             </a-card-meta>
           </a-card>
-          <div class="create-card-composer" @click="() => showAddNewGoalModal = true">
+          <div class="create-card-composer" @click="() => showAddNewGoalModal = true" slot="footer">
             <div class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
           </div>
         </draggable>
@@ -63,7 +63,11 @@ export default {
         return this.$store.state.habits
       },
       set(value) {
-        this.$store.commit('SET_HABITS_LIST', value)
+        const data = {
+          zone: 'habits',
+          habit: value
+        }
+        this.$store.dispatch('moveHabit', data)
       }
     }
   },

@@ -62,40 +62,23 @@ export const mutations = {
   SET_HABITS_LIST(state, habit) {
     state.habits = habit
   },
-  UPDATE_HABITS_LIST(state, habit) {
+  UPDATE_HABIT_LIST(state, data) {
+    let zone = data.zone
+    data.habit.map((obj) => { obj.goal.parent = zone })
     // AS PER TIMEZONE
-    switch(habit.key) {
+    switch(data.zone) {
       case 'morning':
-        state.morningHabits = habit.list
+        state.morningHabits = data.habit
         break;
       case 'afternoon':
-        state.afternoonHabits = habit.list
+        state.afternoonHabits = data.habit
         break;
       case 'evening':
-        state.eveningHabits = habit.list
+        state.eveningHabits = data.habit
         break;
       default:
-        state.habits = habit
+        state.habits = data.habit
     }
-  },
-  UPDATE_EACH_HABIT_ITEM_POSITION(state, habit) {
-    console.group('UPDATE_EACH_HABIT_ITEM_POSITION')
-      console.log(habit)
-    console.groupEnd
-    // AS PER TIMEZONE
-    // switch(habit.key) {
-    //   case 'morning':
-    //     state.morningHabits = habit.list
-    //     break;
-    //   case 'afternoon':
-    //     state.afternoonHabits = habit.list
-    //     break;
-    //   case 'evening':
-    //     state.eveningHabits = habit.list
-    //     break;
-    //   default:
-    //     state.habits = habit
-    // }
   }
 
   // TODO ACTIONS
@@ -117,9 +100,8 @@ export const actions = {
     commit('CREATE_NEW_HABIT', habit);
   },
 
-  moveHabit({commit}, habit) {
-    commit('UPDATE_HABITS_LIST', habit);
-    commit('UPDATE_EACH_HABIT_ITEM_POSITION', habit);
+  moveHabit({commit}, data) {
+    commit('UPDATE_HABIT_LIST', data)
   }
 
   // completeTodo({commit}, todo) {

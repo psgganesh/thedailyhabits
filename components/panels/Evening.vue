@@ -14,8 +14,8 @@
         >
         <a-card class="list-group-item item" :bordered="true" v-for="element in eveningHabits" :key="element.name">
             <template class="ant-card-actions" slot="actions">
-              <a-icon type="check"> Yes </a-icon>
-              <a-icon type="close"> No </a-icon>
+              <a-icon type="check" />
+              <a-icon type="close" />
             </template>
             <a-card-meta
               :title="element.metric.actionStep"
@@ -49,10 +49,10 @@ export default {
       },
       set(value) {
         const data = {
-          key: 'evening',
-          list: value
+          zone: 'evening',
+          habit: value
         }
-        this.$store.commit('UPDATE_HABITS_LIST', data)
+        this.$store.dispatch('moveHabit', data)
       }
     }
   },

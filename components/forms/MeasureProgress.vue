@@ -6,7 +6,7 @@
         <a-input size="large" placeholder="Example: Walk 10,000 steps" v-model="metric.actionStep" @change="updateActionStep" />
       </a-col>
     </a-row>
-    <div :class="(metric.actionStep === null) ? 'translucent' : 'opaque'">
+    <div v-show="(metric.actionStep !== null)">
       <h3 class="text-left"> How would you measure the progress ?</h3>
         <a-row :gutter="16" class="my-10">
           <a-col :span="12" v-for="trackingOption in trackingOptions" :key="'col_'+trackingOption.id" class="py-5 trackingOption" @click="updateTrackingOption(trackingOption.id)" :class="[(metric.selectedTrackingOption === trackingOption.id) ?  'active' : '' ]">
