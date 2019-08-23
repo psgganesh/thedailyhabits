@@ -45,100 +45,96 @@ export function preDefinedTemplate() {
   var tomorrow = moment().add(1, 'days').format('YYYYMMDD')
   var expiryDate = moment().add(66, 'days')
   
-  return {
-      '20190823' : [
-        {
-          id: 1,
-          parent: 'morningHabits',
-          goal: {
-            category: {
-              id: 8, 
-              title: 'Me time', 
-              description: 'Read, meditate, take a time-out..', 
-              avatar: '/img/ellipsis.png'
-            },
-            status: 'pending'
-          },
-          metric: {
-            actionStep: '20190823 - 1st item',
-            selectedTrackingOption: 1,
-            timesComparison: 'minimum',
-            minTimesToRepeat: 3,
-            minDaysToRepeat: 66,
-            trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
-          },
-          audit: {
-            taskCompletedTimes: 0,
-            taskSkippedTimes: 0,
-            taskCompletedDays: 0,
-            taskSkippedDays: 0,
-            createdOn: today,
-            lastUpdatedOn: today,
-            expiryDate: expiryDate.format('YYYYMMDD')
-          }
+  return [
+    {
+      id: 1,
+      parent: 'morningHabits',
+      goal: {
+        category: {
+          id: 8, 
+          title: 'Me time', 
+          description: 'Read, meditate, take a time-out..', 
+          avatar: '/img/ellipsis.png'
         },
-        {
-          id: 10,
-          parent: 'habits',
-          goal: {
-            category: {
-              id: 8, 
-              title: 'Me time', 
-              description: 'Read, meditate, take a time-out..', 
-              avatar: '/img/ellipsis.png'
-            },
-            status: 'pending'
-          },
-          metric: {
-            actionStep: '20190823 - 2nd item',
-            selectedTrackingOption: 1,
-            timesComparison: 'minimum',
-            minTimesToRepeat: 3,
-            minDaysToRepeat: 66,
-            trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
-          },
-          audit: {
-            taskCompletedTimes: 0,
-            taskSkippedTimes: 0,
-            taskCompletedDays: 0,
-            taskSkippedDays: 0,
-            createdOn: today,
-            lastUpdatedOn: today,
-            expiryDate: expiryDate.format('YYYYMMDD')
-          }
-        }
-      ],
-      '20190824' : [
-        {
-          id: 33,
-          parent: 'habits',
-          goal: {
-            category: {
-              id: 8, 
-              title: 'Me time', 
-              description: 'Read, meditate, take a time-out..', 
-              avatar: '/img/ellipsis.png'
-            },
-            status: 'pending'
-          },
-          metric: {
-            actionStep: '20190824 - 1st item',
-            selectedTrackingOption: 1,
-            timesComparison: 'minimum',
-            minTimesToRepeat: 3,
-            minDaysToRepeat: 66,
-            trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
-          },
-          audit: {
-            taskCompletedTimes: 0,
-            taskSkippedTimes: 0,
-            taskCompletedDays: 0,
-            taskSkippedDays: 0,
-            createdOn: today,
-            lastUpdatedOn: tomorrow,
-            expiryDate: expiryDate.format('YYYYMMDD')
-          }
-        }
-      ]
-  }
+        status: 'pending'
+      },
+      metric: {
+        actionStep: '20190823 - 1st item',
+        selectedTrackingOption: 1,
+        timesComparison: 'minimum',
+        minTimesToRepeat: 3,
+        minDaysToRepeat: 66,
+        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
+      },
+      audit: {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskCompletedDays: 0,
+        taskSkippedDays: 0,
+        createdOn: today,
+        lastUpdatedOn: today,
+        expiryDate: expiryDate.format('YYYYMMDD')
+      }
+    },
+    {
+      id: 10,
+      parent: 'habits',
+      goal: {
+        category: {
+          id: 8, 
+          title: 'Me time', 
+          description: 'Read, meditate, take a time-out..', 
+          avatar: '/img/ellipsis.png'
+        },
+        status: 'pending'
+      },
+      metric: {
+        actionStep: '20190823 - 2nd item',
+        selectedTrackingOption: 1,
+        timesComparison: 'minimum',
+        minTimesToRepeat: 3,
+        minDaysToRepeat: 66,
+        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
+      },
+      audit: {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskCompletedDays: 0,
+        taskSkippedDays: 0,
+        createdOn: today,
+        lastUpdatedOn: today,
+        expiryDate: expiryDate.format('YYYYMMDD')
+      }
+    },
+    {
+      id: 33,
+      parent: 'habits',
+      goal: {
+        category: {
+          id: 8, 
+          title: 'Me time', 
+          description: 'Read, meditate, take a time-out..', 
+          avatar: '/img/ellipsis.png'
+        },
+        status: 'pending'
+      },
+      metric: {
+        actionStep: '20190824 - 1st item',
+        selectedTrackingOption: 1,
+        timesComparison: 'minimum',
+        minTimesToRepeat: 3,
+        minDaysToRepeat: 66,
+        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
+      },
+      audit: {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskCompletedDays: 0,
+        taskSkippedDays: 0,
+        createdOn: today,
+        lastUpdatedOn: tomorrow,
+        expiryDate: expiryDate.format('YYYYMMDD')
+      }
+    }
+  ]
 }

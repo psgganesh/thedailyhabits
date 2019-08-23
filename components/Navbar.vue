@@ -3,7 +3,7 @@
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}" >
       <div class="row">
         <div class="col-xs-5">
-          <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" />
+          <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" :allowClear="false" />
         </div>
         <div class="col-xs-2 text-white text-center">
           <div class="logo text-center">

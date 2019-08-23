@@ -63,15 +63,12 @@ export const mutations = {
     state.morningHabits = []
     state.afternoonHabits = []
     state.eveningHabits = []
-    // console.log(atomicHabitsData)
-    for (var key in atomicHabitsData) {
-      if(key == selectedDate) {
-        atomicHabitsData[key].map((atom) => {
-          console.log(atom.parent)
-          state[atom.parent].push(atom)
-        })
+    console.log(atomicHabitsData)
+    atomicHabitsData.map((atom) => {
+      if(moment(selectedDate).isSameOrAfter(atom.audit.createdOn) && moment(selectedDate).isBefore(atom.audit.expiryDate)) {
+        state[atom.parent].push(atom)
       }
-    }
+    })
   },
 
   // UPDATE LIST
