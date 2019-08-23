@@ -79,7 +79,7 @@ export default {
     },
     addNewHabit() {
       this.$store.dispatch('createHabit', { 
-        id: Math.floor(Date.now() / 1000),
+        id: Date.now(),
         goal: this.newGoalTemplate, 
         metric: this.newMetricTemplate,
         audit: this.newAuditTemplate

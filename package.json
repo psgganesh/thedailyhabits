@@ -42,6 +42,7 @@
     "js-cookie": "2.2.0",
     "moment": "^2.24.0",
     "nuxt": "^2.4.0",
+    "uuid": "^3.3.3",
     "vuedraggable": "^2.23.0"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@
 <div>
   <div class="row">
       <div class="col-xs-12">
-        <Navbar />
+        <Navbar :currentDate="currentDate" @on-date-change="setDate" />
       </div>
     </div>
   <div id="atomic-app">
@@ -45,16 +45,34 @@ import Morning from '~/components/panels/Morning';
 import Afternoon from '~/components/panels/Afternoon';
 import Evening from '~/components/panels/Evening';
 import Navbar from '~/components/Navbar';
+import moment from 'moment';
 
 export default {
   name: 'vertical',
   layout: 'simple',
+  data() {
+    return {
+      currentDate: moment()
+    }
+  },
   components: {
     Habits,
     Morning,
     Afternoon,
     Evening,
     Navbar
+  },
+  beforeMount() {
+    this.loadWorkspace()
+  },
+  methods: {
+    setDate(updatedDate) {
+      this.currentDate = updatedDate
+      this.loadWorkspace()
+    },
+    loadWorkspace() {
+      this.$store.dispatch('fetchWorkspaceRecords', this.currentDate.format('YYYYMMDD'))
+    }
   }
 }
 </script>

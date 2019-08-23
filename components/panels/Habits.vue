@@ -10,7 +10,7 @@
       </div>
       <div class="py-5">
         <draggable v-model="habits"
-          :group="{ name: 'atomichabits', pull: 'clone', put: false }"
+          :group="{ name: 'atomichabits', put: false }"
           sort="false"
           class="pane px-8"
           draggable=".item"

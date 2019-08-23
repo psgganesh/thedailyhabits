@@ -1,10 +1,12 @@
-import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants';
+import moment from 'moment'
+import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants'
 
 export const state = () => {
   return  {
+    atomicData: [],
     userSession: null,
     newHabitTemplate: newHabitCreationTemplate(),
-    habits: preDefinedTemplate(),
+    habits: [],
     morningHabits: [],
     afternoonHabits: [],
     eveningHabits: []
@@ -54,21 +56,42 @@ export const mutations = {
     state.newHabitTemplate = newHabitCreationTemplate()
   },
 
-  // UPDATE HABITS LIST
   // GLOBAL
+  LOAD_WORKSPACE(state, selectedDate) {
+    var atomicHabitsData = preDefinedTemplate();
+    state.habits = []
+    state.morningHabits = []
+    state.afternoonHabits = []
+    state.eveningHabits = []
+    // console.log(atomicHabitsData)
+    for (var key in atomicHabitsData) {
+      if(key == selectedDate) {
+        atomicHabitsData[key].map((atom) => {
+          console.log(atom.parent)
+          state[atom.parent].push(atom)
+        })
+      }
+    }
+  },
+
+  // UPDATE LIST
   SET_HABITS_LIST(state, habit) {
     state.habits = habit
   },
+
+  // UPDATE LIST PER ZONE
   UPDATE_HABIT_LIST(state, data) {
     let zone = data.zone
-    data.habit.map((obj) => { obj.goal.parent = zone })
+    data.habit.map((obj) => {
+      obj.parent = zone
+    })
     state[zone] = data.habit
   },
 
   // TODO ACTIONS
   COMPLETE_TODO(state, habit) {
     let id = habit.id
-    let zone = habit.goal.parent
+    let zone = habit.parent
     state[zone].map((obj) => { 
       if (obj.id === id) {
         obj.audit.taskCompletedTimes++
@@ -92,13 +115,13 @@ export const mutations = {
         } else {
           obj.goal.status = 'completed'
         }
-        obj.audit.lastUpdatedOn = Date()
+        obj.audit.lastUpdatedOn = new Date()
       }
     })
   },
   SKIP_TODO(state, habit) {
     // state.eveningHabits = habit
-    console.log(habit.goal.parent)
+    console.log(habit.parent)
     console.log(habit.audit.taskSkippedTimes)
   }
 
@@ -109,12 +132,11 @@ export const actions = {
   createHabit({commit}, habit) {
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     habit.map((obj) => { 
-      var today = new Date()
-      var expiryDate = new Date()
-      expiryDate.setDate(expiryDate.getDate() + obj.metric.minDaysToRepeat)
-      obj.audit.createdOn = today.toString()
-      obj.audit.lastUpdatedOn = today.toString()
-      obj.audit.expiryDate = expiryDate.toString()
+      var today = moment().format('YYYY - MMM - DD')
+      var expiryDate = moment().add(obj.metric.minDaysToRepeat, 'days')
+      obj.audit.createdOn = today
+      obj.audit.lastUpdatedOn = today
+      obj.audit.expiryDate = expiryDate.format('YYYY - MMM - DD')
     })
     commit('CREATE_NEW_HABIT', habit);
   },
@@ -129,6 +151,10 @@ export const actions = {
 
   skipTodo({commit}, todo) {
     commit('SKIP_TODO', todo)
+  },
+
+  fetchWorkspaceRecords({commit}, selectedDate) {
+    commit('LOAD_WORKSPACE', selectedDate)
   }
 
 }

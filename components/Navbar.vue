@@ -3,7 +3,7 @@
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}" >
       <div class="row">
         <div class="col-xs-5">
-          <!-- <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" /> -->
+          <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" />
         </div>
         <div class="col-xs-2 text-white text-center">
           <div class="logo text-center">
@@ -43,10 +43,11 @@ export default {
       userData: null,
       user: null,
       username: null,
-      currentDate: new Date(),
-      dateFormat: 'YYYY/MM/DD',
-      monthFormat: 'YYYY/MM',
+      dateFormat: 'YYYY - MMM - DD'
     }
+  },
+  props: {
+    currentDate: { type: Object, default: moment() }
   },
   computed: mapGetters([
     'isAuthenticated',
@@ -64,14 +65,14 @@ export default {
   },
   methods: {
     moment,
-    signOut () {
+    signOut() {
       this.loggedUser.signUserOut(window.location.href);
     },
     redirectUserToLandingPage() {
       window.location = `/`;
     },
     onChange(date, dateString) {
-      console.log(date, dateString);
+      this.$emit('on-date-change', date)
     }
   }
 }
