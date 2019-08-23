@@ -14,10 +14,10 @@ export const habitImages = [
 export function newHabitCreationTemplate() {
   return {
     id: null,
+    parent: 'habits',
     goal: {
       category: null,
       status: null,
-      parent: 'habits'
     },
     metric: {
       actionStep: null,
@@ -30,8 +30,8 @@ export function newHabitCreationTemplate() {
     audit: {
       taskCompletedTimes: 0,
       taskSkippedTimes: 0,
-      taskCompletedDays: 0,
       taskSkippedDays: 0,
+      taskCompletedDays: 0,
       createdOn: null,
       lastUpdatedOn: null,
       expiryDate: null
@@ -42,7 +42,7 @@ export function newHabitCreationTemplate() {
 export function preDefinedTemplate() {
 
   var today = moment().format('YYYYMMDD')
-  var tomorrow = moment().add(1, 'days').format('YYYYMMDD')
+  var yesterday = moment().subtract(1, 'days').format('YYYYMMDD')
   var expiryDate = moment().add(66, 'days')
   
   return [
@@ -69,10 +69,10 @@ export function preDefinedTemplate() {
       audit: {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
-        taskCompletedDays: 0,
         taskSkippedDays: 0,
+        taskCompletedDays: 0,
         createdOn: today,
-        lastUpdatedOn: today,
+        lastUpdatedOn: yesterday,
         expiryDate: expiryDate.format('YYYYMMDD')
       }
     },
@@ -99,16 +99,16 @@ export function preDefinedTemplate() {
       audit: {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
-        taskCompletedDays: 0,
         taskSkippedDays: 0,
-        createdOn: today,
+        taskCompletedDays: 0,
+        createdOn: yesterday,
         lastUpdatedOn: today,
         expiryDate: expiryDate.format('YYYYMMDD')
       }
     },
     {
       id: 33,
-      parent: 'habits',
+      parent: 'afternoonHabits',
       goal: {
         category: {
           id: 8, 
@@ -119,7 +119,7 @@ export function preDefinedTemplate() {
         status: 'pending'
       },
       metric: {
-        actionStep: '20190824 - 1st item',
+        actionStep: '20190822 - 1st item',
         selectedTrackingOption: 1,
         timesComparison: 'minimum',
         minTimesToRepeat: 3,
@@ -129,10 +129,10 @@ export function preDefinedTemplate() {
       audit: {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
-        taskCompletedDays: 0,
         taskSkippedDays: 0,
-        createdOn: today,
-        lastUpdatedOn: tomorrow,
+        taskCompletedDays: 0,
+        createdOn: yesterday,
+        lastUpdatedOn: yesterday,
         expiryDate: expiryDate.format('YYYYMMDD')
       }
     }

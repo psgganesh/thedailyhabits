@@ -72,6 +72,7 @@ export default {
     },
     loadWorkspace() {
       this.$store.dispatch('fetchWorkspaceRecords', this.currentDate.format('YYYYMMDD'))
+      this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 2)
     }
   }
 }

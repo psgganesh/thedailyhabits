@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import uuid from 'uuid';
 import { mapState } from 'vuex';
 import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
@@ -49,6 +50,8 @@ export default {
   },
   data() {
     return {
+      id: null,
+      parent: 'habits',
       newGoalTemplate: null,
       newMetricTemplate: null,
       newAuditTemplate: null,
@@ -66,6 +69,7 @@ export default {
     }
   },
   created () {
+    console.log(this.newHabitTemplate);
     this.newGoalTemplate = this.newHabitTemplate.goal
     this.newMetricTemplate = this.newHabitTemplate.metric,
     this.newAuditTemplate = this.newHabitTemplate.audit
@@ -78,7 +82,7 @@ export default {
       this.current--
     },
     addNewHabit() {
-      this.$store.dispatch('createHabit', { 
+      this.$store.dispatch('createHabit', {
         id: Date.now(),
         goal: this.newGoalTemplate, 
         metric: this.newMetricTemplate,
@@ -87,30 +91,29 @@ export default {
       this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
       this.$emit('add-new-habit')
 
-      this.newGoalTemplate = {
-        category: null,
-        status: null,
-        parent: 'habits',
-      }
+      // this.newGoalTemplate = {
+      //   category: null,
+      //   status: null,
+      // }
 
-      this.newMetricTemplate = {
-        actionStep: null,
-        selectedTrackingOption: null,
-        timesComparison: 'minimum',
-        minTimesToRepeat: 3,
-        minDaysToRepeat: 66,
-        trackingQuestion: null
-      }
+      // this.newMetricTemplate = {
+      //   actionStep: null,
+      //   selectedTrackingOption: null,
+      //   timesComparison: 'minimum',
+      //   minTimesToRepeat: 3,
+      //   minDaysToRepeat: 66,
+      //   trackingQuestion: null
+      // }
 
-      this.newAuditTemplate = {
-        taskCompletedTimes: 0,
-        taskSkippedTimes: 0,
-        taskCompletedDays: 0,
-        taskSkippedDays: 0,
-        createdOn: Date.now(),
-        lastUpdatedOn: null,
-        expiryDate: null
-      }
+      // this.newAuditTemplate = {
+      //   taskCompletedTimes: 0,
+      //   taskSkippedTimes: 0,
+      //   taskSkippedDays: 0,
+      //   taskCompletedDays: 0,
+      //   createdOn: Date.now(),
+      //   lastUpdatedOn: null,
+      //   expiryDate: null
+      // }
 
     }
   },

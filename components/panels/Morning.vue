@@ -30,22 +30,26 @@
                 <a-icon type="calendar" /> 0 / 66 days
               </div>
             </div>
-            <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 1">
-              <div class="col-xs-6">
-                <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Mark Completed</a-button>
+
+            <div :class="">
+              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 1">
+                <div class="col-xs-6">
+                  <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Mark Completed</a-button>
+                </div>
+                <div class="col-xs-6 pull-right">
+                  <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
+                </div>
               </div>
-              <div class="col-xs-6 pull-right">
-                <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
+              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 2">
+                <div class="col-xs-6">
+                  <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
+                </div>
+                <div class="col-xs-6 pull-right">
+                  <a-button class="cta-btn-danger" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> No, later</a-button>
+                </div>
               </div>
             </div>
-            <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 2">
-              <div class="col-xs-6">
-                <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
-              </div>
-              <div class="col-xs-6 pull-right">
-                <a-button class="cta-btn-danger" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> No, later</a-button>
-              </div>
-            </div>
+            
           </a-card>
       </draggable>
     </div>
@@ -96,6 +100,9 @@ export default {
     },
     taskClassStatus(task) {
       return (task.goal.status === 'completed')? 'hidden' : 'visible'
+    },
+    isTodaysTask() {
+      // return element.metric.
     }
   }
 };

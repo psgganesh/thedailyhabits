@@ -56,7 +56,7 @@
 import { habitImages } from '~/utils/constants';
 
 export default {
-  name: 'Morning',
+  name: 'Afternoon',
   layout: 'simple',
   components: {
     

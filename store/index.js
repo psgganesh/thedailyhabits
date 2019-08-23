@@ -52,23 +52,40 @@ export const mutations = {
 
   // NEW HABIT
   CREATE_NEW_HABIT(state, habit) {
+    var today = moment().format('YYYY - MMM - DD')
+      var expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
+    habit.audit.createdOn = today
+    habit.audit.lastUpdatedOn = today
+    habit.audit.expiryDate = expiryDate.format('YYYY - MMM - DD')
     state.habits.push(habit)
     state.newHabitTemplate = newHabitCreationTemplate()
   },
 
   // GLOBAL
-  LOAD_WORKSPACE(state, selectedDate) {
-    var atomicHabitsData = preDefinedTemplate();
+  REFRESH_WORKSPACE(state) {
     state.habits = []
     state.morningHabits = []
     state.afternoonHabits = []
     state.eveningHabits = []
-    console.log(atomicHabitsData)
+  },
+  LOAD_WORKSPACE(state, selectedDate) {
+    // LOAD FROM BLOCKSTACK
+    var atomicHabitsData = preDefinedTemplate();
     atomicHabitsData.map((atom) => {
       if(moment(selectedDate).isSameOrAfter(atom.audit.createdOn) && moment(selectedDate).isBefore(atom.audit.expiryDate)) {
         state[atom.parent].push(atom)
       }
     })
+  },
+  SAVE_WORKSPACE(state, selectedDate) {
+    state.atomicHabitsData = [
+      ...state.habits,
+      ...state.morningHabits,
+      ...state.afternoonHabits,
+      ...state.eveningHabits
+    ]
+    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
+    console.log(state.atomicHabitsData);
   },
 
   // UPDATE LIST
@@ -127,15 +144,7 @@ export const mutations = {
 export const actions = {
 
   createHabit({commit}, habit) {
-    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
-    habit.map((obj) => { 
-      var today = moment().format('YYYY - MMM - DD')
-      var expiryDate = moment().add(obj.metric.minDaysToRepeat, 'days')
-      obj.audit.createdOn = today
-      obj.audit.lastUpdatedOn = today
-      obj.audit.expiryDate = expiryDate.format('YYYY - MMM - DD')
-    })
-    commit('CREATE_NEW_HABIT', habit);
+    commit('CREATE_NEW_HABIT', habit)
   },
 
   moveHabit({commit}, data) {
@@ -151,7 +160,12 @@ export const actions = {
   },
 
   fetchWorkspaceRecords({commit}, selectedDate) {
+    commit('REFRESH_WORKSPACE')
     commit('LOAD_WORKSPACE', selectedDate)
+  },
+
+  saveWorkspace({commit}, selectedDate) {
+    commit('SAVE_WORKSPACE', selectedDate)
   }
 
 }
@@ -162,5 +176,14 @@ export const getters = {
   },
   loggedUser (state) {
     return state.userSession
+  },
+  morningHabitsCount() {
+    
+  },
+  afternoonHabitsCount() {
+
+  },
+  eveningHabitsCount() {
+
   }
 }
