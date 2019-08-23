@@ -4,6 +4,7 @@ import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants'
 export const state = () => {
   return  {
     atomicData: [],
+    selectedDate: null,
     userSession: null,
     newHabitTemplate: newHabitCreationTemplate(),
     habits: [],
@@ -30,6 +31,11 @@ export const mutations = {
     state.newHabitTemplate.goal.category = newHabitGoalCategory
   },
 
+  // SELECTED DATE FROM DATEPICKER
+  SET_SELECTED_DATE(state, selectedDate) {
+    state.selectedDate = selectedDate
+  },
+
   // METRIC STEP
   SET_NEW_HABIT_METRIC_ACTION_STEP(state, newHabitMetricActionStep) {
     state.newHabitTemplate.metric.actionStep = newHabitMetricActionStep
@@ -52,11 +58,11 @@ export const mutations = {
 
   // NEW HABIT
   CREATE_NEW_HABIT(state, habit) {
-    var today = moment().format('YYYY - MMM - DD')
-      var expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
+    var today = moment().format('YYYYMMDD')
+    var expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
     habit.audit.createdOn = today
     habit.audit.lastUpdatedOn = today
-    habit.audit.expiryDate = expiryDate.format('YYYY - MMM - DD')
+    habit.audit.expiryDate = expiryDate.format('YYYYMMDD')
     state.habits.push(habit)
     state.newHabitTemplate = newHabitCreationTemplate()
   },
@@ -109,7 +115,7 @@ export const mutations = {
     state[zone].map((obj) => { 
       if (obj.id === id) {
         obj.audit.taskCompletedTimes++
-        if(obj.metric.selectedTrackingOption === 1) {
+        if(obj.metric.selectedTrackingOption === 'numeric') {
           switch(obj.metric.timesComparison) {
             case 'minimum':
               if (obj.audit.taskCompletedTimes >= obj.metric.minTimesToRepeat) {
@@ -166,7 +172,7 @@ export const actions = {
 
   saveWorkspace({commit}, selectedDate) {
     commit('SAVE_WORKSPACE', selectedDate)
-  }
+  },
 
 }
 
@@ -177,13 +183,16 @@ export const getters = {
   loggedUser (state) {
     return state.userSession
   },
-  morningHabitsCount() {
+  morningHabitsCount(state) {
     
   },
-  afternoonHabitsCount() {
+  afternoonHabitsCount(state) {
 
   },
-  eveningHabitsCount() {
+  eveningHabitsCount(state) {
 
+  },
+  fetchSelectedDate(state) {
+    return state.selectedDate
   }
 }

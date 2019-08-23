@@ -224,8 +224,8 @@ export default {
     'loggedUser'
   ]),
   beforeMount () {
-    console.log('Index - authenticated -- '+this.isAuthenticated);
-    console.log('Index - loggedUser -- '+this.loggedUser.isUserSignedIn());
+    // console.log('Index - authenticated -- '+this.isAuthenticated);
+    // console.log('Index - loggedUser -- '+this.loggedUser.isUserSignedIn());
     if(this.loggedUser.isUserSignedIn()) {
       this.redirectLoggedInUser();
     } else if (this.loggedUser.isSignInPending()) {

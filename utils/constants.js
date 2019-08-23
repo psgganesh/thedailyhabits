@@ -43,6 +43,7 @@ export function preDefinedTemplate() {
 
   var today = moment().format('YYYYMMDD')
   var yesterday = moment().subtract(1, 'days').format('YYYYMMDD')
+  var tomorrow = moment().add(1, 'days').format('YYYYMMDD')
   var expiryDate = moment().add(66, 'days')
   
   return [
@@ -59,8 +60,8 @@ export function preDefinedTemplate() {
         status: 'pending'
       },
       metric: {
-        actionStep: '20190823 - 1st item',
-        selectedTrackingOption: 1,
+        actionStep: today+'\'s task',
+        selectedTrackingOption: 'numeric',
         timesComparison: 'minimum',
         minTimesToRepeat: 3,
         minDaysToRepeat: 66,
@@ -72,7 +73,7 @@ export function preDefinedTemplate() {
         taskSkippedDays: 0,
         taskCompletedDays: 0,
         createdOn: today,
-        lastUpdatedOn: yesterday,
+        lastUpdatedOn: today,
         expiryDate: expiryDate.format('YYYYMMDD')
       }
     },
@@ -89,26 +90,26 @@ export function preDefinedTemplate() {
         status: 'pending'
       },
       metric: {
-        actionStep: '20190823 - 2nd item',
-        selectedTrackingOption: 1,
+        actionStep: today+'\'s task',
+        selectedTrackingOption: 'numeric',
         timesComparison: 'minimum',
         minTimesToRepeat: 3,
         minDaysToRepeat: 66,
-        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
+        trackingQuestion: 'Did you walk the cat ?'
       },
       audit: {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
         taskSkippedDays: 0,
         taskCompletedDays: 0,
-        createdOn: yesterday,
+        createdOn: today,
         lastUpdatedOn: today,
         expiryDate: expiryDate.format('YYYYMMDD')
       }
     },
     {
       id: 33,
-      parent: 'afternoonHabits',
+      parent: 'morningHabits',
       goal: {
         category: {
           id: 8, 
@@ -119,12 +120,12 @@ export function preDefinedTemplate() {
         status: 'pending'
       },
       metric: {
-        actionStep: '20190822 - 1st item',
-        selectedTrackingOption: 1,
+        actionStep: yesterday+'\'s task',
+        selectedTrackingOption: 'numeric',
         timesComparison: 'minimum',
         minTimesToRepeat: 3,
         minDaysToRepeat: 66,
-        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
+        trackingQuestion: 'Did you clean the house ?'
       },
       audit: {
         taskCompletedTimes: 0,

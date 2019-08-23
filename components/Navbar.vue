@@ -54,8 +54,8 @@ export default {
     'loggedUser'
   ]),
   beforeMount () {
-    console.log('Template - authenticated -- '+this.isAuthenticated);
-    console.log('Template - loggedUser -- '+this.loggedUser.isUserSignedIn());
+    // console.log('Template - authenticated -- '+this.isAuthenticated);
+    // console.log('Template - loggedUser -- '+this.loggedUser.isUserSignedIn());
     if(!this.loggedUser.isUserSignedIn()) {
       this.redirectUserToLandingPage();
     }

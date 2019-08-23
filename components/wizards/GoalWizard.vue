@@ -91,29 +91,29 @@ export default {
       this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
       this.$emit('add-new-habit')
 
-      // this.newGoalTemplate = {
-      //   category: null,
-      //   status: null,
-      // }
+      this.newGoalTemplate = {
+        category: null,
+        status: null,
+      }
 
-      // this.newMetricTemplate = {
-      //   actionStep: null,
-      //   selectedTrackingOption: null,
-      //   timesComparison: 'minimum',
-      //   minTimesToRepeat: 3,
-      //   minDaysToRepeat: 66,
-      //   trackingQuestion: null
-      // }
+      this.newMetricTemplate = {
+        actionStep: null,
+        selectedTrackingOption: null,
+        timesComparison: 'minimum',
+        minTimesToRepeat: 3,
+        minDaysToRepeat: 66,
+        trackingQuestion: null
+      }
 
-      // this.newAuditTemplate = {
-      //   taskCompletedTimes: 0,
-      //   taskSkippedTimes: 0,
-      //   taskSkippedDays: 0,
-      //   taskCompletedDays: 0,
-      //   createdOn: Date.now(),
-      //   lastUpdatedOn: null,
-      //   expiryDate: null
-      // }
+      this.newAuditTemplate = {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskSkippedDays: 0,
+        taskCompletedDays: 0,
+        createdOn: Date.now(),
+        lastUpdatedOn: null,
+        expiryDate: null
+      }
 
     }
   },

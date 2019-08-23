@@ -19,11 +19,11 @@
               <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
             </a-card-meta>
             <br>
-            <div class="row footer">
-              <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 1">
+            <div class="row footer mb-15">
+              <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 'numeric'">
                 <a-icon type="reload" /> {{ element.audit.taskCompletedTimes }} / {{ element.metric.minTimesToRepeat }} times
               </div>
-              <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 2">
+              <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 'simple'">
                 
               </div>
               <div class="col-xs-6 pull-right">
@@ -31,8 +31,8 @@
               </div>
             </div>
 
-            <div :class="">
-              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 1">
+            <template v-if="isTodaysTask(element)">
+              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'numeric'">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Mark Completed</a-button>
                 </div>
@@ -40,7 +40,7 @@
                   <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
                 </div>
               </div>
-              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 2">
+              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 'simple'">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
                 </div>
@@ -48,7 +48,7 @@
                   <a-button class="cta-btn-danger" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> No, later</a-button>
                 </div>
               </div>
-            </div>
+            </template>
             
           </a-card>
       </draggable>
@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import moment from 'moment';
 import { habitImages } from '~/utils/constants';
 
 export default {
@@ -67,10 +69,13 @@ export default {
   },
   data() {
     return {
-      
+      today: moment().format()
     };
   },
   computed : {
+    ...mapGetters([
+      'fetchSelectedDate'
+    ]),
     morningHabits: {
       get() {
         return this.$store.state.morningHabits
@@ -101,8 +106,8 @@ export default {
     taskClassStatus(task) {
       return (task.goal.status === 'completed')? 'hidden' : 'visible'
     },
-    isTodaysTask() {
-      // return element.metric.
+    isTodaysTask(element) {
+      return moment(moment(this.fetchSelectedDate).format()).isSame(this.today)
     }
   }
 };

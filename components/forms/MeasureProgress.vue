@@ -66,12 +66,14 @@ export default {
       trackingOptions: [
         { 
           id: 1, 
+          type: 'numeric',
           title: 'With a number as a unit', 
           description: 'How many ___ did you do today ?', avatar: 'https://img.icons8.com/color/96/000000/help.png',
           placeholderQuestion: 'Example: How many times did you walk today ?'
         },
         { 
           id: 2, 
+          type: 'simple',
           title: 'Simple Yes or No each time', 
           description: 'Did you succeed in ___ today ?', avatar: 'https://img.icons8.com/color/96/000000/true-false.png',
           placeholderQuestion: 'Example: Did you walk 10,000 steps today (YES / NO)?'
@@ -84,8 +86,9 @@ export default {
       this.$store.commit('SET_NEW_HABIT_METRIC_ACTION_STEP', this.metric.actionStep)
     },
     updateTrackingOption(trackingOption) {
-      this.metric.selectedTrackingOption = trackingOption;
-      this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_OPTION', this.metric.selectedTrackingOption)
+      this.metric.selectedTrackingOption = trackingOption
+      var selectedTrackingOptionType = this.trackingOptions[trackingOption - 1].type;
+      this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_OPTION', selectedTrackingOptionType)
     },
     updateTimesComparison() {
       this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_COMPARISON', this.metric.timesComparison)

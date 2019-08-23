@@ -63,16 +63,18 @@ export default {
     Navbar
   },
   beforeMount() {
+    this.$store.commit('SET_SELECTED_DATE', this.currentDate)
     this.loadWorkspace()
   },
   methods: {
     setDate(updatedDate) {
       this.currentDate = updatedDate
       this.loadWorkspace()
+      this.$store.commit('SET_SELECTED_DATE', this.currentDate)
     },
     loadWorkspace() {
       this.$store.dispatch('fetchWorkspaceRecords', this.currentDate.format('YYYYMMDD'))
-      this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 2)
+      this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 1)
     }
   }
 }
