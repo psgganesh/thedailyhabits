@@ -12,6 +12,7 @@ export const habitImages = [
 
 export function newHabitCreationTemplate() {
   return {
+    id: Math.floor(Date.now() / 1000),
     goal: {
       category: null,
       status: null,
@@ -20,8 +21,7 @@ export function newHabitCreationTemplate() {
     metric: {
       actionStep: null,
       selectedTrackingOption: null,
-      timesComparison: 1,
-      timesUnit: 1,
+      timesComparison: 'minimum',
       minTimesToRepeat: 3,
       minDaysToRepeat: 66,
       trackingQuestion: null
@@ -30,14 +30,23 @@ export function newHabitCreationTemplate() {
       taskCompletedTimes: 0,
       taskSkippedTimes: 0,
       taskCompletedDays: 0,
-      taskSkippedDays: 0
+      taskSkippedDays: 0,
+      createdOn: null,
+      lastUpdatedOn: null,
+      expiryDate: null
     }
   }
 }
 
 export function preDefinedTemplate() {
+
+  var today = new Date()
+  var expiryDate = new Date()
+  expiryDate.setDate(expiryDate.getDate() + 66)
+  
   return [
     {
+      id: Math.floor(Date.now() / 1000),
       goal: {
         category: {
           id: 8, 
@@ -51,17 +60,19 @@ export function preDefinedTemplate() {
       metric: {
         actionStep: 'Do breathing today',
         selectedTrackingOption: 1,
-        timesComparison: 1,
-        timesUnit: 1,
+        timesComparison: 'minimum',
         minTimesToRepeat: 3,
         minDaysToRepeat: 66,
-        trackingQuestion: 'Relaxing and Kapalabhathi breath'
+        trackingQuestion: 'Did you do the relaxing and kapalabhathi breathing ?'
       },
       audit: {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
         taskCompletedDays: 0,
-        taskSkippedDays: 0
+        taskSkippedDays: 0,
+        createdOn: today.toString(),
+        lastUpdatedOn: today.toString(),
+        expiryDate: expiryDate.toString()
       }
     }
   ]

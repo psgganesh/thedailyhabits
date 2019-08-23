@@ -44,9 +44,6 @@ export const mutations = {
   SET_NEW_HABIT_METRIC_TRACKING_QUESTION(state, newHabitMetricTrackingQuestion) {
     state.newHabitTemplate.metric.trackingQuestion = newHabitMetricTrackingQuestion
   },
-  SET_NEW_HABIT_METRIC_TIMES_UNIT(state, newHabitMetricTimesUnit) {
-    state.newHabitTemplate.metric.timesUnit = newHabitMetricTimesUnit
-  },
   SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT(state, newHabitMetricMinDaysToRepeat) {
     state.newHabitTemplate.metric.minDaysToRepeat = newHabitMetricMinDaysToRepeat
   },
@@ -65,31 +62,45 @@ export const mutations = {
   UPDATE_HABIT_LIST(state, data) {
     let zone = data.zone
     data.habit.map((obj) => { obj.goal.parent = zone })
-    // AS PER TIMEZONE
-    switch(data.zone) {
-      case 'morning':
-        state.morningHabits = data.habit
-        break;
-      case 'afternoon':
-        state.afternoonHabits = data.habit
-        break;
-      case 'evening':
-        state.eveningHabits = data.habit
-        break;
-      default:
-        state.habits = data.habit
-    }
-  }
+    state[zone] = data.habit
+  },
 
   // TODO ACTIONS
-  // COMPLETE_TODO(state, todo) {
-  //   // state.afternoonHabits = todo
-  //   console.log('completed -> '+todo)
-  // },
-  // SKIP_TODO(state, todo) {
-  //   // state.eveningHabits = todo
-  //   console.log('skipped -> '+todo)
-  // }
+  COMPLETE_TODO(state, habit) {
+    let id = habit.id
+    let zone = habit.goal.parent
+    state[zone].map((obj) => { 
+      if (obj.id === id) {
+        obj.audit.taskCompletedTimes++
+        if(obj.metric.selectedTrackingOption === 1) {
+          switch(obj.metric.timesComparison) {
+            case 'minimum':
+              if (obj.audit.taskCompletedTimes >= obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'completed'
+              }
+              break;
+            case 'exactly':
+              if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'completed'
+              }
+              break;
+            default:
+              if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'completed'
+              }
+          }
+        } else {
+          obj.goal.status = 'completed'
+        }
+        obj.audit.lastUpdatedOn = Date()
+      }
+    })
+  },
+  SKIP_TODO(state, habit) {
+    // state.eveningHabits = habit
+    console.log(habit.goal.parent)
+    console.log(habit.audit.taskSkippedTimes)
+  }
 
 }
 
@@ -97,19 +108,28 @@ export const actions = {
 
   createHabit({commit}, habit) {
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
+    habit.map((obj) => { 
+      var today = new Date()
+      var expiryDate = new Date()
+      expiryDate.setDate(expiryDate.getDate() + obj.metric.minDaysToRepeat)
+      obj.audit.createdOn = today.toString()
+      obj.audit.lastUpdatedOn = today.toString()
+      obj.audit.expiryDate = expiryDate.toString()
+    })
     commit('CREATE_NEW_HABIT', habit);
   },
 
   moveHabit({commit}, data) {
     commit('UPDATE_HABIT_LIST', data)
-  }
+  },
 
-  // completeTodo({commit}, todo) {
-  //   commit('COMPLETE_TODO', todo)
-  // },
-  // skipTodo({commit}, todo) {
-  //   commit('SKIP_TODO', todo)
-  // }
+  completeTodo({commit}, todo) {
+    commit('COMPLETE_TODO', todo)
+  },
+
+  skipTodo({commit}, todo) {
+    commit('SKIP_TODO', todo)
+  }
 
 }
 

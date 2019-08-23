@@ -51,6 +51,7 @@ export default {
     return {
       newGoalTemplate: null,
       newMetricTemplate: null,
+      newAuditTemplate: null,
       current: 0,
       steps: [
         {
@@ -66,7 +67,8 @@ export default {
   },
   created () {
     this.newGoalTemplate = this.newHabitTemplate.goal
-    this.newMetricTemplate = this.newHabitTemplate.metric
+    this.newMetricTemplate = this.newHabitTemplate.metric,
+    this.newAuditTemplate = this.newHabitTemplate.audit
   },
   methods: {
     next() {
@@ -76,22 +78,38 @@ export default {
       this.current--
     },
     addNewHabit() {
-      this.$store.dispatch('createHabit', { goal: this.newGoalTemplate, metric: this.newMetricTemplate })
+      this.$store.dispatch('createHabit', { 
+        id: Math.floor(Date.now() / 1000),
+        goal: this.newGoalTemplate, 
+        metric: this.newMetricTemplate,
+        audit: this.newAuditTemplate
+      })
       this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
       this.$emit('add-new-habit')
 
       this.newGoalTemplate = {
         category: null,
+        status: null,
+        parent: 'habits',
       }
 
       this.newMetricTemplate = {
         actionStep: null,
         selectedTrackingOption: null,
-        timesComparison: 1,
+        timesComparison: 'minimum',
         minTimesToRepeat: 3,
-        timesUnit: 1,
         minDaysToRepeat: 66,
         trackingQuestion: null
+      }
+
+      this.newAuditTemplate = {
+        taskCompletedTimes: 0,
+        taskSkippedTimes: 0,
+        taskCompletedDays: 0,
+        taskSkippedDays: 0,
+        createdOn: Date.now(),
+        lastUpdatedOn: null,
+        expiryDate: null
       }
 
     }
@@ -122,4 +140,6 @@ export default {
     background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
     color: #ffffff;
   }
+
+  
 </style>

@@ -21,17 +21,12 @@
           <a-row :gutter="16" class="my-10" v-show="metric.selectedTrackingOption === 1">
             <a-col :span="24">
               <h3 class="text-left">Mark as successful if number 
-                <a-select defaultValue="1" style="width: 159px" size="default" v-model="metric.timesComparison" @change="updateTimesComparison">
-                  <a-select-option value="1">at least</a-select-option>
-                  <a-select-option value="2">is exactly</a-select-option>
+                <a-select defaultValue="minimum" style="width: 159px" size="default" v-model="metric.timesComparison" @change="updateTimesComparison">
+                  <a-select-option value="minimum">at least</a-select-option>
+                  <a-select-option value="exactly">is exactly</a-select-option>
                 </a-select>
                 <a-input-number :min="1" :max="10" v-model="metric.minTimesToRepeat" size="default" @change="updateMinTimesToRepeat"/>
-                times in a
-                <a-select defaultValue="1" style="width: 95px" size="default" @change="updateTimesUnit">
-                  <a-select-option value="1">day</a-select-option>
-                  <a-select-option value="2">week</a-select-option>
-                  <a-select-option value="3">month</a-select-option>
-                </a-select>
+                times in a day
               </h3>
             </a-col>
           </a-row>
@@ -65,7 +60,6 @@ export default {
         selectedTrackingOption: this.metricTemplate.selectedTrackingOption,
         timesComparison: this.metricTemplate.timesComparison,
         minTimesToRepeat: this.metricTemplate.minTimesToRepeat,
-        timesUnit: this.metricTemplate.timesUnit,
         minDaysToRepeat: this.metricTemplate.minDaysToRepeat,
         trackingQuestion: this.metricTemplate.trackingQuestion
       },
@@ -98,9 +92,6 @@ export default {
     },
     updateMinTimesToRepeat() {
       this.$store.commit('SET_NEW_HABIT_METRIC_MIN_TIMES_TO_REPEAT', this.metric.minTimesToRepeat)
-    },
-    updateTimesUnit() {
-      this.$store.commit('SET_NEW_HABIT_METRIC_TIMES_UNIT', this.metric.timesUnit)
     },
     updateMinDaysToRepeat() {
       this.$store.commit('SET_NEW_HABIT_METRIC_MIN_DAYS_TO_REPEAT', this.metric.minDaysToRepeat)
