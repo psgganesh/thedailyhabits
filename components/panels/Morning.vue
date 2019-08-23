@@ -104,7 +104,7 @@ export default {
       return (task.goal.status === 'completed')
     },
     taskClassStatus(task) {
-      return (task.goal.status === 'completed')? 'hidden' : 'visible'
+      return ( (task.goal.status === 'completed') || (!moment(moment(this.fetchSelectedDate).format()).isSame(this.today))) ? 'hidden' : 'visible'
     },
     isTodaysTask(element) {
       return moment(moment(this.fetchSelectedDate).format()).isSame(this.today)
