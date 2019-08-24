@@ -1,6 +1,8 @@
 import moment from 'moment'
 import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants'
 
+var STORAGE_FILE = 'atomicHabitsData1.json'
+
 export const state = () => {
   return  {
     atomicData: [],
@@ -74,14 +76,31 @@ export const mutations = {
     state.afternoonHabits = []
     state.eveningHabits = []
   },
-  LOAD_WORKSPACE(state, selectedDate) {
-    // LOAD FROM BLOCKSTACK
-    var atomicHabitsData = preDefinedTemplate();
-    atomicHabitsData.map((atom) => {
-      if(moment(selectedDate).isSameOrAfter(atom.audit.createdOn) && moment(selectedDate).isBefore(atom.audit.expiryDate)) {
+  LOAD_WORKSPACE(state, blockstackData) {
+    
+    let woskspaceData = JSON.parse(blockstackData)
+    console.log(woskspaceData)
+
+    woskspaceData.map((atom) => {
+      if(
+        moment(state.selectedDate).isSameOrAfter(atom.audit.createdOn) && 
+        moment(state.selectedDate).isBefore(atom.audit.expiryDate)
+      ) {
         state[atom.parent].push(atom)
       }
     })
+    // var blockstackData = []
+    // // LOAD FROM BLOCKSTACK
+    // blockstackData = state.userSession.getFile(STORAGE_FILE).then((atomicHabitsText) => {
+    //   return JSON.parse(atomicHabitsText || '[]')
+    //   // console.log(atomicHabitsJSON);
+    //   // atomicHabitsJSON.map((atom) => {
+    //   //   if(moment(selectedDate).isSameOrAfter(atom.audit.createdOn) && moment(selectedDate).isBefore(atom.audit.expiryDate)) {
+    //   //     blockstackData.push(atom)
+    //   //   }
+    //   // })
+    // })
+    // state.atomicData = blockstackData
   },
   SAVE_WORKSPACE(state, selectedDate) {
     state.atomicHabitsData = [
@@ -92,6 +111,7 @@ export const mutations = {
     ]
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     console.log(state.atomicHabitsData);
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
   },
 
   // UPDATE LIST
@@ -165,9 +185,20 @@ export const actions = {
     commit('SKIP_TODO', todo)
   },
 
-  fetchWorkspaceRecords({commit}, selectedDate) {
+  async fetchWorkspaceRecords({commit, state}, selectedDate) {
     commit('REFRESH_WORKSPACE')
-    commit('LOAD_WORKSPACE', selectedDate)
+    try {
+      
+      await state.userSession.getFile(STORAGE_FILE).then((habitsData) => {
+        if(habitsData.length > 0) {
+
+          commit('LOAD_WORKSPACE', habitsData)
+        }
+      });
+      
+    } catch (e) {
+      console.log(e)
+    }
   },
 
   saveWorkspace({commit}, selectedDate) {

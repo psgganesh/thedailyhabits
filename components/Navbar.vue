@@ -54,8 +54,6 @@ export default {
     'loggedUser'
   ]),
   beforeMount () {
-    // console.log('Template - authenticated -- '+this.isAuthenticated);
-    // console.log('Template - loggedUser -- '+this.loggedUser.isUserSignedIn());
     if(!this.loggedUser.isUserSignedIn()) {
       this.redirectUserToLandingPage();
     }
@@ -66,7 +64,8 @@ export default {
   methods: {
     moment,
     signOut() {
-      this.loggedUser.signUserOut(window.location.href);
+      this.$store.dispatch('saveWorkspace', this.currentDate)
+      //this.loggedUser.signUserOut(window.location.href);
     },
     redirectUserToLandingPage() {
       window.location = `/`;

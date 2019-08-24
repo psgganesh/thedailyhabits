@@ -84,6 +84,7 @@ export default {
     addNewHabit() {
       this.$store.dispatch('createHabit', {
         id: Date.now(),
+        parent: 'habits',
         goal: this.newGoalTemplate, 
         metric: this.newMetricTemplate,
         audit: this.newAuditTemplate
