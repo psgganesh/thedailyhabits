@@ -64,8 +64,7 @@ export default {
   methods: {
     moment,
     signOut() {
-      this.$store.dispatch('saveWorkspace', this.currentDate)
-      //this.loggedUser.signUserOut(window.location.href);
+      this.$store.dispatch('saveWorkspaceAndSignout', this.currentDate)
     },
     redirectUserToLandingPage() {
       window.location = `/`;

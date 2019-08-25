@@ -73,7 +73,7 @@ export default {
       this.$store.commit('SET_SELECTED_DATE', this.currentDate)
     },
     loadWorkspace() {
-      this.$store.dispatch('fetchWorkspaceRecords', this.currentDate.format('YYYYMMDD'))
+      this.$store.dispatch('fetchWorkspaceRecords')
       this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 1)
     }
   }

@@ -6,6 +6,7 @@ var STORAGE_FILE = 'atomicHabitsData1.json'
 export const state = () => {
   return  {
     atomicData: [],
+    preferences: [],
     selectedDate: null,
     userSession: null,
     newHabitTemplate: newHabitCreationTemplate(),
@@ -89,20 +90,8 @@ export const mutations = {
         state[atom.parent].push(atom)
       }
     })
-    // var blockstackData = []
-    // // LOAD FROM BLOCKSTACK
-    // blockstackData = state.userSession.getFile(STORAGE_FILE).then((atomicHabitsText) => {
-    //   return JSON.parse(atomicHabitsText || '[]')
-    //   // console.log(atomicHabitsJSON);
-    //   // atomicHabitsJSON.map((atom) => {
-    //   //   if(moment(selectedDate).isSameOrAfter(atom.audit.createdOn) && moment(selectedDate).isBefore(atom.audit.expiryDate)) {
-    //   //     blockstackData.push(atom)
-    //   //   }
-    //   // })
-    // })
-    // state.atomicData = blockstackData
   },
-  SAVE_WORKSPACE(state, selectedDate) {
+  SAVE_WORKSPACE(state) {
     state.atomicHabitsData = [
       ...state.habits,
       ...state.morningHabits,
@@ -112,6 +101,20 @@ export const mutations = {
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     console.log(state.atomicHabitsData);
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
+  },
+  SAVE_WORKSPACE_AND_SIGNOUT(state) {
+    state.atomicHabitsData = [
+      ...state.habits,
+      ...state.morningHabits,
+      ...state.afternoonHabits,
+      ...state.eveningHabits
+    ]
+    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
+    console.log(state.atomicHabitsData);
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
+    .finally(() => {
+      state.userSession.signUserOut(window.location.href);
+    })
   },
 
   // UPDATE LIST
@@ -138,31 +141,70 @@ export const mutations = {
         if(obj.metric.selectedTrackingOption === 'numeric') {
           switch(obj.metric.timesComparison) {
             case 'minimum':
-              if (obj.audit.taskCompletedTimes >= obj.metric.minTimesToRepeat) {
+              if (obj.audit.taskCompletedTimes == obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'completed'
+                obj.audit.taskCompletedDays++
+              }
+              if (obj.audit.taskCompletedTimes > obj.metric.minTimesToRepeat) {
                 obj.goal.status = 'completed'
               }
               break;
             case 'exactly':
               if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
                 obj.goal.status = 'completed'
+                obj.audit.taskCompletedDays++
               }
               break;
             default:
               if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
                 obj.goal.status = 'completed'
+                obj.audit.taskCompletedDays++
               }
           }
         } else {
           obj.goal.status = 'completed'
+          obj.audit.taskCompletedDays++
         }
         obj.audit.lastUpdatedOn = new Date()
       }
     })
   },
   SKIP_TODO(state, habit) {
-    // state.eveningHabits = habit
-    console.log(habit.parent)
-    console.log(habit.audit.taskSkippedTimes)
+    let id = habit.id
+    let zone = habit.parent
+    state[zone].map((obj) => { 
+      if (obj.id === id) {
+        obj.audit.taskSkippedTimes++
+        if(obj.metric.selectedTrackingOption === 'numeric') {
+          switch(obj.metric.timesComparison) {
+            case 'minimum':
+              if (obj.audit.taskSkippedTimes == obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'skipped'
+                obj.audit.taskSkippedDays++
+              }
+              if (obj.audit.taskSkippedTimes > obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'skipped'
+              }
+              break;
+            case 'exactly':
+              if (obj.audit.taskSkippedTimes === obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'skipped'
+                obj.audit.taskSkippedDays++
+              }
+              break;
+            default:
+              if (obj.audit.taskSkippedTimes === obj.metric.minTimesToRepeat) {
+                obj.goal.status = 'skipped'
+                obj.audit.taskSkippedDays++
+              }
+          }
+        } else {
+          obj.goal.status = 'skipped'
+          obj.audit.taskSkippedDays++
+        }
+        obj.audit.lastUpdatedOn = new Date()
+      }
+    })
   }
 
 }
@@ -171,21 +213,25 @@ export const actions = {
 
   createHabit({commit}, habit) {
     commit('CREATE_NEW_HABIT', habit)
+    // commit('SAVE_WORKSPACE')
   },
 
   moveHabit({commit}, data) {
     commit('UPDATE_HABIT_LIST', data)
+    // commit('SAVE_WORKSPACE')
   },
 
   completeTodo({commit}, todo) {
     commit('COMPLETE_TODO', todo)
+    // commit('SAVE_WORKSPACE')
   },
 
   skipTodo({commit}, todo) {
     commit('SKIP_TODO', todo)
+    // commit('SAVE_WORKSPACE')
   },
 
-  async fetchWorkspaceRecords({commit, state}, selectedDate) {
+  async fetchWorkspaceRecords({commit, state}) {
     commit('REFRESH_WORKSPACE')
     try {
       
@@ -201,8 +247,12 @@ export const actions = {
     }
   },
 
-  saveWorkspace({commit}, selectedDate) {
-    commit('SAVE_WORKSPACE', selectedDate)
+  saveWorkspace({commit}) {
+    commit('SAVE_WORKSPACE')
+  },
+
+  saveWorkspaceAndSignout({commit}) {
+    commit('SAVE_WORKSPACE_AND_SIGNOUT')
   },
 
 }
