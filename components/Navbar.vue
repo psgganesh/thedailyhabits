@@ -17,7 +17,7 @@
               <span slot="title" class="submenu-title-wrapper">
                 <span v-if="user.avatarUrl()">
                   <template>
-                    <a-avatar :src="user.avatarUrl()" />
+                    <a-avatar shape="square" :src="user.avatarUrl()" />
                   </template>
                 </span>
                 {{ username }} </span>

@@ -1,7 +1,8 @@
 import moment from 'moment'
 import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants'
 
-var STORAGE_FILE = 'atomicHabitsData1.json'
+var STORAGE_FILE = 'atomicHabitsDataTemp.json'
+const arrSum = arr => arr.reduce((a,b) => a + b, 0)
 
 export const state = () => {
   return  {
@@ -99,7 +100,9 @@ export const mutations = {
       ...state.eveningHabits
     ]
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
-    console.log(state.atomicHabitsData);
+    console.group('STARTED SAVING');
+      console.log(state.atomicHabitsData);
+    console.groupEnd();
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
   },
   SAVE_WORKSPACE_AND_SIGNOUT(state) {
@@ -110,7 +113,6 @@ export const mutations = {
       ...state.eveningHabits
     ]
     // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
-    console.log(state.atomicHabitsData);
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
     .finally(() => {
       state.userSession.signUserOut(window.location.href);
@@ -124,11 +126,35 @@ export const mutations = {
 
   // UPDATE LIST PER ZONE
   UPDATE_HABIT_LIST(state, data) {
+    
+    let prevParent = null
+    let prevHabitId = null
+
     let zone = data.zone
     data.habit.map((obj) => {
+      prevHabitId = obj.id
+      prevParent = obj.parent
       obj.parent = zone
     })
     state[zone] = data.habit
+    
+    if(prevParent !== null) {
+      if(prevParent !== zone) {
+        var prevList = state[prevParent]
+        if(prevList.length > 0) {
+          var prevElementIndex = null
+          prevList.map(function(obj, index) {
+            if( (obj.id === prevHabitId) && (obj.parent === prevParent) )
+              prevElementIndex = index
+          })
+          if(prevElementIndex !== null) {
+            prevList.splice(prevElementIndex, 1)
+            state[prevParent] = prevList
+          }
+        }
+      }
+    }
+    
   },
 
   // TODO ACTIONS
@@ -213,22 +239,22 @@ export const actions = {
 
   createHabit({commit}, habit) {
     commit('CREATE_NEW_HABIT', habit)
-    // commit('SAVE_WORKSPACE')
+    commit('SAVE_WORKSPACE')
   },
 
   moveHabit({commit}, data) {
     commit('UPDATE_HABIT_LIST', data)
-    // commit('SAVE_WORKSPACE')
+    commit('SAVE_WORKSPACE')
   },
 
   completeTodo({commit}, todo) {
     commit('COMPLETE_TODO', todo)
-    // commit('SAVE_WORKSPACE')
+    commit('SAVE_WORKSPACE')
   },
 
   skipTodo({commit}, todo) {
     commit('SKIP_TODO', todo)
-    // commit('SAVE_WORKSPACE')
+    commit('SAVE_WORKSPACE')
   },
 
   async fetchWorkspaceRecords({commit, state}) {
@@ -265,13 +291,28 @@ export const getters = {
     return state.userSession
   },
   morningHabitsCount(state) {
-    
+    var completedHabitsCount = []
+    state.morningHabits.map((obj) => {
+      if( obj.goal.status === 'completed' )
+        completedHabitsCount.push(1)
+    })
+    return arrSum(completedHabitsCount)
   },
   afternoonHabitsCount(state) {
-
+    var completedHabitsCount = []
+    state.afternoonHabits.map((obj) => {
+      if( obj.goal.status === 'completed' )
+        completedHabitsCount.push(1)
+    })
+    return arrSum(completedHabitsCount)
   },
   eveningHabitsCount(state) {
-
+    var completedHabitsCount = []
+    state.eveningHabits.map((obj) => {
+      if( obj.goal.status === 'completed' )
+        completedHabitsCount.push(1)
+    })
+    return arrSum(completedHabitsCount)
   },
   fetchSelectedDate(state) {
     return state.selectedDate

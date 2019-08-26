@@ -38,7 +38,7 @@
           <a-row :gutter="16" class="my-10">
             <a-col :span="24">
               <h3 class="text-left">
-                Repeat this habit for <a-input-number :min="1" :max="10" v-model="metric.minDaysToRepeat" size="default" @change="updateMinDaysToRepeat" /> days, from today
+                Repeat this habit for <a-input-number :min="1" :max="365" v-model="metric.minDaysToRepeat" size="default" @change="updateMinDaysToRepeat" /> days, from today
               </h3>
             </a-col>
           </a-row>

@@ -5,13 +5,13 @@
         <Navbar :currentDate="currentDate" @on-date-change="setDate" />
       </div>
     </div>
-  <div id="atomic-app">
+  <div id="atomic-app" :style="{ backgroundImage: 'url(' + image + ')'}">
     <div class="row">
       <div class="col-xs-3 py-5 text-center box">
         <h3 class="text-white" ><a-icon type="pushpin" /> Habits</h3>
       </div>
       <div class="col-xs-9 py-5 text-center dark-box">
-        <h3 class="text-white " ><a-icon type="calendar" /> Reminders</h3>
+        <h3 class="text-white " ><a-icon type="clock-circle" /> Time of the day</h3>
       </div>
     </div>
     <div class="row">
@@ -52,7 +52,8 @@ export default {
   layout: 'simple',
   data() {
     return {
-      currentDate: moment()
+      currentDate: moment(),
+      currentHour: moment().hour()
     }
   },
   components: {
@@ -76,13 +77,17 @@ export default {
       this.$store.dispatch('fetchWorkspaceRecords')
       this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 1)
     }
+  },
+  computed: {
+    image() {
+      return (this.currentHour >= 12 && this.currentHour <=17) ? "/img/2.jpg" : ((this.currentHour <= 18)? "/img/3.jpg": "/img/1.jpg")
+    }
   }
 }
 </script>
 
 <style>
 #atomic-app {
-  background: url('/img/3.jpg');
   background-size: cover;
   background-attachment:scroll;
   padding: 15px;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="atomic-canvas-list-even planboard-list">
-      <h2 class="text-white text-center">Afternoon ( {{ afternoonHabits.length }} )</h2>
+      <h2 class="text-white text-center">Afternoon ( {{ afternoonHabitsCount }} / {{ afternoonHabits.length }} )</h2>
         <draggable v-model="afternoonHabits"
           group="atomichabits"
           sort="false"
@@ -45,7 +45,7 @@
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
                 </div>
                 <div class="col-xs-6 pull-right">
-                  <a-button class="cta-btn-danger" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> No, later</a-button>
+                  <a-button class="cta-btn-danger" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> No, I did not</a-button>
                 </div>
               </div>
             </template>
@@ -74,7 +74,8 @@ export default {
   },
   computed : {
     ...mapGetters([
-      'fetchSelectedDate'
+      'fetchSelectedDate',
+      'afternoonHabitsCount'
     ]),
     afternoonHabits: {
       get() {

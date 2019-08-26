@@ -4,7 +4,7 @@
       <div class="text-white box text-center px-5 py-8">
         <div class="row">
           <div class="col-xs-12">
-            <a-input-search placeholder="Filter habits" @search="onSearch" />
+            
           </div>
         </div>
       </div>
