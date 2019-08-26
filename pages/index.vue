@@ -76,7 +76,7 @@
           <div class="row">
             <div class="col-md-8 mx-auto">
               <h2 class="section-heading">Your habit data is only yours to keep</h2>
-              <p>Built on Blockstack platform, uses blockchain technology to ensure no one accept you have access to your personal habit data!</p>
+              <p>Built on Blockstack platform, uses blockchain technology to ensure no one except you have access to your personal habit data!</p>
               <!-- <div class="badges">
                 <a class="badge-link" href="#"><img src="/img/google-play-badge.svg" alt=""></a>
                 <a class="badge-link" href="#"><img src="/img/app-store-badge.svg" alt=""></a>
