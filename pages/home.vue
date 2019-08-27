@@ -1,10 +1,10 @@
 <template>
 <div>
   <div class="row">
-      <div class="col-xs-12">
-        <Navbar :currentDate="currentDate" @on-date-change="setDate" />
-      </div>
+    <div class="col-xs-12">
+      <Navbar :currentDate="currentDate" @on-date-change="setDate" />
     </div>
+  </div>
   <div id="atomic-app" :style="{ backgroundImage: 'url(' + image + ')'}">
     <div class="row">
       <div class="col-xs-3 py-5 text-center box">
@@ -37,9 +37,13 @@
       </div>
     </div>
   </div>
+  <div class="footer">
+    <cookie-law theme="dark-lime"></cookie-law>
+  </div>
 </div>
 </template>
 <script>
+import CookieLaw from 'vue-cookie-law'
 import Habits from '~/components/panels/Habits';
 import Morning from '~/components/panels/Morning';
 import Afternoon from '~/components/panels/Afternoon';
@@ -61,7 +65,8 @@ export default {
     Morning,
     Afternoon,
     Evening,
-    Navbar
+    Navbar,
+    CookieLaw
   },
   beforeMount() {
     this.$store.commit('SET_SELECTED_DATE', this.currentDate)

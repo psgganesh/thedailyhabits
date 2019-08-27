@@ -49,7 +49,9 @@
                 <h1 class="mb-5 text-white">
                   Get rewarded for cultivating new habits and breaking old habits !
                 </h1>
-                <a href="#" class="btn btn-outline btn-xl js-scroll-trigger" @click.prevent="signIn">Sign In With Blockstack</a>
+                <a href="#" class="btn btn-outline btn-xl js-scroll-trigger" @click.prevent="signIn">
+                  <a-avatar shape="square" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAAAmJLR0QA/4ePzL8AAADMSURBVFjD7ZZRCsMgEET3y6PH9FoR2h4k5hqTj1IotGucrbZCdr53eKKoT8TDBwEXbPiUjBmhSQ8zSokqhOkpq3lmUyFMDwdRIUzPIU0hL0kiIkh1w1bI0g3iB/8HSC7OriqE6SEWhycVwvQQEJVVrZiKT72pJ6UzOPiV6pu/gaTHre4K+eITHwyCO65GSP1Gn3Jn3zf6NtQ9GQ3CaarVhSlNtbpw+T/JbVzYReIULkx5sBWydIX4wbeBUJpqdWFKU60uzGiq2Wk97bMDbeRuZH7M6ecAAAAASUVORK5CYII=" /> Sign In With Blockstack
+                </a>
               </div>
             </div>
             <div class="col-lg-5 my-auto">

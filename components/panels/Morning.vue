@@ -105,11 +105,9 @@ export default {
       return (task.goal.status === 'completed')
     },
     taskClassStatus(task) {
-      console.log('taskClassStatus --> '+this.fetchSelectedDate)
       return ( (task.goal.status === 'completed') || (!moment(moment(this.fetchSelectedDate).format()).isSame(this.today))) ? 'hidden' : 'visible'
     },
     isTodaysTask(element) {
-      console.log('isTodaysTask --> '+this.fetchSelectedDate)
       return moment(moment(this.fetchSelectedDate).format()).isSame(this.today)
     }
   }

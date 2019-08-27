@@ -3,8 +3,14 @@
     <div class="atomic-canvas-list">
       <div class="text-white box text-center px-5 py-8">
         <div class="row">
-          <div class="col-xs-12">
-            
+          <div class="col-xs-4">
+            Pending <a-badge showZero :count="pendingTasksCount" :numberStyle="{backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset'}"  />
+          </div>
+          <div class="col-xs-4">
+            In-Progress <a-badge showZero :count="inProgressTasksCount" :numberStyle="{backgroundColor: '#faad14', color: '#fff', boxShadow: '0 0 0 1px #d9d9d9 inset'}" />
+          </div>
+          <div class="col-xs-4">
+            Completed <a-badge showZero :count="completedTasksCount" :numberStyle= "{backgroundColor: '#52c41a'} " />
           </div>
         </div>
       </div>
@@ -41,7 +47,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import { habitImages } from '~/utils/constants';
 import GoalWizard from '~/components/wizards/GoalWizard';
 
@@ -58,6 +64,11 @@ export default {
     };
   },
   computed : {
+    ...mapGetters([
+      'pendingTasksCount',
+      'inProgressTasksCount',
+      'completedTasksCount'
+    ]),
     habits: {
       get() {
         return this.$store.state.habits

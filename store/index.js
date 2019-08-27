@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { newHabitCreationTemplate, preDefinedTemplate} from '~/utils/constants'
+import { newHabitCreationTemplate } from '~/utils/constants'
 
 var STORAGE_FILE = 'atomicHabitsDataTemp.json'
 const arrSum = arr => arr.reduce((a,b) => a + b, 0)
@@ -10,6 +10,7 @@ export const state = () => {
     preferences: [],
     selectedDate: null,
     userSession: null,
+    oldListItem: null,
     newHabitTemplate: newHabitCreationTemplate(),
     habits: [],
     morningHabits: [],
@@ -64,9 +65,12 @@ export const mutations = {
   CREATE_NEW_HABIT(state, habit) {
     var today = moment().format('YYYYMMDD')
     var expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
+    var scores = []
+    today = { taskCompletedTimes: 0, taskCompletedDays: 0, taskSkippedTimes: 0, taskSkippedDays: 0 }
     habit.audit.createdOn = today
     habit.audit.lastUpdatedOn = today
     habit.audit.expiryDate = expiryDate.format('YYYYMMDD')
+    habit.audit.scores.push(today)
     state.habits.push(habit)
     state.newHabitTemplate = newHabitCreationTemplate()
   },
@@ -79,10 +83,7 @@ export const mutations = {
     state.eveningHabits = []
   },
   LOAD_WORKSPACE(state, blockstackData) {
-    
     let woskspaceData = JSON.parse(blockstackData)
-    console.log(woskspaceData)
-
     woskspaceData.map((atom) => {
       if(
         moment(state.selectedDate).isSameOrAfter(atom.audit.createdOn) && 
@@ -99,10 +100,6 @@ export const mutations = {
       ...state.afternoonHabits,
       ...state.eveningHabits
     ]
-    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
-    console.group('STARTED SAVING');
-      console.log(state.atomicHabitsData);
-    console.groupEnd();
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
   },
   SAVE_WORKSPACE_AND_SIGNOUT(state) {
@@ -112,7 +109,6 @@ export const mutations = {
       ...state.afternoonHabits,
       ...state.eveningHabits
     ]
-    // POST IT ON BLOCKSTACK FIRST, THEN BELOW WHICH PUSHES TO UI
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
     .finally(() => {
       state.userSession.signUserOut(window.location.href);
@@ -126,35 +122,20 @@ export const mutations = {
 
   // UPDATE LIST PER ZONE
   UPDATE_HABIT_LIST(state, data) {
-    
-    let prevParent = null
-    let prevHabitId = null
-
+    let fromListName = 'habits'
+    let fromHabitId = null
     let zone = data.zone
     data.habit.map((obj) => {
-      prevHabitId = obj.id
-      prevParent = obj.parent
+      fromHabitId = obj.id
+      fromListName = obj.parent
       obj.parent = zone
     })
+    state.oldListItem = data.habit
     state[zone] = data.habit
-    
-    if(prevParent !== null) {
-      if(prevParent !== zone) {
-        var prevList = state[prevParent]
-        if(prevList.length > 0) {
-          var prevElementIndex = null
-          prevList.map(function(obj, index) {
-            if( (obj.id === prevHabitId) && (obj.parent === prevParent) )
-              prevElementIndex = index
-          })
-          if(prevElementIndex !== null) {
-            prevList.splice(prevElementIndex, 1)
-            state[prevParent] = prevList
-          }
-        }
-      }
-    }
-    
+  },
+
+  REMOVE_FROM_OLD_LIST(state, data) {
+    // state[state.oldListItem.zone].filter(item => item.id === state.oldListItem.id)
   },
 
   // TODO ACTIONS
@@ -244,6 +225,7 @@ export const actions = {
 
   moveHabit({commit}, data) {
     commit('UPDATE_HABIT_LIST', data)
+    commit('REMOVE_FROM_OLD_LIST', data)
     commit('SAVE_WORKSPACE')
   },
 
@@ -271,6 +253,11 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
+  },
+
+  resetData({commit}) {
+    commit('REFRESH_WORKSPACE')
+    commit('SAVE_WORKSPACE')
   },
 
   saveWorkspace({commit}) {
@@ -309,10 +296,29 @@ export const getters = {
   eveningHabitsCount(state) {
     var completedHabitsCount = []
     state.eveningHabits.map((obj) => {
-      if( obj.goal.status === 'completed' )
+      if( obj.goal.status === "completed" )
         completedHabitsCount.push(1)
     })
     return arrSum(completedHabitsCount)
+  },
+  pendingTasksCount(state) {
+    return (state.habits.length > 0) ? state.habits.length : 0
+  },
+  inProgressTasksCount(state) {
+    var totalCount = []
+    state.atomicData.map((obj) => {
+      if( (obj.goal.status !== "pending") && (obj.goal.status !== "completed") )
+        totalCount.push(1)
+    })
+    return (totalCount.length > 0) ? arrSum(totalCount) : 0
+  },
+  completedTasksCount(state) {
+    var totalCount = []
+    state.atomicData.map((obj) => {
+      if( obj.goal.status === "completed" )
+        totalCount.push(1)
+    })
+    return (totalCount.length > 0) ? arrSum(totalCount) : 0
   },
   fetchSelectedDate(state) {
     return state.selectedDate

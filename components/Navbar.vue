@@ -21,8 +21,8 @@
                   </template>
                 </span>
                 {{ username }} </span>
-              <a-menu-item key="setting:1"><a-icon type="setting" /> Preferences</a-menu-item>
-              <a-menu-item key="setting:3" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
+              <a-menu-item key="setting:1" @click="resetData"><a-icon type="setting" /> RESET DATA</a-menu-item>
+              <a-menu-item key="setting:2" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
             </a-sub-menu>
           </a-menu>
         </div>
@@ -63,6 +63,9 @@ export default {
   },
   methods: {
     moment,
+    resetData() {
+      this.$store.dispatch('resetData')
+    },
     signOut() {
       this.$store.dispatch('saveWorkspaceAndSignout', this.currentDate)
     },

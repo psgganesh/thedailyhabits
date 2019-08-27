@@ -113,7 +113,8 @@ export default {
         taskCompletedDays: 0,
         createdOn: Date.now(),
         lastUpdatedOn: null,
-        expiryDate: null
+        expiryDate: null,
+        scores: []
       }
 
     }
