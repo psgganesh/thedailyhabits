@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     image() {
-      return (this.currentHour >= 12 && this.currentHour <=17) ? "/img/2.jpg" : ((this.currentHour <= 18)? "/img/3.jpg": "/img/1.jpg")
+      return (this.currentHour >= 12 && this.currentHour <=17) ? "/img/1.jpg" : ((this.currentHour <= 18)? "/img/3.jpg": "/img/2.jpg")
     }
   }
 }
