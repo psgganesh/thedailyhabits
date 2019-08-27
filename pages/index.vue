@@ -1,5 +1,21 @@
 <template>
   <div>
+    <!-- <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+    <!-- <meta name="msapplication-TileColor" content="#ffffff"> -->
+    <!-- <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"> -->
+    <!-- <meta name="theme-color" content="#ffffff"> -->
     <link rel="stylesheet" href="frontend.css">
     <!--====== HEADER PART START ======-->
       <header class="header-area">
@@ -9,7 +25,7 @@
                       <div class="col-lg-12">
                           <nav class="navbar navbar-expand-lg">
                               <a class="navbar-brand" href="#">
-                                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px">
+                                <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px">
                               </a>
 
                               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarOne" aria-controls="navbarOne" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +88,8 @@
 
       <!--====== HEADER PART ENDS ======-->
 
-      <!--====== SERVICES PART START ======-->
+
+      <!--====== FEATURES PART START ======-->
 
       <section id="features" class="services-area">
           <div class="container">
@@ -142,11 +159,12 @@
           </div> <!-- services image -->
       </section>
 
-      <!--====== SERVICES PART ENDS ======-->
+      <!--====== FEATURES PART ENDS ======-->
 
-      <!--====== PRICING PART START ======-->
 
-      <section id="pricing" class="pricing-area"> 
+      <!--====== SECTION 2 PART START ======-->
+
+      <section id="section-2" class="pricing-area"> 
           <div class="container">
               <div class="row">
                 <div class="col-lg-4">
@@ -206,8 +224,12 @@
           </div> <!-- conteiner -->
       </section>
 
+      <!--====== SECTION 2 PART ENDS ======-->
 
-      <section id="pricing" class="pricing-area bg-white"> 
+
+      <!--====== SECTION 3 PART START ======-->
+
+      <section id="section-3" class="padded bg-white"> 
           <div class="container">
               <div class="row">
                   <div class="col-lg-8">
@@ -267,96 +289,143 @@
           </div> <!-- conteiner -->
       </section>
 
-      <!--====== PRICING PART ENDS ======-->
+      <!--====== SECTION 3 PART ENDS ======-->
       
-      <!--====== CALL TO ACTION PART START ======-->
+      <!--====== SECTION 4 PART START ======-->
 
-      <section id="call-to-action" class="call-to-action">
-          <div class="call-action-image">
-              <img src="images/call-to-action.png" alt="call-to-action">
-          </div>
-          
-          <div class="container-fluid">
-              <div class="row justify-content-end">
-                  <div class="col-lg-6">
-                      <div class="call-action-content text-center">
-                          <h2 class="call-title">Curious to Learn More? Stay Tuned</h2>
-                          <p class="text">You let us know whenever you want us to update anything or think something can be optimised.</p>
-                          <div class="call-newsletter">
-                              <i class="lni-envelope"></i>
-                              <input type="text" placeholder="john@email.com">
-                              <button type="submit">SUBSCRIBE</button>
-                          </div>
-                      </div> <!-- slider-content -->
-                  </div>
-              </div> <!-- row -->
-          </div> <!-- container -->
-      </section>
-
-      <!--====== CALL TO ACTION PART ENDS ======-->
-      
-      <!--====== CONTACT PART START ======-->
-
-      <section id="contact" class="contact-area">
+      <section id="section-4" class="padded bg-light"> 
           <div class="container">
-              <div class="row justify-content-center">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="image">
+                    <img src="images/services.png" alt="Services">
+                  </div>
+                </div>
+                  <div class="col-lg-8">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bolt"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">Startup</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                  </div>
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bar-chart"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">SaaS Business</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                  </div>
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-brush"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">Agency</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                  </div>
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bulb"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">App Landing</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                  </div>
+                              </div> <!-- services content -->
+                          </div>
+                      </div> <!-- row -->
+                  </div> <!-- row -->
+              </div> <!-- row -->
+          </div> <!-- conteiner -->
+      </section>
+      <!--====== SECTION 4 PART START ======-->
+
+      <!--====== UPCOMING FEATURES PART START ======-->
+
+      <section id="upcoming-features" class="padded bg-white services-area">
+          <div class="container">
+              <div class="row">
                   <div class="col-lg-6">
-                      <div class="section-title text-center pb-10">
-                          <h4 class="title">Get In touch</h4>
+                      <div class="section-title pb-10">
+                          <h4 class="title">Upcoming features</h4>
                           <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
                       </div> <!-- section title -->
                   </div>
               </div> <!-- row -->
-              <div class="row justify-content-center">
+              <div class="row">
                   <div class="col-lg-8">
-                      <div class="contact-form">
-                          <form id="contact-form" action="contact.php" method="post" data-toggle="validator">
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <div class="single-form form-group">
-                                          <input type="text" name="name" placeholder="Your Name" data-error="Name is required." required="required">
-                                          <div class="help-block with-errors"></div>
-                                      </div> <!-- single form -->
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bolt"></i>
                                   </div>
-                                  <div class="col-md-6">
-                                      <div class="single-form form-group">
-                                          <input type="email" name="email" placeholder="Your Email" data-error="Valid email is required." required="required">
-                                          <div class="help-block with-errors"></div>
-                                      </div> <!-- single form -->
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">Startup</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                                  <div class="col-md-6">
-                                      <div class="single-form form-group">
-                                          <input type="text" name="subject" placeholder="Subject" data-error="Subject is required." required="required">
-                                          <div class="help-block with-errors"></div>
-                                      </div> <!-- single form -->
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bar-chart"></i>
                                   </div>
-                                  <div class="col-md-6">
-                                      <div class="single-form form-group">
-                                          <input type="text" name="phone" placeholder="Phone" data-error="Phone is required." required="required">
-                                          <div class="help-block with-errors"></div>
-                                      </div> <!-- single form -->
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">SaaS Business</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                                  <div class="col-md-12">
-                                      <div class="single-form form-group">
-                                          <textarea placeholder="Your Mesaage" name="message" data-error="Please, leave us a message." required="required"></textarea>
-                                          <div class="help-block with-errors"></div>
-                                      </div> <!-- single form -->
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-brush"></i>
                                   </div>
-                                  <p class="form-message"></p>
-                                  <div class="col-md-12">
-                                      <div class="single-form form-group text-center">
-                                          <button type="submit" class="main-btn">send message</button>
-                                      </div> <!-- single form -->
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">Agency</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                              </div> <!-- row -->
-                          </form>
+                              </div> <!-- services content -->
+                          </div>
+                          <div class="col-md-6">
+                              <div class="services-content mt-40 d-sm-flex">
+                                  <div class="services-icon">
+                                      <i class="lni-bulb"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">App Landing</h4>
+                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                  </div>
+                              </div> <!-- services content -->
+                          </div>
                       </div> <!-- row -->
-                  </div>
+                  </div> <!-- row -->
               </div> <!-- row -->
           </div> <!-- conteiner -->
+          <div class="services-image d-lg-flex align-items-center">
+              <div class="image">
+                  <img src="images/services.png" alt="Services">
+              </div>
+          </div> <!-- services image -->
       </section>
 
-      <!--====== CONTACT PART ENDS ======-->
+      <!--====== UPCOMING FEATURES PART START ======-->
+
 
       <!--====== FOOTER PART START ======-->
 
@@ -367,14 +436,7 @@
                       <div class="col-lg-12">
                           <div class="footer-logo-support d-md-flex align-items-end justify-content-between">
                               <div class="footer-logo d-flex align-items-end">
-                                  <img src="images/cans.svg" alt="Logo" height="48px">
-
-                                  <ul class="social mt-30">
-                                      <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                                      <li><a href="#"><i class="lni-twitter-original"></i></a></li>
-                                      <li><a href="#"><i class="lni-instagram-original"></i></a></li>
-                                      <li><a href="#"><i class="lni-linkedin-original"></i></a></li>
-                                  </ul>
+                                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px">
                               </div> <!-- footer logo -->
                               
                           </div> <!-- footer logo support -->
@@ -489,7 +551,13 @@ background: linear-gradient(#e8edffe6, #effeffe6 50%, #ffffff1f, #ffffff1f) !imp
   background-color: #1f1f6c !important;
 }
 .btn-one {
-  border: 5px solid !important;
-  
+  border: 5px solid !important; 
+}
+.padded {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+.bg-light {
+  background-color: #f4f6f7;
 }
 </style>
