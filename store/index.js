@@ -63,14 +63,19 @@ export const mutations = {
 
   // NEW HABIT
   CREATE_NEW_HABIT(state, habit) {
-    var today = moment().format('YYYYMMDD')
-    var expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
-    var scores = []
-    scores[today] = { taskCompletedTimes: 0, taskCompletedDays: 0, taskSkippedTimes: 0, taskSkippedDays: 0 }
+    let today = moment().format('YYYYMMDD')
+    let expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
+    let scores = ([{
+      dated: today,
+      taskCompletedTimes: 0,
+      taskSkippedTimes: 0,
+      taskSkippedDays: 0,
+      taskCompletedDays: 0
+    }])
     habit.audit.createdOn = today
     habit.audit.lastUpdatedOn = today
     habit.audit.expiryDate = expiryDate.format('YYYYMMDD')
-    habit.audit.scores.push(today)
+    habit.audit.scores = scores
     state.habits.push(habit)
     state.newHabitTemplate = newHabitCreationTemplate()
   },
