@@ -40,7 +40,7 @@
                   <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
                 </div>
               </div>
-              <div class="row py-8 mt-10" v-show="element.metric.selectedTrackingOption === 'simple'">
+              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'simple'">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
                 </div>

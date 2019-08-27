@@ -25,14 +25,15 @@
                   <a-select-option value="minimum">at least</a-select-option>
                   <a-select-option value="exactly">is exactly</a-select-option>
                 </a-select>
-                <a-input-number :min="1" :max="10" v-model="metric.minTimesToRepeat" size="default" @change="updateMinTimesToRepeat"/>
+                <a-input-number :min="1" :max="1000" v-model="metric.minTimesToRepeat" size="default" @change="updateMinTimesToRepeat"/>
                 times in a day
               </h3>
             </a-col>
           </a-row>
           <a-row :gutter="16" class="my-10">
             <a-col :span="24">
-              <a-textarea size="large" :placeholder="trackingQuestionPlaceholder" :rows="4" v-model="metric.trackingQuestion" @change="updateTrackingQuestion" />
+              <h3 class="text-left"> Action question</h3>
+              <a-textarea size="large" :disabled="true" :rows="4" v-model="metric.trackingQuestion" @change="updateTrackingQuestion" style="{ fontSize: '36px'}" />
             </a-col>
           </a-row>
           <a-row :gutter="16" class="my-10">
@@ -88,6 +89,20 @@ export default {
     updateTrackingOption(trackingOption) {
       this.metric.selectedTrackingOption = trackingOption
       var selectedTrackingOptionType = this.trackingOptions[trackingOption - 1].type;
+      if(this.metric.selectedTrackingOption !== null) {
+        if(this.metric.selectedTrackingOption === 1) {
+          this.metric.trackingQuestion = 'Did you succeed in doing '+ this.metric.actionStep +' today ?'
+          this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_QUESTION', this.metric.trackingQuestion)
+        } else {
+          if(this.metric.timesComparison === "minimum") {
+            this.metric.trackingQuestion = 'Did you succeed in doing '+ this.metric.actionStep +' at least '+ this.metric.minTimesToRepeat +' today ?'
+            this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_QUESTION', this.metric.trackingQuestion)
+          } else {
+            this.metric.trackingQuestion = 'Did you do '+ this.metric.actionStep +' '+this.metric.minTimesToRepeat+' times today?'
+            this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_QUESTION', this.metric.trackingQuestion)
+          }
+        }
+      }
       this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_OPTION', selectedTrackingOptionType)
     },
     updateTimesComparison() {
@@ -104,10 +119,6 @@ export default {
     }
   },
   computed: {
-    trackingQuestionPlaceholder() {
-      if(this.metric.selectedTrackingOption !== null) 
-        return this.trackingOptions[this.metric.selectedTrackingOption - 1].placeholderQuestion
-    }
   }
 }
 </script>
@@ -131,5 +142,6 @@ export default {
 }
 textarea {
   resize: none;
+  font-size: 17px;
 }
 </style>

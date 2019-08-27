@@ -25,9 +25,11 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-          <a-card class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name">
+          <a-card :title="element.metric.actionStep" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name" @click="editHabit(element)">
+            <template slot="extra">
+              <a-icon type="delete" />
+            </template>
             <a-card-meta
-              :title="element.metric.actionStep"
               :description="element.metric.trackingQuestion">
               <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
             </a-card-meta>
@@ -41,6 +43,9 @@
           <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" :destroyOnClose="true" >
             <GoalWizard @add-new-habit="() => showAddNewGoalModal = false" />
           </a-modal>
+          <a-modal centered v-model="showSelectedGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" :destroyOnClose="true" >
+            <HabitEditWizard :selectedHabitTemplate="selectedHabitTemplate" @updated-selected-habit="() => showSelectedGoalModal = false" />
+          </a-modal>
       </div>
     </div>
   </div>
@@ -50,17 +55,21 @@
 import { mapState, mapGetters } from 'vuex';
 import { habitImages } from '~/utils/constants';
 import GoalWizard from '~/components/wizards/GoalWizard';
+import HabitEditWizard from '~/components/wizards/HabitEditWizard';
 
 export default {
   name: 'Habits',
   layout: 'simple',
   components: {
-    GoalWizard
+    GoalWizard,
+    HabitEditWizard
   },
   data() {
     return {
       title: 'Describe your habit',
-      showAddNewGoalModal: false
+      showAddNewGoalModal: false,
+      showSelectedGoalModal: false,
+      selectedHabitTemplate: null
     };
   },
   computed : {
@@ -83,11 +92,12 @@ export default {
     }
   },
   methods: {
-    onSearch (value) {
-      console.log(value)
-    },
     avatar(category) {
       return category.avatar;
+    },
+    editHabit(element) {
+      this.selectedHabitTemplate = element
+      this.showSelectedGoalModal = true
     }
   },
   

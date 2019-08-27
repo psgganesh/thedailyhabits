@@ -7,10 +7,10 @@
         </a-steps>
         <div class="steps-content">
           <div v-show="current === 0">
-            <GoalForm :goalTemplate="newGoalTemplate" />
+            <GoalForm :goalTemplate="selectedGoalTemplate" />
           </div>          
           <div v-show="current === 1">
-            <MeasureProgress :metricTemplate="newMetricTemplate" />
+            <MeasureProgress :metricTemplate="selectedMetricTemplate" />
           </div>
         </div>
       </a-col>
@@ -21,10 +21,10 @@
           <a-button v-if="current>0" style="margin-left: 8px" @click="prev" >
             Jump to previous step
           </a-button>
-          <a-button v-show="newGoalTemplate.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
+          <a-button v-show="selectedGoalTemplate.category !== null" class="next" v-if="current < steps.length - 1" @click="next" >
             Continue to next step
           </a-button>
-          <a-button v-show="newMetricTemplate.selectedTrackingOption !== null"  class="finish" v-if="current == steps.length - 1" @click="addNewHabit" >
+          <a-button v-show="selectedMetricTemplate.selectedTrackingOption !== null"  class="finish" v-if="current == steps.length - 1" @click="addNewHabit" >
             Finish
           </a-button>
         </div>
@@ -39,22 +39,22 @@ import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';
 
 export default {
-  name: 'GoalWizard',
+  name: 'HabitEditWizard',
   layout: 'simple',
   components: {
     GoalForm,
     MeasureProgress,
   },
-  computed: {
-    ...mapState([ 'newHabitTemplate' ])
+  props: {
+    selectedHabitTemplate: { type: Object, default: null }
   },
   data() {
     return {
       id: null,
       parent: 'habits',
-      newGoalTemplate: null,
+      selectedGoalTemplate: null,
       newMetricTemplate: null,
-      newAuditTemplate: null,
+      selectedAuditTemplate: null,
       current: 0,
       steps: [
         {
@@ -69,9 +69,9 @@ export default {
     }
   },
   created () {
-    this.newGoalTemplate = this.newHabitTemplate.goal
-    this.newMetricTemplate = this.newHabitTemplate.metric,
-    this.newAuditTemplate = this.newHabitTemplate.audit
+    this.selectedGoalTemplate = this.selectedHabitTemplate.goal
+    this.selectedMetricTemplate = this.selectedHabitTemplate.metric,
+    this.selectedAuditTemplate = this.selectedHabitTemplate.audit
   },
   methods: {
     next() {
@@ -83,20 +83,20 @@ export default {
     addNewHabit() {
       this.$store.dispatch('createHabit', {
         id: Date.now(),
-        parent: 'habits',
-        goal: this.newGoalTemplate, 
-        metric: this.newMetricTemplate,
-        audit: this.newAuditTemplate
+        parent: this.selectedGoalTemplate.parent,
+        goal: this.selectedGoalTemplate, 
+        metric: this.selectedMetricTemplate,
+        audit: this.selectedAuditTemplate
       })
-      this.$message.success('New habit is added! drag it to the schedule of the day, to set reminders.')
-      this.$emit('add-new-habit')
+      this.$message.success('Habit is updated!')
+      this.$emit('updated-selected-habit')
 
-      this.newGoalTemplate = {
+      this.selectedGoalTemplate = {
         category: null,
         status: null,
       }
 
-      this.newMetricTemplate = {
+      this.selectedMetricTemplate = {
         actionStep: null,
         selectedTrackingOption: null,
         timesComparison: 'minimum',
@@ -105,7 +105,7 @@ export default {
         trackingQuestion: null
       }
 
-      this.newAuditTemplate = {
+      this.selectedAuditTemplate = {
         taskCompletedTimes: 0,
         taskSkippedTimes: 0,
         taskSkippedDays: 0,
