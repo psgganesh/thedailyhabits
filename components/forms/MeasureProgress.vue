@@ -90,7 +90,7 @@ export default {
       this.metric.selectedTrackingOption = trackingOption
       var selectedTrackingOptionType = this.trackingOptions[trackingOption - 1].type;
       if(this.metric.selectedTrackingOption !== null) {
-        if(this.metric.selectedTrackingOption === 1) {
+        if(this.metric.selectedTrackingOption === 2) {
           this.metric.trackingQuestion = 'Did you succeed in doing '+ this.metric.actionStep +' today ?'
           this.$store.commit('SET_NEW_HABIT_METRIC_TRACKING_QUESTION', this.metric.trackingQuestion)
         } else {

@@ -25,11 +25,9 @@
           ghostClass="ghost"
           dragClass="sortable-drag"
         >
-          <a-card :title="element.metric.actionStep" class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name" @click="editHabit(element)">
-            <template slot="extra">
-              <a-icon type="delete" />
-            </template>
+          <a-card class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name" >
             <a-card-meta
+              :title="element.metric.actionStep"
               :description="element.metric.trackingQuestion">
               <a-avatar slot="avatar" :src="avatar(element.goal.category)" />
             </a-card-meta>

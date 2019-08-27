@@ -32,7 +32,7 @@
             </div>
 
             <template v-if="isTodaysTask(element)">
-              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'numeric'">
+              <div class="row py-8 mt-10 mb-10" v-show="showIfNumeric(element.metric.selectedTrackingOption)">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Mark Completed</a-button>
                 </div>
@@ -40,7 +40,7 @@
                   <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
                 </div>
               </div>
-              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'simple'">
+              <div class="row py-8 mt-10 mb-10" v-show="showIfSimple(element.metric.selectedTrackingOption)">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
                 </div>
@@ -105,10 +105,16 @@ export default {
       return (task.goal.status === 'completed')
     },
     taskClassStatus(task) {
-      return ( (task.goal.status === 'completed') || (!moment(moment(this.fetchSelectedDate).format()).isSame(this.today))) ? 'hidden' : 'visible'
+      return ( (task.goal.status === 'completed') && (!moment(moment(this.fetchSelectedDate).format()).isSame(this.today))) ? 'hidden' : 'visible'
     },
     isTodaysTask(element) {
       return moment(moment(this.fetchSelectedDate).format()).isSame(this.today)
+    },
+    showIfNumeric(trackingOption) {
+      return trackingOption === "numeric"
+    },
+    showIfSimple(trackingOption) {
+      return trackingOption === "simple"
     }
   }
 };
