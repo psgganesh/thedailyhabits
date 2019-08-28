@@ -36,17 +36,17 @@
 
                               <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
                                   <ul class="navbar-nav m-auto">
-                                      <li class="nav-item active">
+                                      <li class="nav-item">
                                           <a class="page-scroll" href="#home">HOME</a>
                                       </li>
                                       <li class="nav-item">
                                           <a class="page-scroll" href="#features">FEATURES</a>
                                       </li>
                                       <li class="nav-item">
-                                          <a class="page-scroll" href="#pricing">PRICING</a>
+                                          <a class="page-scroll" href="#roadmap">RAODMAP</a>
                                       </li>
                                       <li class="nav-item">
-                                          <a class="page-scroll" href="#contact">CONTACT</a>
+                                          <a class="page-scroll" href="#footer">CREDITS</a>
                                       </li>
                                   </ul>
                               </div>
@@ -54,10 +54,9 @@
                               <div class="navbar-social d-none d-sm-flex align-items-center">
                                   <span>FOLLOW US</span>
                                   <ul>
-                                      <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                                      <li><a href="#"><i class="lni-twitter-original"></i></a></li>
-                                      <li><a href="#"><i class="lni-instagram-original"></i></a></li>
-                                      <li><a href="#"><i class="lni-linkedin-original"></i></a></li>                                  
+                                      <li><a href="https://www.facebook.com/atomichabitsdapp" target="_blank"><i class="lni-facebook-filled"></i></a></li>
+                                      <li><a href="https://twitter.com/getatomichabits" target="_blank"><i class="lni-twitter-original"></i></a></li>
+                                      <li><a href="#" target="_blank"><i class="lni-instagram-original"></i></a></li>                                 
                                   </ul>
                               </div>
                           </nav> 
@@ -91,7 +90,7 @@
 
       <!--====== FEATURES PART START ======-->
 
-      <section id="service" class="services-area">
+      <section id="features" class="services-area">
           <div class="container">
               <div class="row">
                   <div class="col-lg-6">
@@ -129,10 +128,10 @@
                           <div class="col-md-12">
                               <div class="services-content mt-40 d-sm-flex">
                                   <div class="services-icon">
-                                      <i class="lni-check-mark-circle"></i>
+                                      <i class="lni-spinner-arrow"></i>
                                   </div>
                                   <div class="services-content media-body">
-                                      <h4 class="services-title">Reapatable task tracking</h4>
+                                      <h4 class="services-title">Reapatable habit tracking</h4>
                                       <p class="text">Stay on top of your daily routines. Habits can even be created / tracked by timelines.</p>
                                   </div>
                               </div> 
@@ -151,92 +150,69 @@
       <!--====== FEATURES PART ENDS ======-->
 
 
-      <!--====== SECTION 2 PART START ======-->
-
-      <section class="padded bg-light"> 
-          <div class="container">
-            <div class="row mt-40">
-              <div class="col-lg-5">
-                <img src="images/taxi-2.png" class="rounded mx-auto d-block" height="440px" alt="More power to you">
-              </div>
-              <div class="col-lg-7 text-center">
-                <h2 class="title">Plan out habit creation by category</h2>
-                <br/>
-                <p class="text">Create habits &bull; Create action plan &bull; Track accomplishments</p>
-              </div>
-            </div>
-          </div>
-      </section>
-
-      <!--====== SECTION 2 PART ENDS ======-->
-
-
       <!--====== UPCOMING FEATURES PART START ======-->
 
-      <section id="upcoming-features" class="padded bg-white services-area">
+      <section id="roadmap" class="padded bg-light services-area">
           <div class="container">
               <div class="row">
                   <div class="col-lg-6">
                       <div class="section-title pb-10">
                           <h4 class="title">Upcoming features</h4>
-                          <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                          <p class="text">Our product roadmap to bestow superpowers to you !</p>
                       </div> 
                   </div>
               </div> 
               <div class="row">
                   <div class="col-lg-8">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bolt"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Startup</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> 
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bar-chart"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">SaaS Business</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> 
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-brush"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Agency</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> 
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bulb"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">App Landing</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> 
-                          </div>
-                      </div> 
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="services-content mt-40 d-sm-flex">
+                                <div class="services-icon">
+                                    <i class="lni-bolt"></i>
+                                </div>
+                                <div class="services-content media-body">
+                                    <h4 class="services-title">Desktop-only Nudge Notifications</h4>
+                                    <p class="text">Nudge / notifies about upcoming task as per your timezone <br/> Is mobile push notifications deviating your focus! we have you back.</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="services-content mt-40 d-sm-flex">
+                                <div class="services-icon">
+                                    <i class="lni-dashboard"></i>
+                                </div>
+                                <div class="services-content media-body">
+                                    <h4 class="services-title">Intutive dashboard</h4>
+                                    <p class="text">Dashboard which shows your accomplishments and statistics dice and slice data <br/>to get more insights about your daily habits.</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="services-content mt-40 d-sm-flex">
+                                <div class="services-icon">
+                                    <i class="lni-code-alt"></i>
+                                </div>
+                                <div class="services-content media-body">
+                                    <h4 class="services-title">Automated key-stone habit finder</h4>
+                                    <p class="text">Just keep using, our system will automagically find and suggets your keystone habtis. <br/> All this magic when your data is only readable by you!!</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
                   </div> 
               </div> 
           </div> 
           <div class="services-image d-lg-flex align-items-center">
               <div class="image">
-                  <img src="images/services.png" alt="Services">
+                  <img src="images/taxi-delivery.png" alt="Upcoming features">
               </div>
           </div> 
       </section>
@@ -254,13 +230,18 @@
                           <div class="footer-logo-support d-md-flex align-items-end justify-content-between">
                               <div class="footer-logo d-flex align-items-end">
                                   <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px">
+                                  <ul class="social mt-30">
+                                        <li><a href="https://www.facebook.com/atomichabitsdapp" target="_blank"><i class="lni-facebook-filled"></i></a></li>
+                                        <li><a href="https://twitter.com/getatomichabits" target="_blank"><i class="lni-twitter-original"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="lni-instagram-original"></i></a></li>
+                                    </ul>
                               </div> 
                               
                           </div> 
                       </div>
                   </div> 
                   <div class="row">
-                      <div class="col-lg-4 col-md-6 col-sm-7">
+                      <!-- <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
                               <h6 class="footer-title">Company</h6>
                               <ul>
@@ -269,8 +250,8 @@
                                   <li><a href="#">Career</a></li>
                               </ul>
                           </div> 
-                      </div>
-                      <div class="col-lg-4 col-md-6 col-sm-7">
+                      </div> -->
+                      <!-- <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
                               <h6 class="footer-title">Help & Support</h6>
                               <ul>
@@ -279,7 +260,7 @@
                                   <li><a href="#">Terms & Conditions</a></li>
                               </ul>
                           </div> 
-                      </div>
+                      </div> -->
                       <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
                               <h6 class="footer-title">Community Credits</h6>
