@@ -43,7 +43,7 @@
                                           <a class="page-scroll" href="#features">FEATURES</a>
                                       </li>
                                       <li class="nav-item">
-                                          <a class="page-scroll" href="#roadmap">RAODMAP</a>
+                                          <a class="page-scroll" href="#roadmap">ROADMAP</a>
                                       </li>
                                       <li class="nav-item">
                                           <a class="page-scroll" href="#footer">CREDITS</a>
