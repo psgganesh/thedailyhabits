@@ -200,6 +200,6 @@ $(document).ready(function() {
     
     
     //===== 
-    $("#main").addClass("visible").removeClass("hidden")
+    $("#main").removeClass("hidden").addClass("visible")
 
 });

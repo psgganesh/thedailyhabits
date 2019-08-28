@@ -66,7 +66,7 @@
               </div> 
           </div>
 
-          <div id="home" class="header-hero bg_cover" style="background-image: url(images/header-bg.jpg)">
+          <div id="home" class="header-hero bg_cover" style="background-image: url(images/header-bg-min.png)">
               <div class="container">
                   <div class="row justify-content-center">
                       <div class="col-xl-8 col-lg-10">
@@ -115,7 +115,7 @@
                                   </div>
                               </div> 
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <div class="services-content mt-40 d-sm-flex">
                                   <div class="services-icon">
                                       <i class="lni-check-mark-circle"></i>
@@ -126,10 +126,16 @@
                                   </div>
                               </div> 
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <div class="services-content mt-40 d-sm-flex">
-                              <button type="button" class="mt-40 btn btn-warning btn-block btn-lg" @click="signIn">Get started, It's free</button>
-                              </div>
+                                  <div class="services-icon">
+                                      <i class="lni-check-mark-circle"></i>
+                                  </div>
+                                  <div class="services-content media-body">
+                                      <h4 class="services-title">Reapatable task tracking</h4>
+                                      <p class="text">Stay on top of your daily routines. Habits can even be created / tracked by timelines.</p>
+                                  </div>
+                              </div> 
                           </div>
                       </div> 
                   </div> 
@@ -147,23 +153,16 @@
 
       <!--====== SECTION 2 PART START ======-->
 
-      <section id="section-2" class="pricing-area"> 
+      <section class="padded bg-light"> 
           <div class="container">
-            <div class="row">
-              <div class="col-lg-6 offset-6">
-                  <div class="section-title pb-10">
-                      <h4 class="title">How does it work ?</h4>
-                      <p class="text">Create habits &bull; Create action plan &bull; Track accomplishments</p>
-                  </div>
+            <div class="row mt-40">
+              <div class="col-lg-5">
+                <img src="images/taxi-2.png" class="rounded mx-auto d-block" height="440px" alt="More power to you">
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-4">
-                <h4 class="title">How does it work ?</h4>
+              <div class="col-lg-7 text-center">
+                <h2 class="title">Plan out habit creation by category</h2>
+                <br/>
                 <p class="text">Create habits &bull; Create action plan &bull; Track accomplishments</p>
-              </div>
-              <div class="col-lg-8">
-                
               </div>
             </div>
           </div>
