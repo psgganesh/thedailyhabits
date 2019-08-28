@@ -60,11 +60,11 @@
                                       <li><a href="#"><i class="lni-linkedin-original"></i></a></li>                                  
                                   </ul>
                               </div>
-                          </nav> <!-- navbar -->
+                          </nav> 
                       </div>
-                  </div> <!-- row -->
-              </div> <!-- container -->
-          </div> <!-- navgition -->
+                  </div> 
+              </div> 
+          </div>
 
           <div id="home" class="header-hero bg_cover" style="background-image: url(images/header-bg.jpg)">
               <div class="container">
@@ -72,18 +72,18 @@
                       <div class="col-xl-8 col-lg-10">
                           <div class="header-content text-center">
                               <h3 class="header-title">Privacy Centric Habits Journal</h3>
-                              <p class="text">Atomichabits lets you keep a journal of your habits and nudges you to get them done.</p>
+                              <p class="text">Atomichabits lets you keep a journal of your habits and track them within your very own secure de-centralized and blockchain</p>
                               <ul class="header-btn">
                                   <li><a class="main-btn btn-one" href="#" @click="signIn">Login with blockstack</a></li>
                               </ul>
-                          </div> <!-- header content -->
+                          </div> 
                       </div>
-                  </div> <!-- row -->
-              </div> <!-- container -->
+                  </div> 
+              </div> 
               <div class="header-shape">
                   <img src="images/header-shape.svg" alt="shape">
               </div>
-          </div> <!-- header content -->
+          </div> 
       </header>
 
       <!--====== HEADER PART ENDS ======-->
@@ -91,72 +91,55 @@
 
       <!--====== FEATURES PART START ======-->
 
-      <section id="features" class="services-area">
+      <section id="service" class="services-area">
           <div class="container">
               <div class="row">
                   <div class="col-lg-6">
                       <div class="section-title pb-10">
-                          <h4 class="title">Upcoming features</h4>
-                          <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                      </div> <!-- section title -->
+                          <h4 class="title">More power to you</h4>
+                          <p class="text">Information regarding your habits reveals who you are. It's time only you own it.</p>
+                      </div> 
                   </div>
-              </div> <!-- row -->
+              </div> 
               <div class="row">
                   <div class="col-lg-8">
                       <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <div class="services-content mt-40 d-sm-flex">
                                   <div class="services-icon">
-                                      <i class="lni-bolt"></i>
+                                      <i class="lni-certificate"></i>
                                   </div>
                                   <div class="services-content media-body">
-                                      <h4 class="services-title">Startup</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                      <h4 class="services-title">Privacy first habit tracking &amp; journaling</h4>
+                                      <p class="text">Information about people's habits can be used by tech giants for advertisment purposes to generate revenue. Secure your data on the blockchain only visible to you.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
                           <div class="col-md-6">
                               <div class="services-content mt-40 d-sm-flex">
                                   <div class="services-icon">
-                                      <i class="lni-bar-chart"></i>
+                                      <i class="lni-check-mark-circle"></i>
                                   </div>
                                   <div class="services-content media-body">
-                                      <h4 class="services-title">SaaS Business</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
+                                      <h4 class="services-title">Trackable routines</h4>
+                                      <p class="text">Stay on top of your daily routines. Habits can even be created / tracked by timelines.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
                           <div class="col-md-6">
                               <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-brush"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Agency</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
+                              <button type="button" class="mt-40 btn btn-warning btn-block btn-lg" @click="signIn">Get started, It's free</button>
+                              </div>
                           </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bulb"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">App Landing</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                      </div> <!-- row -->
-                  </div> <!-- row -->
-              </div> <!-- row -->
-          </div> <!-- conteiner -->
+                      </div> 
+                  </div> 
+              </div> 
+          </div> 
           <div class="services-image d-lg-flex align-items-center">
               <div class="image">
-                  <img src="images/services.png" alt="Services">
+                  <img src="images/taxi.png" alt="More power to you">
               </div>
-          </div> <!-- services image -->
+          </div> 
       </section>
 
       <!--====== FEATURES PART ENDS ======-->
@@ -166,193 +149,28 @@
 
       <section id="section-2" class="pricing-area"> 
           <div class="container">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="image">
-                    <img src="images/services.png" alt="Services">
+            <div class="row">
+              <div class="col-lg-6 offset-6">
+                  <div class="section-title pb-10">
+                      <h4 class="title">How does it work ?</h4>
+                      <p class="text">Create habits &bull; Create action plan &bull; Track accomplishments</p>
                   </div>
-                </div>
-                  <div class="col-lg-8">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bolt"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Startup</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bar-chart"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">SaaS Business</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-brush"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Agency</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bulb"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">App Landing</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                      </div> <!-- row -->
-                  </div> <!-- row -->
-              </div> <!-- row -->
-          </div> <!-- conteiner -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <h4 class="title">How does it work ?</h4>
+                <p class="text">Create habits &bull; Create action plan &bull; Track accomplishments</p>
+              </div>
+              <div class="col-lg-8">
+                
+              </div>
+            </div>
+          </div>
       </section>
 
       <!--====== SECTION 2 PART ENDS ======-->
 
-
-      <!--====== SECTION 3 PART START ======-->
-
-      <section id="section-3" class="padded bg-white"> 
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-8">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bolt"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Startup</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bar-chart"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">SaaS Business</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-brush"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Agency</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bulb"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">App Landing</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                      </div> <!-- row -->
-                  </div> <!-- row -->
-                  <div class="col-lg-4">
-                    <div class="image">
-                      <img src="images/services.png" alt="Services">
-                    </div>
-                  </div>
-              </div> <!-- row -->
-          </div> <!-- conteiner -->
-      </section>
-
-      <!--====== SECTION 3 PART ENDS ======-->
-      
-      <!--====== SECTION 4 PART START ======-->
-
-      <section id="section-4" class="padded bg-light"> 
-          <div class="container">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="image">
-                    <img src="images/services.png" alt="Services">
-                  </div>
-                </div>
-                  <div class="col-lg-8">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bolt"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Startup</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bar-chart"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">SaaS Business</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-brush"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">Agency</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                          <div class="col-md-6">
-                              <div class="services-content mt-40 d-sm-flex">
-                                  <div class="services-icon">
-                                      <i class="lni-bulb"></i>
-                                  </div>
-                                  <div class="services-content media-body">
-                                      <h4 class="services-title">App Landing</h4>
-                                      <p class="text">Short description for the <br/> who look for something new.</p>
-                                  </div>
-                              </div> <!-- services content -->
-                          </div>
-                      </div> <!-- row -->
-                  </div> <!-- row -->
-              </div> <!-- row -->
-          </div> <!-- conteiner -->
-      </section>
-      <!--====== SECTION 4 PART START ======-->
 
       <!--====== UPCOMING FEATURES PART START ======-->
 
@@ -363,9 +181,9 @@
                       <div class="section-title pb-10">
                           <h4 class="title">Upcoming features</h4>
                           <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                      </div> <!-- section title -->
+                      </div> 
                   </div>
-              </div> <!-- row -->
+              </div> 
               <div class="row">
                   <div class="col-lg-8">
                       <div class="row">
@@ -378,7 +196,7 @@
                                       <h4 class="services-title">Startup</h4>
                                       <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
                           <div class="col-md-6">
                               <div class="services-content mt-40 d-sm-flex">
@@ -389,7 +207,7 @@
                                       <h4 class="services-title">SaaS Business</h4>
                                       <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
                           <div class="col-md-6">
                               <div class="services-content mt-40 d-sm-flex">
@@ -400,7 +218,7 @@
                                       <h4 class="services-title">Agency</h4>
                                       <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
                           <div class="col-md-6">
                               <div class="services-content mt-40 d-sm-flex">
@@ -411,17 +229,17 @@
                                       <h4 class="services-title">App Landing</h4>
                                       <p class="text">Short description for the <br/> who look for something new.</p>
                                   </div>
-                              </div> <!-- services content -->
+                              </div> 
                           </div>
-                      </div> <!-- row -->
-                  </div> <!-- row -->
-              </div> <!-- row -->
-          </div> <!-- conteiner -->
+                      </div> 
+                  </div> 
+              </div> 
+          </div> 
           <div class="services-image d-lg-flex align-items-center">
               <div class="image">
                   <img src="images/services.png" alt="Services">
               </div>
-          </div> <!-- services image -->
+          </div> 
       </section>
 
       <!--====== UPCOMING FEATURES PART START ======-->
@@ -437,11 +255,11 @@
                           <div class="footer-logo-support d-md-flex align-items-end justify-content-between">
                               <div class="footer-logo d-flex align-items-end">
                                   <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px">
-                              </div> <!-- footer logo -->
+                              </div> 
                               
-                          </div> <!-- footer logo support -->
+                          </div> 
                       </div>
-                  </div> <!-- row -->
+                  </div> 
                   <div class="row">
                       <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
@@ -451,7 +269,7 @@
                                   <li><a href="#">Contact</a></li>
                                   <li><a href="#">Career</a></li>
                               </ul>
-                          </div> <!-- footer link -->
+                          </div> 
                       </div>
                       <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
@@ -461,7 +279,7 @@
                                   <li><a href="#">FAQ</a></li>
                                   <li><a href="#">Terms & Conditions</a></li>
                               </ul>
-                          </div> <!-- footer link -->
+                          </div> 
                       </div>
                       <div class="col-lg-4 col-md-6 col-sm-7">
                           <div class="footer-link">
@@ -469,13 +287,13 @@
                               <ul>
                                   <li><a rel="nofollow" href="https://blockstack.org/" target="_blank">Blockstack.org</a></li>
                                   <li><a rel="nofollow" href="https://uideck.com/" target="_blank">UIdeck &amp; AyroUI</a></li>
-                                  <li><a rel="nofollow" href="https://vue.ant.design/docs/vue/introduce/" target="_blank">Antd Vue Components</a></li>
+                                  <li><a rel="nofollow" href="https://icons8.com/" target="_blank">Icons &amp; Illustrations by icons8</a></li>
                                   <li>Icon made by <a rel="nofollow" href="https://www.flaticon.com/authors/freepik/" target="_blank">freepik</a> from <a rel="nofollow" href="https://www.flaticon.com" target="_blank">flaticon</a></li>
-                              </ul> <!-- footer link -->
+                              </ul> 
                           </div>
                       </div>
-                  </div> <!-- row -->
-              </div> <!-- container -->
+                  </div> 
+              </div> 
           </div> <!-- footer widget -->
           
           <div class="footer-copyright">
@@ -486,20 +304,16 @@
                               <p class="text">Atomic Habits 2019 :: Powered by <a rel="nofollow" href="https://blockstack.org/" target="_blank">Blockstack</a></p>
                           </div>
                       </div>
-                  </div> <!-- row -->
-              </div> <!-- container -->
+                  </div> 
+              </div> 
           </div> <!-- footer copyright -->
       </footer>
 
       <!--====== FOOTER PART ENDS ======-->
 
-      <!--====== BACK TO TOP PART START ======-->
-
-      <a class="back-to-top" href="#"><i class="lni-chevron-up"></i></a>
-
-      <!--====== BACK TO TOP PART ENDS ======-->
       <script src="frontend.js"></script>
-    </div>
+
+  </div>
 </template>
 
 <script>
