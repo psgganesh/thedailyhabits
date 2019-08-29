@@ -49,7 +49,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
-    '~/modules/hooks'
+    '~/modules/hooks',
+    '~/modules/twitter'
   ],
   /*
   ** Axios module configuration
