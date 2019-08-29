@@ -16,8 +16,7 @@ export function newHabitCreationTemplate() {
     id: null,
     parent: 'habits',
     goal: {
-      category: null,
-      status: null,
+      category: null
     },
     metric: {
       actionStep: null,
@@ -28,14 +27,21 @@ export function newHabitCreationTemplate() {
       trackingQuestion: null
     },
     audit: {
-      taskCompletedTimes: 0,
-      taskSkippedTimes: 0,
-      taskSkippedDays: 0,
-      taskCompletedDays: 0,
       createdOn: null,
       lastUpdatedOn: null,
       expiryDate: null,
-      scores: []
+      scores: [],
+      taskSkippedDays: 0,
+      taskCompletedDays: 0    
     }
   }
+}
+
+export function newScoreTemplate() {
+  return ([{
+    dated: moment().format('YYYYMMDD'),
+    taskCompletedTimes: 0,
+    taskSkippedTimes: 0,
+    status: 'new'
+  }])
 }

@@ -1,12 +1,13 @@
 import moment from 'moment'
-import { newHabitCreationTemplate } from '~/utils/constants'
+import { newScoreTemplate, newHabitCreationTemplate } from '~/utils/constants'
+
 
 var STORAGE_FILE = 'atomicHabitsDataTemp.json'
 const arrSum = arr => arr.reduce((a,b) => a + b, 0)
 
 export const state = () => {
   return  {
-    atomicData: [],
+    atomicHabitsData: [],
     preferences: [],
     selectedDate: null,
     userSession: null,
@@ -65,13 +66,7 @@ export const mutations = {
   CREATE_NEW_HABIT(state, habit) {
     let today = moment().format('YYYYMMDD')
     let expiryDate = moment().add(habit.metric.minDaysToRepeat, 'days')
-    let scores = ([{
-      dated: today,
-      taskCompletedTimes: 0,
-      taskSkippedTimes: 0,
-      taskSkippedDays: 0,
-      taskCompletedDays: 0
-    }])
+    let scores = newScoreTemplate()
     habit.audit.createdOn = today
     habit.audit.lastUpdatedOn = today
     habit.audit.expiryDate = expiryDate.format('YYYYMMDD')
@@ -94,6 +89,9 @@ export const mutations = {
         moment(state.selectedDate).isSameOrAfter(atom.audit.createdOn) && 
         moment(state.selectedDate).isBefore(atom.audit.expiryDate)
       ) {
+        console.group('LOAD_WORKSPACE')
+          console.log(atom)
+        console.groupEnd()
         state[atom.parent].push(atom)
       }
     })
@@ -127,20 +125,10 @@ export const mutations = {
 
   // UPDATE LIST PER ZONE
   UPDATE_HABIT_LIST(state, data) {
-    let fromListName = 'habits'
-    let fromHabitId = null
     let zone = data.zone
-    data.habit.map((obj) => {
-      fromHabitId = obj.id
-      fromListName = obj.parent
-      obj.parent = zone
-    })
+    data.habit.map((obj) => { obj.parent = zone })
     state.oldListItem = data.habit
     state[zone] = data.habit
-  },
-
-  REMOVE_FROM_OLD_LIST(state, data) {
-    // state[state.oldListItem.zone].filter(item => item.id === state.oldListItem.id)
   },
 
   // TODO ACTIONS
@@ -148,74 +136,98 @@ export const mutations = {
     let id = habit.id
     let zone = habit.parent
     state[zone].map((obj) => { 
-      if (obj.id === id) {
-        obj.audit.taskCompletedTimes++
-        if(obj.metric.selectedTrackingOption === 'numeric') {
-          switch(obj.metric.timesComparison) {
-            case 'minimum':
-              if (obj.audit.taskCompletedTimes == obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'completed'
-                obj.audit.taskCompletedDays++
+
+      // FIND AS PER THE OBJECT ID
+      if( obj.id === id ) {
+
+        // TRACK TO TODAY'S DATED SCORE
+        obj.audit.scores.map((score) => { 
+          if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+            
+            if(obj.metric.selectedTrackingOption === 'numeric') {
+              switch(obj.metric.timesComparison) {
+                case 'minimum':
+                    score.taskCompletedTimes++
+                    if (score.taskCompletedTimes < obj.metric.minTimesToRepeat) {
+                      score.status = 'completed-partially';
+                    } else if (score.taskCompletedTimes === obj.metric.minTimesToRepeat) {
+                      obj.audit.taskCompletedDays++
+                      score.status = 'completed';
+                    }
+                  break;
+                case 'exactly':
+                    score.taskCompletedTimes++
+                    if (score.taskCompletedTimes === obj.metric.minTimesToRepeat) {
+                      obj.audit.taskCompletedDays++
+                      score.status = 'completed';
+                    }
+                    break;
+                default:
+                    score.status = 'unknown';
+                  break;
               }
-              if (obj.audit.taskCompletedTimes > obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'completed'
-              }
-              break;
-            case 'exactly':
-              if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'completed'
-                obj.audit.taskCompletedDays++
-              }
-              break;
-            default:
-              if (obj.audit.taskCompletedTimes === obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'completed'
-                obj.audit.taskCompletedDays++
-              }
+            } else {
+              score.taskCompletedTimes++
+              obj.audit.taskCompletedDays++
+              score.status = 'completed';
+            }
+
+            obj.audit.lastUpdatedOn = moment().format('YYYYMMDD')
+
           }
-        } else {
-          obj.goal.status = 'completed'
-          obj.audit.taskCompletedDays++
-        }
-        obj.audit.lastUpdatedOn = new Date()
+        });
+
       }
+        
     })
   },
   SKIP_TODO(state, habit) {
     let id = habit.id
     let zone = habit.parent
     state[zone].map((obj) => { 
-      if (obj.id === id) {
-        obj.audit.taskSkippedTimes++
-        if(obj.metric.selectedTrackingOption === 'numeric') {
-          switch(obj.metric.timesComparison) {
-            case 'minimum':
-              if (obj.audit.taskSkippedTimes == obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'skipped'
-                obj.audit.taskSkippedDays++
+
+      // FIND AS PER THE OBJECT ID
+      if( obj.id === id ) {
+
+        // TRACK TO TODAY'S DATED SCORE
+        obj.audit.scores.map((score) => { 
+          if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+            
+            if(obj.metric.selectedTrackingOption === 'numeric') {
+              switch(obj.metric.timesComparison) {
+                case 'minimum':
+                    score.taskSkippedTimes++
+                    if (score.taskSkippedTimes < obj.metric.minTimesToRepeat) {
+                      score.status = 'skipped-partially';
+                    } else if (score.taskSkippedTimes === obj.metric.minTimesToRepeat) {
+                      obj.audit.taskSkippedDays++
+                      score.status = 'skipped';
+                    }
+                  break;
+                case 'exactly':
+                    score.taskSkippedTimes++
+                    if (score.taskSkippedTimes === obj.metric.minTimesToRepeat) {
+                      obj.audit.taskSkippedDays++
+                      score.status = 'skipped';
+                    }
+                    break;
+                default:
+                    score.status = 'unknown';
+                  break;
               }
-              if (obj.audit.taskSkippedTimes > obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'skipped'
-              }
-              break;
-            case 'exactly':
-              if (obj.audit.taskSkippedTimes === obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'skipped'
-                obj.audit.taskSkippedDays++
-              }
-              break;
-            default:
-              if (obj.audit.taskSkippedTimes === obj.metric.minTimesToRepeat) {
-                obj.goal.status = 'skipped'
-                obj.audit.taskSkippedDays++
-              }
+            } else {
+              score.taskSkippedTimes++
+              obj.audit.taskSkippedDays++
+              score.status = 'skipped';
+            }
+
+            obj.audit.lastUpdatedOn = moment().format('YYYYMMDD')
+
           }
-        } else {
-          obj.goal.status = 'skipped'
-          obj.audit.taskSkippedDays++
-        }
-        obj.audit.lastUpdatedOn = new Date()
+        });
+
       }
+        
     })
   }
 
@@ -230,7 +242,6 @@ export const actions = {
 
   moveHabit({commit}, data) {
     commit('UPDATE_HABIT_LIST', data)
-    commit('REMOVE_FROM_OLD_LIST', data)
     commit('SAVE_WORKSPACE')
   },
 
@@ -250,13 +261,12 @@ export const actions = {
       
       await state.userSession.getFile(STORAGE_FILE).then((habitsData) => {
         if(habitsData.length > 0) {
-
           commit('LOAD_WORKSPACE', habitsData)
         }
       });
       
     } catch (e) {
-      // console.log(e)
+      console.log(e)
     }
   },
 
@@ -285,24 +295,39 @@ export const getters = {
   morningHabitsCount(state) {
     var completedHabitsCount = []
     state.morningHabits.map((obj) => {
-      if( obj.goal.status === 'completed' )
-        completedHabitsCount.push(1)
+      obj.audit.scores.map((score) => { 
+        if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+          if( score.status === 'completed' ) {
+            completedHabitsCount.push(1)
+          }
+        }
+      });
     })
     return arrSum(completedHabitsCount)
   },
   afternoonHabitsCount(state) {
     var completedHabitsCount = []
     state.afternoonHabits.map((obj) => {
-      if( obj.goal.status === 'completed' )
-        completedHabitsCount.push(1)
+      obj.audit.scores.map((score) => { 
+        if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+          if( score.status === 'completed' ) {
+            completedHabitsCount.push(1)
+          }
+        }
+      });
     })
     return arrSum(completedHabitsCount)
   },
   eveningHabitsCount(state) {
     var completedHabitsCount = []
     state.eveningHabits.map((obj) => {
-      if( obj.goal.status === "completed" )
-        completedHabitsCount.push(1)
+      obj.audit.scores.map((score) => { 
+        if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+          if( score.status === 'completed' ) {
+            completedHabitsCount.push(1)
+          }
+        }
+      });
     })
     return arrSum(completedHabitsCount)
   },
@@ -311,18 +336,32 @@ export const getters = {
   },
   inProgressTasksCount(state) {
     var totalCount = []
-    state.atomicData.map((obj) => {
-      if( (obj.goal.status !== "pending") && (obj.goal.status !== "completed") )
-        totalCount.push(1)
-    })
+    if(state.atomicHabitsData.length > 0) {
+      state.atomicHabitsData.map((obj) => {
+        obj.audit.scores.map((score) => { 
+            if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+              if( (score.status === 'completed-partially' ) || (score.status === 'skipped-partially') ) {
+                totalCount.push(1)
+              }
+            }
+        });
+      })    
+    }
     return (totalCount.length > 0) ? arrSum(totalCount) : 0
   },
   completedTasksCount(state) {
     var totalCount = []
-    state.atomicData.map((obj) => {
-      if( obj.goal.status === "completed" )
-        totalCount.push(1)
-    })
+    if(state.atomicHabitsData.length > 0) {
+      state.atomicHabitsData.map((obj) => {
+        obj.audit.scores.map((score) => { 
+          if(moment(score.dated).isSame(state.selectedDate.format('YYYYMMDD'))) { 
+            if(score.status === 'completed' ) {
+              totalCount.push(1)
+            }
+          }
+        });
+      })
+    }
     return (totalCount.length > 0) ? arrSum(totalCount) : 0
   },
   fetchSelectedDate(state) {

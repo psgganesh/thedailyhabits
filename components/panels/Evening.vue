@@ -21,7 +21,7 @@
             <br>
             <div class="row footer mb-15">
               <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 'numeric'">
-                <a-icon type="reload" /> {{ element.audit.taskCompletedTimes }} / {{ element.metric.minTimesToRepeat }} times
+                <a-icon type="reload" /> {{ taskCompletedTimes(element) }} / {{ element.metric.minTimesToRepeat }} times
               </div>
               <div class="col-xs-6" v-show="element.metric.selectedTrackingOption === 'simple'">
                 
@@ -32,7 +32,7 @@
             </div>
 
             <template v-if="isTodaysTask(element)">
-              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'numeric'">
+              <div class="row py-8 mt-10 mb-10" v-show="showIfNumeric(element.metric.selectedTrackingOption)">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Mark Completed</a-button>
                 </div>
@@ -40,7 +40,7 @@
                   <a-button class="cta-btn-warning" :disabled="todoActionButtonsState(element)" @click="skipTodo(element)" block><a-icon type="close" /> Skip </a-button>
                 </div>
               </div>
-              <div class="row py-8 mt-10 mb-10" v-show="element.metric.selectedTrackingOption === 'simple'">
+              <div class="row py-8 mt-10 mb-10" v-show="showIfSimple(element.metric.selectedTrackingOption)">
                 <div class="col-xs-6">
                   <a-button class="cta-btn-succes" :disabled="todoActionButtonsState(element)" @click="completeTodo(element)" block><a-icon type="check" /> Yes, I did</a-button>
                 </div>
@@ -88,7 +88,7 @@ export default {
         }
         this.$store.dispatch('moveHabit', data)
       }
-    }
+    },
   },
   methods: {
     avatar(category) {
@@ -102,13 +102,26 @@ export default {
       this.$message.warning('Skipped '+ habit)
     },
     todoActionButtonsState(task) {
-      return (task.goal.status === 'completed')
+      var status = 'pending'
+      task.audit.scores.map((score) => { if(moment(score.dated).isSame(this.$store.state.selectedDate.format('YYYYMMDD'))) { status = score.status } });
+      return (status === 'completed')
     },
     taskClassStatus(task) {
-      return ( (task.goal.status === 'completed') || (!moment(moment(this.fetchSelectedDate).format()).isSame(this.today))) ? 'hidden' : 'visible'
+      return moment(moment(this.fetchSelectedDate).format()).isSame(this.today) ? 'visible' : 'hidden'
     },
     isTodaysTask(element) {
       return moment(moment(this.fetchSelectedDate).format()).isSame(this.today)
+    },
+    showIfNumeric(trackingOption) {
+      return trackingOption === "numeric"
+    },
+    showIfSimple(trackingOption) {
+      return trackingOption === "simple"
+    },
+    taskCompletedTimes(element) {
+      var completedTimes = 0 
+      element.audit.scores.map((score) => { if(moment(score.dated).isSame(this.$store.state.selectedDate.format('YYYYMMDD'))) { completedTimes = score.taskCompletedTimes } });
+      return completedTimes
     }
   }
 };

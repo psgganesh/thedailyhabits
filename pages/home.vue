@@ -93,8 +93,8 @@ export default {
 
 <style>
 #atomic-app {
-  background-size: cover;
-  background-attachment:scroll;
+  background-size: contain;
+  background-attachment: fixed;
   padding: 15px;
   padding-top: 48px;
 }
