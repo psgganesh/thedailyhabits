@@ -106,14 +106,12 @@ export default {
       }
 
       this.newAuditTemplate = {
-        taskCompletedTimes: 0,
-        taskSkippedTimes: 0,
-        taskSkippedDays: 0,
-        taskCompletedDays: 0,
-        createdOn: Date.now(),
+        createdOn: null,
         lastUpdatedOn: null,
         expiryDate: null,
-        scores: []
+        scores: [],
+        taskSkippedDays: 0,
+        taskCompletedDays: 0    
       }
 
     }

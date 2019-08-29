@@ -41,9 +41,6 @@
           <a-modal centered v-model="showAddNewGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" :destroyOnClose="true" >
             <GoalWizard @add-new-habit="() => showAddNewGoalModal = false" />
           </a-modal>
-          <a-modal centered v-model="showSelectedGoalModal" :header="null" :footer="null" :title="title" :closable="false" width="768px" :destroyOnClose="true" >
-            <HabitEditWizard :selectedHabitTemplate="selectedHabitTemplate" @updated-selected-habit="() => showSelectedGoalModal = false" />
-          </a-modal>
       </div>
     </div>
   </div>
@@ -53,21 +50,18 @@
 import { mapState, mapGetters } from 'vuex';
 import { habitImages } from '~/utils/constants';
 import GoalWizard from '~/components/wizards/GoalWizard';
-import HabitEditWizard from '~/components/wizards/HabitEditWizard';
 
 export default {
   name: 'Habits',
   layout: 'simple',
   components: {
-    GoalWizard,
-    HabitEditWizard
+    GoalWizard
   },
   data() {
     return {
       title: 'Describe your habit',
       showAddNewGoalModal: false,
-      showSelectedGoalModal: false,
-      selectedHabitTemplate: null
+      showSelectedGoalModal: false
     };
   },
   computed : {
@@ -92,10 +86,6 @@ export default {
   methods: {
     avatar(category) {
       return category.avatar;
-    },
-    editHabit(element) {
-      this.selectedHabitTemplate = element
-      this.showSelectedGoalModal = true
     }
   },
   
