@@ -38,7 +38,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/antd-ui',
-    '@/plugins/fb-messenger',
+    // '@/plugins/fb-messenger',
     { src: '@/plugins/draggable', ssr: false }
   ],
 
