@@ -8,6 +8,7 @@ const arrSum = arr => arr.reduce((a,b) => a + b, 0)
 export const state = () => {
   return  {
     atomicHabitsData: [],
+    userData: [],
     preferences: [],
     selectedDate: null,
     userSession: null,
@@ -83,15 +84,21 @@ export const mutations = {
     state.eveningHabits = []
   },
   LOAD_WORKSPACE(state, blockstackData) {
-    let woskspaceData = JSON.parse(blockstackData)
-    woskspaceData.map((atom) => {
+    let workspaceData = JSON.parse(blockstackData)
+    
+    // SETTING USER DATA
+    state.userData = workspaceData.userData
+
+    // SETTING PREFERENCES DATA
+    state.preferences = workspaceData.preferences
+
+    // SETTING HABITS DATA
+    let habitsData = workspaceData.habitsData
+    habitsData.map((atom) => {
       if(
         moment(state.selectedDate).isSameOrAfter(atom.audit.createdOn) && 
         moment(state.selectedDate).isBefore(atom.audit.expiryDate)
       ) {
-        console.group('LOAD_WORKSPACE')
-          console.log(atom)
-        console.groupEnd()
         state[atom.parent].push(atom)
       }
     })
@@ -103,7 +110,12 @@ export const mutations = {
       ...state.afternoonHabits,
       ...state.eveningHabits
     ]
-    state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
+    let data = {
+      userData: state.userData,
+      preferences: state.preferences,
+      habitsData: state.atomicHabitsData
+    }
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
   },
   SAVE_WORKSPACE_AND_SIGNOUT(state) {
     state.atomicHabitsData = [
@@ -112,10 +124,25 @@ export const mutations = {
       ...state.afternoonHabits,
       ...state.eveningHabits
     ]
-    state.userSession.putFile(STORAGE_FILE, JSON.stringify(state.atomicHabitsData))
+    let data = {
+      userData: state.userData,
+      preferences: state.preferences,
+      habitsData: state.atomicHabitsData
+    }
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
     .finally(() => {
       state.userSession.signUserOut(window.location.href);
     })
+  },
+
+  // UPDATE USER DATA
+  SET_USER_DATA(state, data) {
+    state.userData = data
+  },
+
+  // UPDATE PREFERENCES DATA
+  SET_PREFERENCES_DATA(state, data) {
+    state.preferences = data
   },
 
   // UPDATE LIST
@@ -259,9 +286,9 @@ export const actions = {
     commit('REFRESH_WORKSPACE')
     try {
       
-      await state.userSession.getFile(STORAGE_FILE).then((habitsData) => {
-        if(habitsData.length > 0) {
-          commit('LOAD_WORKSPACE', habitsData)
+      await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
+        if(responseData.length > 0) {
+          commit('LOAD_WORKSPACE', responseData)
         }
       });
       
@@ -281,6 +308,14 @@ export const actions = {
 
   saveWorkspaceAndSignout({commit}) {
     commit('SAVE_WORKSPACE_AND_SIGNOUT')
+  },
+
+  saveUserData({commit}, data) {
+    commit('SET_USER_DATA', data)
+  },
+
+  savePreferences({commit}, data) {
+    commit('SET_PREFERENCES_DATA', data)
   },
 
 }
