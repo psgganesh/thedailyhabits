@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="atomic-canvas-list">
-      <div class="text-white box text-center px-5 py-8">
+  <div class="box">
+    <div class="atomic-canvas-list-even planboard-list">
+      <div class="text-white text-center px-5 py-8">
         <div class="row">
           <div class="col-xs-4">
             Pending <a-badge showZero :count="pendingTasksCount" :numberStyle="{backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset'}"  />

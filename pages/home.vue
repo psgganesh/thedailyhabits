@@ -6,6 +6,7 @@
     </div>
   </div>
   <div id="atomic-app" :style="{ backgroundImage: 'url(' + image + ')'}">
+  <!-- <div id="atomic-app" :style="{ backgroundColor: '#004D40' }"> -->
     <div class="row">
       <div class="col-xs-3 py-5 text-center box">
         <h3 class="text-white" ><a-icon type="pushpin" /> Habits</h3>
@@ -85,7 +86,7 @@ export default {
   },
   computed: {
     image() {
-      return '/images/backgrounds/memphis-mini-dark.png'//(this.currentHour >= 12 && this.currentHour <=17) ? "/images/categories/1.jpg" : ((this.currentHour <= 18)? "/images/categories/3.jpg": "/images/categories/2.jpg")
+      return '/images/backgrounds/congruent_outline.png'//(this.currentHour >= 12 && this.currentHour <=17) ? "/images/categories/1.jpg" : ((this.currentHour <= 18)? "/images/categories/3.jpg": "/images/categories/2.jpg")
     }
   }
 }
