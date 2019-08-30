@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}" >
+    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}" >
       <div class="row">
         <div class="col-xs-5">
           <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" :allowClear="false" />
@@ -21,19 +21,20 @@
                   </template>
                 </span> {{ username }} </span>
               <a-menu-item-group title="User Preferences">
-                <a-menu-item key="setting:1" @click="() => {}"><a-icon type="setting" /> Settings</a-menu-item>
+                <a-menu-item key="setting:1" @click="() => {}"><a-icon type="user" /> Profile</a-menu-item>
+                <a-menu-item key="setting:2" @click="() => {}"><a-icon type="setting" /> Settings</a-menu-item>
               </a-menu-item-group>
               <a-menu-divider />
               <a-menu-item-group title="Personalization &amp; Data">
-                <a-menu-item key="setting:1" @click="resetData"><a-icon type="delete" /> Format &amp; Reset Data</a-menu-item>
+                <a-menu-item key="setting:3" @click="resetData"><a-icon type="delete" /> Format &amp; Reset Data</a-menu-item>
               </a-menu-item-group>
               <a-menu-divider />
-                <a-menu-item key="setting:2" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
+                <a-menu-item key="setting:4" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
             </a-sub-menu>
           </a-menu>
         </div>
       </div>
-    </a-layout-header> -->
+    </a-layout-header>
   </div>
 </template>
 

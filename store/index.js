@@ -135,6 +135,16 @@ export const mutations = {
     })
   },
 
+  // UPDATE USER DATA
+  SET_USER_DATA(state, data) {
+    state.userData = data
+  },
+
+  // UPDATE PREFERENCES DATA
+  SET_PREFERENCES_DATA(state, data) {
+    state.preferences = data
+  },
+
   // UPDATE LIST
   SET_HABITS_LIST(state, habit) {
     state.habits = habit
@@ -298,6 +308,14 @@ export const actions = {
 
   saveWorkspaceAndSignout({commit}) {
     commit('SAVE_WORKSPACE_AND_SIGNOUT')
+  },
+
+  saveUserData({commit}, data) {
+    commit('SET_USER_DATA', data)
+  },
+
+  savePreferences({commit}, data) {
+    commit('SET_PREFERENCES_DATA', data)
   },
 
 }
