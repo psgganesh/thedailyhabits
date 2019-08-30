@@ -33,7 +33,6 @@
   </div>
 </template>
 <script>
-import uuid from 'uuid';
 import { mapState } from 'vuex';
 import GoalForm from '~/components/forms/GoalForm';
 import MeasureProgress from '~/components/forms/MeasureProgress';

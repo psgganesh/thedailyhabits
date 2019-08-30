@@ -38,6 +38,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/antd-ui',
+    '@/plugins/fb-messenger',
     { src: '@/plugins/draggable', ssr: false }
   ],
 
@@ -49,8 +50,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
-    '~/modules/hooks',
-    '~/modules/twitter'
+    '~/modules/hooks'
   ],
   /*
   ** Axios module configuration

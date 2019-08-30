@@ -1,9 +1,23 @@
 <template>
-  <button>favorite</button>
+  <button class="fav_button">favorite</button>
 </template>
 
 <script>
+
+
 export default {
-  name: 'Testing'
+  name: 'Testing',
+  layout: 'simple',
+  data() {
+    return {
+      
+    }
+  },
+  beforeMount() {
+    
+  },
+  mounted() {
+    
+  },
 }
 </script>
