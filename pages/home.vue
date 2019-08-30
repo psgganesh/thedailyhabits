@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     image() {
-      return (this.currentHour >= 12 && this.currentHour <=17) ? "/img/1.jpg" : ((this.currentHour <= 18)? "/img/3.jpg": "/img/2.jpg")
+      return '/images/backgrounds/memphis-mini-dark.png'//(this.currentHour >= 12 && this.currentHour <=17) ? "/images/categories/1.jpg" : ((this.currentHour <= 18)? "/images/categories/3.jpg": "/images/categories/2.jpg")
     }
   }
 }
@@ -93,7 +93,7 @@ export default {
 
 <style>
 #atomic-app {
-  background-size: contain;
+  background-repeat: repeat;
   background-attachment: fixed;
   padding: 15px;
   padding-top: 48px;
