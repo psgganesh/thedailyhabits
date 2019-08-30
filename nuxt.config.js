@@ -48,6 +48,8 @@ module.exports = {
     '@nuxtjs/router',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/proxy',
+    '~/modules/hooks'
   ],
   /*
   ** Axios module configuration
@@ -57,7 +59,7 @@ module.exports = {
   },
 
   router: {
-    middleware: ['auth']
+    middleware: ['check-auth']
   },
   
   /*
@@ -69,5 +71,9 @@ module.exports = {
     */
     extend(config, ctx) {
     }
+  },
+
+  generate: {
+    fallback: false
   }
 }

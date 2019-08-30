@@ -1,39 +1,86 @@
 <template>
   <div>
-    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-        <div class="logo">
-          <a-icon type="crown" /> atomic habits
+    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%'}" >
+      <div class="row">
+        <div class="col-xs-5">
+          <a-date-picker @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" :allowClear="false" />
         </div>
-        <a-menu
-          theme="dark"
-          mode="horizontal"
-          :defaultSelectedKeys="['']"
-          :style="{ lineHeight: '64px', float: 'right' }"
-        >
-          <a-sub-menu>
-            <span slot="title" class="submenu-title-wrapper"><a-icon type="user" />Shankar</span>
-            <a-menu-item key="setting:1"><a-icon type="idcard" /> Profile</a-menu-item>
-            <a-menu-item key="setting:2"><a-icon type="setting" /> Preferences</a-menu-item>
-          </a-sub-menu>
-          <a-menu-item key="signout" @click="signOut">
-            <a-icon type="logout" />Signout
-          </a-menu-item>
-        </a-menu>
+        <div class="col-xs-2 text-white text-center">
+          <div class="logo text-center">
+            <a-icon type="crown" /> atomic habits
+          </div>
+        </div>
+        <div class="col-xs-3 text-white" />
+        <div class="col-xs-2 pull-right">
+          <a-menu mode="horizontal" class="transparent-box bb-0 text-white" >
+            <a-sub-menu>
+              <span slot="title" class="submenu-title-wrapper">
+                <span v-if="user.avatarUrl()">
+                  <template>
+                    <a-avatar shape="square" :src="user.avatarUrl()" />
+                  </template>
+                </span> {{ username }} </span>
+              <a-menu-item-group title="User Preferences">
+                <a-menu-item key="setting:1" @click="() => {}"><a-icon type="user" /> Profile</a-menu-item>
+                <a-menu-item key="setting:2" @click="() => {}"><a-icon type="setting" /> Settings</a-menu-item>
+              </a-menu-item-group>
+              <a-menu-divider />
+              <a-menu-item-group title="Personalization &amp; Data">
+                <a-menu-item key="setting:3" @click="resetData"><a-icon type="delete" /> Format &amp; Reset Data</a-menu-item>
+              </a-menu-item-group>
+              <a-menu-divider />
+                <a-menu-item key="setting:4" @click="signOut"><a-icon type="logout" /> Signout</a-menu-item>
+            </a-sub-menu>
+          </a-menu>
+        </div>
+      </div>
     </a-layout-header>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { Person } from 'blockstack'
+import moment from 'moment'
+
 export default {
   name: 'navbar',
-  asyncData({ store, route, userSession }) {
+  data () {
     return {
-      userSession
+      userData: null,
+      user: null,
+      username: null,
+      dateFormat: 'YYYY - MMM - DD'
     }
   },
+  props: {
+    currentDate: { type: Object, default: moment() }
+  },
+  computed: mapGetters([
+    'isAuthenticated',
+    'loggedUser'
+  ]),
+  beforeMount () {
+    if(!this.loggedUser.isUserSignedIn()) {
+      this.redirectUserToLandingPage();
+    }
+    this.userData = this.loggedUser.loadUserData();
+    this.user = new Person(this.userData.profile);
+    this.username = this.userData.username;
+  },
   methods: {
-    signOut () {
-      console.log('data');
+    moment,
+    resetData() {
+      this.$store.dispatch('resetData')
+    },
+    signOut() {
+      this.$store.dispatch('saveWorkspaceAndSignout', this.currentDate)
+    },
+    redirectUserToLandingPage() {
+      window.location = `/`;
+    },
+    onChange(date, dateString) {
+      this.$emit('on-date-change', date)
     }
   }
 }
@@ -45,5 +92,8 @@ export default {
   color: #ffffff;
   font-size: 1.3rem;
   float: left;
+}
+.ant-layout-header {
+  padding: 0 10px;
 }
 </style>

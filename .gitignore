@@ -61,6 +61,7 @@ typings/
 .next
 
 #nuxt.js build output 
+dist/
 .nuxt
 public/_nuxt
 
