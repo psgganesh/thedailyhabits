@@ -56,7 +56,7 @@
                                   <ul>
                                       <li><a href="https://www.facebook.com/atomichabitsdapp" target="_blank"><i class="lni-facebook-filled"></i></a></li>
                                       <li><a href="https://twitter.com/getatomichabits" target="_blank"><i class="lni-twitter-original"></i></a></li>
-                                      <li><a href="#" target="_blank"><i class="lni-instagram-original"></i></a></li>                                 
+                                      <li><a href="https://www.instagram.com/getatomichabits/" target="_blank"><i class="lni-instagram-original"></i></a></li>                                 
                                   </ul>
                               </div>
                           </nav> 
@@ -233,7 +233,7 @@
                                   <ul class="social mt-30">
                                         <li><a href="https://www.facebook.com/atomichabitsdapp" target="_blank"><i class="lni-facebook-filled"></i></a></li>
                                         <li><a href="https://twitter.com/getatomichabits" target="_blank"><i class="lni-twitter-original"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="lni-instagram-original"></i></a></li>
+                                        <li><a href="https://www.instagram.com/getatomichabits/" target="_blank"><i class="lni-instagram-original"></i></a></li>
                                     </ul>
                               </div> 
                               

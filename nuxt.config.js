@@ -29,6 +29,7 @@ module.exports = {
   */
   css: [
     'ant-design-vue/dist/antd.css',
+    'vue-tour/dist/vue-tour.css',
     'flexboxgrid/dist/flexboxgrid.min.css',
     '~assets/sass/app.scss'
   ],
@@ -38,7 +39,9 @@ module.exports = {
   */
   plugins: [
     '@/plugins/antd-ui',
-    { src: '@/plugins/draggable', ssr: false }
+    '@/plugins/vue-tour',
+    { src: '@/plugins/draggable', ssr: false },
+    { src: '@/plugins/ga.js', ssr: false }
   ],
 
   /*
