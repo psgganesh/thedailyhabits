@@ -8,6 +8,12 @@
   user-select: none; /* Standard syntax */
 }
 
+html {
+  background-image: url('/images/backgrounds/congruent_outline.png');
+  background-repeat: repeat;
+  background-attachment: scroll;
+}
+
 .ant-layout {
   overflow-y: auto;
   background: #1a1b1f;
@@ -17,6 +23,10 @@
 
 
 /* Atomic canvas layout CSS */
+#atomic-app {
+  padding: 15px;
+  padding-top: 48px;
+}
 
 .ant-layout-header {
   background: #00152975;

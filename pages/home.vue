@@ -5,7 +5,7 @@
       <Navbar :currentDate="currentDate" @on-date-change="setDate" />
     </div>
   </div>
-  <div id="atomic-app" :style="{ backgroundImage: 'url(' + image + ')'}">
+  <div id="atomic-app">
   <!-- <div id="atomic-app" :style="{ backgroundColor: '#004D40' }"> -->
     <div class="row">
       <div class="col-xs-3 py-5 text-center box">
@@ -83,23 +83,11 @@ export default {
       this.$store.dispatch('fetchWorkspaceRecords')
       this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 1)
     }
-  },
-  computed: {
-    image() {
-      return '/images/backgrounds/congruent_outline.png'//(this.currentHour >= 12 && this.currentHour <=17) ? "/images/categories/1.jpg" : ((this.currentHour <= 18)? "/images/categories/3.jpg": "/images/categories/2.jpg")
-    }
   }
 }
 </script>
 
 <style>
-#atomic-app {
-  background-repeat: repeat;
-  background-attachment: fixed;
-  padding: 15px;
-  padding-top: 48px;
-}
-
 .atomic-canvas .atomic-canvas-list,
 .atomic-canvas .atomic-canvas-list-even,
 .atomic-canvas .atomic-canvas-list-even.list-accomplishments {
