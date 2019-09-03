@@ -24,6 +24,7 @@
           easing="cubic-bezier(1, 0, 0, 1)"
           ghostClass="ghost"
           dragClass="sortable-drag"
+          data-v-step="3"
         >
           <a-card class="list-group-item item" :bordered="true" v-for="element in habits" :key="element.name" >
             <a-card-meta
@@ -33,7 +34,7 @@
             </a-card-meta>
           </a-card>
           <div class="create-card-composer" @click="() => showAddNewGoalModal = true" slot="footer">
-            <div class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
+            <div data-v-step="2" class="dark-blue-input"><a-icon type="plus" /> Add a new habit</div>
           </div>
         </draggable>
       </div>
