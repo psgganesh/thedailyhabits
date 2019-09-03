@@ -8,18 +8,11 @@
   user-select: none; /* Standard syntax */
 }
 
-html {
-  background-image: url('/images/backgrounds/congruent_outline.png');
-  background-repeat: repeat;
-  background-attachment: scroll;
-}
-
 .ant-layout {
   overflow-y: auto;
   background: #1a1b1f;
   border: 1px solid #151515;
 }
-
 
 
 /* Atomic canvas layout CSS */

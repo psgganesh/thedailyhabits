@@ -2,7 +2,7 @@
 <div>
   <div class="row">
     <div class="col-xs-12">
-      <Navbar :currentDate="currentDate" @on-date-change="setDate" />
+      <Navbar :currentDate="currentDate" @on-date-change="setDate"  />
     </div>
   </div>
   <div id="atomic-app">
@@ -19,12 +19,12 @@
       <div class="col-xs-12 px-0">
         <div class="atomic-canvas">
           <div class="col-xs-3 px-0">
-            <Habits />
+            <Habits data-v-step="2" />
           </div>
           <div class="col-xs-9">
             <div class="row">
               <div class="col-xs-4 dark-box px-0">
-                <Morning />
+                <Morning data-v-step="3" />
               </div>
               <div class="col-xs-4 box px-0">
                 <Afternoon />
@@ -41,6 +41,7 @@
   <div class="footer">
     <cookie-law theme="dark-lime"></cookie-law>
   </div>
+  <v-tour name="myTour" :steps="steps"></v-tour>
 </div>
 </template>
 <script>
@@ -58,7 +59,30 @@ export default {
   data() {
     return {
       currentDate: moment(),
-      currentHour: moment().hour()
+      currentHour: moment().hour(),
+      steps: [
+        {
+          target: '[data-v-step="1"]',
+          content: `Howdy there!,, this is where we start, all your habits are categorized by date, you can change dates to display habits of that particular day!!`,
+          params: {
+            placement: 'bottom'
+          }
+        },
+        {
+          target: '[data-v-step="2"]',
+          content: 'You can add new habits, here!',
+          params: {
+            placement: 'right'
+          }
+        },
+        {
+          target: '[data-v-step="3"]',
+          content: 'Once a habit is added, you can drag / drop that card to any of the time of the day - morning / afternoon / evening',
+          params: {
+            placement: 'right'
+          }
+        }
+      ]
     }
   },
   components: {
@@ -83,11 +107,23 @@ export default {
       this.$store.dispatch('fetchWorkspaceRecords')
       this.$message.success('Listing habits for '+this.currentDate.format('YYYY - MMM - DD'), 1)
     }
+  },
+  mounted: function () {
+    this.$tours['myTour'].start()
   }
 }
 </script>
 
 <style>
+.v-step {
+  z-index: 1001;
+}
+#atomic-app {
+  background-image: url('/images/backgrounds/congruent_outline.png');
+  background-repeat: repeat;
+  background-attachment: scroll;
+}
+
 .atomic-canvas .atomic-canvas-list,
 .atomic-canvas .atomic-canvas-list-even,
 .atomic-canvas .atomic-canvas-list-even.list-accomplishments {

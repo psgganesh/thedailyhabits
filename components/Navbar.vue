@@ -5,7 +5,9 @@
         <a-col :span="4" :order="1">
           <h1 class="text-white" :style="{ float: 'left', marginTop: '10px' }">
             <a-avatar shape="square" slot="avatar" :style="{ float: 'left'}" src="/images/calendar.png" />
-            <a-date-picker :style="{ float: 'left', paddingLeft:'10px'}" @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" :allowClear="false" />
+            <a-date-picker :style="{ float: 'left', paddingLeft:'10px'}" @change="onChange" :defaultValue="moment(currentDate, dateFormat)" :format="dateFormat" :allowClear="false" 
+            data-v-step="1"
+            />
           </h1>
         </a-col>
         <a-col class="text-white" :span="7" :order="3"></a-col>

@@ -308,15 +308,15 @@ export default {
   ]),
   beforeMount () {
     if(this.loggedUser.isUserSignedIn()) {
-      this.redirectLoggedInUser();
-    } else if (this.loggedUser.isSignInPending()) {
-      this.loggedUser.handlePendingSignIn().then((userData) => {
         this.redirectLoggedInUser();
-      });
+    } else if (this.loggedUser.isSignInPending()) {
+        this.loggedUser.handlePendingSignIn().then((userData) => {
+            this.redirectLoggedInUser();
+        });
     }
   },
   methods: {
-    signIn () {
+    signIn() {
       this.loggedUser.redirectToSignIn()
     },
     redirectLoggedInUser() {
