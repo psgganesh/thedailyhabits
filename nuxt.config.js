@@ -1,70 +1,53 @@
-const pkg = require('./package')
-
 
 module.exports = {
-  mode: 'spa',
-
+  mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
   /*
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
-
   /*
   ** Global CSS
   */
   css: [
-    'ant-design-vue/dist/antd.css',
-    'vue-tour/dist/vue-tour.css',
-    'flexboxgrid/dist/flexboxgrid.min.css',
-    '~assets/sass/app.scss'
   ],
-
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/antd-ui',
-    '@/plugins/vue-tour',
-    { src: '@/plugins/draggable', ssr: false },
-    { src: '@/plugins/ga.js', ssr: false }
   ],
-
+  /*
+  ** Nuxt.js dev-modules
+  */
+  devModules: [
+  ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/router',
+    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/proxy',
-    '~/modules/hooks'
   ],
   /*
   ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
   },
-
-  router: {
-    middleware: ['check-auth']
-  },
-  
   /*
   ** Build configuration
   */
@@ -74,9 +57,5 @@ module.exports = {
     */
     extend(config, ctx) {
     }
-  },
-
-  generate: {
-    fallback: false
   }
 }
