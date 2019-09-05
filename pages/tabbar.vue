@@ -4,63 +4,107 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
-      temporary
+      :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
       <v-list dense>
-
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <template v-for="item in items">
+          <v-row
+            v-if="item.heading"
+            :key="item.heading"
+            align="center"
+          >
+            <v-col cols="6">
+              <v-subheader v-if="item.heading">
+                {{ item.heading }}
+              </v-subheader>
+            </v-col>
+            <v-col
+              cols="6"
+              class="text-center"
+            >
+              <a
+                href="#!"
+                class="body-2 black--text"
+              >EDIT</a>
+            </v-col>
+          </v-row>
+          <v-list-group
+            v-else-if="item.children"
+            :key="item.text"
+            v-model="item.model"
+            :prepend-icon="item.model ? item.icon : item['icon-alt']"
+            append-icon=""
+          >
+            <template v-slot:activator>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ item.text }}
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              @click=""
+            >
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ child.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+          <v-list-item
+            v-else
+            :key="item.text"
+            @click=""
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ item.text }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
       </v-list>
     </v-navigation-drawer>
 
     <v-app-bar
-      absolute
-      color="white"
-      elevate-on-scroll
-      scroll-target="#scrolling-techniques-7"
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      color="yellow accent-4"
       app
+      elevation="0"
+      light
     >
 
-      <v-toolbar-title>
+      <v-toolbar-title
+        style="width: 240px"
+        >
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg" @click.stop="drawer = !drawer"></v-img>
+          <v-img src="/images/logo.png" @click.stop="drawer = !drawer"></v-img>
         </v-list-item-avatar>
-        <strong>Home</strong>
       </v-toolbar-title>
-
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="search"
+        label="Search"
+        class="hidden-sm-and-down"
+      ></v-text-field>
       <div class="flex-grow-1"></div>
 
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+        <v-icon>mdi-settings</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -75,9 +119,8 @@
       </v-container>
     </v-content>
 
-    <v-footer app>
-      <!-- -->
-    </v-footer>
+    <!-- <v-footer app>
+    </v-footer> -->
   </v-app>
 </template>
 
@@ -88,9 +131,14 @@
       return {
         drawer: null,
         items: [
-          { title: 'Home', icon: 'dashboard' },
-          { title: 'About', icon: 'question_answer' },
-        ],
+        { icon: 'home', text: 'Home' },
+        { icon: 'inbox', text: 'Inbox' },
+        { icon: 'mdi-calendar', text: 'Upcoming actions' },
+        { icon: 'history', text: 'Activity history' },
+        { icon: 'settings', text: 'Settings' },
+        { icon: 'chat_bubble', text: 'Send feedback' },
+        { icon: 'help', text: 'Help' }
+      ],
       }
     },
   }
