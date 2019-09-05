@@ -1,7 +1,7 @@
 {
   "name": "atomichabits",
   "version": "1.0.0",
-  "description": "My majestic Nuxt.js project",
+  "description": "My cool Nuxt.js project",
   "author": "Shankar",
   "private": true,
   "scripts": {
@@ -12,17 +12,20 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "cross-env": "^5.2.0",
-    "express": "^4.16.4",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
+    "cross-env": "^5.2.0",
+    "dayspan-vuetify": "^0.4.0",
+    "express": "^4.16.4",
+    "moment": "^2.24.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "vue-jest": "^3.0.3",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "vue-jest": "^3.0.3"
   }
 }

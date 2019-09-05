@@ -1,6 +1,6 @@
 # atomichabits
 
-> My majestic Nuxt.js project
+> My cool Nuxt.js project
 
 ## Build Setup
 
