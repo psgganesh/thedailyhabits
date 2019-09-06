@@ -1,5 +1,6 @@
 <template>
   <v-navigation-drawer v-model="drawerState" width="300" :clipped="$vuetify.breakpoint.lgAndUp" app>
+
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
@@ -15,87 +16,48 @@
 
     <v-divider></v-divider>
 
-    <v-list dense>
-      <template v-for="item in items">
-        <v-row
-          v-if="item.heading"
-          :key="item.heading"
-          align="center"
-        >
-          <v-col cols="6">
-            <v-subheader v-if="item.heading">
-              {{ item.heading }}
-            </v-subheader>
-          </v-col>
-          <v-col
-            cols="6"
-            class="text-center"
-          >
-            <a
-              href="#!"
-              class="body-2 black--text"
-            >EDIT</a>
-          </v-col>
-        </v-row>
-        <v-list-group
-          v-else-if="item.children"
-          :key="item.text"
-          v-model="item.model"
-          :prepend-icon="item.model ? item.icon : item['icon-alt']"
-          append-icon=""
-        >
-          <template v-slot:activator>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ item.text }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-          <v-list-item
-            v-for="(child, i) in item.children"
-            :key="i"
-            @click="() => { console.log('clicked') }"
-          >
-            <v-list-item-action v-if="child.icon">
-              <v-icon>{{ child.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ child.text }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-        <v-list-item
-          v-else
-          :key="item.text"
-          @click="() => { console.log('clicked') }"
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.text }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </template>
-    </v-list>
-
-    <template v-slot:append>
-      <v-divider></v-divider>
-      <v-list>
-        <template v-for="item in options">
-          <v-list-item :key="item.text" @click="() => console.log('clicked')">
+    <!-- HEADER OPTIONS START HERE -->
+    <v-list rounded>
+      <v-list-item-group color="primary" v-model="selectedHeaderItem">
+          <v-list-item v-for="(item, i) in tabs" :key="i"  @click="tappedHeaderLinks">
             <v-list-item-action><v-icon>{{ item.icon }}</v-icon></v-list-item-action>
             <v-list-item-content><v-list-item-title>{{ item.text }}</v-list-item-title></v-list-item-content>
           </v-list-item>
-        </template>
-      </v-list>
-    </template>
+      </v-list-item-group>
+    </v-list>
+    <!-- HEADER OPTIONS END HERE -->
+
+
+    <v-divider></v-divider>
+
+    <v-list shaped>
+      <v-subheader class="font-weight-medium overline">ALL LABELS</v-subheader>
+      <v-list-item-group color="primary" v-model="selectedListitem">
+        <v-list-item v-for="(item, i) in items" :key="i" @click="tappedLabelLink">
+          <v-list-item-icon>
+            <v-icon :color="item.color" v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+
+    <!-- FOOTER OPTIONS START HERE -->
+      <template v-slot:append>
+        <v-divider></v-divider>
+        <v-list rounded>
+          <v-list-item-group color="primary" v-model="selectedFooterItem">
+            <v-list-item v-for="(item, i) in options" :key="i" @click="tappedFooterLinks">
+              <v-list-item-action><v-icon>{{ item.icon }}</v-icon></v-list-item-action>
+              <v-list-item-content><v-list-item-title>{{ item.text }}</v-list-item-title></v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </template>
+    <!-- FOOTER OPTIONS END HERE -->
+
   </v-navigation-drawer>
 </template>
 
@@ -104,16 +66,27 @@ export default {
   name: 'NavigationDrawer',
   data () {
     return {
+      selectedHeaderItem: 0,
+      selectedListitem: null,
+      selectedFooterItem: null,
+      tabs: [
+        { icon: 'inbox', text: 'Home' },
+        { icon: 'settings', text: 'Preferences' },
+      ],
       items: [
-        { icon: 'home', text: 'Home' },
-        { icon: 'inbox', text: 'Inbox' },
-        { icon: 'mdi-calendar', text: 'Upcoming actions' },
-        { icon: 'history', text: 'Activity history' },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' }
+        { icon: 'label', text: 'Health', color: "red accent-4" },
+        { icon: 'label', text: 'Sports', color: "purple darken-4" },
+        { icon: 'label', text: 'Nutrition', color: "purple accent-4" },
+        { icon: 'label', text: 'Quit a bad habit', color: "deep-purple accent-4" },
+        { icon: 'label', text: 'Study', color: "cyan darken-4" },
+        { icon: 'label', text: 'Work', color: "blue accent-4" },
+        { icon: 'label', text: 'Entertainment', color: "teal darken-4" },
+        { icon: 'label', text: 'Me time', color: "pink darken-4" },
+        { icon: 'label', text: 'General', color: "brown darken-4" }
       ],
       options: [
+        { icon: 'chat_bubble', text: 'Send feedback' },
+        { icon: 'help', text: 'Help' },
         { icon: 'mdi-logout', text: 'Logout' }
       ],
     }
@@ -123,6 +96,28 @@ export default {
         get() { return this.$store.state.drawer; },
         set(value) { this.$store.commit('SET_DRAWER_STATE', value); },
     },
+  },
+  methods: {
+    tappedHeaderLinks() {
+      this.selectedListitem = null
+      this.selectedFooterItem = null
+      this.collapseNavbar()
+    },
+    tappedLabelLink() {
+      this.selectedHeaderItem = null
+      this.selectedFooterItem = null
+      this.collapseNavbar()
+    },
+    tappedFooterLinks() {
+      this.selectedHeaderItem = null
+      this.selectedListitem = null
+      this.collapseNavbar()
+    },
+    collapseNavbar() {
+      if(this.$device.isMobile) {
+        this.$store.commit('SET_DRAWER_STATE', null)
+      }
+    }
   }
 }
 </script>

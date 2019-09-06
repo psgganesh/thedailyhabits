@@ -1370,6 +1370,11 @@
     axios-retry "^3.1.2"
     consola "^2.10.1"
 
+"@nuxtjs/device@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/device/-/device-1.2.3.tgz#0b9c744fef10fa6c9b5d0155c3fbcde2c8dd671f"
+  integrity sha512-VKP8kYL7Ua7BLUStDhnT+N/nv5fta7E7S/aMuMsuWwcDDmlyN+8OCe/jBNAoe6z1LPw2MSiMQYC9VR9mUIZybg==
+
 "@nuxtjs/icon@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/icon/-/icon-2.6.0.tgz#65295ee059794f01e41a52c4141c06e898e798bc"

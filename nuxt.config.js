@@ -25,6 +25,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    { src: '~assets/sass/custom.scss', lang: 'scss' },
   ],
   /*
   ** Plugins to load before mounting the App
@@ -45,6 +46,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/device'
   ],
   /*
   ** Axios module configuration
@@ -57,7 +59,7 @@ module.exports = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   // vuetify: {
-  //   customVariables: ['~/assets/variables.scss'],
+  //   customVariables: ['~/assets/sass/variables.scss'],
   //   theme: {
   //     dark: false,
   //     themes: {
