@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawerState" width="300" :clipped="$vuetify.breakpoint.lgAndUp" app>
+  <v-navigation-drawer v-model="drawerState" width="280" :clipped="$vuetify.breakpoint.lgAndUp" transition="slide-x-transition" app>
 
     <template v-slot:prepend>
       <v-list-item two-line>
@@ -18,7 +18,7 @@
 
     <!-- HEADER OPTIONS START HERE -->
     <v-list rounded>
-      <v-list-item-group color="primary" v-model="selectedHeaderItem">
+      <v-list-item-group color="deep-orange darken-1" v-model="selectedHeaderItem">
           <v-list-item v-for="(item, i) in tabs" :key="i"  @click="tappedHeaderLinks">
             <v-list-item-action><v-icon>{{ item.icon }}</v-icon></v-list-item-action>
             <v-list-item-content><v-list-item-title>{{ item.text }}</v-list-item-title></v-list-item-content>
@@ -32,7 +32,7 @@
 
     <v-list shaped>
       <v-subheader class="font-weight-medium overline">ALL LABELS</v-subheader>
-      <v-list-item-group color="primary" v-model="selectedListitem">
+      <v-list-item-group color="deep-orange darken-1" v-model="selectedListitem">
         <v-list-item v-for="(item, i) in items" :key="i" @click="tappedLabelLink">
           <v-list-item-icon>
             <v-icon :color="item.color" v-text="item.icon"></v-icon>
@@ -48,7 +48,7 @@
       <template v-slot:append>
         <v-divider></v-divider>
         <v-list rounded>
-          <v-list-item-group color="primary" v-model="selectedFooterItem">
+          <v-list-item-group color="deep-orange darken-1" v-model="selectedFooterItem">
             <v-list-item v-for="(item, i) in options" :key="i" @click="tappedFooterLinks">
               <v-list-item-action><v-icon>{{ item.icon }}</v-icon></v-list-item-action>
               <v-list-item-content><v-list-item-title>{{ item.text }}</v-list-item-title></v-list-item-content>

@@ -1,12 +1,9 @@
 <template>
   <v-app light>
-
-      <NavigationDrawer />
-
-      <AppBar />
-  
+    <NavigationDrawer />
+    <AppBar />
     <v-content>
-      <v-container fluid>
+      <v-container fluid class="pa-0">
         <nuxt />
       </v-container>
     </v-content>
