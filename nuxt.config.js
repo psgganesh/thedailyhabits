@@ -32,14 +32,12 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: '~assets/sass/custom.scss', lang: 'scss' }
+    { src: '~assets/sass/custom.scss', lang: 'css' }
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@plugins/vue-cal',
-    '@plugins/dayspan'
   ],
   /*
   ** Nuxt.js dev-modules

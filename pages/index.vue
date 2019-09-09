@@ -18,7 +18,7 @@
 
     <v-row  class="ma-0 pa-0">
       <v-col  class="ma-0 pa-0">
-        <v-list two-line>
+        <v-list class="ma-0 pa-0" two-line>
           <v-list-item-group v-model="selected" multiple active-class="green--text">
             <template v-for="(item, index) in items">
               <v-list-item :key="item.title">
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-    name: 'home',
+    name: 'home-page',
     data: () => ({
       selected: [],
       items: [
