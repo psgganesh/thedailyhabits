@@ -1,0 +1,26 @@
+  
+  .theme--light.v-application {
+    background: transparent !important;
+  }
+
+  #atomic-canvas {
+    background: #ffea00;
+  }
+  
+  .top-shaped {
+    border: 1px solid #efefef !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+    padding-top: 8px;
+  }
+
+  /* This is for documentation purposes and will not be needed in your application */
+  #atomic-canvas .v-btn--fab {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  #dash-header {
+    height: 188px;
+  }

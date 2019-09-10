@@ -20,7 +20,7 @@
     <v-list rounded>
       <v-list-item-group color="accent" v-model="selectedHeaderItem">
           <v-list-item v-for="(item, i) in tabs" :key="i"  @click="tappedHeaderLinks">
-            <v-list-item-action><v-icon>{{ item.icon }}</v-icon></v-list-item-action>
+            <v-list-item-action><v-icon :color="item.color">{{ item.icon }}</v-icon></v-list-item-action>
             <v-list-item-content><v-list-item-title>{{ item.text }}</v-list-item-title></v-list-item-content>
           </v-list-item>
       </v-list-item-group>
@@ -70,19 +70,19 @@ export default {
       selectedListitem: null,
       selectedFooterItem: null,
       tabs: [
-        { icon: 'inbox', text: 'Home' },
+        { icon: 'mdi-all-inclusive', text: 'Home', color: "red accent-4" },
         { icon: 'settings', text: 'Preferences' },
       ],
       items: [
-        { icon: 'label', text: 'Health', color: "red accent-4" },
-        { icon: 'label', text: 'Sports', color: "purple darken-4" },
-        { icon: 'label', text: 'Nutrition', color: "purple accent-4" },
-        { icon: 'label', text: 'Quit a bad habit', color: "deep-purple accent-4" },
-        { icon: 'label', text: 'Study', color: "cyan darken-4" },
-        { icon: 'label', text: 'Work', color: "blue accent-4" },
-        { icon: 'label', text: 'Entertainment', color: "teal darken-4" },
-        { icon: 'label', text: 'Me time', color: "pink darken-4" },
-        { icon: 'label', text: 'General', color: "brown darken-4" }
+        { icon: 'mdi-heart-pulse', text: 'Health', color: "red accent-4" },
+        { icon: 'mdi-basketball', text: 'Sports', color: "purple darken-4" },
+        { icon: 'mdi-food-fork-drink', text: 'Nutrition', color: "purple accent-4" },
+        { icon: 'mdi-timer', text: 'Quit a bad habit', color: "deep-purple accent-4" },
+        { icon: 'mdi-book', text: 'Study', color: "cyan darken-4" },
+        { icon: 'mdi-briefcase', text: 'Work', color: "blue accent-4" },
+        { icon: 'mdi-music', text: 'Entertainment', color: "teal darken-4" },
+        { icon: 'mdi-circle-expand', text: 'Me time', color: "pink darken-4" },
+        { icon: 'mdi-octagram', text: 'General', color: "brown darken-4" }
       ],
       options: [
         { icon: 'chat_bubble', text: 'Send feedback' },

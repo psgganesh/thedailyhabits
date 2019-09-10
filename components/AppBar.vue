@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" color="primary" elevation="0" dark app>
+  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" color="primary" elevation="0" light app>
     
     <v-toolbar-title style="width: 280px" class="hidden-sm-and-down">
       <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
@@ -20,7 +20,7 @@
     ></v-text-field>
 
     <div class="flex-grow-1"></div>
-    <v-btn icon><v-icon>mdi-settings</v-icon></v-btn>
+    <v-btn icon><v-icon>mdi-dots-vertical</v-icon></v-btn>
   </v-app-bar>
 </template>
 

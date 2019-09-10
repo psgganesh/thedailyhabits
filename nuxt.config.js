@@ -16,7 +16,7 @@ module.exports = {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name:'theme-color', content: '#1A237E' },
+      { name:'theme-color', content: '#FFD600' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
@@ -32,6 +32,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    { src:'~/assets/sass/custom.scss', lang: 'scss' }
   ],
   /*
   ** Plugins to load before mounting the App
@@ -70,8 +71,8 @@ module.exports = {
       light: true,
       themes: {
         light: {
-          primary: colors.indigo.base,
-          secondary: colors.pink.base,
+          primary: colors.yellow.accent3,
+          secondary: colors.indigo.darken4,
           accent: colors.blueGrey.darken4,
           error: colors.red.base,
           warning: colors.yellow.base,
