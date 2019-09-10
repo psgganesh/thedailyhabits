@@ -1,10 +1,41 @@
 <template>
-  <div id="atomic-canvas">
+  <div id="atomic-canvas" :class="backdropColor">
 
     <v-row class="ma-0 pa-0">
       <v-col class="ma-0 pa-0">
-        <v-card id="dash-header" class="d-flex" color="primary" outlined tile>
-          
+        <v-card id="dash-header" class="d-flex text-center" :color="dashColor" outlined tile>
+          <v-list-item three-line>
+            <v-list-item-content>
+
+              <v-list-item-title class="display-1">
+                <v-icon class="pa-3" light>mdi-chevron-left-circle</v-icon>
+                {{ today }}
+                <v-icon class="pa-3" light>mdi-chevron-right-circle</v-icon>
+              </v-list-item-title>
+              
+              <v-list-item-subtitle>
+                <v-row class="ma-4 pa-0">
+                  <v-col cols="6" class="ma-0 pa-0">
+                    <span class="font-weight-bold overline">Tasks</span>
+                    <div class="display-1 py-3"> 0 / 10</div>
+                  </v-col>
+                  <v-col cols="6" class="ma-0 pa-0">
+                    <span class="font-weight-bold overline">Goals</span>
+                    <div class="display-1 py-3"> 0 / 10</div>
+                  </v-col>
+                </v-row>
+              </v-list-item-subtitle>
+
+              <v-list-item-subtitle>
+                <v-row class="ma-0 pa-0">
+                  <v-col cols="12" class="ma-0 pa-0">
+                    <v-progress-linear v-model="power" color="secondary" height="25" reactive ></v-progress-linear>
+                  </v-col>
+                </v-row>
+              </v-list-item-subtitle>
+
+            </v-list-item-content>
+          </v-list-item>
         </v-card>
       </v-col>
     </v-row>
@@ -53,6 +84,7 @@
 
 <script>
 import SpeedDialFab from '~/components/SpeedDialFab'
+import moment from 'moment'
 
 export default {
     name: 'home-page',
@@ -60,7 +92,9 @@ export default {
       SpeedDialFab
     },
     data: () => ({
+      power: 78,
       selected: [],
+      today: moment().format('DD  MMM Y'),
       items: [
         {
           action: '15 min',
@@ -84,7 +118,12 @@ export default {
     }),
 
     computed:{
-      
+      dashColor() {
+        return (this.$device.isMobile) ? 'primary' : 'white'
+      },
+      backdropColor() {
+        return (this.$device.isMobile) ? 'bg-mobile' : 'bg-default'
+      }
     }
   }
 </script>
