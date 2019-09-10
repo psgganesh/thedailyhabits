@@ -16,7 +16,7 @@ module.exports = {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name:'theme-color', content: '#FBC02D' },
+      { name:'theme-color', content: '#1A237E' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
@@ -32,7 +32,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: '~assets/sass/custom.scss', lang: 'css' }
   ],
   /*
   ** Plugins to load before mounting the App
@@ -68,16 +67,16 @@ module.exports = {
   vuetify: {
     customVariables: ['~/assets/sass/variables.scss'],
     theme: {
-      dark: false,
+      light: true,
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+        light: {
+          primary: colors.indigo.base,
+          secondary: colors.pink.base,
+          accent: colors.blueGrey.darken4,
+          error: colors.red.base,
+          warning: colors.yellow.base,
+          info: colors.lightBlue.base,
+          success: colors.green.base
         }
       }
     }
