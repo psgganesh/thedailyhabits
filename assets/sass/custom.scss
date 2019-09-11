@@ -16,9 +16,17 @@
     border-top-left-radius: 16px !important;
     border-top-right-radius: 16px !important;
     padding-top: 8px;
-    -webkit-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
-    -moz-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
-    box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+    // -webkit-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+    // -moz-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+    // box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+  }
+
+  .outlined {
+    border: 1px solid #efefef;
+  }
+
+  .select-option.v-list-item--active {
+    color: white;
   }
 
   .v-stepper {
@@ -40,6 +48,7 @@
     position: fixed;
     bottom: 15px;
     right: 15px;
+    z-index: 100001;
   }
 
   #dash-header {
