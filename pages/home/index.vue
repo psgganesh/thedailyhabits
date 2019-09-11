@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pa-2">
 
   <v-row>
     <v-col>

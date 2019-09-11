@@ -15,7 +15,7 @@
         </v-btn>
       </v-toolbar>
       
-      <v-container>
+      <v-container class="mb-0 pa-0">
         <nuxt-child />
       </v-container>
 
@@ -36,11 +36,11 @@ export default {
   },
   methods: {
     closeCreateHabit() {
-      this.$router.push({ name: 'index' });
+      this.$router.push({ name: 'home' });
       this.dialog = false
     },
     navigateBack() {
-      if(this.$route.name==='index') { 
+      if(this.$route.name==='home') { 
         this.dialog = false
       } else {
         this.$router.go(-1)
