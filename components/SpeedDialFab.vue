@@ -1,20 +1,24 @@
 <template>
-  <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-    <template v-slot:activator="{ on }">
-      <v-btn fab class="v-action-button" color="secondary" dark v-on="on"><v-icon>mdi-plus</v-icon></v-btn>
+  <v-dialog v-model='dialog' fullscreen hide-overlay transition='dialog-bottom-transition'>
+    <template v-slot:activator='{ on }'>
+      <v-btn fab class='v-action-button' color='secondary' dark v-on='on'><v-icon>mdi-plus</v-icon></v-btn>
     </template>
     <v-card>
-      <v-toolbar dark color="secondary">
-        <v-btn icon dark @click="dialog = false">
+      <v-toolbar dark color='secondary'>
+        
+        <v-btn icon dark @click='navigateBack'><v-icon>mdi-arrow-left</v-icon></v-btn>
+
+        <v-toolbar-title>New Task / Goal</v-toolbar-title>
+        <div class='flex-grow-1'></div>
+        <v-btn icon dark @click='closeCreateHabit'>
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>New Task / Goal</v-toolbar-title>
-        <div class="flex-grow-1"></div>
-        <v-toolbar-items>
-          <v-btn dark text @click="dialog = false">Save</v-btn>
-        </v-toolbar-items>
       </v-toolbar>
       
+      <v-container>
+        <nuxt-child />
+      </v-container>
+
     </v-card>
   </v-dialog>
 </template>
@@ -28,6 +32,19 @@ export default {
       notifications: false,
       sound: true,
       widgets: false,
+    }
+  },
+  methods: {
+    closeCreateHabit() {
+      this.$router.push({ name: 'index' });
+      this.dialog = false
+    },
+    navigateBack() {
+      if(this.$route.name==='index') { 
+        this.dialog = false
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }

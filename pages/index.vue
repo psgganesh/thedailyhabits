@@ -46,18 +46,14 @@
       <v-col class="ma-0 pa-0">
           <v-list class="ma-0 pa-0 top-shaped" two-line>
             <v-subheader class="overline">
-              <v-icon color="red">mdi-all-inclusive</v-icon>&nbsp;&nbsp;Today
+              <v-icon color="red">mdi-all-inclusive</v-icon>&nbsp;Today
             </v-subheader>
             <v-list-item-group v-model="selected" multiple active-class="green--text">
               <template v-for="(item, index) in items">
                 <v-list-item :key="item.title">
                   <template v-slot:default="{ active, toggle }">
                     <v-list-item-action>
-                      <v-checkbox
-                        v-model="active"
-                        color="success"
-                        @click="toggle"
-                      ></v-checkbox>
+                      <v-checkbox v-model="active" color="success" @click="toggle"></v-checkbox>
                     </v-list-item-action>
                     <v-list-item-content>
                       <v-list-item-title v-text="item.title"></v-list-item-title>
@@ -66,19 +62,13 @@
                     </v-list-item-content>
                   </template>
                 </v-list-item>
-                <v-divider
-                  v-if="index + 1 < items.length"
-                  :key="index"
-                ></v-divider>
+                <v-divider v-if="index + 1 < items.length" :key="index" ></v-divider>
               </template>
             </v-list-item-group>
           </v-list>
-        
-
-        
-
       </v-col>
     </v-row>
+
   </div>
 </template>
 

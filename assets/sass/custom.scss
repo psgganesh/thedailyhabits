@@ -21,6 +21,14 @@
     box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
   }
 
+  .page-enter-active, .page-leave-active {
+    transition: all 0.2s;
+  }
+  .page-enter, .page-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
   /* This is for documentation purposes and will not be needed in your application */
   #atomic-canvas .v-btn--fab {
     position: fixed;
