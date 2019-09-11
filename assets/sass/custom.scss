@@ -1,0 +1,41 @@
+  
+  .theme--light.v-application {
+    background: transparent !important;
+  }
+
+  .bg-mobile {
+    background: #FFEA00;
+  }
+
+  .bg-default {
+    background: #FFFFFF;
+  }
+  
+  .top-shaped {
+    border: 1px solid #efefef !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+    padding-top: 8px;
+    -webkit-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+    box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
+  }
+
+  .page-enter-active, .page-leave-active {
+    transition: all 0.2s;
+  }
+  .page-enter, .page-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
+  /* This is for documentation purposes and will not be needed in your application */
+  #atomic-canvas .v-btn--fab {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  #dash-header {
+    height: 220px;
+  }
