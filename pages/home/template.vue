@@ -1,55 +1,88 @@
 <template>
-  <v-stepper v-model="wizardStep" vertical light class="mt-2">
+  <div>
+    <v-stepper v-model="wizardStep" vertical light class="mt-2">
 
-    <v-stepper-step step="1" color="secondary">Choose Category</v-stepper-step>
-    <v-stepper-content step="1" color="secondary">
-      <v-list-item v-for="item in categories" :key="item.title" @click="chooseCategory(item)">
-        <v-list-item-avatar>
-          <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.title"></v-list-item-title>
-        </v-list-item-content>
-        <v-list-item-action>
-          <v-chip class="ma-2">{{ item.count }}</v-chip>
-        </v-list-item-action>
-      </v-list-item>
-    </v-stepper-content>
+      <v-stepper-step step="1" editable color="secondary">Choose Category</v-stepper-step>
+      <v-stepper-content step="1" color="secondary">
+        <v-list-item v-for="item in categories" :key="item.title" @click="chooseCategory(item)">
+          <v-list-item-avatar>
+            <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-chip class="ma-2">{{ item.count }}</v-chip>
+          </v-list-item-action>
+        </v-list-item>
+      </v-stepper-content>
 
-    <v-stepper-step step="2" color="secondary">Choose Activity</v-stepper-step>
-    <v-stepper-content step="2" color="secondary">
-      <v-list-item v-for="item in activities[selectedCategorySlug]" :key="item.title" @click="chooseActivity(item)">
-        <v-list-item-avatar>
-          <v-icon :class="[item.iconClass]" v-text="item.icon" ></v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.title"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-stepper-content>
+      <v-stepper-step step="2" editable color="secondary">Choose Activity</v-stepper-step>
+      <v-stepper-content step="2" color="secondary">
+        <v-list-item v-for="item in activities[selectedCategorySlug]" :key="item.title" @click="chooseActivity(item)">
+          <v-list-item-avatar>
+            <v-icon :class="[item.iconClass]" v-text="item.icon" ></v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-stepper-content>
 
-    <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
-    <v-stepper-content step="3" color="secondary" >
-      <v-list label>
-        <v-list-item-group color="deep-purple accent-4">
-          <v-list-item v-for="question in questions[questionSlug]" :key="question.id" three-line class="outlined mb-2 select-option" @click="selectOption(question)">
-            <v-list-item-content>
-              <v-list-item-subtitle v-html="question.option"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-stepper-content>
+      <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
+      <v-stepper-content step="3" color="secondary" class="ma-2 pa-2">
+        <v-list label>
+          <v-list-item-group color="green">
+            <v-list-item v-for="question in questions[questionSlug]" :key="question.id" three-line class="outlined mb-2 select-option" @click="selectOption(question)">
+              <v-list-item-content>
+                <v-list-item-subtitle v-html="question.option"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-stepper-content>
 
-    <v-stepper-step step="4" color="secondary">Frequency</v-stepper-step>
-    <v-stepper-content step="4" color="secondary">
-      <v-chip-group active-class="deep-purple accent-4 white--text" column >
-        <v-chip>Daily</v-chip>
-        <v-chip>Weekly</v-chip>
-      </v-chip-group>
-    </v-stepper-content>
+    </v-stepper>
 
-  </v-stepper>
+    <v-dialog v-model='confirmDialog' fullscreen hide-overlay transition='dialog-bottom-transition'>
+      
+      <v-card>
+        <v-toolbar dark color='teal darken-4'>
+          <v-btn icon dark @click='discardConfirmDialog'><v-icon>mdi-arrow-left</v-icon></v-btn>
+          <v-toolbar-title>Confirm your goal</v-toolbar-title>
+          <div class='flex-grow-1'></div>
+          <v-btn icon dark @click='discardConfirmDialog'>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-toolbar>
+        
+        <v-container class="mb-0 pa-0">
+          <v-card :loading="loading" class="mx-auto my-12" max-width="374" >
+            <v-card-title>Cafe Badilico</v-card-title>
+            <v-card-text>
+              
+
+              <div class="my-4 subtitle-1 black--text">
+                $ • Italian, Cafe
+              </div>
+
+              <div>Small plates, salads & sandwiches an inteimate setting with 12 indoor seats plus patio seating.</div>
+            </v-card-text>
+
+            <v-divider class="mx-4"></v-divider>
+
+            <v-card-actions>
+              <v-btn color="deep-orange darken-4" text @click="reserve" >
+                Reserve
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-container>
+
+      </v-card>
+    </v-dialog>
+
+  </div>
 </template>
 
 <script>
@@ -57,8 +90,10 @@ export default {
   name: 'TaskTemplateForm',
   data: () => {
     return {
+      loading: false,
       wizardStep: 1,
       selection: 1,
+      confirmDialog: false,
       selectedActivity: null,
       selectedCategorySlug: null,
       categories: [
@@ -103,7 +138,11 @@ export default {
       this.wizardStep++
     },
     selectOption(option) {
-      this.wizardStep++
+      // this.wizardStep++
+      this.confirmDialog = true
+    },
+    discardConfirmDialog() {
+      this.confirmDialog = false
     }
   },
   computed: {
