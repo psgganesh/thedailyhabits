@@ -42,6 +42,12 @@
     opacity: 0;
     transform: translateX(-100%);
   }
+
+  #questions_list .v-list-item__title {
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+  }
   
   /* This is for documentation purposes and will not be needed in your application */
   #atomic-canvas .v-btn--fab {

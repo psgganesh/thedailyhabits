@@ -30,58 +30,20 @@
       </v-stepper-content>
 
       <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
-      <v-stepper-content step="3" color="secondary" class="ma-2 pa-2">
+      <v-stepper-content step="3" color="secondary" class="ma-2 pa-2" id="questions_list">
         <v-list label>
           <v-list-item-group color="green">
             <v-list-item v-for="question in questions[questionSlug]" :key="question.id" three-line class="outlined mb-2 select-option" @click="selectOption(question)">
               <v-list-item-content>
-                <v-list-item-subtitle v-html="question.option"></v-list-item-subtitle>
+                <v-list-item-title class="subtitle-2 text--black">{{ question.option }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
         </v-list>
+        <v-btn color="success" :disabled="finishButtonDisabledState" block large>Finish</v-btn>
       </v-stepper-content>
 
     </v-stepper>
-
-    <v-dialog v-model='confirmDialog' fullscreen hide-overlay transition='dialog-bottom-transition'>
-      
-      <v-card>
-        <v-toolbar dark color='teal darken-4'>
-          <v-btn icon dark @click='discardConfirmDialog'><v-icon>mdi-arrow-left</v-icon></v-btn>
-          <v-toolbar-title>Confirm your goal</v-toolbar-title>
-          <div class='flex-grow-1'></div>
-          <v-btn icon dark @click='discardConfirmDialog'>
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-toolbar>
-        
-        <v-container class="mb-0 pa-0">
-          <v-card :loading="loading" class="mx-auto my-12" max-width="374" >
-            <v-card-title>Cafe Badilico</v-card-title>
-            <v-card-text>
-              
-
-              <div class="my-4 subtitle-1 black--text">
-                $ • Italian, Cafe
-              </div>
-
-              <div>Small plates, salads & sandwiches an inteimate setting with 12 indoor seats plus patio seating.</div>
-            </v-card-text>
-
-            <v-divider class="mx-4"></v-divider>
-
-            <v-card-actions>
-              <v-btn color="deep-orange darken-4" text @click="reserve" >
-                Reserve
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-container>
-
-      </v-card>
-    </v-dialog>
-
   </div>
 </template>
 
@@ -93,9 +55,9 @@ export default {
       loading: false,
       wizardStep: 1,
       selection: 1,
-      confirmDialog: false,
       selectedActivity: null,
       selectedCategorySlug: null,
+      finishButtonDisabledState: true,
       categories: [
         { id: 1, icon: 'mdi-heart-pulse', title: 'Health', slug: 'health', iconClass: "red accent-4 white--text", count: 12 },
         { id: 2, icon: 'mdi-basketball', title: 'Sports', slug: 'sports', iconClass: "purple darken-4 white--text", count: 10 },
@@ -138,8 +100,8 @@ export default {
       this.wizardStep++
     },
     selectOption(option) {
-      // this.wizardStep++
-      this.confirmDialog = true
+      if(option !== null)
+        this.finishButtonDisabledState = false
     },
     discardConfirmDialog() {
       this.confirmDialog = false
