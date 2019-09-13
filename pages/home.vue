@@ -5,8 +5,7 @@
       <Navbar :currentDate="currentDate" @on-date-change="setDate"  />
     </div>
   </div>
-  <div id="atomic-app">
-  <!-- <div id="atomic-app" :style="{ backgroundColor: '#004D40' }"> -->
+  <div id="atomic-app" :style="{ backgroundImage: 'url(' + image + ')', height: '100vh'}">
     <div class="row">
       <div class="col-xs-3 py-5 text-center box">
         <h3 class="text-white" ><a-icon type="pushpin" /> Habits</h3>
@@ -110,6 +109,11 @@ export default {
   },
   mounted: function () {
     this.$tours['myTour'].start()
+  },
+  computed: {
+    image() {
+      return "/images/backgrounds/congruent_outline.png"
+    }
   }
 }
 </script>
@@ -118,10 +122,9 @@ export default {
 .v-step {
   z-index: 1001;
 }
-#atomic-app {
-  background-image: url('/images/backgrounds/congruent_outline.png');
-  background-repeat: repeat;
-  background-attachment: scroll;
+html {
+  background-size: cover;
+  background-attachment:scroll;
 }
 
 .atomic-canvas .atomic-canvas-list,
