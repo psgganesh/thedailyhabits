@@ -57,7 +57,7 @@
                     </v-list-item-action>
                     <v-list-item-content>
                       <v-list-item-title v-text="item.title"></v-list-item-title>
-                      <v-list-item-subtitle class="text--primary" v-text="item.headline"></v-list-item-subtitle>
+                      <!-- <v-list-item-subtitle class="text--primary" v-text="item.headline"></v-list-item-subtitle> -->
                       <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
@@ -87,23 +87,13 @@ export default {
       today: moment().format('DD  MMM Y'),
       items: [
         {
-          action: '15 min',
-          headline: 'Brunch this weekend?',
-          title: 'Ali Connors',
-          subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
+          title: 'I will have breakfast everyday on time',
+          subtitle: 'Last updated 12 Sep 2019 @ 3:00 AM',
         },
         {
-          action: '2 hr',
-          headline: 'Summer BBQ',
-          title: 'me, Scrott, Jennifer',
-          subtitle: "Wish I could come, but I'm out of town this weekend.",
-        },
-        {
-          action: '6 hr',
-          headline: 'Oui oui',
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-        },
+          title: 'Drink 2 bottles of water',
+          subtitle: 'Last updated 12 Sep 2019 @ 3:00 AM',
+        }
       ],
     }),
     created() {
