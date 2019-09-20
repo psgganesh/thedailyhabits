@@ -43,7 +43,8 @@
     transform: translateX(-100%);
   }
 
-  #questions_list .v-list-item__title {
+  #questions_list .v-list-item__title, 
+  #habitList .v-list-item__title {
     overflow: visible;
     text-overflow: unset;
     white-space: normal;
@@ -59,4 +60,8 @@
 
   #dash-header {
     height: 220px;
+  }
+
+  .max-height-50 {
+    max-height: 50px;
   }

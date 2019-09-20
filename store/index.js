@@ -1,3 +1,8 @@
+
+
+
+const STORAGE_FILE = 'atomicHabitsData.json'
+
 export const state = () => ({
   drawer: null
 })
@@ -8,10 +13,10 @@ export const mutations = {
   }
 }
 
-export const getters = {
-  
-}
-
 export const actions = {
 
+}
+
+export const getters = {
+  
 }
