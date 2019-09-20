@@ -52,10 +52,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
-    '~/modules/hooks',
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-148411506-1'
-    }]
+    '~/modules/hooks'
   ],
   /*
   ** Axios module configuration
