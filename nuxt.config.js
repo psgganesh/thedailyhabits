@@ -52,7 +52,10 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
-    '~/modules/hooks'
+    '~/modules/hooks',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-148411506-1'
+    }]
   ],
   /*
   ** Axios module configuration
@@ -64,7 +67,7 @@ module.exports = {
   router: {
     middleware: ['check-auth']
   },
-  
+
   /*
   ** Build configuration
   */
