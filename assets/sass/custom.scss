@@ -1,6 +1,16 @@
-  
+  @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
+  body {
+    background: url('https://images.unsplash.com/photo-1564473185935-58113cba1e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80');
+    background-size: cover;
+  }
+
   .theme--light.v-application {
     background: transparent !important;
+  }
+
+  .theme--dark.v-navigation-drawer {
+    background-color: transparent !important;
   }
 
   .bg-mobile {
@@ -8,7 +18,7 @@
   }
 
   .bg-default {
-    background: #FFFFFF;
+    background: transparent;
   }
   
   .top-shaped {
@@ -49,6 +59,10 @@
     text-overflow: unset;
     white-space: normal;
   }
+
+  #habitList.theme--light.v-list {
+    background: #ffffffe6 !important;
+  }
   
   /* This is for documentation purposes and will not be needed in your application */
   #atomic-canvas .v-btn--fab {
@@ -59,9 +73,17 @@
   }
 
   #dash-header {
-    height: 220px;
+    height: 420px;
   }
 
   .max-height-50 {
     max-height: 50px;
+  }
+
+  .ga-pacifico {
+    font-family: 'Pacifico', cursive;
+  }
+
+  .px-15 {
+    margin: 0px 15px;
   }

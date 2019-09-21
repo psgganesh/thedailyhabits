@@ -25,7 +25,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src:'~/assets/sass/custom.scss', lang: 'scss' }
+    { src: '~/assets/sass/custom.scss', lang: 'scss' }
   ],
   /*
   ** Plugins to load before mounting the App
@@ -46,7 +46,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/device',
-    'nuxt-material-design-icons'
+    'nuxt-material-design-icons',
+    '@nuxtjs/ngrok'
   ],
   /*
   ** Axios module configuration
@@ -64,7 +65,7 @@ module.exports = {
       light: true,
       themes: {
         light: {
-          primary: colors.yellow.accent3,
+          primary: colors.deepPurple.darken4,
           secondary: colors.indigo.darken4,
           accent: colors.blueGrey.darken4,
           error: colors.red.base,

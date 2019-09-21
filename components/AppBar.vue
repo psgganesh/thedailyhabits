@@ -1,21 +1,11 @@
 <template>
-  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" color="primary" elevation="0" light app>
-    <v-toolbar-title style="width: 280px" class="hidden-sm-and-down">
-      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>Home
+  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" color="primary" elevation="0" dark app>
+    <v-toolbar-title style="width: 260px" @click.stop="toggleDrawer">
+      <v-btn icon>
+        <v-icon>mdi-atom</v-icon>
+      </v-btn>
+      <span class="ga-pacifico">atomichabits</span>
     </v-toolbar-title>
-
-    <v-toolbar-title style="width: 280px" class="hidden-md-and-up">
-      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>Home
-    </v-toolbar-title>
-
-    <!-- <v-text-field
-      flat
-      solo-inverted
-      hide-details
-      prepend-inner-icon="search"
-      label="Search"
-      class="hidden-sm-and-down ml-2"
-    ></v-text-field>-->
 
     <div class="flex-grow-1"></div>
     <v-btn icon>
