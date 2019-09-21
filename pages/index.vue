@@ -16,7 +16,7 @@
     <!-- <meta name="msapplication-TileColor" content="#ffffff"> -->
     <!-- <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"> -->
     <!-- <meta name="theme-color" content="#ffffff"> -->
-    <link rel="stylesheet" href="frontend.css" />
+    <!-- <link rel="stylesheet" href="frontend.css" /> -->
 
     <!--====== HEADER PART START ======-->
     <header class="header-area">
@@ -410,7 +410,7 @@
 
     <!--====== FOOTER PART ENDS ======-->
 
-    <script src="frontend.js"></script>
+    <!-- <script src="frontend.js"></script> -->
   </div>
 </template>
 
@@ -421,6 +421,20 @@ export default {
   name: "landing",
   layout: "simple",
   computed: mapGetters(["isAuthenticated", "loggedUser"]),
+  head: {
+    title: "getatomichabits - The Decentralized Task Traker",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: "desc to come here!!"
+      }
+    ],
+    link: [{ rel: "stylesheet", href: "frontend.css" }],
+    script: [{ src: `frontend.js` }]
+  },
   beforeMount() {
     if (this.loggedUser.isUserSignedIn()) {
       this.redirectLoggedInUser();
