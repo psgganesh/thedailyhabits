@@ -3,6 +3,7 @@
   body {
     background: url('https://images.unsplash.com/photo-1564473185935-58113cba1e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80');
     background-size: cover;
+    overflow-y: hidden;
   }
 
   .theme--light.v-application {
@@ -21,11 +22,11 @@
     background: transparent;
   }
   
-  .top-shaped {
-    border: 1px solid #e0e0e0 !important;
-    border-top-left-radius: 16px !important;
-    border-top-right-radius: 16px !important;
-    padding-top: 8px;
+  .border-bottom-light-grey {
+    border-bottom: 1px solid #ffffff1f !important;
+    // border-top-left-radius: 16px !important;
+    // border-top-right-radius: 16px !important;
+    // padding-top: 8px;
     // -webkit-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
     // -moz-box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
     // box-shadow: 0px -9px 14px -6px rgba(0,0,0,0.26);
@@ -81,7 +82,7 @@
   }
 
   .ga-pacifico {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico', cursive !important;
   }
 
   .px-15 {

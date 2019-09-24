@@ -4,7 +4,8 @@
     width="280"
     :clipped="$vuetify.breakpoint.lgAndUp"
     transition="slide-x-transition"
-    dark
+    :light="theme.light"
+    :dark="theme.dark"
     app
   >
     <template v-slot:prepend>
@@ -75,6 +76,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "NavigationDrawer",
   data() {
@@ -83,7 +85,7 @@ export default {
       selectedListitem: null,
       selectedFooterItem: null,
       tabs: [
-        { icon: "mdi-all-inclusive", text: "Home", color: "red accent-4" },
+        { icon: "poll", text: "Dashboard", color: "yellow accent-4" },
         { icon: "settings", text: "Preferences" }
       ],
       items: [
@@ -141,6 +143,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["theme"]),
     drawerState: {
       get() {
         return this.$store.state.drawer;

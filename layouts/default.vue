@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <div id="atomic-body" />
-    <v-app light>
-      <NavigationDrawer />
-      <AppBar />
-      <v-content>
-        <v-container fluid class="pa-0">
-          <nuxt />
-        </v-container>
-      </v-content>
-    </v-app>
-  </div>
+  <v-app light>
+    <NavigationDrawer />
+    <AppBar />
+    <v-content>
+      <v-container fluid class="pa-0">
+        <nuxt />
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>

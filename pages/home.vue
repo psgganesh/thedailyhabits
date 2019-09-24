@@ -2,17 +2,17 @@
   <div id="atomic-canvas" :class="backdropColor">
     <SpeedDialFab />
     <SelectedTask :taskSelected="taskSelected" />
-    <v-row no-gutters>
-      <v-col cols="4" class="px-15">
-        <TaskList :items="items" />
-      </v-col>
-      <v-col cols="8" class="full-height px-15"></v-col>
-    </v-row>
+    <!-- md-up components -->
+    <DesktopView class="hidden-sm-and-down" />
+    <!-- sm-down components -->
+    <MobileView class="hidden-md-and-up" />
   </div>
 </template>
 
 <script>
 import TaskList from "~/components/TaskList";
+import MobileView from "~/components/devices/sm-down/MobileView";
+import DesktopView from "~/components/devices/md-up/DesktopView";
 import SpeedDialFab from "~/components/SpeedDialFab";
 import SelectedTask from "~/components/SelectedTask";
 import moment from "moment";
@@ -20,7 +20,8 @@ import moment from "moment";
 export default {
   name: "home-page",
   components: {
-    TaskList,
+    MobileView,
+    DesktopView,
     SpeedDialFab,
     SelectedTask
   },
