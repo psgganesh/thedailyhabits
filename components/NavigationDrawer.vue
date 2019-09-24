@@ -23,23 +23,6 @@
 
     <v-divider></v-divider>
 
-    <!-- HEADER OPTIONS START HERE -->
-    <v-list rounded>
-      <v-list-item-group color="white" v-model="selectedHeaderItem">
-        <v-list-item v-for="(item, i) in tabs" :key="i" @click="tappedHeaderLinks">
-          <v-list-item-action>
-            <v-icon :color="item.color">{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-    <!-- HEADER OPTIONS END HERE -->
-
-    <v-divider></v-divider>
-
     <v-list rounded>
       <v-list-item-group color="white" v-model="selectedListitem">
         <v-list-item v-for="(item, i) in items" :key="i" @click="tappedLabelLink">
@@ -81,10 +64,14 @@ export default {
   data() {
     return {
       selectedHeaderItem: null,
-      selectedListitem: 0,
+      selectedListitem: 1,
       selectedFooterItem: null,
-      tabs: [{ icon: "poll", text: "Dashboard", color: "yellow accent-4" }],
       items: [
+        {
+          icon: "poll",
+          text: "Dashboard",
+          color: "yellow accent-4"
+        },
         {
           icon: "mdi-infinity",
           text: "All habits",

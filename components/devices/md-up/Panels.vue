@@ -1,25 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div id="board" class="wrapper">
     <v-col class="column" cols="3">
       <v-list two-line subheader>
-        <v-list-item v-for="item in items" :key="item.title" @click>
-          <v-list-item-avatar>
-            <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-          </v-list-item-content>
-
-          <v-list-item-action>
-            <v-btn icon>
-              <v-icon color="grey lighten-1">mdi-information</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
-
-        <v-list-item v-for="item in items2" :key="item.title" @click>
+        <v-list-item v-for="(item, index) in items" :key="index" @click>
           <v-list-item-avatar>
             <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
           </v-list-item-avatar>
@@ -59,18 +42,6 @@ export default {
         iconClass: "grey lighten-1 white--text",
         title: "Photos",
         subtitle: "Jan 9, 2014"
-      },
-      {
-        icon: "folder",
-        iconClass: "grey lighten-1 white--text",
-        title: "Recipes",
-        subtitle: "Jan 17, 2014"
-      },
-      {
-        icon: "folder",
-        iconClass: "grey lighten-1 white--text",
-        title: "Work",
-        subtitle: "Jan 28, 2014"
       }
     ],
     items2: [
@@ -94,13 +65,28 @@ export default {
 <style >
 .wrapper {
   display: flex;
-  height: 83vh;
+  height: 78vh;
 }
-.column {
+#board > .column {
   display: flex;
   flex-direction: column;
+  padding-left: 0px;
 }
-.v-list {
+#board > .column > .v-list {
+  overflow-y: scroll;
   flex: 1;
+}
+.v-list::-webkit-scrollbar {
+  width: 0.8em;
+  height: 0.5em;
+}
+.v-list::-webkit-scrollbar-button {
+  background: #cccccc;
+}
+.v-list::-webkit-scrollbar-thumb {
+  background: #dedede;
+}
+​.v-list::-webkit-scrollbar-track-piece {
+  background: #ffffff;
 }
 </style>
