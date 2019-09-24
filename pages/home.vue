@@ -1,6 +1,6 @@
 <template>
   <div id="atomic-canvas" :class="backdropColor">
-    <SpeedDialFab />
+    <!-- <SpeedDialFab /> -->
     <SelectedTask :taskSelected="taskSelected" />
     <!-- md-up components -->
     <DesktopView class="hidden-sm-and-down" />

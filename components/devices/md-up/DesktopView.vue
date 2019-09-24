@@ -1,25 +1,18 @@
 <template>
   <v-container fluid>
-    <v-row justify="space-around" no-gutters>
-      <v-col cols="6">
-        <v-btn outlined :light="theme.light" :dark="theme.dark">TODAY</v-btn>
-      </v-col>
-      <v-col cols="5"></v-col>
-      <v-col cols="1"></v-col>
-    </v-row>
+    <ActionBar />
+    <Panels />
   </v-container>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import ActionBar from "~/components/devices/md-up/ActionBar";
+import Panels from "~/components/devices/md-up/Panels";
 export default {
   name: "DesktopView",
-  computed: {
-    ...mapGetters(["theme"]),
-    ...mapState(["today"])
-  },
-  data: () => {
-    return {};
+  components: {
+    ActionBar,
+    Panels
   }
 };
 </script>

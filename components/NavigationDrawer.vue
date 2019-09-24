@@ -40,9 +40,8 @@
 
     <v-divider></v-divider>
 
-    <v-list shaped>
-      <v-subheader class="overline">Today's Goals</v-subheader>
-      <v-list-item-group color="accent" v-model="selectedListitem">
+    <v-list rounded>
+      <v-list-item-group color="white" v-model="selectedListitem">
         <v-list-item v-for="(item, i) in items" :key="i" @click="tappedLabelLink">
           <v-list-item-icon>
             <v-icon :color="item.color" v-text="item.icon"></v-icon>
@@ -59,7 +58,7 @@
     <template v-slot:append>
       <v-divider></v-divider>
       <v-list rounded>
-        <v-list-item-group color="accent" v-model="selectedFooterItem">
+        <v-list-item-group color="white" v-model="selectedFooterItem">
           <v-list-item v-for="(item, i) in options" :key="i" @click="tappedFooterLinks">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -81,14 +80,17 @@ export default {
   name: "NavigationDrawer",
   data() {
     return {
-      selectedHeaderItem: 0,
-      selectedListitem: null,
+      selectedHeaderItem: null,
+      selectedListitem: 0,
       selectedFooterItem: null,
-      tabs: [
-        { icon: "poll", text: "Dashboard", color: "yellow accent-4" },
-        { icon: "settings", text: "Preferences" }
-      ],
+      tabs: [{ icon: "poll", text: "Dashboard", color: "yellow accent-4" }],
       items: [
+        {
+          icon: "mdi-infinity",
+          text: "All habits",
+          color: "yellow accent-4",
+          count: Math.floor(Math.random() * (+20 - +0)) + +0
+        },
         {
           icon: "mdi-heart-pulse",
           text: "Health",

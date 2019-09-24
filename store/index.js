@@ -4,7 +4,7 @@ const STORAGE_FILE = 'atomicHabitsData.json'
 
 export const state = () => ({
   drawer: null,
-  today: moment().format('dddd, MMMM Do YYYY'),
+  today: moment().format("dddd, MMMM Do YYYY"),
   theme: {
     dark: true,
     light: false

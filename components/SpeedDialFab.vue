@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
     <template v-slot:activator="{ on }">
-      <v-btn fab class="v-action-button" color="secondary" dark v-on="on">
+      <v-btn fab class="v-action-button" outlined :light="theme.light" :dark="theme.dark" v-on="on">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "SpeedDialFab",
   data: () => {
@@ -35,6 +36,10 @@ export default {
       sound: true,
       widgets: false
     };
+  },
+  computed: {
+    ...mapGetters(["theme"]),
+    ...mapState(["today"])
   },
   methods: {
     closeCreateHabit() {
