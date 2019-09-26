@@ -1,6 +1,17 @@
 <template>
   <div id="board" class="wrapper">
     <v-col class="column" cols="3">
+      <!-- <v-toolbar :light="theme.light" :dark="theme.dark">
+        <v-checkbox hide-details :light="theme.light" :dark="theme.dark"></v-checkbox>
+        <v-toolbar-title class="white--text">Habits</v-toolbar-title>
+        <div class="flex-grow-1"></div>
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>mdi-view-module</v-icon>
+        </v-btn>
+      </v-toolbar>-->
       <v-list two-line subheader>
         <v-list-item v-for="(item, index) in items" :key="index" @click>
           <v-list-item-avatar>
@@ -33,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Panels",
   data: () => ({
@@ -58,19 +70,25 @@ export default {
         subtitle: "Jan 10, 2014"
       }
     ]
-  })
+  }),
+  computed: {
+    ...mapGetters(["theme"])
+  }
 };
 </script>
 
 <style >
 .wrapper {
   display: flex;
-  height: 78vh;
+  height: 77vh;
 }
 #board > .column {
   display: flex;
   flex-direction: column;
   padding-left: 0px;
+}
+#board > .column > .v-toolbar {
+  flex: none;
 }
 #board > .column > .v-list {
   overflow-y: scroll;

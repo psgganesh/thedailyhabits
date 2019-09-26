@@ -1,20 +1,58 @@
 <template>
   <v-container fluid>
     <ActionBar />
+
     <v-row no-gutters>
-      <v-col cols="3">
+      <v-col cols="3" class="list-header text-center">
         <v-container fluid>
           <v-row no-gutters>
-            <v-col cols="1">
-              <v-checkbox hide-details :light="theme.light" :dark="theme.dark"></v-checkbox>
+            <v-col cols="6" class="text-right">
+              <img src="/icons/appointment.png" width="36px" />
             </v-col>
-            <v-col cols="11" class="text-right">
-              <span class="font-regular textinfo" :class="computedTextColor">Showing 12 habits</span>
+            <v-col cols="6" class="text-left">
+              <span class="font-weight-bold textinfo" :class="computedTextColor">Habits</span>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
+      <v-col cols="3" class="list-header text-center">
+        <v-container fluid>
+          <v-row no-gutters>
+            <v-col cols="6" class="text-right">
+              <img src="/icons/dawn.png" width="36px" />
+            </v-col>
+            <v-col cols="6" class="text-left">
+              <span class="font-weight-bold textinfo" :class="computedTextColor">Morning</span>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
+      <v-col cols="3" class="list-header text-center">
+        <v-container fluid>
+          <v-row no-gutters>
+            <v-col cols="6" class="text-right">
+              <img src="/icons/cloud.png" width="36px" />
+            </v-col>
+            <v-col cols="6" class="text-left">
+              <span class="font-weight-bold textinfo" :class="computedTextColor">Afternoon</span>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
+      <v-col cols="3" class="list-header text-center">
+        <v-container fluid>
+          <v-row no-gutters>
+            <v-col cols="6" class="text-right">
+              <img src="/icons/cloudy-night.png" width="36px" />
+            </v-col>
+            <v-col cols="6" class="text-left">
+              <span class="font-weight-bold textinfo" :class="computedTextColor">Evening</span>
             </v-col>
           </v-row>
         </v-container>
       </v-col>
     </v-row>
+
     <Panels />
   </v-container>
 </template>
@@ -39,7 +77,7 @@ export default {
 </script>
 
 <style>
-.textinfo {
-  margin-top: 10px;
+.list-header {
+  background: #00000057;
 }
 </style>

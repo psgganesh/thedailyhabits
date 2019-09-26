@@ -17,7 +17,7 @@
     <v-col cols="6"></v-col>
     <v-col cols="3" class="text-right">
       <v-btn class="ma-2" outlined :light="theme.light" :dark="theme.dark">
-        <v-icon :light="theme.light" :dark="theme.dark">mdi-plus</v-icon>Add new habit
+        <v-icon :light="theme.light" :dark="theme.dark">mdi-plus</v-icon>
       </v-btn>
     </v-col>
   </v-row>
