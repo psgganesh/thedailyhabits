@@ -78,6 +78,6 @@ export default {
 
 <style>
 .list-header {
-  background: #00000057;
+  background: #ffffff57;
 }
 </style>
