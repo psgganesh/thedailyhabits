@@ -116,12 +116,6 @@ export default {
           count: Math.floor(Math.random() * (+20 - +0)) + +0
         },
         {
-          icon: "mdi-circle-expand",
-          text: "Me time",
-          color: "pink darken-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
           icon: "mdi-octagram",
           text: "General",
           color: "brown darken-4",

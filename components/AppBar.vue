@@ -8,10 +8,11 @@
     app
   >
     <v-toolbar-title style="width: 270px" @click.stop="toggleDrawer">
-      <v-btn icon>
-        <v-icon>mdi-atom</v-icon>
+      <v-btn class="gradient-radial" icon>
+        <!-- <v-icon>mdi-atom</v-icon> -->
+        <img src="/logo.png" width="36px" />
       </v-btn>
-      <span class="ga-pacifico">atomichabits</span>
+      <span class="ga-pacifico logo-title">atomichabits</span>
     </v-toolbar-title>
     <div class="flex-grow-1"></div>
     <v-btn icon>
@@ -37,3 +38,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.logo-title {
+  font-size: 22px;
+}
+</style>

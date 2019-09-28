@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Pacifico|Nunito&display=swap');
 
   body {
     background: #000000 url('https://images.unsplash.com/photo-1564473185935-58113cba1e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80');
@@ -61,9 +61,10 @@
     white-space: normal;
   }
 
-  #habitList.theme--light.v-list {
-    background: #ffffffe6 !important;
-  }
+.light-background {
+  background: #ffffff57;
+  border-radius: 4px;
+}
   
   /* This is for documentation purposes and will not be needed in your application */
   #atomic-canvas .v-btn--fab {
@@ -71,6 +72,10 @@
     bottom: 15px;
     right: 15px;
     z-index: 101;
+  }
+
+  #atomic-canvas .selectDate  .v-text-field__details {
+    display: none;
   }
 
   #dash-header {
@@ -82,9 +87,24 @@
   }
 
   .ga-pacifico {
-    font-family: 'Pacifico', cursive !important;
+    font-family: 'Pacifico', cursive;
+  }
+
+  .ga-nunito {
+    font-family: 'Nunito', sans-serif;
   }
 
   .px-15 {
     margin: 0px 15px;
   }
+
+.gradient-radial {
+  background: rgba(255,255,255,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(87%, rgba(237,237,237,0.6)), color-stop(100%, rgba(237,237,237,0.54)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+}

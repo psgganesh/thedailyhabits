@@ -1,19 +1,8 @@
 <template>
   <div id="board" class="wrapper">
     <v-col class="column" cols="3">
-      <!-- <v-toolbar :light="theme.light" :dark="theme.dark">
-        <v-checkbox hide-details :light="theme.light" :dark="theme.dark"></v-checkbox>
-        <v-toolbar-title class="white--text">Habits</v-toolbar-title>
-        <div class="flex-grow-1"></div>
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-view-module</v-icon>
-        </v-btn>
-      </v-toolbar>-->
       <v-list two-line subheader>
-        <v-list-item v-for="(item, index) in items" :key="index" @click>
+        <!-- <v-list-item v-for="(item, index) in items" :key="index" @click>
           <v-list-item-avatar>
             <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
           </v-list-item-avatar>
@@ -28,17 +17,17 @@
               <v-icon color="grey lighten-1">mdi-information</v-icon>
             </v-btn>
           </v-list-item-action>
-        </v-list-item>
+        </v-list-item>-->
       </v-list>
     </v-col>
     <v-col class="column" cols="3">
-      <div>2</div>
+      <v-list two-line subheader></v-list>
     </v-col>
     <v-col class="column" cols="3">
-      <div>3</div>
+      <v-list two-line subheader></v-list>
     </v-col>
     <v-col class="column" cols="3">
-      <div>4</div>
+      <v-list two-line subheader></v-list>
     </v-col>
   </div>
 </template>
@@ -54,9 +43,7 @@ export default {
         iconClass: "grey lighten-1 white--text",
         title: "Photos",
         subtitle: "Jan 9, 2014"
-      }
-    ],
-    items2: [
+      },
       {
         icon: "assignment",
         iconClass: "blue white--text",
@@ -80,12 +67,13 @@ export default {
 <style >
 .wrapper {
   display: flex;
-  height: 77vh;
+  height: 75vh;
 }
 #board > .column {
   display: flex;
   flex-direction: column;
   padding-left: 0px;
+  padding-bottom: 0px;
 }
 #board > .column > .v-toolbar {
   flex: none;
@@ -94,8 +82,15 @@ export default {
   overflow-y: scroll;
   flex: 1;
 }
+.theme--light.v-list,
+.theme--light.v-sheet {
+  background: #ffffff57;
+}
+.v-list-item.v-list-item--link.theme--light {
+  background: #ffffffd6;
+}
 .v-list::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0.3em;
   height: 0.5em;
 }
 .v-list::-webkit-scrollbar-button {

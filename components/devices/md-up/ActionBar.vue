@@ -1,9 +1,11 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="3">
+    <v-col cols="3" class="selectDate">
       <v-menu v-model="datepickerMenu" :close-on-content-click="false" max-width="290">
         <template v-slot:activator="{ on }">
           <v-text-field
+            solo-inverted
+            flat
             :value="computedDateFormattedMomentjs"
             v-on="on"
             prepend-icon="event"
@@ -16,9 +18,15 @@
     </v-col>
     <v-col cols="6"></v-col>
     <v-col cols="3" class="text-right">
-      <v-btn class="ma-2" outlined :light="theme.light" :dark="theme.dark">
-        <v-icon :light="theme.light" :dark="theme.dark">mdi-plus</v-icon>
-      </v-btn>
+      <v-text-field
+        solo-inverted
+        flat
+        hide-details
+        label="Search"
+        prepend-inner-icon="search"
+        :light="theme.light"
+        :dark="theme.dark"
+      ></v-text-field>
     </v-col>
   </v-row>
 </template>
