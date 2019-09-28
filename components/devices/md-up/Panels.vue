@@ -1,6 +1,6 @@
 <template>
   <div id="board" class="wrapper">
-    <v-col class="column" cols="3">
+    <v-col class="column" id="habits" cols="3">
       <v-list two-line subheader>
         <!-- <v-list-item v-for="(item, index) in items" :key="index" @click>
           <v-list-item-avatar>
@@ -20,13 +20,13 @@
         </v-list-item>-->
       </v-list>
     </v-col>
-    <v-col class="column" cols="3">
+    <v-col class="column" id="morning" cols="3">
       <v-list two-line subheader></v-list>
     </v-col>
-    <v-col class="column" cols="3">
+    <v-col class="column" id="afternoon" cols="3">
       <v-list two-line subheader></v-list>
     </v-col>
-    <v-col class="column" cols="3">
+    <v-col class="column" id="evening" cols="3">
       <v-list two-line subheader></v-list>
     </v-col>
   </div>
@@ -64,7 +64,10 @@ export default {
 };
 </script>
 
-<style >
+<style>
+.v-text-field input {
+  font-family: "Nunito", sans-serif;
+}
 .wrapper {
   display: flex;
   height: 75vh;
@@ -74,6 +77,10 @@ export default {
   flex-direction: column;
   padding-left: 0px;
   padding-bottom: 0px;
+  padding-right: 0px;
+  border-right: 1px solid;
+  padding-top: 0px;
+  border-top: 1px solid;
 }
 #board > .column > .v-toolbar {
   flex: none;
