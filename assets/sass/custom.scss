@@ -63,7 +63,8 @@
 
 .light-background {
   background: #ffffff57;
-  border-radius: 4px;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
 }
   
   /* This is for documentation purposes and will not be needed in your application */

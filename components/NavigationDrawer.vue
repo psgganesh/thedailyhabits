@@ -25,7 +25,7 @@
 
     <v-list rounded>
       <v-list-item-group color="white" v-model="selectedListitem">
-        <v-list-item v-for="(item, i) in items" :key="i" @click="tappedLabelLink">
+        <v-list-item v-for="(item, i) in habitCategories" :key="i" @click="tappedLabelLink">
           <v-list-item-icon>
             <v-icon :color="item.color" v-text="item.icon"></v-icon>
           </v-list-item-icon>
@@ -66,67 +66,17 @@ export default {
       selectedHeaderItem: null,
       selectedListitem: 1,
       selectedFooterItem: null,
-      items: [
-        {
-          icon: "poll",
-          text: "Dashboard",
-          color: "yellow accent-4"
-        },
-        {
-          icon: "mdi-infinity",
-          text: "All habits",
-          color: "yellow accent-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-heart-pulse",
-          text: "Health",
-          color: "red accent-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-basketball",
-          text: "Sports",
-          color: "purple darken-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-food-fork-drink",
-          text: "Nutrition",
-          color: "purple accent-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-timer",
-          text: "Quit a bad habit",
-          color: "deep-purple accent-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        { icon: "mdi-book", text: "Study", color: "cyan darken-4", count: 2 },
-        {
-          icon: "mdi-briefcase",
-          text: "Work",
-          color: "blue accent-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-music",
-          text: "Entertainment",
-          color: "teal darken-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        },
-        {
-          icon: "mdi-octagram",
-          text: "General",
-          color: "brown darken-4",
-          count: Math.floor(Math.random() * (+20 - +0)) + +0
-        }
-      ],
       options: [{ icon: "mdi-logout", text: "Logout" }]
     };
   },
   computed: {
     ...mapGetters(["theme"]),
+    habitCategories: {
+      get() {
+        return this.$store.state.categories;
+      },
+      set(value) {}
+    },
     drawerState: {
       get() {
         return this.$store.state.drawer;

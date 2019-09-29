@@ -1,6 +1,6 @@
-import moment from 'moment'
+import moment from 'moment';
+import { categories } from '~/utils/schema';
 
-const STORAGE_FILE = 'atomicHabitsData.json'
 
 export const state = () => ({
   drawer: null,
@@ -8,7 +8,8 @@ export const state = () => ({
   theme: {
     dark: true,
     light: false
-  }
+  },
+  categories: categories()
 })
 
 export const mutations = {

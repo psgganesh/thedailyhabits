@@ -1,8 +1,9 @@
-import moment from 'moment'
+import moment from 'moment';
+
+export const STORAGE_FILE = 'atomicHabitsData.json';
 
 export function userPreferences() {
   return {
-
     theme: {
       dark: true,
       light: false,
@@ -39,7 +40,8 @@ export function categories() {
     {
       icon: "poll",
       text: "Dashboard",
-      color: "yellow accent-4"
+      color: "yellow accent-4",
+      count: 0
     },
     {
       icon: "mdi-infinity",
@@ -71,7 +73,12 @@ export function categories() {
       color: "deep-purple accent-4",
       count: 0
     },
-    { icon: "mdi-book", text: "Study", color: "cyan darken-4", count: 2 },
+    {
+      icon: "mdi-book",
+      text: "Study",
+      color: "cyan darken-4",
+      count: 0
+    },
     {
       icon: "mdi-briefcase",
       text: "Work",

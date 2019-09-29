@@ -78,9 +78,9 @@ export default {
   padding-left: 0px;
   padding-bottom: 0px;
   padding-right: 0px;
-  border-right: 1px solid;
   padding-top: 0px;
-  border-top: 1px solid;
+  border-right: 1px solid #0000001f;
+  border-top: 1px solid #0000001f;
 }
 #board > .column > .v-toolbar {
   flex: none;
