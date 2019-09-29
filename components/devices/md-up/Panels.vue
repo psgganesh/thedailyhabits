@@ -1,6 +1,13 @@
 <template>
   <div id="board" class="wrapper">
     <v-col class="column" id="habits" cols="3">
+      <v-toolbar dense :light="theme.light" :dark="theme.dark">
+        <template v-if="$vuetify.breakpoint.mdAndUp">
+          <v-btn nuxt to="/habit/create" icon>
+            <v-icon>mdi-plus-circle</v-icon>
+          </v-btn>
+        </template>
+      </v-toolbar>
       <v-list two-line subheader>
         <!-- <v-list-item v-for="(item, index) in items" :key="index" @click>
           <v-list-item-avatar>

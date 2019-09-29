@@ -4,6 +4,7 @@
 
 <script>
 export default {
-  name: 'CustomNewTaskForm'
-}
+  name: "CustomNewTaskForm",
+  layout: "wizard"
+};
 </script>

@@ -4,7 +4,7 @@ import { categories } from '~/utils/schema';
 
 export const state = () => ({
   drawer: null,
-  today: moment().format("dddd, MMMM Do YYYY"),
+  selectedDate: null,
   theme: {
     dark: true,
     light: false
@@ -26,5 +26,7 @@ export const actions = {
 }
 
 export const getters = {
-  theme: state => state.theme
+  theme: state => state.theme,
+  colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
+  selectedDate: state => (state.selectedDate == null) ? moment().format("dddd, MMMM Do YYYY") : state.selectedDate
 }

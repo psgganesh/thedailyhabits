@@ -7,7 +7,7 @@
             <img src="/icons/appointment.png" width="36px" />
           </v-col>
           <v-col cols="6" class="text-left pt-2">
-            <span class="font-weight-bold textinfo pl-3 ga-nunito" :class="computedTextColor">Habits</span>
+            <span class="font-weight-bold textinfo pl-3 ga-nunito" :class="colorScheme">Habits</span>
           </v-col>
         </v-row>
       </v-container>
@@ -19,10 +19,7 @@
             <img src="/icons/dawn.png" width="36px" />
           </v-col>
           <v-col cols="6" class="text-left pt-2">
-            <span
-              class="font-weight-bold textinfo pl-3 ga-nunito"
-              :class="computedTextColor"
-            >Morning</span>
+            <span class="font-weight-bold textinfo pl-3 ga-nunito" :class="colorScheme">Morning</span>
           </v-col>
         </v-row>
       </v-container>
@@ -34,10 +31,7 @@
             <img src="/icons/cloud.png" width="36px" />
           </v-col>
           <v-col cols="6" class="text-left pt-2">
-            <span
-              class="font-weight-bold textinfo pl-3 ga-nunito"
-              :class="computedTextColor"
-            >Afternoon</span>
+            <span class="font-weight-bold textinfo pl-3 ga-nunito" :class="colorScheme">Afternoon</span>
           </v-col>
         </v-row>
       </v-container>
@@ -49,10 +43,7 @@
             <img src="/icons/cloudy-night.png" width="36px" />
           </v-col>
           <v-col cols="6" class="text-left pt-2">
-            <span
-              class="font-weight-bold textinfo pl-3 ga-nunito"
-              :class="computedTextColor"
-            >Evening</span>
+            <span class="font-weight-bold textinfo pl-3 ga-nunito" :class="colorScheme">Evening</span>
           </v-col>
         </v-row>
       </v-container>
@@ -65,10 +56,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "PanelHeader",
   computed: {
-    ...mapGetters(["theme"]),
-    computedTextColor() {
-      return this.theme.dark ? "white--text" : "black--text";
-    }
+    ...mapGetters(["theme", "colorScheme"])
   }
 };
 </script>

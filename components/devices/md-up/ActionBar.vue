@@ -6,14 +6,14 @@
           <v-text-field
             solo-inverted
             flat
-            :value="computedDateFormattedMomentjs"
+            :value="selectedDate"
             v-on="on"
             prepend-icon="event"
             :light="theme.light"
             :dark="theme.dark"
           ></v-text-field>
         </template>
-        <v-date-picker v-model="date" @change="datepickerMenu = false"></v-date-picker>
+        <v-date-picker v-model="selectedDate" @change="datepickerMenu = false"></v-date-picker>
       </v-menu>
     </v-col>
     <v-col cols="6"></v-col>
@@ -32,23 +32,16 @@
 </template>
 
 <script>
-import moment from "moment";
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "ActionBar",
   data: () => {
     return {
-      date: new Date().toISOString().substr(0, 10),
-      datepickerMenu: false,
-      modal: false
+      datepickerMenu: false
     };
   },
   computed: {
-    ...mapGetters(["theme"]),
-    ...mapState(["today"]),
-    computedDateFormattedMomentjs() {
-      return this.date ? moment(this.date).format("dddd, MMMM Do YYYY") : "";
-    }
+    ...mapGetters(["theme", "selectedDate"])
   }
 };
 </script>
