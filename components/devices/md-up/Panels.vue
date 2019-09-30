@@ -1,31 +1,36 @@
 <template>
   <div id="board" class="wrapper">
     <v-col class="column" id="habits" cols="3">
-      <v-toolbar dense :light="theme.light" :dark="theme.dark">
+      <v-toolbar dense :light="theme.light" :dark="theme.dark" color="blue-grey darken-3">
         <template v-if="$vuetify.breakpoint.mdAndUp">
           <v-btn nuxt to="/habit/create" icon>
             <v-icon>mdi-plus-circle</v-icon>
           </v-btn>
         </template>
       </v-toolbar>
-      <v-list two-line subheader>
-        <!-- <v-list-item v-for="(item, index) in items" :key="index" @click>
+      <!-- <v-list two-line subheader>
+        <v-list-item v-for="(item, index) in habitsList" :key="index">
           <v-list-item-avatar>
             <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
           </v-list-item-avatar>
-
           <v-list-item-content>
             <v-list-item-title v-text="item.title"></v-list-item-title>
             <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
           </v-list-item-content>
-
-          <v-list-item-action>
-            <v-btn icon>
-              <v-icon color="grey lighten-1">mdi-information</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>-->
-      </v-list>
+        </v-list-item>
+      </v-list>-->
+      <draggable
+        v-model="habits"
+        :group="{ name: 'atomichabits', put: false }"
+        sort="false"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+        draggable=".item"
+        animation="150"
+        easing="cubic-bezier(1, 0, 0, 1)"
+        ghostClass="ghost"
+        dragClass="sortable-drag"
+        data-v-step="3"
+      ></draggable>
     </v-col>
     <v-col class="column" id="morning" cols="3">
       <v-list two-line subheader></v-list>
@@ -66,7 +71,19 @@ export default {
     ]
   }),
   computed: {
-    ...mapGetters(["theme"])
+    ...mapGetters(["theme"]),
+    habits: {
+      get() {
+        return this.$store.state.habitsList;
+      },
+      set(value) {
+        const data = {
+          zone: "habits",
+          habit: value
+        };
+        this.$store.dispatch("moveHabit", data);
+      }
+    }
   }
 };
 </script>
@@ -100,6 +117,10 @@ export default {
 .theme--light.v-sheet {
   background: #ffffff57;
 }
+#board > .column > .v-list .v-list-item.theme--light {
+  background: #ffffffd6;
+  border-bottom: 1px solid #0000001f;
+}
 .v-list-item.v-list-item--link.theme--light {
   background: #ffffffd6;
 }
@@ -115,5 +136,9 @@ export default {
 }
 ​.v-list::-webkit-scrollbar-track-piece {
   background: #ffffff;
+}
+
+.v-list-item__title {
+  white-space: inherit;
 }
 </style>

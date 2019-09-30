@@ -23,7 +23,8 @@ export function scoreStructure() {
 export function taskStructure() {
   return {
     id: null, // uuid to be added
-    title: null, // task / habit title
+    title: null, // task / habit title,
+    parent: null,
     category: null, // ( Optional ) main-category / general
     activity: null, // ( Optional ) tag for activity
     recurring: false, // Boolean

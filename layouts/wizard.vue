@@ -33,6 +33,9 @@ export default {
       newHabitModalState: true
     };
   },
+  computed: {
+    ...mapGetters(["theme"])
+  },
   methods: {
     closeCreateHabit() {
       this.$router.push({ name: "home" });
