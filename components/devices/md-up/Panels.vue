@@ -8,29 +8,24 @@
           </v-btn>
         </template>
       </v-toolbar>
-      <!-- <v-list two-line subheader>
-        <v-list-item v-for="(item, index) in habitsList" :key="index">
-          <v-list-item-avatar>
-            <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title"></v-list-item-title>
-            <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>-->
+
       <draggable
         v-model="habits"
-        :group="{ name: 'atomichabits', put: false }"
-        sort="false"
+        :options="{group:'people'}"
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
-        draggable=".item"
-        animation="150"
-        easing="cubic-bezier(1, 0, 0, 1)"
-        ghostClass="ghost"
-        dragClass="sortable-drag"
-        data-v-step="3"
-      ></draggable>
+      >
+        <template v-for="(item, index) in habits">
+          <v-list-item :key="index">
+            <v-list-item-avatar>
+              <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </draggable>
     </v-col>
     <v-col class="column" id="morning" cols="3">
       <v-list two-line subheader></v-list>
@@ -48,28 +43,7 @@
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
-  data: () => ({
-    items: [
-      {
-        icon: "folder",
-        iconClass: "grey lighten-1 white--text",
-        title: "Photos",
-        subtitle: "Jan 9, 2014"
-      },
-      {
-        icon: "assignment",
-        iconClass: "blue white--text",
-        title: "Vacation itinerary",
-        subtitle: "Jan 20, 2014"
-      },
-      {
-        icon: "call_to_action",
-        iconClass: "amber white--text",
-        title: "Kitchen remodel",
-        subtitle: "Jan 10, 2014"
-      }
-    ]
-  }),
+  data: () => ({}),
   computed: {
     ...mapGetters(["theme"]),
     habits: {
