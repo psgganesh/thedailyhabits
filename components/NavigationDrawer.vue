@@ -21,6 +21,15 @@
       </v-list-item>
     </template>
 
+    <template v-if="$vuetify.breakpoint.mdAndUp">
+      <v-divider></v-divider>
+
+      <div class="ma-2">
+        <v-btn nuxt to="/habit/create" color="deep-orange darken-4" block rounded large>
+          <v-icon>mdi-plus</v-icon>&nbsp;Add new habit
+        </v-btn>
+      </div>
+    </template>
     <v-divider></v-divider>
 
     <v-list rounded>

@@ -1,20 +1,11 @@
 <template>
   <div id="board" class="wrapper">
     <v-col class="column" id="habits" cols="3">
-      <!-- HABITS TOOLBAR STARTS HERE -->
-      <v-toolbar dense :light="theme.light" :dark="theme.dark" color="blue-grey darken-3">
-        <template v-if="$vuetify.breakpoint.mdAndUp">
-          <v-btn nuxt to="/habit/create" icon>
-            <v-icon>mdi-plus-circle</v-icon>
-          </v-btn>
-        </template>
-      </v-toolbar>
-      <!-- HABITS TOOLBAR ENDS HERE -->
-
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'people'}"
+        :options="{group:'atomichabits'}"
+        ghostClass="ghost"
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
       >
         <template v-for="(item, index) in habits">
@@ -33,7 +24,26 @@
     </v-col>
 
     <v-col class="column" id="morning" cols="3">
-      <v-list two-line subheader></v-list>
+      <!-- HABITS DRAGGABLE LIST STARTS HERE -->
+      <draggable
+        v-model="morningHabits"
+        :options="{group:'atomichabits'}"
+        ghostClass="ghost"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+      >
+        <template v-for="(item, index) in morningHabits">
+          <v-list-item :key="index">
+            <v-list-item-avatar>
+              <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </draggable>
+      <!-- HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
     <v-col class="column" id="afternoon" cols="3">
       <v-list two-line subheader></v-list>
@@ -53,11 +63,23 @@ export default {
     ...mapGetters(["theme"]),
     habits: {
       get() {
-        return this.$store.state.habitsList;
+        return this.$store.state.habits;
       },
       set(value) {
         const data = {
           zone: "habits",
+          habit: value
+        };
+        this.$store.dispatch("moveHabit", data);
+      }
+    },
+    morningHabits: {
+      get() {
+        return this.$store.state.morningHabits;
+      },
+      set(value) {
+        const data = {
+          zone: "morningHabits",
           habit: value
         };
         this.$store.dispatch("moveHabit", data);

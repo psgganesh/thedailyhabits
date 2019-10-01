@@ -15,7 +15,10 @@ export const state = () => ({
     activities: activityData(),
     questions: questionsData()
   },
-  habitsList: []
+  habits: [],
+  morningHabits: [],
+  afternoonHabits: [],
+  eveningHabits: []
 })
 
 export const mutations = {
@@ -26,8 +29,14 @@ export const mutations = {
     state.theme = theme
   },
   CREATE_NEW_HABIT(state, payload) {
-    state.habitsList.push(payload);
-  }
+    state.habits.push(payload);
+  },
+  UPDATE_HABIT_LIST(state, data) {
+    let zone = data.zone
+    data.habit.map((obj) => { obj.parent = zone })
+    state.oldListItem = data.habit
+    state[zone] = data.habit
+  },
 }
 
 export const actions = {
@@ -42,13 +51,18 @@ export const actions = {
     } catch (e) {
       console.log("Could not create new habit");
     }
-  }
+  },
+
+  moveHabit({ commit }, data) {
+    commit('UPDATE_HABIT_LIST', data)
+  },
 
 }
 
 export const getters = {
   theme: state => state.theme,
   habitsList: state => state.habitsList,
+  morningHabitsList: state => state.morningHabitsList,
   colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
   selectedDate: state => (state.selectedDate == null) ? moment().format("dddd, MMMM Do YYYY") : state.selectedDate,
   categoriesData: state => state.template.categories,
