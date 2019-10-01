@@ -55,6 +55,15 @@
                 </v-list-item>
               </v-list-item-group>
             </v-list>
+
+            <v-container class="grey lighten-5">
+              <v-row no-gutters>
+                <v-col v-for="n in 3" :key="n" cols="12" sm="4">
+                  <v-card class="pa-2" outlined tile>One of three columns</v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+
             <v-btn
               color="success"
               :disabled="finishButtonDisabledState"
@@ -62,7 +71,6 @@
               large
               @click="buildHabit"
             >Finish</v-btn>
-            <!-- {{ selectedCategorySlug }} - {{ selectedActivity?.title }} - {{ selectedMessageOption?.option }} -->
           </v-stepper-content>
         </v-stepper>
       </v-col>
@@ -73,6 +81,7 @@
 <script>
 import moment from "moment";
 import { mapGetters } from "vuex";
+import { uuidv4 } from "~/utils/helpers";
 import { taskStructure, scoreStructure } from "~/utils/schema";
 
 export default {
@@ -111,7 +120,7 @@ export default {
     },
     buildHabit() {
       const habit = taskStructure();
-      habit.id = null; // uuid to be added
+      habit.id = uuidv4(); // uuid to be added
       habit.title = this.selectedMessageOption.option; // task / habit title,
       habit.parent = "habits";
       habit.icon = this.selectedCategory.icon;
@@ -119,10 +128,10 @@ export default {
       habit.category = this.selectedCategory.slug; // ( Optional ) main-category / general
       habit.activity = this.selectedActivity.title; // ( Optional ) tag for activity
       habit.recurring = false; // Boolean
-      habit.startsFrom = moment().format("YYYYMMDD");
+      habit.startsFrom = moment();
       habit.endsOn = null; // moment().format('YYYYMMDD') last date until when the task is to be repeated
-      habit.score = scoreStructure();
-      habit.createdOn = null; // date when task was created on
+      habit.score = scoreStructure(); // scores template from the schema.js
+      habit.createdOn = moment(); // date when task was created on
       habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
       this.$store.dispatch("createHabit", habit);
       this.$router.push({ name: "home" });

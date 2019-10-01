@@ -33,8 +33,7 @@ export const mutations = {
   },
   UPDATE_HABIT_LIST(state, data) {
     let zone = data.zone
-    data.habit.map((obj) => { obj.parent = zone })
-    state.oldListItem = data.habit
+    data.habit.map((obj) => { obj.parent = zone; obj.lastUpdatedOn = moment() })
     state[zone] = data.habit
   },
 }
@@ -43,11 +42,7 @@ export const actions = {
 
   createHabit({ commit }, params) {
     try {
-
-      console.log(params);
-
       commit('CREATE_NEW_HABIT', params);
-
     } catch (e) {
       console.log("Could not create new habit");
     }

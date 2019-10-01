@@ -14,8 +14,9 @@ export function userPreferences() {
 
 export function scoreStructure() {
   return ([{
-    dated: moment().format('YYYYMMDD'),
+    dated: moment(),
     completed: false, // Boolean
+    skipped: false, // Boolean
     additional_data: []
   }])
 }
@@ -27,12 +28,14 @@ export function taskStructure() {
     parent: null,
     category: null, // ( Optional ) main-category / general
     activity: null, // ( Optional ) tag for activity
-    recurring: false, // Boolean
-    startsFrom: moment().format('YYYYMMDD'),
-    endsOn: null, // moment().format('YYYYMMDD') last date until when the task is to be repeated
+    recurring: false, // Boolean,
+    recurring_data: null, // Later will add object, which contains info. about when to repeat etc..
+    startsFrom: moment(), // moment object when task starts from
+    endsOn: null, // moment() last date until when the task is to be repeated
     score: scoreStructure(),
-    createdOn: null, // date when task was created on
-    lastUpdatedOn: null // latest updated date when task status was changed / detail was changed
+    createdOn: moment(), // moment object when task was created on
+    lastUpdatedOn: null, // moment object when task status was changed / detail was changed
+    additional_data: [] // Adding for later use
   }
 }
 
