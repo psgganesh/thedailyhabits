@@ -39,12 +39,6 @@ export function taskStructure() {
 export function categories() {
   return [
     {
-      icon: "poll",
-      text: "Dashboard",
-      color: "yellow accent-4",
-      count: 0
-    },
-    {
       icon: "mdi-infinity",
       text: "All habits",
       color: "yellow accent-4",

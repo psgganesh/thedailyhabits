@@ -4,52 +4,126 @@
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'atomichabits'}"
+        :options="{group:'atomichabits', put: false}"
         ghostClass="ghost"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+        animation="150"
+        easing="cubic-bezier(1, 0, 0, 1)"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in habits">
-          <v-list-item :key="index">
-            <v-list-item-avatar>
-              <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.title"></v-list-item-title>
-              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <v-card class="mx-auto ma-3" :key="index">
+            <v-img
+              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
+              height="100px"
+            >
+              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
+            </v-img>
+            <v-list-item :key="index">
+              <v-list-item-content>
+                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card>
         </template>
       </draggable>
       <!-- HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
 
     <v-col class="column" id="morning" cols="3">
-      <!-- HABITS DRAGGABLE LIST STARTS HERE -->
+      <!-- MORNING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="morningHabits"
         :options="{group:'atomichabits'}"
         ghostClass="ghost"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+        animation="150"
+        easing="cubic-bezier(1, 0, 0, 1)"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in morningHabits">
-          <v-list-item :key="index">
-            <v-list-item-avatar>
-              <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.title"></v-list-item-title>
-              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <v-card class="mx-auto ma-3" :key="index">
+            <v-img
+              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
+              height="100px"
+            >
+              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
+            </v-img>
+            <v-list-item :key="index">
+              <v-list-item-content>
+                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn color="green accent-4 white--text">DONE</v-btn>
+              <v-btn text outlined>SKIP</v-btn>
+            </v-card-actions>
+          </v-card>
         </template>
       </draggable>
-      <!-- HABITS DRAGGABLE LIST ENDS HERE -->
+      <!-- MORNING HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
     <v-col class="column" id="afternoon" cols="3">
-      <v-list two-line subheader></v-list>
+      <!-- AFTERNOON HABITS DRAGGABLE LIST STARTS HERE -->
+      <draggable
+        v-model="afternoonHabits"
+        :options="{group:'atomichabits'}"
+        ghostClass="ghost"
+        animation="150"
+        easing="cubic-bezier(1, 0, 0, 1)"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+      >
+        <template v-for="(item, index) in afternoonHabits">
+          <v-card class="mx-auto ma-3" :key="index">
+            <v-img
+              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
+              height="100px"
+            >
+              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
+            </v-img>
+            <v-list-item :key="index">
+              <v-list-item-content>
+                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn color="green accent-4 white--text">DONE</v-btn>
+              <v-btn text outlined>SKIP</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </draggable>
+      <!-- AFTERNOON HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
     <v-col class="column" id="evening" cols="3">
-      <v-list two-line subheader></v-list>
+      <!-- EVENING HABITS DRAGGABLE LIST STARTS HERE -->
+      <draggable
+        v-model="eveningHabits"
+        :options="{group:'atomichabits'}"
+        ghostClass="ghost"
+        animation="150"
+        easing="cubic-bezier(1, 0, 0, 1)"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+      >
+        <template v-for="(item, index) in eveningHabits">
+          <v-card class="mx-auto ma-3" :key="index">
+            <v-img
+              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
+              height="100px"
+            >
+              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
+            </v-img>
+            <v-list-item :key="index">
+              <v-list-item-content>
+                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn color="green accent-4 white--text">DONE</v-btn>
+              <v-btn text outlined>SKIP</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </draggable>
+      <!-- EVENING HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
   </div>
 </template>
@@ -80,6 +154,30 @@ export default {
       set(value) {
         const data = {
           zone: "morningHabits",
+          habit: value
+        };
+        this.$store.dispatch("moveHabit", data);
+      }
+    },
+    afternoonHabits: {
+      get() {
+        return this.$store.state.afternoonHabits;
+      },
+      set(value) {
+        const data = {
+          zone: "afternoonHabits",
+          habit: value
+        };
+        this.$store.dispatch("moveHabit", data);
+      }
+    },
+    eveningHabits: {
+      get() {
+        return this.$store.state.eveningHabits;
+      },
+      set(value) {
+        const data = {
+          zone: "eveningHabits",
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
@@ -122,11 +220,16 @@ export default {
   background: #ffffffd6;
   border-bottom: 1px solid #0000001f;
 }
+
+#board .v-card__actions {
+  background: #ffffffd6;
+}
+
 .v-list-item.v-list-item--link.theme--light {
   background: #ffffffd6;
 }
 .v-list::-webkit-scrollbar {
-  width: 0.3em;
+  width: 0.1em;
   height: 0.5em;
 }
 .v-list::-webkit-scrollbar-button {
@@ -139,7 +242,8 @@ export default {
   background: #ffffff;
 }
 
-.v-list-item__title {
+.v-list-item__title,
+.v-list-item__subtitle {
   white-space: inherit;
 }
 </style>
