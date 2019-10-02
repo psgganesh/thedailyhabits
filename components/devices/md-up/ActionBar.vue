@@ -13,7 +13,7 @@
             :dark="theme.dark"
           ></v-text-field>
         </template>
-        <v-date-picker v-model="selectedDate" @change="datepickerMenu = false"></v-date-picker>
+        <v-date-picker v-model="currentSelectedDate" @change="datepickerMenu = false"></v-date-picker>
       </v-menu>
     </v-col>
     <v-col cols="6"></v-col>
@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["selectedDate"]),
+    ...mapState(["currentSelectedDate"]),
     ...mapGetters(["theme"])
   }
 };

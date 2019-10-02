@@ -4,7 +4,7 @@ import { categoriesData, activityData, questionsData } from '~/utils/templateDat
 
 export const state = () => ({
   drawer: null,
-  selectedDate: moment().format("dddd, MMMM Do YYYY"),
+  selectedDate: moment(),
   theme: {
     dark: true,
     light: false
@@ -46,7 +46,7 @@ export const mutations = {
 
         // TRACK TO TODAY'S DATED SCORE
         obj.scores.map((score) => {
-          if (score.dated === state.selectedDate) {
+          if (moment(score.dated).isSame(state.selectedDate)) {
             score.completed = true;
             obj.lastUpdatedOn = moment()
           }
@@ -64,7 +64,7 @@ export const mutations = {
 
         // TRACK TO TODAY'S DATED SCORE
         obj.scores.map((score) => {
-          if (moment(score.dated).isSame(state.selectedDate.format("dddd, MMMM Do YYYY"))) {
+          if (score.dated === state.selectedDate.format("dddd, MMMM Do YYYY")) {
             score.skipped = true;
             obj.lastUpdatedOn = moment()
           }
@@ -105,5 +105,6 @@ export const getters = {
   colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
-  questionsData: state => state.template.questions
+  questionsData: state => state.template.questions,
+  currentSelectedDate: state => state.selectedDate.format("dddd, MMMM Do YYYY")
 }
