@@ -12,12 +12,12 @@
       >
         <template v-for="(item, index) in habits">
           <v-card class="mx-auto ma-3" :key="index">
-            <v-img
+            <!-- <v-img
               src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
               height="100px"
-            >
-              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
-            </v-img>
+            >-->
+            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
+            <!-- </v-img> -->
             <v-list-item :key="index">
               <v-list-item-content>
                 <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
@@ -41,20 +41,20 @@
       >
         <template v-for="(item, index) in morningHabits">
           <v-card class="mx-auto ma-3" :key="index">
-            <v-img
+            <!-- <v-img
               src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
               height="100px"
-            >
-              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
-            </v-img>
+            >-->
+            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
+            <!-- </v-img> -->
             <v-list-item :key="index">
               <v-list-item-content>
                 <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn color="green accent-4 white--text">DONE</v-btn>
-              <v-btn text outlined>SKIP</v-btn>
+              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -73,20 +73,20 @@
       >
         <template v-for="(item, index) in afternoonHabits">
           <v-card class="mx-auto ma-3" :key="index">
-            <v-img
+            <!-- <v-img
               src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
               height="100px"
-            >
-              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
-            </v-img>
+            >-->
+            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
+            <!-- </v-img> -->
             <v-list-item :key="index">
               <v-list-item-content>
                 <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn color="green accent-4 white--text">DONE</v-btn>
-              <v-btn text outlined>SKIP</v-btn>
+              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -105,20 +105,20 @@
       >
         <template v-for="(item, index) in eveningHabits">
           <v-card class="mx-auto ma-3" :key="index">
-            <v-img
+            <!-- <v-img
               src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
               height="100px"
-            >
-              <v-card-title class="fill-height align-end white--text" v-text="item.activity"></v-card-title>
-            </v-img>
+            >-->
+            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
+            <!-- </v-img> -->
             <v-list-item :key="index">
               <v-list-item-content>
                 <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn color="green accent-4 white--text">DONE</v-btn>
-              <v-btn text outlined>SKIP</v-btn>
+              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -182,6 +182,14 @@ export default {
         };
         this.$store.dispatch("moveHabit", data);
       }
+    }
+  },
+  methods: {
+    completeTodo(habit) {
+      this.$store.dispatch("completeTodo", habit);
+    },
+    skipTodo(habit) {
+      this.$store.dispatch("skipTodo", habit);
     }
   }
 };

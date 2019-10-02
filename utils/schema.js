@@ -14,7 +14,7 @@ export function userPreferences() {
 
 export function scoreStructure() {
   return ([{
-    dated: moment(),
+    dated: moment().format("dddd, MMMM Do YYYY"),
     completed: false, // Boolean
     skipped: false, // Boolean
     additional_data: []
@@ -32,7 +32,7 @@ export function taskStructure() {
     recurring_data: null, // Later will add object, which contains info. about when to repeat etc..
     startsFrom: moment(), // moment object when task starts from
     endsOn: null, // moment() last date until when the task is to be repeated
-    score: scoreStructure(),
+    scores: scoreStructure(),
     createdOn: moment(), // moment object when task was created on
     lastUpdatedOn: null, // moment object when task status was changed / detail was changed
     additional_data: [] // Adding for later use

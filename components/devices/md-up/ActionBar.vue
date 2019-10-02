@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "ActionBar",
   data: () => {
@@ -41,7 +41,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["theme", "selectedDate"])
+    ...mapState(["selectedDate"]),
+    ...mapGetters(["theme"])
   }
 };
 </script>

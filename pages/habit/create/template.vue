@@ -130,7 +130,7 @@ export default {
       habit.recurring = false; // Boolean
       habit.startsFrom = moment();
       habit.endsOn = null; // moment().format('YYYYMMDD') last date until when the task is to be repeated
-      habit.score = scoreStructure(); // scores template from the schema.js
+      habit.scores = scoreStructure(); // scores template from the schema.js
       habit.createdOn = moment(); // date when task was created on
       habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
       this.$store.dispatch("createHabit", habit);

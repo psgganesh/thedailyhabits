@@ -4,7 +4,7 @@ import { categoriesData, activityData, questionsData } from '~/utils/templateDat
 
 export const state = () => ({
   drawer: null,
-  selectedDate: null,
+  selectedDate: moment().format("dddd, MMMM Do YYYY"),
   theme: {
     dark: true,
     light: false
@@ -36,6 +36,42 @@ export const mutations = {
     data.habit.map((obj) => { obj.parent = zone; obj.lastUpdatedOn = moment() })
     state[zone] = data.habit
   },
+  COMPLETE_TODO(state, habit) {
+    let id = habit.id
+    let zone = habit.parent
+    state[zone].map((obj) => {
+
+      // FIND AS PER THE OBJECT ID
+      if (obj.id === id) {
+
+        // TRACK TO TODAY'S DATED SCORE
+        obj.scores.map((score) => {
+          if (score.dated === state.selectedDate) {
+            score.completed = true;
+            obj.lastUpdatedOn = moment()
+          }
+        });
+      }
+    })
+  },
+  SKIP_TODO(state, habit) {
+    let id = habit.id
+    let zone = habit.parent
+    state[zone].map((obj) => {
+
+      // FIND AS PER THE OBJECT ID
+      if (obj.id === id) {
+
+        // TRACK TO TODAY'S DATED SCORE
+        obj.scores.map((score) => {
+          if (moment(score.dated).isSame(state.selectedDate.format("dddd, MMMM Do YYYY"))) {
+            score.skipped = true;
+            obj.lastUpdatedOn = moment()
+          }
+        });
+      }
+    })
+  },
 }
 
 export const actions = {
@@ -52,6 +88,14 @@ export const actions = {
     commit('UPDATE_HABIT_LIST', data)
   },
 
+  completeTodo({ commit }, habit) {
+    commit('COMPLETE_TODO', habit)
+  },
+
+  skipTodo({ commit }, habit) {
+    commit('SKIP_TODO', habit)
+  },
+
 }
 
 export const getters = {
@@ -59,7 +103,6 @@ export const getters = {
   habitsList: state => state.habitsList,
   morningHabitsList: state => state.morningHabitsList,
   colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
-  selectedDate: state => (state.selectedDate == null) ? moment().format("dddd, MMMM Do YYYY") : state.selectedDate,
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
   questionsData: state => state.template.questions
