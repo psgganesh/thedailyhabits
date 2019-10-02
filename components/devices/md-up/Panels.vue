@@ -12,12 +12,10 @@
       >
         <template v-for="(item, index) in habits">
           <v-card class="mx-auto ma-3" :key="index">
-            <!-- <v-img
-              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
-              height="100px"
-            >-->
-            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
-            <!-- </v-img> -->
+            <v-card-title
+              class="fill-height align-end black--text white ga-nunito"
+              v-text="item.activity"
+            ></v-card-title>
             <v-list-item :key="index">
               <v-list-item-content>
                 <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
@@ -40,21 +38,19 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in morningHabits">
-          <v-card class="mx-auto ma-3" :key="index">
-            <!-- <v-img
-              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
-              height="100px"
-            >-->
-            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
-            <!-- </v-img> -->
+          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+            <v-card-title
+              class="fill-height align-end black--text white ga-nunito"
+              v-text="item.activity"
+            ></v-card-title>
             <v-list-item :key="index">
               <v-list-item-content>
-                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
+            <v-card-actions :class="actionClassStatus()">
+              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -72,21 +68,19 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in afternoonHabits">
-          <v-card class="mx-auto ma-3" :key="index">
-            <!-- <v-img
-              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
-              height="100px"
-            >-->
-            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
-            <!-- </v-img> -->
+          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+            <v-card-title
+              class="fill-height align-end black--text white ga-nunito"
+              v-text="item.activity"
+            ></v-card-title>
             <v-list-item :key="index">
               <v-list-item-content>
-                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
+            <v-card-actions :class="actionClassStatus()">
+              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -104,21 +98,19 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-card class="mx-auto ma-3" :key="index">
-            <!-- <v-img
-              src="https://images.unsplash.com/photo-1542276867-c7f5032e1835?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3338&q=80"
-              height="100px"
-            >-->
-            <v-card-title class="fill-height align-end black--text white" v-text="item.activity"></v-card-title>
-            <!-- </v-img> -->
+          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+            <v-card-title
+              class="fill-height align-end black--text white ga-nunito"
+              v-text="item.activity"
+            ></v-card-title>
             <v-list-item :key="index">
               <v-list-item-content>
-                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined @click="skipTodo(item)">SKIP</v-btn>
+            <v-card-actions :class="actionClassStatus()">
+              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
+              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -129,10 +121,13 @@
 </template>
 
 <script>
+import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
-  data: () => ({}),
+  data: () => ({
+    today: moment()
+  }),
   computed: {
     ...mapGetters(["theme"]),
     habits: {
@@ -190,68 +185,36 @@ export default {
     },
     skipTodo(habit) {
       this.$store.dispatch("skipTodo", habit);
+    },
+    todoActionButtonsState(habit) {
+      var status = "";
+      habit.scores.map(score => {
+        if (moment(score.dated).isSame(this.$store.state.selectedDate, "day")) {
+          status = score.completed
+            ? "completed"
+            : score.skipped
+            ? "skipped"
+            : false;
+        }
+      });
+      return status === "completed"
+        ? "hidden"
+        : status === "skipped"
+        ? "crumble"
+        : "";
+    },
+    skipTaskClass(habit) {
+      var status = "";
+      habit.scores.map(score => {
+        if (moment(score.dated).isSame(this.$store.state.selectedDate, "day")) {
+          status = score.skipped;
+        }
+      });
+      return status ? "hidden" : "";
+    },
+    actionClassStatus() {
+      return moment(this.$store.state.selectedDate).isSame(this.today, "day");
     }
   }
 };
 </script>
-
-<style>
-.v-text-field input {
-  font-family: "Nunito", sans-serif;
-}
-.wrapper {
-  display: flex;
-  height: 75vh;
-}
-#board > .column {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  border-right: 1px solid #0000001f;
-  border-top: 1px solid #0000001f;
-}
-#board > .column > .v-toolbar {
-  flex: none;
-}
-#board > .column > .v-list {
-  overflow-y: scroll;
-  flex: 1;
-}
-.theme--light.v-list,
-.theme--light.v-sheet {
-  background: #ffffff57;
-}
-#board > .column > .v-list .v-list-item.theme--light {
-  background: #ffffffd6;
-  border-bottom: 1px solid #0000001f;
-}
-
-#board .v-card__actions {
-  background: #ffffffd6;
-}
-
-.v-list-item.v-list-item--link.theme--light {
-  background: #ffffffd6;
-}
-.v-list::-webkit-scrollbar {
-  width: 0.1em;
-  height: 0.5em;
-}
-.v-list::-webkit-scrollbar-button {
-  background: #cccccc;
-}
-.v-list::-webkit-scrollbar-thumb {
-  background: #dedede;
-}
-​.v-list::-webkit-scrollbar-track-piece {
-  background: #ffffff;
-}
-
-.v-list-item__title,
-.v-list-item__subtitle {
-  white-space: inherit;
-}
-</style>

@@ -14,7 +14,7 @@ export function userPreferences() {
 
 export function scoreStructure() {
   return ([{
-    dated: moment().format("dddd, MMMM Do YYYY"),
+    dated: moment(),
     completed: false, // Boolean
     skipped: false, // Boolean
     additional_data: []

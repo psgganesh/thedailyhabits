@@ -34,14 +34,14 @@
 
     <v-list rounded>
       <v-list-item-group color="white" v-model="selectedListitem">
-        <v-list-item v-for="(item, i) in habitCategories" :key="i" @click="tappedLabelLink">
+        <v-list-item v-for="(category, i) in habitCategories" :key="i" @click="tappedLabelLink">
           <v-list-item-icon>
-            <v-icon :color="item.color" v-text="item.icon"></v-icon>
+            <v-icon :color="category.color" v-text="category.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="category.text"></v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action>{{ item.count }}</v-list-item-action>
+          <v-list-item-action>{{ habitCount(category) }}</v-list-item-action>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -67,7 +67,10 @@
 </template>
 
 <script>
+import moment from "moment";
 import { mapGetters } from "vuex";
+const arrSum = arr => arr.reduce((a, b) => a + b, 0);
+
 export default {
   name: "NavigationDrawer",
   data() {
@@ -75,7 +78,8 @@ export default {
       selectedHeaderItem: null,
       selectedListitem: 1,
       selectedFooterItem: null,
-      options: [{ icon: "mdi-logout", text: "Logout" }]
+      options: [{ icon: "mdi-logout", text: "Logout" }],
+      categoriesData: null
     };
   },
   computed: {
@@ -115,6 +119,25 @@ export default {
       if (this.$device.isMobile) {
         this.$store.commit("SET_DRAWER_STATE", null);
       }
+    },
+    habitCount(category) {
+      var totalCount = [];
+      if (this.$store.state.atomicHabitsData.length > 0) {
+        this.$store.state.atomicHabitsData.map(obj => {
+          obj.scores.map(score => {
+            if (
+              moment(score.dated).isSame(this.$store.state.selectedDate, "day")
+            ) {
+              if (obj.category === category.text.toLocaleLowerCase()) {
+                totalCount.push(1);
+              } else if (category.text.toLocaleLowerCase() === "all habits") {
+                totalCount.push(1);
+              }
+            }
+          });
+        });
+      }
+      return totalCount.length > 0 ? arrSum(totalCount) : 0;
     }
   }
 };

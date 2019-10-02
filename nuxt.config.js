@@ -25,6 +25,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    { src: 'magic.css/dist/magic.min.css', lang: 'css' },
     { src: '~/assets/sass/custom.scss', lang: 'scss' }
   ],
   /*

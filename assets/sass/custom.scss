@@ -108,3 +108,13 @@
   background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(237,237,237,0.6) 87%, rgba(237,237,237,0.54) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }
+
+.crumble {
+  background: #ffeb3b !important;
+}
+
+.hidden {
+  pointer-events: none;
+  opacity: 0.4;
+  transition: visibility 1s 1s, opacity 1s linear;
+}

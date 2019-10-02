@@ -6,7 +6,7 @@
           <v-text-field
             solo-inverted
             flat
-            :value="selectedDate"
+            :value="currentSelectedDate"
             v-on="on"
             prepend-icon="event"
             :light="theme.light"
@@ -41,8 +41,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentSelectedDate"]),
-    ...mapGetters(["theme"])
+    ...mapGetters(["theme", "currentSelectedDate"])
   }
 };
 </script>
