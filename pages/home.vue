@@ -157,7 +157,7 @@ export default {
 
 <style>
 body {
-  background: #000000 url("/backgrounds/photo-1564473185935-58113cba1e80.jpg");
+  background: #000000 url("/backgrounds/photo-1564359732441-c879d1a16c49.jpg");
   background-size: cover;
   overflow-y: hidden;
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
