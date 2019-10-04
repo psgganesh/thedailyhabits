@@ -6,7 +6,8 @@ import { strictEqual } from 'assert';
 export const state = () => ({
   atomicHabitsData: [],
   drawer: null,
-  selectedDate: moment(),
+  selectedListitem: 0,
+  selectedDate: new Date().toISOString().substr(0, 10),
   theme: {
     dark: true,
     light: false
@@ -24,6 +25,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  SET_CURRENT_DATE(state, param) {
+    state.selectedDate = moment(param)
+  },
+  SELECT_CATEGORY(state, param) {
+    state.selectedListitem = param;
+  },
   LOAD_WORKSPACE(state, blockstackData) {
     // let workspaceData = JSON.parse(blockstackData)
 
@@ -109,6 +116,10 @@ export const mutations = {
 
 export const actions = {
 
+  filterHabitsList({ commit }, category, selectedIndex) {
+    commit('SELECT_CATEGORY', selectedIndex);
+
+  },
   createHabit({ commit }, params) {
     try {
       commit('CREATE_NEW_HABIT', params);
@@ -142,6 +153,5 @@ export const getters = {
   colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
-  questionsData: state => state.template.questions,
-  currentSelectedDate: state => state.selectedDate.format("dddd, MMMM Do YYYY")
+  questionsData: state => state.template.questions
 }

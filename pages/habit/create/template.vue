@@ -39,7 +39,7 @@
           </v-stepper-content>
 
           <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
-          <v-stepper-content step="3" color="secondary" class="ma-2 pa-2" id="questions_list">
+          <v-stepper-content step="3" color="secondary" id="questions_list">
             <v-list label>
               <v-list-item-group color="green">
                 <v-list-item
@@ -55,11 +55,37 @@
                 </v-list-item>
               </v-list-item-group>
             </v-list>
+          </v-stepper-content>
 
-            <v-container class="grey lighten-5">
-              <v-row no-gutters>
-                <v-col v-for="n in 3" :key="n" cols="12" sm="4">
-                  <v-card class="pa-2" outlined tile>One of three columns</v-card>
+          <v-stepper-step step="4" editable color="secondary">Set Schedule</v-stepper-step>
+          <v-stepper-content step="4" color="secondary">
+            <v-container fluid>
+              <v-row>
+                <v-col cols="6">
+                  <v-menu v-model="datepickerMenu" :close-on-content-click="false" max-width="290">
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        :value="computedDateFormattedMomentjs"
+                        label="Start date"
+                        readonly
+                        solo
+                        v-on="on"
+                        prepend-inner-icon="mdi-calendar"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="startsFromDate" @change="datepickerMenu = false"></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="6">
+                  <v-select
+                    :items="items"
+                    :item-value="minDaysToRepeatValue"
+                    label="Choose, number of days to repeat"
+                    dense
+                    solo
+                    prepend-inner-icon="mdi-repeat"
+                    @change="selectSchedule()"
+                  ></v-select>
                 </v-col>
               </v-row>
             </v-container>
@@ -70,7 +96,7 @@
               block
               large
               @click="buildHabit"
-            >Finish</v-btn>
+            >Create habit</v-btn>
           </v-stepper-content>
         </v-stepper>
       </v-col>
@@ -89,6 +115,7 @@ export default {
   layout: "wizard",
   data: () => {
     return {
+      datepickerMenu: false,
       loading: false,
       wizardStep: 1,
       selection: 1,
@@ -96,7 +123,17 @@ export default {
       selectedCategorySlug: null,
       selectedCategory: null,
       selectedMessageOption: null,
-      finishButtonDisabledState: true
+      finishButtonDisabledState: true,
+      startsFromDate: new Date().toISOString().substr(0, 10),
+      minDaysToRepeatValue: "21",
+      endsOn: null,
+      items: [
+        { text: "Follow / repeat this habit for 21 days", value: "21" },
+        { text: "Follow / repeat this habit for 42 days", value: "42" },
+        { text: "Follow / repeat this habit for 30 days", value: "30" },
+        { text: "Follow / repeat this habit for 66 days", value: "66" },
+        { text: "Follow / repeat this habit for 90 days", value: "90" }
+      ]
     };
   },
   methods: {
@@ -112,8 +149,12 @@ export default {
     selectOption(option) {
       if (option !== null) {
         this.selectedMessageOption = option;
-        this.finishButtonDisabledState = false;
+        this.wizardStep++;
       }
+    },
+    selectSchedule() {
+      this.endsOn = moment().add(parseInt(this.minDaysToRepeatValue), "day");
+      this.finishButtonDisabledState = false;
     },
     discardConfirmDialog() {
       this.confirmDialog = false;
@@ -127,9 +168,9 @@ export default {
       habit.iconClass = this.selectedCategory.iconClass;
       habit.category = this.selectedCategory.slug; // ( Optional ) main-category / general
       habit.activity = this.selectedActivity.title; // ( Optional ) tag for activity
-      habit.recurring = false; // Boolean
-      habit.startsFrom = moment();
-      habit.endsOn = null; // moment().format('YYYYMMDD') last date until when the task is to be repeated
+      habit.recurring = true; // Boolean
+      habit.startsFrom = moment(this.startsFromDate);
+      habit.endsOn = moment(this.endsOn); // moment().format('YYYYMMDD') last date
       habit.scores = scoreStructure(); // scores template from the schema.js
       habit.createdOn = moment(); // date when task was created on
       habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
@@ -141,6 +182,11 @@ export default {
     ...mapGetters(["categoriesData", "activitiesData", "questionsData"]),
     questionSlug() {
       return this.selectedActivity !== null ? this.selectedActivity.slug : "";
+    },
+    computedDateFormattedMomentjs() {
+      return this.startsFromDate
+        ? moment(this.startsFromDate).format("dddd, MMMM Do YYYY")
+        : "";
     }
   }
 };
