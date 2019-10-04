@@ -115,10 +115,12 @@ export default {
     }
   },
   methods: {
+    // DISABLED THIS FEATURE FOR NOW
     tappedLabelLink(category, index) {
-      this.$store.dispatch("filterHabitsList", category, index);
-      this.collapseNavbar();
+      // this.$store.dispatch("filterHabitsList", category, index);
+      // this.collapseNavbar();
     },
+
     collapseNavbar() {
       if (this.$device.isMobile) {
         this.$store.commit("SET_DRAWER_STATE", null);
