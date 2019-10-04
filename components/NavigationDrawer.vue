@@ -32,12 +32,13 @@
     </template>
     <v-divider></v-divider>
 
-    <v-list rounded>
-      <v-list-item-group color="white" v-model="currentCategory">
+    <v-list id="categoryList" rounded>
+      <v-list-item-group color="white">
         <v-list-item
           v-for="(category, i) in habitCategories"
           :key="i"
           @click="tappedLabelLink(category, i)"
+          disabled
         >
           <v-list-item-icon>
             <v-icon :color="category.color" v-text="category.icon"></v-icon>
@@ -145,3 +146,10 @@ export default {
   }
 };
 </script>
+
+<style>
+#categoryList .v-list-item--disabled {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+</style>
