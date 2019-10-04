@@ -33,8 +33,12 @@
     <v-divider></v-divider>
 
     <v-list rounded>
-      <v-list-item-group color="white" v-model="selectedListitem">
-        <v-list-item v-for="(category, i) in habitCategories" :key="i" @click="tappedLabelLink">
+      <v-list-item-group color="white" v-model="currentCategory">
+        <v-list-item
+          v-for="(category, i) in habitCategories"
+          :key="i"
+          @click="tappedLabelLink(category, i)"
+        >
           <v-list-item-icon>
             <v-icon :color="category.color" v-text="category.icon"></v-icon>
           </v-list-item-icon>
@@ -50,8 +54,8 @@
     <template v-slot:append>
       <v-divider></v-divider>
       <v-list rounded>
-        <v-list-item-group color="white" v-model="selectedFooterItem">
-          <v-list-item v-for="(item, i) in options" :key="i" @click="tappedFooterLinks">
+        <v-list-item-group color="white">
+          <v-list-item v-for="(item, i) in options" :key="i">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -75,15 +79,25 @@ export default {
   name: "NavigationDrawer",
   data() {
     return {
-      selectedHeaderItem: null,
-      selectedListitem: 1,
-      selectedFooterItem: null,
-      options: [{ icon: "mdi-logout", text: "Logout" }],
-      categoriesData: null
+      options: [{ icon: "mdi-logout", text: "Logout" }]
     };
+  },
+  create() {
+    this.$store.dispatch(
+      "filterHabitsList",
+      this.$store.state.selectedListitem
+    );
   },
   computed: {
     ...mapGetters(["theme"]),
+    currentCategory: {
+      get() {
+        return this.$store.state.selectedListitem;
+      },
+      set(value) {
+        this.$store.commit("SELECT_CATEGORY", value);
+      }
+    },
     habitCategories: {
       get() {
         return this.$store.state.categories;
@@ -100,19 +114,8 @@ export default {
     }
   },
   methods: {
-    tappedHeaderLinks() {
-      this.selectedListitem = null;
-      this.selectedFooterItem = null;
-      this.collapseNavbar();
-    },
-    tappedLabelLink() {
-      this.selectedHeaderItem = null;
-      this.selectedFooterItem = null;
-      this.collapseNavbar();
-    },
-    tappedFooterLinks() {
-      this.selectedHeaderItem = null;
-      this.selectedListitem = null;
+    tappedLabelLink(category, index) {
+      this.$store.dispatch("filterHabitsList", category, index);
       this.collapseNavbar();
     },
     collapseNavbar() {
