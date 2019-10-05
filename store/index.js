@@ -22,10 +22,18 @@ export const state = () => ({
   habits: [],
   morningHabits: [],
   afternoonHabits: [],
-  eveningHabits: []
+  eveningHabits: [],
+  userSession: null,
 })
 
 export const mutations = {
+
+  // BLOCKSTACK USER
+  SET_USER(state, userSession) {
+    state.userSession = userSession || null
+  },
+
+
   SET_CURRENT_DATE(state, param) {
     state.selectedDate = moment(param)
   },
@@ -41,13 +49,13 @@ export const mutations = {
   LOAD_WORKSPACE(state, blockstackData) {
     let workspaceData = JSON.parse(blockstackData)
 
-    // // SETTING USER DATA
+    // SETTING USER DATA
     state.userData = workspaceData.userData
 
-    // // SETTING PREFERENCES DATA
+    // SETTING PREFERENCES DATA
     state.preferences = workspaceData.preferences
 
-    // // SETTING HABITS DATA
+    // SETTING HABITS DATA
     let habitsData = workspaceData.habitsData
     habitsData.map((atom) => {
       // state.atomicHabitsData.map((atom) => {
@@ -171,6 +179,8 @@ export const actions = {
 }
 
 export const getters = {
+  isAuthenticated: state => !!state.userSession,
+  loggedUser: state => state.userSession,
   theme: state => state.theme,
   habitsList: state => state.habitsList,
   morningHabitsList: state => state.morningHabitsList,
