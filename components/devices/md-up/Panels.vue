@@ -48,7 +48,7 @@
                 <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions :class="actionClassStatus()">
+            <v-card-actions>
               <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
               <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
@@ -78,7 +78,7 @@
                 <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions :class="actionClassStatus()">
+            <v-card-actions>
               <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
               <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
@@ -108,7 +108,8 @@
                 <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions :class="actionClassStatus()">
+            <v-card-actions>
+              >
               <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
               <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
@@ -187,20 +188,22 @@ export default {
       this.$store.dispatch("skipTodo", habit);
     },
     todoActionButtonsState(habit) {
-      var status = "";
+      var status = "hidden";
       habit.scores.map(score => {
         if (moment(score.dated).isSame(this.$store.state.selectedDate, "day")) {
           status = score.completed
             ? "completed"
             : score.skipped
             ? "skipped"
-            : false;
+            : "";
         }
       });
       return status === "completed"
         ? "hidden"
         : status === "skipped"
         ? "crumble"
+        : status === "hidden"
+        ? "hidden"
         : "";
     },
     skipTaskClass(habit) {
@@ -212,9 +215,7 @@ export default {
       });
       return status ? "hidden" : "";
     },
-    actionClassStatus() {
-      return moment(this.$store.state.selectedDate).isSame(this.today, "day");
-    }
+    actionClassStatus() {}
   }
 };
 </script>
