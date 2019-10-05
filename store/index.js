@@ -2,6 +2,8 @@ import moment from 'moment';
 import { categories } from '~/utils/schema';
 import { categoriesData, activityData, questionsData } from '~/utils/templateData';
 
+var STORAGE_FILE = 'atomicHabitsDataTemp3.json'
+
 export const state = () => ({
   atomicHabitsData: [],
   drawer: null,
@@ -37,18 +39,18 @@ export const mutations = {
     state.eveningHabits = []
   },
   LOAD_WORKSPACE(state, blockstackData) {
-    // let workspaceData = JSON.parse(blockstackData)
+    let workspaceData = JSON.parse(blockstackData)
 
     // // SETTING USER DATA
-    // state.userData = workspaceData.userData
+    state.userData = workspaceData.userData
 
     // // SETTING PREFERENCES DATA
-    // state.preferences = workspaceData.preferences
+    state.preferences = workspaceData.preferences
 
     // // SETTING HABITS DATA
-    // let habitsData = workspaceData.habitsData
-    // habitsData.map((atom) => {
-    state.atomicHabitsData.map((atom) => {
+    let habitsData = workspaceData.habitsData
+    habitsData.map((atom) => {
+      // state.atomicHabitsData.map((atom) => {
       if (
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
@@ -64,12 +66,12 @@ export const mutations = {
       ...state.afternoonHabits,
       ...state.eveningHabits
     ]
-    // let data = {
-    //   userData: state.userData,
-    //   preferences: state.preferences,
-    //   habitsData: state.atomicHabitsData
-    // }
-    // state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
+    let data = {
+      userData: state.userData,
+      preferences: state.preferences,
+      habitsData: state.atomicHabitsData
+    }
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
   },
   SET_DRAWER_STATE(state, payload) {
     state.drawer = payload
@@ -125,12 +127,12 @@ export const actions = {
     commit('REFRESH_WORKSPACE')
     try {
 
-      // await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
-      //   if (responseData.length > 0) {
-      // commit('LOAD_WORKSPACE', responseData);
-      commit('LOAD_WORKSPACE', []);
-      //   }
-      // });
+      await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
+        if (responseData.length > 0) {
+          commit('LOAD_WORKSPACE', responseData);
+          commit('LOAD_WORKSPACE', []);
+        }
+      });
 
     } catch (e) {
       console.log(e)
