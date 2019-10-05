@@ -56,7 +56,7 @@
       <v-divider></v-divider>
       <v-list rounded>
         <v-list-item-group color="white">
-          <v-list-item v-for="(item, i) in options" :key="i">
+          <v-list-item v-for="(item, i) in options" :key="i" @click="signOut()">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -73,6 +73,7 @@
 
 <script>
 import moment from "moment";
+import { Person } from "blockstack";
 import { mapGetters } from "vuex";
 const arrSum = arr => arr.reduce((a, b) => a + b, 0);
 
@@ -89,8 +90,16 @@ export default {
       this.$store.state.selectedListitem
     );
   },
+  beforeMount() {
+    if (!this.loggedUser.isUserSignedIn()) {
+      this.redirectUserToLandingPage();
+    }
+    this.userData = this.loggedUser.loadUserData();
+    this.user = new Person(this.userData.profile);
+    this.username = this.userData.username;
+  },
   computed: {
-    ...mapGetters(["theme"]),
+    ...mapGetters(["theme", "isAuthenticated", "loggedUser"]),
     currentCategory: {
       get() {
         return this.$store.state.selectedListitem;
@@ -115,10 +124,12 @@ export default {
     }
   },
   methods: {
-    // DISABLED THIS FEATURE FOR NOW
-    tappedLabelLink(category, index) {
-      // this.$store.dispatch("filterHabitsList", category, index);
-      // this.collapseNavbar();
+    signOut() {
+      this.$store.dispatch("saveWorkspaceAndSignout", this.currentDate);
+    },
+
+    redirectUserToLandingPage() {
+      window.location = `/`;
     },
 
     collapseNavbar() {
@@ -126,6 +137,7 @@ export default {
         this.$store.commit("SET_DRAWER_STATE", null);
       }
     },
+
     habitCount(category) {
       var totalCount = [];
       if (this.$store.state.atomicHabitsData.length > 0) {
@@ -144,6 +156,12 @@ export default {
         });
       }
       return totalCount.length > 0 ? arrSum(totalCount) : 0;
+    },
+
+    // DISABLED THIS FEATURE FOR NOW
+    tappedLabelLink(category, index) {
+      // this.$store.dispatch("filterHabitsList", category, index);
+      // this.collapseNavbar();
     }
   }
 };

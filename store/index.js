@@ -58,7 +58,6 @@ export const mutations = {
     // SETTING HABITS DATA
     let habitsData = workspaceData.habitsData
     habitsData.map((atom) => {
-      // state.atomicHabitsData.map((atom) => {
       if (
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
@@ -80,6 +79,23 @@ export const mutations = {
       habitsData: state.atomicHabitsData
     }
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
+  },
+  SAVE_WORKSPACE_AND_SIGNOUT(state) {
+    state.atomicHabitsData = [
+      ...state.habits,
+      ...state.morningHabits,
+      ...state.afternoonHabits,
+      ...state.eveningHabits
+    ]
+    let data = {
+      userData: state.userData,
+      preferences: state.preferences,
+      habitsData: state.atomicHabitsData
+    }
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
+      .finally(() => {
+        state.userSession.signUserOut(window.location.href);
+      })
   },
   SET_DRAWER_STATE(state, payload) {
     state.drawer = payload
@@ -131,6 +147,10 @@ export const mutations = {
 
 export const actions = {
 
+  saveWorkspaceAndSignout({ commit }) {
+    commit('SAVE_WORKSPACE_AND_SIGNOUT')
+  },
+
   async fetchWorkspaceRecords({ commit, state }) {
     commit('REFRESH_WORKSPACE')
     try {
@@ -138,7 +158,6 @@ export const actions = {
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
-          commit('LOAD_WORKSPACE', []);
         }
       });
 
