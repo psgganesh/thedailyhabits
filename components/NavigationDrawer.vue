@@ -97,6 +97,7 @@ export default {
     this.userData = this.loggedUser.loadUserData();
     this.user = new Person(this.userData.profile);
     this.username = this.userData.username;
+    this.$store.dispatch("fetchWorkspaceRecords");
   },
   computed: {
     ...mapGetters(["theme", "isAuthenticated", "loggedUser"]),

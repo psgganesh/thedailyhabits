@@ -24,9 +24,6 @@ export default {
     DesktopView,
     SelectedTask
   },
-  beforeMount() {
-    this.$store.dispatch("fetchWorkspaceRecords");
-  },
   data: () => ({
     taskSelected: false
   }),

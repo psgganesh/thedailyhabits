@@ -109,7 +109,6 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              >
               <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
               <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
             </v-card-actions>
