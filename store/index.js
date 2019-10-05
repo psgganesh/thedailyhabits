@@ -1,7 +1,6 @@
 import moment from 'moment';
 import { categories } from '~/utils/schema';
 import { categoriesData, activityData, questionsData } from '~/utils/templateData';
-import { strictEqual } from 'assert';
 
 export const state = () => ({
   atomicHabitsData: [],
@@ -31,6 +30,12 @@ export const mutations = {
   SELECT_CATEGORY(state, param) {
     state.selectedListitem = param;
   },
+  REFRESH_WORKSPACE(state) {
+    state.habits = []
+    state.morningHabits = []
+    state.afternoonHabits = []
+    state.eveningHabits = []
+  },
   LOAD_WORKSPACE(state, blockstackData) {
     // let workspaceData = JSON.parse(blockstackData)
 
@@ -45,7 +50,7 @@ export const mutations = {
     // habitsData.map((atom) => {
     state.atomicHabitsData.map((atom) => {
       if (
-        moment(state.selectedDate).isSameOrAfter(atom.createdOn, 'day') &&
+        moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
       ) {
         state[atom.parent].push(atom)
@@ -116,10 +121,22 @@ export const mutations = {
 
 export const actions = {
 
-  filterHabitsList({ commit }, category, selectedIndex) {
-    commit('SELECT_CATEGORY', selectedIndex);
+  async fetchWorkspaceRecords({ commit, state }) {
+    commit('REFRESH_WORKSPACE')
+    try {
 
+      // await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
+      //   if (responseData.length > 0) {
+      // commit('LOAD_WORKSPACE', responseData);
+      commit('LOAD_WORKSPACE', []);
+      //   }
+      // });
+
+    } catch (e) {
+      console.log(e)
+    }
   },
+
   createHabit({ commit }, params) {
     try {
       commit('CREATE_NEW_HABIT', params);
@@ -142,6 +159,11 @@ export const actions = {
   skipTodo({ commit }, habit) {
     commit('SKIP_TODO', habit);
     commit('SAVE_WORKSPACE');
+  },
+
+  // DISABLED THIS FEATURE FOR NOW
+  filterHabitsList({ commit }, category, selectedIndex) {
+    commit('SELECT_CATEGORY', selectedIndex);
   },
 
 }

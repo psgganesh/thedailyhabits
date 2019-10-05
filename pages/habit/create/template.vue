@@ -153,7 +153,10 @@ export default {
       }
     },
     selectSchedule() {
-      this.endsOn = moment().add(parseInt(this.minDaysToRepeatValue), "day");
+      this.endsOn = moment(this.startsFromDate).add(
+        parseInt(this.minDaysToRepeatValue),
+        "day"
+      );
       this.finishButtonDisabledState = false;
     },
     discardConfirmDialog() {
