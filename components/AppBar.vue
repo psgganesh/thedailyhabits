@@ -21,6 +21,23 @@
     <v-btn icon>
       <v-icon :light="theme.light" :dark="theme.dark">mdi-settings</v-icon>
     </v-btn>-->
+    <v-btn icon @click.stop="dialog = true">
+      <v-icon :light="theme.light" :dark="theme.dark">mdi-restart</v-icon>
+    </v-btn>
+
+    <template>
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">Use Google's location service?</v-card-title>
+          <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+          <v-card-actions>
+            <div class="flex-grow-1"></div>
+            <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+            <v-btn color="green darken-1" text @click="resetHabitData">Agree</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
   </v-app-bar>
 </template>
 
@@ -28,12 +45,21 @@
 import { mapState } from "vuex";
 export default {
   name: "AppBar",
+  data: () => {
+    return {
+      dialog: false
+    };
+  },
   computed: {
     ...mapState(["drawer", "theme"])
   },
   methods: {
     toggleDrawer() {
       this.$store.commit("SET_DRAWER_STATE", !this.drawer);
+    },
+    resetHabitData() {
+      this.$store.dispatch("resetData");
+      this.dialog = false;
     }
   }
 };
@@ -42,5 +68,8 @@ export default {
 <style>
 .logo-title {
   font-size: 22px;
+}
+.v-dialog__content.v-dialog__content--active .v-card.v-sheet.theme--light {
+  background: #ffffff;
 }
 </style>

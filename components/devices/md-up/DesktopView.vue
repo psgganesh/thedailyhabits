@@ -1,5 +1,12 @@
 <template>
   <v-container fluid>
+    <v-progress-linear
+      :active="loadingState"
+      :indeterminate="loadingState"
+      absolute
+      top
+      color="deep-purple accent-4"
+    ></v-progress-linear>
     <ActionBar />
     <PanelHeader />
     <Panels />
@@ -16,6 +23,16 @@ export default {
     PanelHeader,
     ActionBar,
     Panels
+  },
+  computed: {
+    loadingState: {
+      get() {
+        return this.$store.state.loading;
+      },
+      set(value) {
+        this.$store.commit("SET_LOADING_STATE", value);
+      }
+    }
   }
 };
 </script>

@@ -1,7 +1,5 @@
 <template>
   <div id="atomic-canvas" :class="backdropColor">
-    <SelectedTask :taskSelected="taskSelected" />
-
     <!-- md-up components -->
     <DesktopView class="hidden-sm-and-down" />
 
@@ -12,8 +10,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import TaskList from "~/components/TaskList";
-import SelectedTask from "~/components/SelectedTask";
 import MobileView from "~/components/devices/sm-down/MobileView";
 import DesktopView from "~/components/devices/md-up/DesktopView";
 
@@ -21,8 +17,7 @@ export default {
   name: "home-page",
   components: {
     MobileView,
-    DesktopView,
-    SelectedTask
+    DesktopView
   },
   data: () => ({
     taskSelected: false

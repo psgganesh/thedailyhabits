@@ -6,6 +6,7 @@ var STORAGE_FILE = 'atomicHabitsDataTemp3.json'
 
 export const state = () => ({
   atomicHabitsData: [],
+  loading: false,
   drawer: null,
   selectedListitem: 0,
   selectedDate: new Date().toISOString().substr(0, 10),
@@ -33,6 +34,9 @@ export const mutations = {
     state.userSession = userSession || null
   },
 
+  SET_LOADING_STATE(state, flag) {
+    state.loading = flag
+  },
 
   SET_CURRENT_DATE(state, param) {
     state.selectedDate = moment(param)
@@ -47,6 +51,7 @@ export const mutations = {
     state.eveningHabits = []
   },
   LOAD_WORKSPACE(state, blockstackData) {
+    state.loading = true;
     let workspaceData = JSON.parse(blockstackData)
 
     // SETTING USER DATA
@@ -65,6 +70,7 @@ export const mutations = {
         state[atom.parent].push(atom)
       }
     })
+    state.loading = false;
   },
   SAVE_WORKSPACE(state) {
     state.atomicHabitsData = [
@@ -78,7 +84,9 @@ export const mutations = {
       preferences: state.preferences,
       habitsData: state.atomicHabitsData
     }
+    state.loading = true;
     state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
+    state.loading = false;
   },
   SAVE_WORKSPACE_AND_SIGNOUT(state) {
     state.atomicHabitsData = [
@@ -147,6 +155,11 @@ export const mutations = {
 
 export const actions = {
 
+  resetData({ commit }) {
+    commit('REFRESH_WORKSPACE')
+    commit('SAVE_WORKSPACE')
+  },
+
   saveWorkspaceAndSignout({ commit }) {
     commit('SAVE_WORKSPACE_AND_SIGNOUT')
   },
@@ -154,10 +167,11 @@ export const actions = {
   async fetchWorkspaceRecords({ commit, state }) {
     commit('REFRESH_WORKSPACE')
     try {
-
+      commit('SET_LOADING_STATE', true);
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
+          commit('SET_LOADING_STATE', false);
         }
       });
 
@@ -206,5 +220,6 @@ export const getters = {
   colorScheme: state => (state.theme.dark) ? "white--text" : "black--text",
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
-  questionsData: state => state.template.questions
+  questionsData: state => state.template.questions,
+  pageLoadingState: state => state.loading
 }

@@ -38,23 +38,22 @@
             </v-list-item>
           </v-stepper-content>
 
-          <v-stepper-step step="3" editable color="secondary">Define habit gaol</v-stepper-step>
-          <v-stepper-content step="3" color="secondary" id="questions_list">
-            <v-textarea
-              outlined
-              auto-grow
-              clear-icon
-              clearable
-              solo
-              name="input-7-4"
-              label="Example: Task "
-            ></v-textarea>
-          </v-stepper-content>
-
-          <v-stepper-step step="4" editable color="secondary">Set Schedule</v-stepper-step>
-          <v-stepper-content step="4" color="secondary">
+          <v-stepper-step step="3" editable color="secondary">Define habit &amp; Set Schedule</v-stepper-step>
+          <v-stepper-content step="3" color="secondary">
             <v-container fluid>
               <v-row>
+                <v-col cols="12">
+                  <v-textarea
+                    outlined
+                    auto-grow
+                    clear-icon
+                    clearable
+                    solo
+                    name="input-7-4"
+                    v-model="selectedMessageOption"
+                    label="Example: I would run 10k steps everyday."
+                  ></v-textarea>
+                </v-col>
                 <v-col cols="6">
                   <v-menu v-model="datepickerMenu" :close-on-content-click="false" max-width="290">
                     <template v-slot:activator="{ on }">
@@ -140,12 +139,6 @@ export default {
       this.selectedActivity = activity;
       this.wizardStep++;
     },
-    selectOption(option) {
-      if (option !== null) {
-        this.selectedMessageOption = option;
-        this.wizardStep++;
-      }
-    },
     selectSchedule() {
       this.endsOn = moment(this.startsFromDate).add(
         parseInt(this.minDaysToRepeatValue),
@@ -159,7 +152,7 @@ export default {
     buildHabit() {
       const habit = taskStructure();
       habit.id = uuidv4(); // uuid to be added
-      habit.title = this.selectedMessageOption.option; // task / habit title,
+      habit.title = this.selectedMessageOption; // task / habit title,
       habit.parent = "habits";
       habit.icon = this.selectedCategory.icon;
       habit.iconClass = this.selectedCategory.iconClass;
