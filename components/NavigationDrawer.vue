@@ -84,12 +84,6 @@ export default {
       options: [{ icon: "mdi-logout", text: "Logout" }]
     };
   },
-  create() {
-    // this.$store.dispatch(
-    //   "filterHabitsList",
-    //   this.$store.state.selectedListitem
-    // );
-  },
   beforeMount() {
     if (!this.loggedUser.isUserSignedIn()) {
       this.redirectUserToLandingPage();
@@ -97,7 +91,9 @@ export default {
     this.userData = this.loggedUser.loadUserData();
     this.user = new Person(this.userData.profile);
     this.username = this.userData.username;
-    // this.$store.dispatch("fetchWorkspaceRecords");
+    if (this.$store.state.habits.length === 0) {
+      this.$store.dispatch("fetchWorkspaceRecords");
+    }
   },
   computed: {
     ...mapGetters(["theme", "isAuthenticated", "loggedUser"]),

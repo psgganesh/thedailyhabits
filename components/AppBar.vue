@@ -59,6 +59,7 @@ export default {
     },
     resetHabitData() {
       this.$store.dispatch("resetData");
+      setTimeout(this.$router.push({ name: "home" }), 1500);
       this.dialog = false;
     }
   }
