@@ -5,6 +5,8 @@ import { categoriesData, activityData, questionsData } from '~/utils/templateDat
 var STORAGE_FILE = 'atomicHabitsDataTemp3.json'
 
 export const state = () => ({
+  autoSave: true,
+  autoSaveRequestcount: 1,
   atomicHabitsData: [],
   loading: false,
   drawer: null,
@@ -183,7 +185,12 @@ export const actions = {
   createHabit({ commit }, params) {
     try {
       commit('CREATE_NEW_HABIT', params);
-      commit('SAVE_WORKSPACE');
+      if (state.autoSave) {
+        if (state.autoSaveRequestcount % 2 === 0) {
+          commit('SAVE_WORKSPACE');
+        }
+        state.autoSaveRequestcount++;
+      }
     } catch (e) {
       console.log("Could not create new habit");
     }
@@ -191,17 +198,32 @@ export const actions = {
 
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
-    commit('SAVE_WORKSPACE');
+    if (state.autoSave) {
+      if (state.autoSaveRequestcount % 2 === 0) {
+        commit('SAVE_WORKSPACE');
+      }
+      state.autoSaveRequestcount++;
+    }
   },
 
   completeTodo({ commit }, habit) {
     commit('COMPLETE_TODO', habit);
-    commit('SAVE_WORKSPACE');
+    if (state.autoSave) {
+      if (state.autoSaveRequestcount % 2 === 0) {
+        commit('SAVE_WORKSPACE');
+      }
+      state.autoSaveRequestcount++;
+    }
   },
 
   skipTodo({ commit }, habit) {
     commit('SKIP_TODO', habit);
-    commit('SAVE_WORKSPACE');
+    if (state.autoSave) {
+      if (state.autoSaveRequestcount % 2 === 0) {
+        commit('SAVE_WORKSPACE');
+      }
+      state.autoSaveRequestcount++;
+    }
   },
 
   // DISABLED THIS FEATURE FOR NOW

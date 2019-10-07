@@ -85,10 +85,10 @@ export default {
     };
   },
   create() {
-    this.$store.dispatch(
-      "filterHabitsList",
-      this.$store.state.selectedListitem
-    );
+    // this.$store.dispatch(
+    //   "filterHabitsList",
+    //   this.$store.state.selectedListitem
+    // );
   },
   beforeMount() {
     if (!this.loggedUser.isUserSignedIn()) {
