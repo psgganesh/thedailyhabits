@@ -24,7 +24,6 @@
     "express": "^4.16.4",
     "magic.css": "^1.4.1",
     "moment": "^2.24.0",
-    "npm-install-peers": "^1.2.1",
     "nuxt": "^2.4.0",
     "nuxt-material-design-icons": "^1.0.4",
     "vuedraggable": "^2.23.1"
@@ -33,6 +32,7 @@
     "@nuxtjs/vuetify": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
+    "install-peers": "^1.0.3",
     "jest": "^24.1.0",
     "nodemon": "^1.18.9",
     "vue-jest": "^3.0.3"
