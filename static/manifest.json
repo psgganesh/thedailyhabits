@@ -6,7 +6,7 @@
   "short_name": "Atomichabits",
   "icons": [
     {
-      "src": "https://getatomichabits.com/images/app-blockstack.png",
+      "src": "https://getatomichabits.com/app-blockstack.png",
       "sizes": "192x192",
       "type": "image/png"
     }
