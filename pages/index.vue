@@ -89,7 +89,7 @@
       <div
         id="home"
         class="header-hero bg_cover"
-        style="background-image: url(images/header-bg-min.png)"
+        style="background-image: url(images/header-bg-min.jpg)"
       >
         <div class="container">
           <div class="row justify-content-center">
@@ -396,6 +396,7 @@
                   Atomic Habits 2019 :: Powered by
                   <a
                     rel="nofollow"
+                    class="white--text"
                     href="https://blockstack.org/"
                     target="_blank"
                   >Blockstack</a>
@@ -416,7 +417,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-
 export default {
   name: "landing",
   layout: "simple",
@@ -448,19 +448,19 @@ export default {
 .header-hero::before {
   background: -webkit-linear-gradient(
     #e8edffe6,
-    #effeffe6 50%,
+    #effeffe6 20%,
     #ffffff1f,
     #ffffff1f
   );
   background: -o-linear-gradient(
     #e8edffe6,
-    #effeffe6 50%,
+    #effeffe6 20%,
     #ffffff1f,
     #ffffff1f
   );
   background: linear-gradient(
     #e8edffe6,
-    #effeffe6 50%,
+    #effeffe6 20%,
     #ffffff1f,
     #ffffff1f
   ) !important;
@@ -483,5 +483,8 @@ export default {
 }
 .bg-light {
   background-color: #f4f6f7;
+}
+.section-title .title {
+  font-size: 50px !important;
 }
 </style>

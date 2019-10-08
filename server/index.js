@@ -1,12 +1,12 @@
 const express = require('express')
 const consola = require('consola')
 const cors = require('cors')
-const { Nuxt, Builder } = require('nuxt')
+const { Nuxt, Builder } = require('nuxt-edge')
 const app = express()
 
 // Import and Set Nuxt.js options
-let config = require('../nuxt.config.js')
-config.dev = !(process.env.NODE_ENV === 'production')
+const config = require('../nuxt.config.js')
+config.dev = process.env.NODE_ENV !== 'production'
 
 async function start() {
   // Init Nuxt.js
