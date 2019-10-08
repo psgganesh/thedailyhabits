@@ -1,22 +1,33 @@
-# atomichabits
+# Atomichabits
+Habit tracker which uses aggregation of marginal gains at the system level.
 
-> My cat&#39;s meow Nuxt.js project
+## Inspiration
+Inspired by the [Atomic habits book by James Clear](https://jamesclear.com/atomic-habits)
 
-## Build Setup
+## What it does
+A individual private workspace to log your habits to build upon, to log your habits to get rid off. Secure data using blockchain technology to ensure privacy of your journal and keep track of your activities in a non-intrusive private space over blockchain, powered by Blockstack and Gaia.
 
-``` bash
-# install dependencies
-$ yarn install
+## How I built it
+- Nuxt JS to build the whole app
+- Blockstack for authentication
+- Gaia for storage
+- Express JS for server
+- CORS using express JS
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## Challenges I ran into
+- State storing using Vuex's - and autosave on Gaia
+- Displaying the habits as per date and timezone
+- Retaining stats for each habit
+- Layouting the whole habit dashboard 
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## Accomplishments that I'm proud of
+- Integrating front-end and back-end a build an amazing Dapp
+- Completed the app as planned
 
-# generate static project
-$ yarn generate
-```
+## What I learned
+- How Gaia storage engine works
+- How Blockstack authentication works
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## What's next for AtomicHabits
+- Sub-domain routing - user specific
+- Storing data apart from JSON formats
