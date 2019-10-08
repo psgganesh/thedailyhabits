@@ -442,6 +442,10 @@ export default {
 </script>
 
 <style>
+*,
+body {
+  font-family: Merriweather Sans, sans-serif !important;
+}
 .header-hero .header-content .text {
   color: #0067f4 !important;
 }
@@ -486,5 +490,6 @@ export default {
 }
 .section-title .title {
   font-size: 50px !important;
+  font-family: Merriweather Sans, sans-serif !important;
 }
 </style>

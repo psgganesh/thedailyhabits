@@ -67,7 +67,7 @@ module.exports = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/sass/variables.scss'],
     theme: {
       light: true,
       themes: {
