@@ -421,7 +421,10 @@ export default {
   name: "landing",
   layout: "simple",
   head() {
-    title: "getatomichabits - Habit tracker which uses aggregation of marginal gains at the system level";
+    return {
+      title:
+        "getatomichabits - Habit tracker which uses aggregation of marginal gains at the system level"
+    };
   },
   computed: mapGetters(["isAuthenticated", "loggedUser"]),
   beforeMount() {
