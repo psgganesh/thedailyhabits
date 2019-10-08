@@ -1,7 +1,7 @@
 {
   "name": "atomichabits",
   "version": "1.0.0",
-  "description": "My cat&#39;s meow Nuxt.js project",
+  "description": "Habit tracker which uses aggregation of marginal gains at the system level.",
   "author": "Shankar",
   "private": true,
   "scripts": {
