@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - atomichabits',
+    titleTemplate: 'atomichabits',
     title: 'getatomichabits - Habit tracker which uses aggregation of marginal gains at the system level',
     meta: [
       { charset: 'utf-8' },

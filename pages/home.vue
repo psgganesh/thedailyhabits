@@ -36,7 +36,7 @@ export default {
 
 <style>
 html {
-  font-size: inherit;
+  font-size: inherit !important;
 }
 body {
   background: #000000 url("/backgrounds/photo-1564359732441-c879d1a16c49.jpg");
