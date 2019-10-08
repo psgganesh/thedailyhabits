@@ -2,7 +2,7 @@ import moment from 'moment';
 import { categories } from '~/utils/schema';
 import { categoriesData, activityData, questionsData } from '~/utils/templateData';
 
-var STORAGE_FILE = 'atomicHabitsDataTemp3.json'
+var STORAGE_FILE = 'atomic-habits-data-dino-build.json'
 
 export const state = () => ({
   atomicHabitsData: [],
@@ -52,16 +52,17 @@ export const mutations = {
   },
   LOAD_WORKSPACE(state, blockstackData) {
     state.loading = true;
-    let workspaceData = JSON.parse(blockstackData)
+    let workspaceData = JSON.parse(blockstackData);
 
     // SETTING USER DATA
-    state.userData = workspaceData.userData
+    state.userData = workspaceData.userData;
 
     // SETTING PREFERENCES DATA
-    state.preferences = workspaceData.preferences
+    state.preferences = workspaceData.preferences;
 
     // SETTING HABITS DATA
-    let habitsData = workspaceData.habitsData
+    let habitsData = workspaceData.habitsData;
+    state.atomicHabitsData = habitsData;
     habitsData.map((atom) => {
       if (
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
@@ -169,10 +170,10 @@ export const actions = {
     try {
       commit('SET_LOADING_STATE', true);
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
-        if (responseData.length > 0) {
+        if (responseData && responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
-          commit('SET_LOADING_STATE', false);
         }
+        commit('SET_LOADING_STATE', false);
       });
 
     } catch (e) {
