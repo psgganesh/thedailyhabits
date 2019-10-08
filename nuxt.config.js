@@ -1,4 +1,5 @@
-const colors = require('vuetify/es5/util/colors').default
+const pkg = require('./package');
+const colors = require('vuetify/es5/util/colors').default;
 
 module.exports = {
   mode: 'spa',
@@ -6,8 +7,8 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - ' + pkg.name,
+    title: pkg.name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
