@@ -448,8 +448,7 @@ export default {
 </script>
 
 <style>
-*,
-body {
+#main {
   font-family: Merriweather Sans, sans-serif !important;
 }
 .header-hero .header-content .text {
