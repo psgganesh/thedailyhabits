@@ -28,8 +28,8 @@
     <template>
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
-          <v-card-title class="headline">Use Google's location service?</v-card-title>
-          <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+          <v-card-title class="headline">Reset all of your habit data?</v-card-title>
+          <v-card-text>If you agree, all your habit lists will be cleared and you will have an empty canvas. This action is irreversable, are you sure you would want to conitnue?.</v-card-text>
           <v-card-actions>
             <div class="flex-grow-1"></div>
             <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>

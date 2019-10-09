@@ -68,6 +68,17 @@ export const mutations = {
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
       ) {
+        atom.scores.map((score) => {
+          if (moment(score.dated).isSame(state.selectedDate, 'day')) {
+          } else {
+            atom.scores.push({
+              dated: moment(),
+              completed: false, // Boolean
+              skipped: false, // Boolean
+              additional_data: []
+            });
+          }
+        });
         state[atom.parent].push(atom)
       }
     })
@@ -144,6 +155,10 @@ export const mutations = {
       if (obj.id === id) {
         // TRACK TO TODAY'S DATED SCORE
         obj.scores.map((score) => {
+
+          console.log('score.dated ' + score.dated);
+          console.log('state.selectedDate ' + state.selectedDate);
+          console.log(moment(score.dated).isSame(state.selectedDate, 'day'));
           if (moment(score.dated).isSame(state.selectedDate, 'day')) {
             score.skipped = true;
             obj.lastUpdatedOn = moment()

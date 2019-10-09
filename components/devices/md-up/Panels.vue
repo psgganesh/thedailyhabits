@@ -38,7 +38,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in morningHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
             <v-card-title
               class="fill-height align-end black--text white ga-nunito"
               v-text="item.activity"
@@ -68,7 +68,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in afternoonHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
             <v-card-title
               class="fill-height align-end black--text white ga-nunito"
               v-text="item.activity"
@@ -98,7 +98,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="todoActionButtonsState(item)">
+          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
             <v-card-title
               class="fill-height align-end black--text white ga-nunito"
               v-text="item.activity"
@@ -186,35 +186,30 @@ export default {
     skipTodo(habit) {
       this.$store.dispatch("skipTodo", habit);
     },
-    todoActionButtonsState(habit) {
-      var status = "hidden";
-      habit.scores.map(score => {
-        if (moment(score.dated).isSame(this.$store.state.selectedDate, "day")) {
-          status = score.completed
-            ? "completed"
-            : score.skipped
-            ? "skipped"
-            : "";
-        }
-      });
-      return status === "completed"
-        ? "hidden"
-        : status === "skipped"
-        ? "crumble"
-        : status === "hidden"
-        ? "hidden"
-        : "";
+    cardState(habit) {
+      let status = "hidden";
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+
+      // If it is same or before expiry date
+      if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
+        // If it is today
+        status = this.today.isSame(currentSelectedDate, "day")
+          ? "visible"
+          : "hidden";
+      }
+
+      return status;
     },
     skipTaskClass(habit) {
-      var status = "";
+      var todaysSkippedState = false;
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
       habit.scores.map(score => {
-        if (moment(score.dated).isSame(this.$store.state.selectedDate, "day")) {
-          status = score.skipped;
+        if (this.today.isSame(currentSelectedDate, "day")) {
+          todaysSkippedState = score.skipped;
         }
       });
-      return status ? "hidden" : "";
-    },
-    actionClassStatus() {}
+      return todaysSkippedState ? "skipped" : "";
+    }
   }
 };
 </script>
