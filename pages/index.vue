@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="hidden">
+  <div id="main" :class="pageClass">
     <!-- <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -16,7 +16,7 @@
     <!-- <meta name="msapplication-TileColor" content="#ffffff"> -->
     <!-- <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"> -->
     <!-- <meta name="theme-color" content="#ffffff"> -->
-    <link rel="stylesheet" href="frontend.css" />
+    <!-- <link rel="stylesheet" href="frontend.css" /> -->
 
     <!--====== HEADER PART START ======-->
     <header class="header-area">
@@ -411,7 +411,7 @@
 
     <!--====== FOOTER PART ENDS ======-->
 
-    <script src="frontend.js"></script>
+    <!-- <script src="frontend.js"></script> -->
   </div>
 </template>
 
@@ -420,13 +420,15 @@ import { mapGetters } from "vuex";
 export default {
   name: "landing",
   layout: "simple",
-  head() {
+  data: () => {
     return {
-      title:
-        "getatomichabits - Habit tracker which uses aggregation of marginal gains at the system level"
+      pageClass: "d-none"
     };
   },
   computed: mapGetters(["isAuthenticated", "loggedUser"]),
+  created() {
+    this.pageClass = "d-block";
+  },
   beforeMount() {
     if (this.loggedUser.isUserSignedIn()) {
       this.redirectLoggedInUser();
@@ -446,55 +448,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#main {
-  font-family: Merriweather Sans, sans-serif !important;
-}
-.header-hero .header-content .text {
-  color: #0067f4 !important;
-}
-.header-hero::before {
-  background: -webkit-linear-gradient(
-    #e8edffe6,
-    #effeffe6 20%,
-    #ffffff1f,
-    #ffffff1f
-  );
-  background: -o-linear-gradient(
-    #e8edffe6,
-    #effeffe6 20%,
-    #ffffff1f,
-    #ffffff1f
-  );
-  background: linear-gradient(
-    #e8edffe6,
-    #effeffe6 20%,
-    #ffffff1f,
-    #ffffff1f
-  ) !important;
-}
-.header-hero .header-content .header-btn li a.main-btn.btn-one::before {
-  background: url("/images/blockstack.png") left no-repeat !important;
-  background-size: contain !important;
-}
-.header-hero .header-content .header-btn li a.main-btn {
-  width: -webkit-fill-available !important;
-  padding-left: 55px !important;
-  background-color: #1f1f6c !important;
-}
-.btn-one {
-  border: 5px solid !important;
-}
-.padded {
-  padding-top: 120px;
-  padding-bottom: 120px;
-}
-.bg-light {
-  background-color: #f4f6f7;
-}
-.section-title .title {
-  font-size: 50px !important;
-  font-family: Merriweather Sans, sans-serif !important;
-}
-</style>

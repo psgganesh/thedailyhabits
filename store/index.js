@@ -68,19 +68,22 @@ export const mutations = {
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
       ) {
-        // FLAG !! BASED ON NUMBER OF DAYS ADDED FROM THE START DATE OF THIS HABIT
-        let scoresAddedCount = atom.scores.length;
-        let scoresStartFromDate = moment(atom.startsFrom);
-        let diffInDays = moment().diff(scoresStartFromDate, 'days');
 
-        if (diffInDays > scoresAddedCount) {
-          console.log("add a day");
-          atom.scores.push({
-            dated: moment(),
-            completed: false, // Boolean
-            skipped: false, // Boolean
-            additional_data: []
-          });
+        if (moment(atom.scores[0].dated).isSame(state.selectedDate, 'day')) {
+          // FLAG !! BASED ON NUMBER OF DAYS ADDED FROM THE START DATE OF THIS HABIT
+          let scoresAddedCount = atom.scores.length;
+          let scoresStartFromDate = moment(atom.startsFrom);
+          let diffInDays = moment().diff(scoresStartFromDate, 'days');
+
+          if (diffInDays > scoresAddedCount) {
+            console.log("add a day");
+            atom.scores.push({
+              dated: moment(),
+              completed: false, // Boolean
+              skipped: false, // Boolean
+              additional_data: []
+            });
+          }
         }
 
         state[atom.parent].push(atom)

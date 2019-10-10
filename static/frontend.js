@@ -115,39 +115,40 @@ $(document).ready(function() {
     
     //===== Prealoder
     
-    $(window).on('load', function(event) {
-        $('#preloader').delay(500).fadeOut(500);
-    });
+    // $(window).on('load', function(event) {
+    //     $("#main").delay(30000).removeClass("hidden").addClass("visible");
+    //     $('#preloader').delay(30000).fadeIn(20000);
+    // });
     
     
     //===== Mobile Menu 
     
-    $(".navbar-toggler").on('click', function() {
-        $(this).toggleClass('active');
-    });
+    // $(".navbar-toggler").on('click', function() {
+    //     $(this).toggleClass('active');
+    // });
     
-    $(".navbar-nav a").on('click', function() {
-        $(".navbar-toggler").removeClass('active');
-    });
+    // $(".navbar-nav a").on('click', function() {
+    //     $(".navbar-toggler").removeClass('active');
+    // });
     
     
     //===== close navbar-collapse when a  clicked
     
-    $(".navbar-nav a").on('click', function () {
-        $(".navbar-collapse").removeClass("show");
-    });
+    // $(".navbar-nav a").on('click', function () {
+    //     $(".navbar-collapse").removeClass("show");
+    // });
     
     
     //===== Sticky
     
-    $(window).on('scroll',function(event) {    
-        var scroll = $(window).scrollTop();
-        if (scroll < 10) {
-            $(".navgition").removeClass("sticky");
-        }else{
-            $(".navgition").addClass("sticky");
-        }
-    });
+    // $(window).on('scroll',function(event) {    
+    //     var scroll = $(window).scrollTop();
+    //     if (scroll < 10) {
+    //         $(".navgition").removeClass("sticky");
+    //     }else{
+    //         $(".navgition").addClass("sticky");
+    //     }
+    // });
     
     
     //===== Section Menu Active
@@ -171,10 +172,10 @@ $(document).ready(function() {
     
     //====== Magnific Popup
     
-    $('.video-popup').magnificPopup({
-        type: 'iframe'
-        // other options
-    });
+    // $('.video-popup').magnificPopup({
+    //     type: 'iframe'
+    //     // other options
+    // });
     
     
     //===== Back to top
@@ -200,6 +201,6 @@ $(document).ready(function() {
     
     
     //===== 
-    $("#main").removeClass("hidden").addClass("visible")
+    // $("#main").removeClass("hidden").addClass("visible")
 
 });
