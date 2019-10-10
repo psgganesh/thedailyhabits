@@ -68,17 +68,21 @@ export const mutations = {
         moment(state.selectedDate).isSameOrAfter(atom.startsFrom, 'day') &&
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
       ) {
-        atom.scores.map((score) => {
-          if (moment(score.dated).isSame(state.selectedDate, 'day')) {
-          } else {
-            atom.scores.push({
-              dated: moment(),
-              completed: false, // Boolean
-              skipped: false, // Boolean
-              additional_data: []
-            });
-          }
-        });
+        // FLAG !! BASED ON NUMBER OF DAYS ADDED FROM THE START DATE OF THIS HABIT
+        let scoresAddedCount = atom.scores.length;
+        let scoresStartFromDate = moment(atom.startsFrom);
+        let diffInDays = moment().diff(scoresStartFromDate, 'days');
+
+        if (diffInDays > scoresAddedCount) {
+          console.log("add a day");
+          atom.scores.push({
+            dated: moment(),
+            completed: false, // Boolean
+            skipped: false, // Boolean
+            additional_data: []
+          });
+        }
+
         state[atom.parent].push(atom)
       }
     })
@@ -187,6 +191,7 @@ export const actions = {
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData && responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
+          commit('SAVE_WORKSPACE');
         }
         commit('SET_LOADING_STATE', false);
       });
