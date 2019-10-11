@@ -29,34 +29,34 @@ export function categoriesData() {
       iconClass: "cyan darken-4 white--text",
       count: 9
     },
-    {
-      icon: "mdi-briefcase",
-      title: "Work & Study",
-      slug: "work_study",
-      iconClass: "blue accent-4 white--text",
-      count: 6
-    },
-    {
-      icon: "mdi-music",
-      title: "Household",
-      slug: "household",
-      iconClass: "teal darken-4 white--text",
-      count: 6
-    },
-    {
-      icon: "mdi-circle-expand",
-      title: "Me time",
-      slug: "me_time",
-      iconClass: "pink darken-4 white--text",
-      count: 7
-    },
-    {
-      icon: "mdi-octagram",
-      title: "General",
-      slug: "general",
-      iconClass: "brown darken-4 white--text",
-      count: 4
-    }
+    // {
+    //   icon: "mdi-briefcase",
+    //   title: "Work & Study",
+    //   slug: "work_study",
+    //   iconClass: "blue accent-4 white--text",
+    //   count: 6
+    // },
+    // {
+    //   icon: "mdi-music",
+    //   title: "Household",
+    //   slug: "household",
+    //   iconClass: "teal darken-4 white--text",
+    //   count: 6
+    // },
+    // {
+    //   icon: "mdi-circle-expand",
+    //   title: "Me time",
+    //   slug: "me_time",
+    //   iconClass: "pink darken-4 white--text",
+    //   count: 7
+    // },
+    // {
+    //   icon: "mdi-octagram",
+    //   title: "General",
+    //   slug: "general",
+    //   iconClass: "brown darken-4 white--text",
+    //   count: 4
+    // }
   ]
 }
 
@@ -181,6 +181,56 @@ export function activityData() {
         slug: "others",
         iconClass: "blue-grey accent-4 white--text"
       },
+    ],
+    "skills": [
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Music",
+        slug: "music",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Dance",
+        slug: "dance",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Painting",
+        slug: "painting",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Photography",
+        slug: "photography",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Technology",
+        slug: "technology",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Research",
+        slug: "research",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      // {
+      //   icon: "mdi-checkbox-blank-circle-outline",
+      //   title: "Communication",
+      //   slug: "communication",
+      //   iconClass: "blue-grey accent-4 white--text"
+      // },
+      // {
+      //   icon: "mdi-checkbox-blank-circle-outline",
+      //   title: "Cooking",
+      //   slug: "cooking",
+      //   iconClass: "blue-grey accent-4 white--text"
+      // }
     ]
   }
 }
@@ -194,7 +244,7 @@ export function questionsData() {
     ],
     eat_breakfast: [
       {
-        option: "I will have a heavy breakfast daily"
+        option: "I will have my breakfast daily"
       }
     ],
     drink_water: [
@@ -272,12 +322,93 @@ export function questionsData() {
     ],
     practice_exercise: [
       {
-        option: "I will practice exercise daily"
+        option: "I will exercise daily"
       }
     ],
     practice_yoga: [
       {
         option: "I will practice yoga daily"
+      }
+    ],
+    smoking: [
+      {
+        option: "I will not smoke today"
+      },
+      {
+        option: "I will reduce smoking by 2 cigarettes today"
+      },
+      {
+        option: "I will reduce smoking by 1 cigarette today"
+      }
+    ],
+    alcohol: [
+      {
+        option: "I will not consume alcohol today"
+      },
+    ],
+    oversleeping: [
+      {
+        option: "I will sleep only for 6 hours today"
+      },
+      {
+        option: "I will sleep only for 7 hours today"
+      }
+    ],
+    others: [
+      {
+        option: "others",
+        custom: true
+      }
+    ],
+    music: [
+      {
+        option: "I will practice classical music daily"
+      },
+      {
+        option: "I will practice western music daily"
+      },
+      {
+        option: "I will practice instrumental music daily"
+      }
+    ],
+    dance: [
+      {
+        option: "I will practice classical dance daily"
+      },
+      {
+        option: "I will practice western dance daily"
+      }
+    ],
+    painting: [
+      {
+        option: "I will practice painting daily"
+      }
+    ],
+    photography: [
+      {
+        option: "I will practice photography daily"
+      }
+    ],
+    technology: [
+      {
+        option: "I will learn a new topic about basic computers daily"
+      },
+      {
+        option: "I will learn program coding daily"
+      },
+      {
+        option: "I will learn a article artificial intelligence daily"
+      }
+    ],
+    research: [
+      {
+        option: "I will read a research paper daily"
+      },
+      {
+        option: "I will finish a paragraph / article on my research paper daily"
+      },
+      {
+        option: "I will read a statistical article daily"
       }
     ],
   }
