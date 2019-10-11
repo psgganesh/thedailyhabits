@@ -154,7 +154,7 @@ export default {
           });
         });
       }
-      return totalCount.length > 0 ? arrSum(totalCount) : 0;
+      return totalCount.length > 0 ? arrSum(totalCount) : "";
     },
 
     // DISABLED THIS FEATURE FOR NOW

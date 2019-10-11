@@ -16,6 +16,7 @@
             prepend-icon="event"
             :light="theme.light"
             :dark="theme.dark"
+            disabled
           ></v-text-field>
         </template>
         <v-date-picker v-model="currentDate" @change="chooseDate()"></v-date-picker>
@@ -44,7 +45,7 @@ export default {
   data: () => {
     return {
       datepickerMenu: false,
-      currentDate: new Date().toISOString().substr(0, 10)
+      currentDate: new Date(moment()).toString().substr(0, 15)
     };
   },
   methods: {

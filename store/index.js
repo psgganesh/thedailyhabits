@@ -9,7 +9,7 @@ export const state = () => ({
   loading: false,
   drawer: null,
   selectedListitem: 0,
-  selectedDate: new Date().toISOString().substr(0, 10),
+  selectedDate: new Date(),
   theme: {
     dark: true,
     light: false
@@ -69,21 +69,21 @@ export const mutations = {
         moment(state.selectedDate).isBefore(atom.endsOn, 'day')
       ) {
 
-        if (moment(atom.scores[0].dated).isSame(state.selectedDate, 'day')) {
+        if (!moment(atom.scores[atom.scores.length - 1].dated).isSame(state.selectedDate, 'day')) {
           // FLAG !! BASED ON NUMBER OF DAYS ADDED FROM THE START DATE OF THIS HABIT
           let scoresAddedCount = atom.scores.length;
           let scoresStartFromDate = moment(atom.startsFrom);
           let diffInDays = moment().diff(scoresStartFromDate, 'days');
 
-          if (diffInDays > scoresAddedCount) {
-            console.log("add a day");
-            atom.scores.push({
-              dated: moment(),
-              completed: false, // Boolean
-              skipped: false, // Boolean
-              additional_data: []
-            });
-          }
+          // if (diffInDays > scoresAddedCount - 1) {
+          // console.log("add a day");
+          atom.scores.push({
+            dated: state.selectedDate,
+            completed: false, // Boolean
+            skipped: false, // Boolean
+            additional_data: []
+          });
+          // }
         }
 
         state[atom.parent].push(atom)
@@ -207,12 +207,7 @@ export const actions = {
   createHabit({ commit }, params) {
     try {
       commit('CREATE_NEW_HABIT', params);
-      if (state.autoSave) {
-        if (state.autoSaveRequestcount % 2 === 0) {
-          commit('SAVE_WORKSPACE');
-        }
-        state.autoSaveRequestcount++;
-      }
+      commit('SAVE_WORKSPACE');
     } catch (e) {
       console.log("Could not create new habit");
     }
