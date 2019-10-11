@@ -69,6 +69,7 @@
                         label="Start date"
                         readonly
                         solo
+                        disabled
                         v-on="on"
                         prepend-inner-icon="mdi-calendar"
                       ></v-text-field>

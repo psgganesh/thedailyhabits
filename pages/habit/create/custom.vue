@@ -60,6 +60,7 @@
                       <v-text-field
                         :value="computedDateFormattedMomentjs"
                         label="Start date"
+                        disabled
                         readonly
                         solo
                         v-on="on"
