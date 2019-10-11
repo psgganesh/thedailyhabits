@@ -71,19 +71,19 @@ export const mutations = {
 
         if (!moment(atom.scores[atom.scores.length - 1].dated).isSame(state.selectedDate, 'day')) {
           // FLAG !! BASED ON NUMBER OF DAYS ADDED FROM THE START DATE OF THIS HABIT
-          let scoresAddedCount = atom.scores.length;
+          let scoresAddedCount = atom.scores.length - 1;
           let scoresStartFromDate = moment(atom.startsFrom);
           let diffInDays = moment().diff(scoresStartFromDate, 'days');
 
-          // if (diffInDays > scoresAddedCount - 1) {
-          // console.log("add a day");
-          atom.scores.push({
-            dated: state.selectedDate,
-            completed: false, // Boolean
-            skipped: false, // Boolean
-            additional_data: []
-          });
-          // }
+          if (diffInDays > scoresAddedCount) {
+            // console.log("add a day");
+            atom.scores.push({
+              dated: state.selectedDate,
+              completed: false, // Boolean
+              skipped: false, // Boolean
+              additional_data: []
+            });
+          }
         }
 
         state[atom.parent].push(atom)
@@ -162,15 +162,11 @@ export const mutations = {
       if (obj.id === id) {
         // TRACK TO TODAY'S DATED SCORE
         obj.scores.map((score) => {
-
-          console.log('score.dated ' + score.dated);
-          console.log('state.selectedDate ' + state.selectedDate);
-          console.log(moment(score.dated).isSame(state.selectedDate, 'day'));
           if (moment(score.dated).isSame(state.selectedDate, 'day')) {
             score.skipped = true;
-            obj.lastUpdatedOn = moment()
           }
         });
+        obj.lastUpdatedOn = moment();
       }
     });
   },

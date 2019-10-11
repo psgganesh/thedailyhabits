@@ -188,6 +188,8 @@ export default {
     },
     cardState(habit) {
       let status = "hidden";
+      let isSkipped = false;
+      let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
       // If it is same or before expiry date
@@ -198,15 +200,36 @@ export default {
           : "hidden";
       }
 
+      habit.scores.map(score => {
+        habit.scores.map(score => {
+          if (
+            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
+          ) {
+            isCompleted = score.completed;
+            isSkipped = score.skipped;
+          }
+        });
+      });
+
+      if (isCompleted) {
+        return "hidden";
+      } else if (isSkipped) {
+        return "crumble";
+      }
+
       return status;
     },
     skipTaskClass(habit) {
       var todaysSkippedState = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
       habit.scores.map(score => {
-        if (this.today.isSame(currentSelectedDate, "day")) {
-          todaysSkippedState = score.skipped;
-        }
+        habit.scores.map(score => {
+          if (
+            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
+          ) {
+            todaysSkippedState = score.skipped;
+          }
+        });
       });
       return todaysSkippedState ? "skipped" : "";
     }

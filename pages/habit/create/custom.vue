@@ -74,7 +74,6 @@
                     :items="items"
                     :item-value="minDaysToRepeatValue"
                     label="Choose, number of days to repeat"
-                    dense
                     solo
                     prepend-inner-icon="mdi-repeat"
                     @change="selectSchedule()"

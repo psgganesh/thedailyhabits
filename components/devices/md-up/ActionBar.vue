@@ -65,3 +65,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.selectDate .v-icon--disabled {
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+.selectDate .theme--dark.v-input--is-disabled input {
+  color: #ffffff !important;
+}
+</style>
