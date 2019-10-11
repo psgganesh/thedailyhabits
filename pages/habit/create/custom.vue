@@ -54,7 +54,7 @@
                     label="Example: I would run 10k steps everyday."
                   ></v-textarea>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="12" class="d-none">
                   <v-menu v-model="datepickerMenu" :close-on-content-click="false" max-width="290">
                     <template v-slot:activator="{ on }">
                       <v-text-field
@@ -70,7 +70,7 @@
                     <v-date-picker v-model="startsFromDate" @change="datepickerMenu = false"></v-date-picker>
                   </v-menu>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="12">
                   <v-select
                     :items="items"
                     :item-value="minDaysToRepeatValue"
