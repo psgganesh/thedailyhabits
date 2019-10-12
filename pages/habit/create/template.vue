@@ -49,7 +49,7 @@
                   class="outlined mb-2 select-option"
                   @click="selectOption(question)"
                 >
-                  <template v-if="question.option.custom">
+                  <template v-if="question.option.custom === true">
                     <v-list-item-content>
                       <v-row>
                         <v-col cols="12">
@@ -169,7 +169,7 @@ export default {
     },
     selectOption(question) {
       if (question !== null) {
-        if (question.custom) {
+        if (question.custom === true) {
           this.selectedMessageOption = this.customQuestionOption;
         } else {
           this.selectedMessageOption = question.option;
@@ -203,6 +203,7 @@ export default {
       habit.createdOn = moment(); // date when task was created on
       habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
       this.$store.dispatch("createHabit", habit);
+      this.customQuestionOption = null;
       this.$router.push({ name: "home" });
     }
   },
