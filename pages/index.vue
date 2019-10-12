@@ -47,17 +47,17 @@
                   <span>FOLLOW US</span>
                   <ul>
                     <li>
-                      <a href="https://www.facebook.com/atomichabitsdapp" target="_blank">
+                      <a href="https://www.facebook.com/thedailyhabits/" target="_blank">
                         <i class="lni-facebook-filled"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://twitter.com/getatomichabits" target="_blank">
+                      <a href="https://twitter.com/thedailyhabits/" target="_blank">
                         <i class="lni-twitter-original"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/getatomichabits/" target="_blank">
+                      <a href="https://www.instagram.com/the_daily_habits/" target="_blank">
                         <i class="lni-instagram-original"></i>
                       </a>
                     </li>
@@ -244,44 +244,6 @@
 
     <!--====== UPCOMING FEATURES PART START ======-->
 
-    <!--====== INSPIRATION PART START ======-->
-    <!-- <section id="inspiration" class="padded">
-      <div class="container">
-        <div class="row pb-30">
-          <div class="col-lg-12">
-            <div class="section-title pb-10 text-center">
-              <h4 class="title">Questions on habit building ?</h4>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <a href="https://jamesclear.com/atomic-habits" target="_blank">
-              <img src="images/atomichabitsbook.png" alt="Atomic habits by James Clear" />
-            </a>
-          </div>
-          <div class="col-lg-8 text-center">
-            <blockquote style="margin-top: 40px;">
-              getatomichabits app is based on the learnings from one of the best self-help book
-              <a
-                href="https://jamesclear.com/atomic-habits"
-                target="_blank"
-              >"Atomic habits"</a> written by
-              <a href="https://jamesclear.com/atomic-habits" target="_blank">James Clear</a>.
-              <br />
-              <br />Feel free to glance through the book which can be helpful in building and tracking your habits on the go.
-            </blockquote>
-            <br />
-            <br />
-            <blockquote
-              class="warning"
-            >This website is not directly or indirectly affiliated to the original works of the book "Atomic Habits" by James Clear.</blockquote>
-          </div>
-        </div>
-      </div>
-    </section>-->
-    <!--====== INSPIRATION PART ENDS ======-->
-
     <!--====== FOOTER PART START ======-->
 
     <footer id="footer" class="footer-area">
@@ -295,17 +257,17 @@
                   <span class="ga-pacifico logo-title">thedailyhabits</span>
                   <ul class="social mt-30">
                     <li>
-                      <a href="https://www.facebook.com/atomichabitsdapp" target="_blank">
+                      <a href="https://www.facebook.com/thedailyhabits/" target="_blank">
                         <i class="lni-facebook-filled"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://twitter.com/getatomichabits" target="_blank">
+                      <a href="https://twitter.com/thedailyhabits/" target="_blank">
                         <i class="lni-twitter-original"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/getatomichabits/" target="_blank">
+                      <a href="https://www.instagram.com/the_daily_habits/" target="_blank">
                         <i class="lni-instagram-original"></i>
                       </a>
                     </li>
