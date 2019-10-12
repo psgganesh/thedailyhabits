@@ -47,9 +47,8 @@
                   :key="question.id"
                   three-line
                   class="outlined mb-2 select-option"
-                  @click="selectOption(question)"
                 >
-                  <template v-if="question.option.custom === true">
+                  <template v-if="question.custom === true">
                     <v-list-item-content>
                       <v-row>
                         <v-col cols="12">
@@ -62,13 +61,15 @@
                             name="input-7-4"
                             v-model="customQuestionOption"
                             label="Example: I will ______ daily."
+                            @keyup.enter.exact="selectOption(question)"
+                            hint="Press enter to move to next step"
                           ></v-textarea>
                         </v-col>
                       </v-row>
                     </v-list-item-content>
                   </template>
                   <template v-else>
-                    <v-list-item-content>
+                    <v-list-item-content @click="selectOption(question)">
                       <v-list-item-title class="subtitle-2 text--black">{{ question.option }}</v-list-item-title>
                     </v-list-item-content>
                   </template>
