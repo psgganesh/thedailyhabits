@@ -26,7 +26,9 @@
             <div class="col-lg-12">
               <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">
-                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" />
+                  <!-- <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" /> -->
+                  <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
+                  <span class="ga-pacifico logo-title">getatomichabits</span>
                 </a>
 
                 <button
@@ -98,7 +100,7 @@
                 <h3 class="header-title">Privacy Centric Habits Journal</h3>
                 <p
                   class="text"
-                >Atomichabits lets you keep a journal of your habits and track them within your very own secure de-centralized and blockchain</p>
+                >Keep a journal of your habits and track them within your very own secure de-centralized and blockchain</p>
                 <ul class="header-btn">
                   <li>
                     <a class="main-btn btn-one" href="#" @click="signIn">Login with blockstack</a>
@@ -279,7 +281,7 @@
           </div>
           <div class="col-lg-8 text-center">
             <blockquote style="margin-top: 40px;">
-              Atomichabits app is based on the learnings from one of the best self-help book
+              getatomichabits app is based on the learnings from one of the best self-help book
               <a
                 href="https://jamesclear.com/atomic-habits"
                 target="_blank"
@@ -308,7 +310,9 @@
             <div class="col-lg-12">
               <div class="footer-logo-support d-md-flex align-items-end justify-content-between">
                 <div class="footer-logo d-flex align-items-end">
-                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" />
+                  <!-- <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" /> -->
+                  <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
+                  <span class="ga-pacifico logo-title">getatomichabits</span>
                   <ul class="social mt-30">
                     <li>
                       <a href="https://www.facebook.com/atomichabitsdapp" target="_blank">
@@ -398,7 +402,7 @@
             <div class="col-lg-12">
               <div class="copyright text-center">
                 <p class="text">
-                  Atomic Habits 2019 :: Powered by
+                  getatomichabits 2019 :: Powered by
                   <a
                     rel="nofollow"
                     class="white--text"
@@ -455,6 +459,9 @@ export default {
 </script>
 
 <style>
+.logo-title {
+  color: #000000;
+}
 .warning {
   padding: 15px;
   background-color: #ffce70;
