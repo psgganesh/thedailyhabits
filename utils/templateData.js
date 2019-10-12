@@ -219,18 +219,48 @@ export function activityData() {
         slug: "research",
         iconClass: "blue-grey accent-4 white--text"
       },
-      // {
-      //   icon: "mdi-checkbox-blank-circle-outline",
-      //   title: "Communication",
-      //   slug: "communication",
-      //   iconClass: "blue-grey accent-4 white--text"
-      // },
-      // {
-      //   icon: "mdi-checkbox-blank-circle-outline",
-      //   title: "Cooking",
-      //   slug: "cooking",
-      //   iconClass: "blue-grey accent-4 white--text"
-      // }
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Communication",
+        slug: "communication",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Cooking",
+        slug: "cooking",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Film Making",
+        slug: "film_making",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Work & Study",
+        slug: "work_study",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Household",
+        slug: "household",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Me Time",
+        slug: "me_time",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "General",
+        slug: "general",
+        iconClass: "blue-grey accent-4 white--text"
+      },
     ]
   }
 }
@@ -411,5 +441,133 @@ export function questionsData() {
         option: "I will read a statistical article daily"
       }
     ],
+    communication: [
+      {
+        option: "I will learn about a new word daily"
+      },
+      {
+        option: "I will practice written communication daily"
+      },
+      {
+        option: "I will practice verbal communication daily"
+      }
+    ],
+    cooking: [
+      {
+        option: "I will cook a new Indian dish daily"
+      },
+      {
+        option: "I will cook a new Chinese dish daily"
+      },
+      {
+        option: "I will cook a new Mexican dish daily"
+      },
+      {
+        option: "I will cook a new Thai dish daily"
+      },
+      {
+        option: "I will cook a new Italian dish daily"
+      }
+    ],
+    film_making: [
+      {
+        option: "I will watch a new short-film daily"
+      },
+      {
+        option: "I will work on my new short-film daily"
+      },
+      {
+        option: "I will watch a new documentary daily"
+      },
+      {
+        option: "I will work on my new documentary daily"
+      },
+      {
+        option: "I will watch an Ad-film daily"
+      },
+      {
+        option: "I will create a new Ad-film daily"
+      },
+      {
+        option: "I will watch a new youtube video daily"
+      },
+      {
+        option: "I will create a new youtube video daily"
+      }
+    ],
+    work_study: [
+      {
+        option: "I will take an exam daily"
+      },
+      {
+        option: "I will study 1 chapter daily"
+      },
+      {
+        option: "I will make notes of a topic / subject daily"
+      },
+      {
+        option: "I will practice mathematics daily"
+      },
+      {
+        option: "I will plan and work for my deadlines daily"
+      }
+    ],
+    household: [
+      {
+        option: "I will laundry daily"
+      },
+      {
+        option: "I will clean the house daily"
+      },
+      {
+        option: "I will empty garbage daily"
+      },
+      {
+        option: "I will empty mailbox daily"
+      },
+      {
+        option: "I will create / biuy shopping list daily"
+      },
+      {
+        option: "I will vehicle Wash daily"
+      }
+    ],
+    me_time: [
+      {
+        option: "I will cut nails daily"
+      },
+      {
+        option: "I will groom hair daily"
+      },
+      {
+        option: "I will groom beard daily"
+      },
+      {
+        option: "I will visit the spa daily"
+      },
+      {
+        option: "I will salòn daily"
+      },
+      {
+        option: "I will meditation daily"
+      },
+      {
+        option: "I will diary writing daily"
+      }
+    ],
+    general: [
+      {
+        option: "I will check e-mails daily"
+      },
+      {
+        option: "I will to do lists daily"
+      },
+      {
+        option: "I will book keeping daily"
+      },
+      {
+        option: "I will clean workspace daily"
+      }
+    ]
   }
 }

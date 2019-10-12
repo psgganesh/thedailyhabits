@@ -49,9 +49,29 @@
                   class="outlined mb-2 select-option"
                   @click="selectOption(question)"
                 >
-                  <v-list-item-content>
-                    <v-list-item-title class="subtitle-2 text--black">{{ question.option }}</v-list-item-title>
-                  </v-list-item-content>
+                  <template v-if="question.option.custom">
+                    <v-list-item-content>
+                      <v-row>
+                        <v-col cols="12">
+                          <v-textarea
+                            outlined
+                            auto-grow
+                            clear-icon
+                            clearable
+                            solo
+                            name="input-7-4"
+                            v-model="customQuestionOption"
+                            label="Example: I will ______ daily."
+                          ></v-textarea>
+                        </v-col>
+                      </v-row>
+                    </v-list-item-content>
+                  </template>
+                  <template v-else>
+                    <v-list-item-content>
+                      <v-list-item-title class="subtitle-2 text--black">{{ question.option }}</v-list-item-title>
+                    </v-list-item-content>
+                  </template>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
@@ -126,6 +146,7 @@ export default {
       finishButtonDisabledState: true,
       startsFromDate: new Date().toISOString().substr(0, 10),
       minDaysToRepeatValue: "21",
+      customQuestionOption: "",
       endsOn: null,
       items: [
         { text: "Follow / repeat this habit for 21 days", value: "21" },
@@ -146,9 +167,13 @@ export default {
       this.selectedActivity = activity;
       this.wizardStep++;
     },
-    selectOption(option) {
-      if (option !== null) {
-        this.selectedMessageOption = option;
+    selectOption(question) {
+      if (question !== null) {
+        if (question.custom) {
+          this.selectedMessageOption = this.customQuestionOption;
+        } else {
+          this.selectedMessageOption = question.option;
+        }
         this.wizardStep++;
       }
     },
@@ -165,7 +190,7 @@ export default {
     buildHabit() {
       const habit = taskStructure();
       habit.id = uuidv4(); // uuid to be added
-      habit.title = this.selectedMessageOption.option; // task / habit title,
+      habit.title = this.selectedMessageOption; // task / habit title,
       habit.parent = "habits";
       habit.icon = this.selectedCategory.icon;
       habit.iconClass = this.selectedCategory.iconClass;
