@@ -78,7 +78,7 @@
           <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-10">
               <div class="header-content text-center">
-                <h3 class="header-title">A habits journal centred around privacy</h3>
+                <h3 class="header-title">Privacy centric habit journal</h3>
                 <p
                   class="text"
                 >Keep a journal of your habits and track them within your very own secure de-centralized and blockchain</p>
