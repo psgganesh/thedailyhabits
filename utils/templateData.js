@@ -29,34 +29,34 @@ export function categoriesData() {
       iconClass: "cyan darken-4 white--text",
       count: 9
     },
-    // {
-    //   icon: "mdi-briefcase",
-    //   title: "Work & Study",
-    //   slug: "work_study",
-    //   iconClass: "blue accent-4 white--text",
-    //   count: 6
-    // },
-    // {
-    //   icon: "mdi-music",
-    //   title: "Household",
-    //   slug: "household",
-    //   iconClass: "teal darken-4 white--text",
-    //   count: 6
-    // },
-    // {
-    //   icon: "mdi-circle-expand",
-    //   title: "Me time",
-    //   slug: "me_time",
-    //   iconClass: "pink darken-4 white--text",
-    //   count: 7
-    // },
-    // {
-    //   icon: "mdi-octagram",
-    //   title: "General",
-    //   slug: "general",
-    //   iconClass: "brown darken-4 white--text",
-    //   count: 4
-    // }
+    {
+      icon: "mdi-briefcase",
+      title: "Work & Study",
+      slug: "work_study",
+      iconClass: "blue accent-4 white--text",
+      count: 6
+    },
+    {
+      icon: "mdi-music",
+      title: "Household",
+      slug: "household",
+      iconClass: "teal darken-4 white--text",
+      count: 6
+    },
+    {
+      icon: "mdi-circle-expand",
+      title: "Me time",
+      slug: "me_time",
+      iconClass: "pink darken-4 white--text",
+      count: 7
+    },
+    {
+      icon: "mdi-octagram",
+      title: "General",
+      slug: "general",
+      iconClass: "brown darken-4 white--text",
+      count: 4
+    }
   ]
 }
 
@@ -236,31 +236,153 @@ export function activityData() {
         title: "Film Making",
         slug: "film_making",
         iconClass: "blue-grey accent-4 white--text"
-      },
+      }
+    ],
+    "work_study": [
       {
         icon: "mdi-checkbox-blank-circle-outline",
-        title: "Work & Study",
-        slug: "work_study",
+        title: "Take an Exam",
+        slug: "take_an_exam",
         iconClass: "blue-grey accent-4 white--text"
       },
       {
         icon: "mdi-checkbox-blank-circle-outline",
-        title: "Household",
-        slug: "household",
+        title: "Study 1 chapter",
+        slug: "study_1_chapter",
         iconClass: "blue-grey accent-4 white--text"
       },
       {
         icon: "mdi-checkbox-blank-circle-outline",
-        title: "Me Time",
-        slug: "me_time",
+        title: "Write Notes",
+        slug: "write_notes",
         iconClass: "blue-grey accent-4 white--text"
       },
       {
         icon: "mdi-checkbox-blank-circle-outline",
-        title: "General",
-        slug: "general",
+        title: "Practice Math",
+        slug: "practice_math",
         iconClass: "blue-grey accent-4 white--text"
       },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Plan Deadline",
+        slug: "plan_deadline",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Time Management",
+        slug: "time_management",
+        iconClass: "blue-grey accent-4 white--text"
+      }
+    ],
+    "household": [
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Do the laundry",
+        slug: "do_the_laundry",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Clean the house",
+        slug: "clean_the_house",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Empty garbage",
+        slug: "empty_garbage",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Empty mailbox",
+        slug: "empty_mailbox",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Create / buy shopping list",
+        slug: "create_buy_shopping_list",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Vehicle wash",
+        slug: "vehicle_wash",
+        iconClass: "blue-grey accent-4 white--text"
+      }
+    ],
+    "me_time": [
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Cut nails",
+        slug: "cut_nails",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Groom hair",
+        slug: "groom_hair",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Groom beard",
+        slug: "groom_beard",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Visit the spa",
+        slug: "visit_the_spa",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Salòn",
+        slug: "salon",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Meditation",
+        slug: "meditation",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Diary writing",
+        slug: "diary_writing",
+        iconClass: "blue-grey accent-4 white--text"
+      }
+    ],
+    "general": [
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Check e-mails",
+        slug: "check_emails",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "To do lists",
+        slug: "to_do_lists",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Book keeping",
+        slug: "book_keeping",
+        iconClass: "blue-grey accent-4 white--text"
+      },
+      {
+        icon: "mdi-checkbox-blank-circle-outline",
+        title: "Clean workspace",
+        slug: "clean_workspace",
+        iconClass: "blue-grey accent-4 white--text"
+      }
     ]
   }
 }
@@ -495,78 +617,119 @@ export function questionsData() {
         option: "I will create a new youtube video daily"
       }
     ],
-    work_study: [
+    take_an_exam: [
       {
         option: "I will take an exam daily"
-      },
+      }
+    ],
+    study_1_chapter: [
       {
         option: "I will study 1 chapter daily"
-      },
+      }
+    ],
+    write_notes: [
       {
         option: "I will make notes of a topic / subject daily"
-      },
+      }
+    ],
+    practice_math: [
       {
         option: "I will practice mathematics daily"
-      },
+      }
+    ],
+    plan_deadline: [
       {
         option: "I will plan and work for my deadlines daily"
       }
     ],
-    household: [
+    time_management: [
       {
-        option: "I will laundry daily"
-      },
+        option: "I will plan and execute ahead of time to manage time better daily"
+      }
+    ],
+    do_the_laundry: [
+      {
+        option: "I will do the laundry daily"
+      }
+    ],
+    clean_the_house: [
       {
         option: "I will clean the house daily"
-      },
-      {
-        option: "I will empty garbage daily"
-      },
-      {
-        option: "I will empty mailbox daily"
-      },
-      {
-        option: "I will create / biuy shopping list daily"
-      },
-      {
-        option: "I will vehicle Wash daily"
       }
     ],
-    me_time: [
+    empty_garbage: [
+      {
+        option: "I will empty my garbage daily"
+      }
+    ],
+    empty_mailbox: [
+      {
+        option: "I will empty my mailbox daily"
+      }
+    ],
+    create_buy_shopping_list: [
+      {
+        option: "I will create / buy the shopping list items daily"
+      }
+    ],
+    vehicle_wash: [
+      {
+        option: "I will send my vehicle wash daily"
+      }
+    ],
+    cut_nails: [
       {
         option: "I will cut nails daily"
-      },
-      {
-        option: "I will groom hair daily"
-      },
-      {
-        option: "I will groom beard daily"
-      },
-      {
-        option: "I will visit the spa daily"
-      },
-      {
-        option: "I will salòn daily"
-      },
-      {
-        option: "I will meditation daily"
-      },
-      {
-        option: "I will diary writing daily"
       }
     ],
-    general: [
+    groom_hair: [
       {
-        option: "I will check e-mails daily"
-      },
+        option: "I will groom hair daily"
+      }
+    ],
+    groom_beard: [
       {
-        option: "I will to do lists daily"
-      },
+        option: "I will groom beard daily"
+      }
+    ],
+    visit_the_spa: [
       {
-        option: "I will book keeping daily"
-      },
+        option: "I will visit the spa daily"
+      }
+    ],
+    salon: [
       {
-        option: "I will clean workspace daily"
+        option: "I will salòn daily"
+      }
+    ],
+    meditation: [
+      {
+        option: "I will meditation daily"
+      }
+    ],
+    diary_writing: [
+      {
+        option: "I will write about the day on my diary daily"
+      }
+    ],
+    check_emails: [
+      {
+        option: "I will check my e-mails daily"
+      }
+    ],
+    to_do_lists: [
+      {
+        option: "I will create the to do lists daily"
+      }
+    ],
+    book_keeping: [
+      {
+        option: "I will do my book keeping daily"
+      }
+    ],
+    clean_workspace: [
+      {
+        option: "I will clean my workspace daily"
       }
     ]
   }
