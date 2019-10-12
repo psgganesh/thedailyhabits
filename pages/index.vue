@@ -288,6 +288,11 @@
               <br />
               <br />Feel free to glance through the book which can be helpful in building and tracking your habits on the go.
             </blockquote>
+            <br />
+            <br />
+            <blockquote
+              class="warning"
+            >This website is not directly or indirectly affiliated to the original works of the book "Atomic Habits" by James Clear.</blockquote>
           </div>
         </div>
       </div>
@@ -448,3 +453,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.warning {
+  padding: 15px;
+  background-color: #ffce70;
+  border-radius: 4px;
+  border: #000000 1px solid;
+  color: #353433 !important;
+  caret-color: #2196f3 !important;
+  font-size: smaller;
+}
+</style>
