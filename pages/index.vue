@@ -26,9 +26,9 @@
             <div class="col-lg-12">
               <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">
-                  <!-- <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" /> -->
-                  <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
-                  <span class="ga-pacifico logo-title">getatomichabits</span>
+                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" />
+                  <!-- <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
+                  <span class="ga-pacifico logo-title">getatomichabits</span>-->
                 </a>
 
                 <button
@@ -310,9 +310,9 @@
             <div class="col-lg-12">
               <div class="footer-logo-support d-md-flex align-items-end justify-content-between">
                 <div class="footer-logo d-flex align-items-end">
-                  <!-- <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" /> -->
-                  <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
-                  <span class="ga-pacifico logo-title">getatomichabits</span>
+                  <img src="images/atomichabits.svg" alt="Logo" width="200px" height="48px" />
+                  <!-- <img src="images/app-blockstack.png" alt="Logo" width="48px" height="48px" />
+                  <span class="ga-pacifico logo-title">getatomichabits</span>-->
                   <ul class="social mt-30">
                     <li>
                       <a href="https://www.facebook.com/atomichabitsdapp" target="_blank">
