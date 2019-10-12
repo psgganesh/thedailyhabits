@@ -1,8 +1,5 @@
-# Atomichabits
-Habit tracker which uses aggregation of marginal gains at the system level.
-
-## Inspiration
-Inspired by the [Atomic habits book by James Clear](https://jamesclear.com/atomic-habits)
+# The Daily Habits
+A habits journal centred around privacy.
 
 ## What it does
 A individual private workspace to log your habits to build upon, to log your habits to get rid off. Secure data using blockchain technology to ensure privacy of your journal and keep track of your activities in a non-intrusive private space over blockchain, powered by Blockstack and Gaia.
@@ -28,6 +25,6 @@ A individual private workspace to log your habits to build upon, to log your hab
 - How Gaia storage engine works
 - How Blockstack authentication works
 
-## What's next for AtomicHabits
+## What's next for thedailyhabits
 - Sub-domain routing - user specific
 - Storing data apart from JSON formats

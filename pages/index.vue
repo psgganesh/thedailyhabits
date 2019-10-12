@@ -78,7 +78,7 @@
           <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-10">
               <div class="header-content text-center">
-                <h3 class="header-title">Privacy Centric Habits Journal</h3>
+                <h3 class="header-title">A habits journal centred around privacy</h3>
                 <p
                   class="text"
                 >Keep a journal of your habits and track them within your very own secure de-centralized and blockchain</p>
@@ -245,7 +245,7 @@
     <!--====== UPCOMING FEATURES PART START ======-->
 
     <!--====== INSPIRATION PART START ======-->
-    <section id="inspiration" class="padded">
+    <!-- <section id="inspiration" class="padded">
       <div class="container">
         <div class="row pb-30">
           <div class="col-lg-12">
@@ -279,7 +279,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <!--====== INSPIRATION PART ENDS ======-->
 
     <!--====== FOOTER PART START ======-->
@@ -340,13 +340,6 @@
                 <h6 class="footer-title">Community Credits</h6>
                 <ul>
                   <li>
-                    <a
-                      rel="nofollow"
-                      href="https://jamesclear.com/atomic-habits"
-                      target="_blank"
-                    >James Clear's Atomichabits</a>
-                  </li>
-                  <li>
                     <a rel="nofollow" href="https://blockstack.org/" target="_blank">Blockstack.org</a>
                   </li>
                   <li>
@@ -382,7 +375,7 @@
             <div class="col-lg-12">
               <div class="copyright text-center">
                 <p class="text">
-                  getatomichabits 2019 :: Powered by
+                  thedailyhabits.com :: Powered by
                   <a
                     rel="nofollow"
                     class="white--text"

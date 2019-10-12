@@ -1,7 +1,7 @@
 {
-  "name": "atomichabits",
+  "name": "thedailyhabits",
   "version": "1.0.0",
-  "description": "Habit tracker which uses aggregation of marginal gains at the system level.",
+  "description": "A habits journal centred around privacy",
   "author": "Shankar",
   "private": true,
   "scripts": {

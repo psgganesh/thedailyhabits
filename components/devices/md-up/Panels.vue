@@ -4,7 +4,7 @@
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'atomichabits', put: false}"
+        :options="{group:'thedailyhabits', put: false}"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -31,7 +31,7 @@
       <!-- MORNING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="morningHabits"
-        :options="{group:'atomichabits'}"
+        :options="{group:'thedailyhabits'}"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -61,7 +61,7 @@
       <!-- AFTERNOON HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="afternoonHabits"
-        :options="{group:'atomichabits'}"
+        :options="{group:'thedailyhabits'}"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -91,7 +91,7 @@
       <!-- EVENING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="eveningHabits"
-        :options="{group:'atomichabits'}"
+        :options="{group:'thedailyhabits'}"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"

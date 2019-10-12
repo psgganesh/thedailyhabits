@@ -12,7 +12,7 @@
         <!-- <v-icon>mdi-atom</v-icon> -->
         <img src="/logo.png" width="36px" />
       </v-btn>
-      <span class="ga-pacifico logo-title">getatomichabits</span>
+      <span class="ga-pacifico logo-title">thedailyhabits</span>
     </v-toolbar-title>
     <div class="flex-grow-1"></div>
     <!-- <v-btn icon>

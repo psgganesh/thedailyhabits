@@ -1,17 +1,17 @@
 {
   "manifest_version": 2,
-  "name": "Atomichabits",
+  "name": "Thedailyhabits",
   "version": "1.0",
-  "description": "Habit tracker which uses aggregation of marginal gains at the system level",
-  "short_name": "Atomichabits",
+  "description": "A habits journal centred around privacy",
+  "short_name": "Thedailyhabits",
   "icons": [
     {
-      "src": "https://getatomichabits.com/images/app-blockstack.png",
+      "src": "https://thedailyhabits.com/images/app-blockstack.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
-  "start_url": "https://getatomichabits.com/?source=pwa",
+  "start_url": "https://thedailyhabits.com/?source=pwa",
   "background_color": "#3367D6",
   "display": "standalone",
   "theme_color": "#3367D6"

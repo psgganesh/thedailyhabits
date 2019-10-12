@@ -8,9 +8,8 @@
 export default {
   name: "simple",
   head: {
-    titleTemplate: "atomichabits - %s",
-    title:
-      "Habit tracker which uses aggregation of marginal gains at the system level",
+    titleTemplate: "thedailyhabits - %s",
+    title: "A habits journal centred around privacy",
     link: [{ rel: "stylesheet", href: "/frontend.css" }]
   }
 };

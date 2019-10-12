@@ -7,12 +7,12 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: 'atomichabits',
-    title: 'getatomichabits - Habit tracker which uses aggregation of marginal gains at the system level',
+    titleTemplate: 'thedailyhabits',
+    title: 'thedailyhabits - A habits journal centred around privacy',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Habit tracker which uses aggregation of marginal gains at the system level' },
+      { hid: 'description', name: 'description', content: 'A habits journal centred around privacy' },
       { name: 'google-site-verification', content: '7OaSiW1sVNqcmoSlr3q_jTOyNFU8vjK48J76bS2jilA' }
     ],
     link: [
