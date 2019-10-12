@@ -49,19 +49,13 @@ export function categories() {
     },
     {
       icon: "mdi-heart-pulse",
-      text: "Health",
+      text: "Health & Nutrition",
       color: "white white--text",
       count: 0
     },
     {
       icon: "mdi-basketball",
-      text: "Sports",
-      color: "white white--text",
-      count: 0
-    },
-    {
-      icon: "mdi-food-fork-drink",
-      text: "Nutrition",
+      text: "Sports & Fitness",
       color: "white white--text",
       count: 0
     },
@@ -72,20 +66,26 @@ export function categories() {
       count: 0
     },
     {
-      icon: "mdi-book",
-      text: "Study",
+      icon: "mdi-music",
+      text: "Skills",
       color: "white white--text",
       count: 0
     },
     {
       icon: "mdi-briefcase",
-      text: "Work",
+      text: "Work & Study",
       color: "white white--text",
       count: 0
     },
     {
       icon: "mdi-music",
-      text: "Entertainment",
+      text: "Household",
+      color: "white white--text",
+      count: 0
+    },
+    {
+      icon: "mdi-circle-expand",
+      text: "Me time",
       color: "white white--text",
       count: 0
     },
