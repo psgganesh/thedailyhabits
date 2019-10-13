@@ -78,7 +78,7 @@ export function categories() {
       count: 0
     },
     {
-      icon: "mdi-music",
+      icon: "mdi-home",
       text: "Household",
       color: "white white--text",
       count: 0

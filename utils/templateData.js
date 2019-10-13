@@ -37,7 +37,7 @@ export function categoriesData() {
       count: 6
     },
     {
-      icon: "mdi-music",
+      icon: "mdi-home",
       title: "Household",
       slug: "household",
       iconClass: "teal darken-4 white--text",
