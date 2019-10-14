@@ -13,7 +13,6 @@
             flat
             :value="computedDateFormattedMomentjs"
             v-on="on"
-            prepend-icon="event"
             :light="theme.light"
             :dark="theme.dark"
             disabled
