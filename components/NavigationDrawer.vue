@@ -21,7 +21,7 @@
       </v-list-item>
     </template>
 
-    <template v-if="$vuetify.breakpoint.mdAndUp">
+    <template>
       <v-divider></v-divider>
 
       <div class="ma-2">
@@ -167,6 +167,9 @@ export default {
 </script>
 
 <style>
+.v-navigation-drawer.v-navigation-drawer--fixed.v-navigation-drawer--is-mobile.v-navigation-drawer--open.theme--dark {
+  background: #000000cc !important;
+}
 #categoryList .v-list-item--disabled {
   color: #ffffff !important;
   caret-color: #ffffff !important;
