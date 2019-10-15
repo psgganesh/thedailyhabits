@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(item, index) in habits">
-      <v-list-item :key="index" :class="computedCardClass(item)">
+      <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
         <v-list-item-icon>
           <v-icon>mdi-drag</v-icon>
         </v-list-item-icon>
@@ -10,14 +10,13 @@
           <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
           <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
         </v-list-item-content>
-
         <v-list-item-action>
           <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
           <!-- <v-icon v-if="!active" color="grey lighten-1">star_border</v-icon>
           <v-icon v-else color="yellow">star</v-icon>-->
         </v-list-item-action>
       </v-list-item>
-      <v-divider v-if="index + 1 < habits.length" :key="index"></v-divider>
+      <v-divider v-if="index + 1 < habits.length" :key="'mobile__divider__'+item.id"></v-divider>
     </template>
     <BottomNavigation />
   </div>

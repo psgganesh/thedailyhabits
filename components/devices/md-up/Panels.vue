@@ -8,20 +8,23 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
       >
         <template v-for="(item, index) in habits">
-          <v-card class="mx-auto ma-3" :key="index">
-            <v-card-title
-              class="fill-height align-end black--text white ga-nunito"
-              v-text="item.activity"
-            ></v-card-title>
-            <v-list-item :key="index">
-              <v-list-item-content>
-                <v-list-item-title class="black--text">{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-card>
+          <v-list-item :key="'desktop__'+item.id" :class="computedCardClass(item)">
+            <v-list-item-icon>
+              <v-icon>mdi-drag</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.activity"></v-list-item-title>
+              <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+            </v-list-item-action>
+          </v-list-item>
+          <v-divider v-if="index + 1 < habits.length" :key="'desktop__divider__'+item.id"></v-divider>
         </template>
       </draggable>
       <!-- HABITS DRAGGABLE LIST ENDS HERE -->
@@ -35,7 +38,7 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-2"
       >
         <template v-for="(item, index) in morningHabits">
           <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
@@ -54,9 +57,27 @@
             </v-card-actions>
           </v-card>
         </template>
+
+        <!-- <template v-for="(item, index) in morningHabits">
+          <v-list-item :key="index" :class="computedCardClass(item)">
+            <v-list-item-icon>
+              <v-icon>mdi-drag</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.activity"></v-list-item-title>
+              <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+            </v-list-item-action>
+          </v-list-item>
+          <v-divider v-if="index + 1 < morningHabits.length" :key="index"></v-divider>
+        </template>-->
       </draggable>
       <!-- MORNING HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
+
     <v-col class="column" id="afternoon" cols="3">
       <!-- AFTERNOON HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
@@ -87,6 +108,7 @@
       </draggable>
       <!-- AFTERNOON HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
+
     <v-col class="column" id="evening" cols="3">
       <!-- EVENING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
@@ -232,7 +254,49 @@ export default {
         });
       });
       return todaysSkippedState ? "skipped" : "";
+    },
+    computedDays(item) {
+      return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
+    },
+    computedCardClass(item) {
+      return "card-border-color card-border-color-" + item.category;
     }
   }
 };
 </script>
+
+<style>
+.v-application--is-ltr .v-list-item__icon:first-child {
+  margin-right: 10px;
+}
+.card-border-color {
+  border-left: 10px solid;
+}
+.card-border-color:hover {
+  cursor: grab;
+}
+.card-border-color-health_nutrition {
+  border-color: #1b5e20;
+}
+.card-border-color-sports_fitness {
+  border-color: #bf360c;
+}
+.card-border-color-quit_a_bad_habit {
+  border-color: #263238;
+}
+.card-border-color-skills {
+  border-color: #004d40;
+}
+.card-border-color-work_study {
+  border-color: #039be5;
+}
+.card-border-color-household {
+  border-color: #f50057;
+}
+.card-border-color-me_time {
+  border-color: #37474f;
+}
+.card-border-color-general {
+  border-color: #1e88e5;
+}
+</style>
