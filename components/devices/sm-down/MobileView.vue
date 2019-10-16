@@ -153,6 +153,10 @@
     </v-row>
 
     <AddNewHabitButton />
+    <v-snackbar v-model="mobilesnackbar" :timeout="timeout">
+      Click save icon on to save changes
+      <v-btn color="blue" text @click="mobilesnackbar = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -167,7 +171,9 @@ export default {
     AddNewHabitButton
   },
   data: () => ({
-    today: moment()
+    today: moment(),
+    mobilesnackbar: false,
+    timeout: 1500
   }),
   computed: {
     ...mapGetters(["theme"]),
@@ -181,6 +187,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.mobilesnackbar = true;
       }
     },
     morningHabits: {
@@ -193,6 +200,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.mobilesnackbar = true;
       }
     },
     afternoonHabits: {
@@ -205,6 +213,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.mobilesnackbar = true;
       }
     },
     eveningHabits: {
@@ -217,15 +226,18 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.mobilesnackbar = true;
       }
     }
   },
   methods: {
     completeTodo(habit) {
       this.$store.dispatch("completeTodo", habit);
+      this.mobilesnackbar = true;
     },
     skipTodo(habit) {
       this.$store.dispatch("skipTodo", habit);
+      this.mobilesnackbar = true;
     },
     cardState(habit) {
       let status = "hidden";

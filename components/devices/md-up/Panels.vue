@@ -139,6 +139,11 @@
       </draggable>
       <!-- EVENING HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
+
+    <v-snackbar v-model="snackbar" :timeout="timeout">
+      Click save icon on to save changes
+      <v-btn color="blue" text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -148,7 +153,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "Panels",
   data: () => ({
-    today: moment()
+    today: moment(),
+    snackbar: false,
+    timeout: 1500
   }),
   computed: {
     ...mapGetters(["theme"]),
@@ -162,6 +169,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.snackbar = true;
       }
     },
     morningHabits: {
@@ -174,6 +182,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.snackbar = true;
       }
     },
     afternoonHabits: {
@@ -186,6 +195,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.snackbar = true;
       }
     },
     eveningHabits: {
@@ -198,15 +208,18 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
+        this.snackbar = true;
       }
     }
   },
   methods: {
     completeTodo(habit) {
       this.$store.dispatch("completeTodo", habit);
+      this.snackbar = true;
     },
     skipTodo(habit) {
       this.$store.dispatch("skipTodo", habit);
+      this.snackbar = true;
     },
     cardState(habit) {
       let status = "hidden";

@@ -87,10 +87,10 @@ export default {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {
+  /* .v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {
     top: 45px !important;
     left: 245px !important;
-  }
+  } */
   .v-toolbar__content {
     padding: 4px !important;
     padding-left: 10px !important;
