@@ -99,6 +99,8 @@ export default {
   }
   .theme--light.v-sheet {
     opacity: 1;
+  }
+  .v-list--two-line .v-list-item {
     background: #ffffff !important;
   }
 }

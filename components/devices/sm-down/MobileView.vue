@@ -16,7 +16,7 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
         >
           <template v-for="(item, index) in habits">
             <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
@@ -54,7 +54,7 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
         >
           <template v-for="(item, index) in morningHabits">
             <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
@@ -92,7 +92,7 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
         >
           <template v-for="(item, index) in afternoonHabits">
             <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
@@ -130,7 +130,7 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
         >
           <template v-for="(item, index) in eveningHabits">
             <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
@@ -295,3 +295,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.mobile-dotted-margin {
+  min-height: 25vh;
+}
+</style>
