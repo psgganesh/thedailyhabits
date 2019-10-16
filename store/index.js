@@ -92,6 +92,8 @@ export const mutations = {
     state.loading = false;
   },
   SAVE_WORKSPACE(state) {
+    state.loading = true;
+    // state.userSession.putFile(STORAGE_FILE, JSON.stringify([]));
     state.atomicHabitsData = [
       ...state.habits,
       ...state.morningHabits,
@@ -103,8 +105,7 @@ export const mutations = {
       preferences: state.preferences,
       habitsData: state.atomicHabitsData
     }
-    state.loading = true;
-    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data))
+    state.userSession.putFile(STORAGE_FILE, JSON.stringify(data));
     state.loading = false;
   },
   SAVE_WORKSPACE_AND_SIGNOUT(state) {
@@ -209,9 +210,13 @@ export const actions = {
     }
   },
 
+  saveWorkspace({ commit }) {
+    commit('SAVE_WORKSPACE');
+  },
+
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
-    commit('SAVE_WORKSPACE');
+    // commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {
