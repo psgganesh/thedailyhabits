@@ -38,42 +38,39 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-2"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
       >
         <template v-for="(item, index) in morningHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
-            <v-card-title
-              class="fill-height align-end black--text white ga-nunito"
-              v-text="item.activity"
-            ></v-card-title>
-            <v-list-item :key="index">
-              <v-list-item-content>
-                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
-            </v-card-actions>
-          </v-card>
+          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+            <v-row no-gutters>
+              <v-col cols="2" sm="2">
+                <v-icon>mdi-drag</v-icon>
+              </v-col>
+              <v-col cols="8" sm="8">
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.activity"></v-list-item-title>
+                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-col>
+              <v-col cols="2" sm="2">
+                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+              </v-col>
+            </v-row>
+            <v-divider class="my-4 default"></v-divider>
+            <v-row no-gutters class>
+              <v-col cols="12" sm="6">
+                <v-btn
+                  small
+                  color="green accent-4 white--text ga-nunito"
+                  @click="completeTodo(item)"
+                >DONE</v-btn>
+                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-divider v-if="index + 1 < morningHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
         </template>
-
-        <!-- <template v-for="(item, index) in morningHabits">
-          <v-list-item :key="index" :class="computedCardClass(item)">
-            <v-list-item-icon>
-              <v-icon>mdi-drag</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.activity"></v-list-item-title>
-              <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-            </v-list-item-content>
-            <v-list-item-action>
-              <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-            </v-list-item-action>
-          </v-list-item>
-          <v-divider v-if="index + 1 < morningHabits.length" :key="index"></v-divider>
-        </template>-->
       </draggable>
       <!-- MORNING HABITS DRAGGABLE LIST ENDS HERE -->
     </v-col>
@@ -86,24 +83,38 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
       >
         <template v-for="(item, index) in afternoonHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
-            <v-card-title
-              class="fill-height align-end black--text white ga-nunito"
-              v-text="item.activity"
-            ></v-card-title>
-            <v-list-item :key="index">
-              <v-list-item-content>
-                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
-            </v-card-actions>
-          </v-card>
+          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+            <v-row no-gutters>
+              <v-col cols="2" sm="2">
+                <v-icon>mdi-drag</v-icon>
+              </v-col>
+              <v-col cols="8" sm="8">
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.activity"></v-list-item-title>
+                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-col>
+              <v-col cols="2" sm="2">
+                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+              </v-col>
+            </v-row>
+            <v-divider class="my-4 default"></v-divider>
+            <v-row no-gutters class>
+              <v-col cols="12" sm="6">
+                <v-btn
+                  small
+                  color="green accent-4 white--text ga-nunito"
+                  @click="completeTodo(item)"
+                >DONE</v-btn>
+                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-divider v-if="index + 1 < afternoonHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
         </template>
       </draggable>
       <!-- AFTERNOON HABITS DRAGGABLE LIST ENDS HERE -->
@@ -117,24 +128,38 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-2"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-card class="mx-auto ma-3" :key="index" :class="cardState(item)">
-            <v-card-title
-              class="fill-height align-end black--text white ga-nunito"
-              v-text="item.activity"
-            ></v-card-title>
-            <v-list-item :key="index">
-              <v-list-item-content>
-                <v-list-item-title class="black--text ga-nunito">{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-actions>
-              <v-btn color="green accent-4 white--text ga-nunito" @click="completeTodo(item)">DONE</v-btn>
-              <v-btn text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
-            </v-card-actions>
-          </v-card>
+          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+            <v-row no-gutters>
+              <v-col cols="2" sm="2">
+                <v-icon>mdi-drag</v-icon>
+              </v-col>
+              <v-col cols="8" sm="8">
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.activity"></v-list-item-title>
+                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-col>
+              <v-col cols="2" sm="2">
+                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+              </v-col>
+            </v-row>
+            <v-divider class="my-4 default"></v-divider>
+            <v-row no-gutters class>
+              <v-col cols="12" sm="6">
+                <v-btn
+                  small
+                  color="green accent-4 white--text ga-nunito"
+                  @click="completeTodo(item)"
+                >DONE</v-btn>
+                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
         </template>
       </draggable>
       <!-- EVENING HABITS DRAGGABLE LIST ENDS HERE -->
@@ -289,27 +314,35 @@ export default {
   cursor: grab;
 }
 .card-border-color-health_nutrition {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #1b5e20;
 }
 .card-border-color-sports_fitness {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #bf360c;
 }
 .card-border-color-quit_a_bad_habit {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #263238;
 }
 .card-border-color-skills {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #004d40;
 }
 .card-border-color-work_study {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #039be5;
 }
 .card-border-color-household {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #f50057;
 }
 .card-border-color-me_time {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #37474f;
 }
 .card-border-color-general {
+  background: rgba(255, 255, 255, 0.83922);
   border-color: #1e88e5;
 }
 </style>

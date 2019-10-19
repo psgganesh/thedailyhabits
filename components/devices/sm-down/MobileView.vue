@@ -54,22 +54,43 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
         >
           <template v-for="(item, index) in morningHabits">
-            <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
-              <v-list-item-icon>
-                <v-icon>mdi-drag</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.activity"></v-list-item-title>
-                <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
+            <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+              <v-row no-gutters>
+                <v-col cols="2" sm="2">
+                  <v-icon>mdi-drag</v-icon>
+                </v-col>
+                <v-col cols="8" sm="8">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.activity"></v-list-item-title>
+                    <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                    <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-col>
+                <v-col cols="2" sm="2">
+                  <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+                </v-col>
+              </v-row>
+              <v-divider class="my-4 default"></v-divider>
+              <v-row no-gutters class>
+                <v-col cols="12" sm="6">
+                  <v-btn
+                    small
+                    color="green accent-4 white--text ga-nunito"
+                    @click="completeTodo(item)"
+                  >DONE</v-btn>
+                  <v-btn
+                    small
+                    text
+                    outlined
+                    :class="skipTaskClass(item)"
+                    @click="skipTodo(item)"
+                  >SKIP</v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
             <v-divider v-if="index + 1 < morningHabits.length" :key="'mobile__divider__'+item.id"></v-divider>
           </template>
         </draggable>
