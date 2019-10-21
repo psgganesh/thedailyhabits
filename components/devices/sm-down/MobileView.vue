@@ -57,7 +57,7 @@
           class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
         >
           <template v-for="(item, index) in morningHabits">
-            <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+            <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
               <v-row no-gutters>
                 <v-col cols="2" sm="2">
                   <v-icon>mdi-drag</v-icon>
@@ -113,22 +113,43 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
         >
           <template v-for="(item, index) in afternoonHabits">
-            <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
-              <v-list-item-icon>
-                <v-icon>mdi-drag</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.activity"></v-list-item-title>
-                <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
+            <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
+              <v-row no-gutters>
+                <v-col cols="2" sm="2">
+                  <v-icon>mdi-drag</v-icon>
+                </v-col>
+                <v-col cols="8" sm="8">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.activity"></v-list-item-title>
+                    <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                    <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-col>
+                <v-col cols="2" sm="2">
+                  <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+                </v-col>
+              </v-row>
+              <v-divider class="my-4 default"></v-divider>
+              <v-row no-gutters class>
+                <v-col cols="12" sm="6">
+                  <v-btn
+                    small
+                    color="green accent-4 white--text ga-nunito"
+                    @click="completeTodo(item)"
+                  >DONE</v-btn>
+                  <v-btn
+                    small
+                    text
+                    outlined
+                    :class="skipTaskClass(item)"
+                    @click="skipTodo(item)"
+                  >SKIP</v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
             <v-divider v-if="index + 1 < afternoonHabits.length" :key="'mobile__divider__'+item.id"></v-divider>
           </template>
         </draggable>
@@ -151,22 +172,43 @@
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
-          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line mobile-dotted-margin"
+          class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
         >
           <template v-for="(item, index) in eveningHabits">
-            <v-list-item :key="'mobile__'+item.id" :class="computedCardClass(item)">
-              <v-list-item-icon>
-                <v-icon>mdi-drag</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.activity"></v-list-item-title>
-                <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-list-item-action>
-            </v-list-item>
+            <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
+              <v-row no-gutters>
+                <v-col cols="2" sm="2">
+                  <v-icon>mdi-drag</v-icon>
+                </v-col>
+                <v-col cols="8" sm="8">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.activity"></v-list-item-title>
+                    <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
+                    <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-col>
+                <v-col cols="2" sm="2">
+                  <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
+                </v-col>
+              </v-row>
+              <v-divider class="my-4 default"></v-divider>
+              <v-row no-gutters class>
+                <v-col cols="12" sm="6">
+                  <v-btn
+                    small
+                    color="green accent-4 white--text ga-nunito"
+                    @click="completeTodo(item)"
+                  >DONE</v-btn>
+                  <v-btn
+                    small
+                    text
+                    outlined
+                    :class="skipTaskClass(item)"
+                    @click="skipTodo(item)"
+                  >SKIP</v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
             <v-divider v-if="index + 1 < eveningHabits.length" :key="'mobile__divider__'+item.id"></v-divider>
           </template>
         </draggable>
@@ -260,39 +302,6 @@ export default {
       this.$store.dispatch("skipTodo", habit);
       this.mobilesnackbar = true;
     },
-    cardState(habit) {
-      let status = "hidden";
-      let isSkipped = false;
-      let isCompleted = false;
-      let currentSelectedDate = moment(this.$store.state.selectedDate);
-
-      // If it is same or before expiry date
-      if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
-        // If it is today
-        status = this.today.isSame(currentSelectedDate, "day")
-          ? "visible"
-          : "hidden";
-      }
-
-      habit.scores.map(score => {
-        habit.scores.map(score => {
-          if (
-            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-          ) {
-            isCompleted = score.completed;
-            isSkipped = score.skipped;
-          }
-        });
-      });
-
-      if (isCompleted) {
-        return "hidden";
-      } else if (isSkipped) {
-        return "crumble";
-      }
-
-      return status;
-    },
     skipTaskClass(habit) {
       var todaysSkippedState = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
@@ -310,8 +319,38 @@ export default {
     computedDays(item) {
       return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
     },
-    computedCardClass(item) {
-      return "card-border-color card-border-color-" + item.category;
+    computedCardClass(habit) {
+      let status = "card-border-color card-border-color-" + habit.category;
+      let cardState = "hidden";
+      let isSkipped = false;
+      let isCompleted = false;
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+
+      // If it is same or before expiry date
+      if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
+        // If it is today
+        cardState = this.today.isSame(currentSelectedDate, "day")
+          ? "visible"
+          : "hidden";
+      }
+      habit.scores.map(score => {
+        habit.scores.map(score => {
+          if (
+            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
+          ) {
+            isCompleted = score.completed;
+            isSkipped = score.skipped;
+          }
+        });
+      });
+
+      if (isCompleted) {
+        return "hidden";
+      } else if (isSkipped) {
+        return "crumble";
+      }
+
+      return status + " " + cardState;
     }
   }
 };

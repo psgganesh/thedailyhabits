@@ -4,7 +4,7 @@
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'thedailyhabits', put: false}"
+        :options="{group:'thedailyhabits'}"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -246,8 +246,26 @@ export default {
       this.$store.dispatch("skipTodo", habit);
       this.snackbar = true;
     },
-    cardState(habit) {
-      let status = "hidden";
+    skipTaskClass(habit) {
+      var todaysSkippedState = false;
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+      habit.scores.map(score => {
+        habit.scores.map(score => {
+          if (
+            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
+          ) {
+            todaysSkippedState = score.skipped;
+          }
+        });
+      });
+      return todaysSkippedState ? "skipped" : "";
+    },
+    computedDays(item) {
+      return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
+    },
+    computedCardClass(habit) {
+      let status = "card-border-color card-border-color-" + habit.category;
+      let cardState = "hidden";
       let isSkipped = false;
       let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
@@ -255,7 +273,7 @@ export default {
       // If it is same or before expiry date
       if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
         // If it is today
-        status = this.today.isSame(currentSelectedDate, "day")
+        cardState = this.today.isSame(currentSelectedDate, "day")
           ? "visible"
           : "hidden";
       }
@@ -277,27 +295,7 @@ export default {
         return "crumble";
       }
 
-      return status;
-    },
-    skipTaskClass(habit) {
-      var todaysSkippedState = false;
-      let currentSelectedDate = moment(this.$store.state.selectedDate);
-      habit.scores.map(score => {
-        habit.scores.map(score => {
-          if (
-            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-          ) {
-            todaysSkippedState = score.skipped;
-          }
-        });
-      });
-      return todaysSkippedState ? "skipped" : "";
-    },
-    computedDays(item) {
-      return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
-    },
-    computedCardClass(item) {
-      return "card-border-color card-border-color-" + item.category;
+      return status + " " + cardState;
     }
   }
 };
