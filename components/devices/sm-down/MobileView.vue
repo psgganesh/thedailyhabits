@@ -345,9 +345,9 @@ export default {
       });
 
       if (isCompleted) {
-        return "hidden";
+        cardState = "hidden";
       } else if (isSkipped) {
-        return "crumble";
+        cardState = "crumble";
       }
 
       return status + " " + cardState;
