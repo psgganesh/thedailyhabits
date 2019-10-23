@@ -309,7 +309,11 @@ export default {
   border-left: 10px solid;
 }
 .card-border-color:hover {
-  cursor: grab;
+  cursor: -webkit-grab;
+}
+.sortable-chosen,
+.sortable-chosen.ghost {
+  cursor: -webkit-grabbing !important;
 }
 .card-border-color-health_nutrition {
   background: rgba(255, 255, 255, 0.83922);
