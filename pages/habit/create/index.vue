@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mb-0 pa-0">
+  <v-container>
     <v-row>
       <v-col>
         <v-card color="info" dark>
