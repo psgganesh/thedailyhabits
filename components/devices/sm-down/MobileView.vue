@@ -250,7 +250,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
-        this.mobilesnackbar = true;
+        // this.snackbar = true;
       }
     },
     morningHabits: {
@@ -263,7 +263,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
-        this.mobilesnackbar = true;
+        // this.snackbar = true;
       }
     },
     afternoonHabits: {
@@ -276,7 +276,7 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
-        this.mobilesnackbar = true;
+        // this.snackbar = true;
       }
     },
     eveningHabits: {
@@ -289,18 +289,18 @@ export default {
           habit: value
         };
         this.$store.dispatch("moveHabit", data);
-        this.mobilesnackbar = true;
+        // this.snackbar = true;
       }
     }
   },
   methods: {
     completeTodo(habit) {
       this.$store.dispatch("completeTodo", habit);
-      this.mobilesnackbar = true;
+      // this.snackbar = true;
     },
     skipTodo(habit) {
       this.$store.dispatch("skipTodo", habit);
-      this.mobilesnackbar = true;
+      // this.snackbar = true;
     },
     skipTaskClass(habit) {
       var todaysSkippedState = false;
