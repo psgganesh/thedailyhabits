@@ -11,7 +11,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
       >
         <template v-for="(item, index) in habits">
-          <v-list-item :key="'desktop__'+item.id" :class="computedCardClass(item)">
+          <v-list-item :key="'desktop__'+item.id+'_'+index" :class="computedCardClass(item)">
             <v-list-item-icon>
               <v-icon>mdi-drag</v-icon>
             </v-list-item-icon>
@@ -24,7 +24,7 @@
               <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
             </v-list-item-action>
           </v-list-item>
-          <v-divider v-if="index + 1 < habits.length" :key="'desktop__divider__'+item.id"></v-divider>
+          <!-- <v-divider v-if="index + 1 < habits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
         </template>
       </draggable>
       <!-- HABITS DRAGGABLE LIST ENDS HERE -->
@@ -69,7 +69,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-divider v-if="index + 1 < morningHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
+          <!-- <v-divider v-if="index + 1 < morningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
         </template>
       </draggable>
       <!-- MORNING HABITS DRAGGABLE LIST ENDS HERE -->
@@ -114,7 +114,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-divider v-if="index + 1 < afternoonHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
+          <!-- <v-divider v-if="index + 1 < afternoonHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
         </template>
       </draggable>
       <!-- AFTERNOON HABITS DRAGGABLE LIST ENDS HERE -->
@@ -159,7 +159,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider>
+          <!-- <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
         </template>
       </draggable>
       <!-- EVENING HABITS DRAGGABLE LIST ENDS HERE -->
