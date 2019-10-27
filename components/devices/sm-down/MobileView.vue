@@ -220,19 +220,24 @@
       Click save icon on to save changes
       <v-btn color="blue" text @click="mobilesnackbar = false">Close</v-btn>
     </v-snackbar>
+
+    <TermsModal />
   </div>
 </template>
 
 <script>
 import moment from "moment";
 import AddNewHabitButton from "~/components/devices/sm-down/AddNewHabitButton";
+import TermsModal from "~/components/devices/sm-down/TermsModal";
 import { mapGetters } from "vuex";
 
 export default {
   name: "MobileView",
   components: {
-    AddNewHabitButton
+    AddNewHabitButton,
+    TermsModal
   },
+  created() {},
   data: () => ({
     today: moment(),
     mobilesnackbar: false,
