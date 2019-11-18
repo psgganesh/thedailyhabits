@@ -13,7 +13,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'A habits journal centred around privacy' },
-      { name: 'google-site-verification', content: '7OaSiW1sVNqcmoSlr3q_jTOyNFU8vjK48J76bS2jilA' }
+      { name: 'google-site-verification', content: 'oRH3xHvUr0rK_acsWOzRChba0IlmeaWj0eb5eUel070' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -51,7 +51,8 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/device',
     'nuxt-material-design-icons',
-    '@nuxtjs/ngrok'
+    '@nuxtjs/ngrok',
+    '@nuxtjs/google-tag-manager', { id: 'GTM-TNLFJ35' }
   ],
   router: {
     middleware: ['check-auth']
