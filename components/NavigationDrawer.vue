@@ -141,17 +141,11 @@ export default {
       var totalCount = [];
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
-          obj.scores.map(score => {
-            if (
-              moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-            ) {
-              if (obj.category === category.text.toLocaleLowerCase()) {
-                totalCount.push(1);
-              } else if (category.text.toLocaleLowerCase() === "all habits") {
-                totalCount.push(1);
-              }
-            }
-          });
+          if (obj.category === category.text.toLocaleLowerCase()) {
+            totalCount.push(1);
+          } else if (category.text.toLocaleLowerCase() === "all habits") {
+            totalCount.push(1);
+          }
         });
       }
       return totalCount.length > 0 ? arrSum(totalCount) : "";
