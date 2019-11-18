@@ -52,8 +52,21 @@ module.exports = {
     '@nuxtjs/device',
     'nuxt-material-design-icons',
     '@nuxtjs/ngrok',
-    '@nuxtjs/google-tag-manager', { id: 'GTM-TNLFJ35' }
+    '@nuxtjs/google-gtag'
   ],
+  'google-gtag': {
+    id: 'UA-152823771-1',
+    config: {
+      anonymize_ip: true, // anonymize IP 
+      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
+      linker: {
+        domains: ['thedailyhabits.com','www.thedailyhabits.com']
+      }
+    },
+    debug: true, // enable to track in dev mode
+    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...).
+    additionalAccounts: []
+  },
   router: {
     middleware: ['check-auth']
   },
