@@ -25,7 +25,7 @@ export default ({ app }) => {
     /*
     ** We tell Google Analytics to add a `pageview`
     */
-    if(str.includes("authResponse")) {
+    if(to.fullPath.includes("authResponse")) {
       ga('set', 'page', '/register')
     } else {
       ga('set', 'page', to.fullPath)
