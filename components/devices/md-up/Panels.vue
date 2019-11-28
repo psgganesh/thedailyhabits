@@ -59,7 +59,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
@@ -104,7 +104,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
@@ -149,7 +149,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"

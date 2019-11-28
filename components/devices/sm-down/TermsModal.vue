@@ -6,7 +6,7 @@
       </template>-->
 
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>Terms of use</v-card-title>
+        <v-card-title class="headline grey lighten-2" primary-title>User Info</v-card-title>
 
         <v-card-text>
           <v-alert>This application is heavily optimized for desktop devices.</v-alert>
