@@ -65,7 +65,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -110,7 +111,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -131,7 +133,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)" >
             <v-row no-gutters>
               <v-col cols="2" sm="2">
                 <v-icon>mdi-drag</v-icon>
@@ -155,7 +157,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -173,17 +176,30 @@
 </template>
 
 <script>
+import ConfirmationDialog from "~/components/Dialog";
 import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
+  components: {
+    ConfirmationDialog,
+  },
   data: () => ({
+    dialog: false,
     today: moment(),
     snackbar: false,
     timeout: 1500
   }),
   computed: {
     ...mapGetters(["theme"]),
+    // isSkipped: {
+    //   get() {
+    //     return this.$store.state.isSkipped;
+    //   },
+    //   set(value) {
+    //     this.$store.commit("SKIP_STATUS", value);
+    //   }
+    // },
     habits: {
       get() {
         return this.$store.state.habits;
@@ -243,12 +259,16 @@ export default {
       // // this.snackbar = true;
     },
     skipTodo(habit) {
+      this.dialog = false;
       this.$store.dispatch("skipTodo", habit);
       // // this.snackbar = true;
     },
+
     skipTaskClass(habit) {
-      var todaysSkippedState = false;
+      //var todaysSkippedState = false;
+      var todaysSkippedState = true;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
+      console.log(habit);
       habit.scores.map(score => {
         habit.scores.map(score => {
           if (
@@ -267,6 +287,7 @@ export default {
       let status = "card-border-color card-border-color-" + habit.category;
       let cardState = "hidden";
       let isSkipped = false;
+      //this.isSkipped = false;
       let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
@@ -285,6 +306,7 @@ export default {
           ) {
             isCompleted = score.completed;
             isSkipped = score.skipped;
+            //this.isSkipped = score.skipped;
           }
         });
       });
@@ -292,7 +314,8 @@ export default {
       if (isCompleted) {
         cardState = "hidden";
       } else if (isSkipped) {
-        cardState = "crumble";
+        //cardState = "crumble";
+        cardState = "d-none";
       }
 
       return status + " " + cardState;
