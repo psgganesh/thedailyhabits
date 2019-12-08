@@ -61,7 +61,7 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
+              <v-list-item-title>{{ item.text }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -141,7 +141,7 @@ export default {
       var totalCount = [];
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
-          if (obj.category === category.text.toLocaleLowerCase()) {
+          if (obj.category === category.slug.toLocaleLowerCase()) {
             totalCount.push(1);
           } else if (category.text.toLocaleLowerCase() === "all habits") {
             totalCount.push(1);

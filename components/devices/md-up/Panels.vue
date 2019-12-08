@@ -59,7 +59,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
@@ -105,7 +105,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
@@ -151,7 +151,7 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
@@ -325,6 +325,18 @@ export default {
 </script>
 
 <style>
+.container{
+  padding: 2px;
+}
+.v-list-item {
+  padding: 0 6px;
+}
+
+.v-list-item__title {
+  align-self: center;
+  font-size: 0.9rem;
+}
+
 .v-application--is-ltr .v-list-item__icon:first-child {
   margin-right: 10px;
 }
