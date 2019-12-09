@@ -25,6 +25,7 @@ export const state = () => ({
   afternoonHabits: [],
   eveningHabits: [],
   userSession: null,
+  isSkipped: false,
 })
 
 export const mutations = {
@@ -155,6 +156,11 @@ export const mutations = {
       }
     });
   },
+
+  SKIP_STATUS(state, value){
+    state.isSkipped = value
+  },
+  
   SKIP_TODO(state, habit) {
     let id = habit.id
     let zone = habit.parent

@@ -75,19 +75,20 @@
               </v-row>
               <v-divider class="my-4 default"></v-divider>
               <v-row no-gutters class>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6" class="mb-4 ml-2">
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
                     @click="completeTodo(item)"
                   >DONE</v-btn>
-                  <v-btn
+                  <confirmation-dialog :item="item"></confirmation-dialog>
+                  <!-- <v-btn
                     small
                     text
                     outlined
                     :class="skipTaskClass(item)"
                     @click="skipTodo(item)"
-                  >SKIP</v-btn>
+                  >SKIP</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -134,19 +135,20 @@
               </v-row>
               <v-divider class="my-4 default"></v-divider>
               <v-row no-gutters class>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6" class="mb-4 ml-2">
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
                     @click="completeTodo(item)"
                   >DONE</v-btn>
-                  <v-btn
+                  <confirmation-dialog :item="item"></confirmation-dialog>
+                  <!-- <v-btn
                     small
                     text
                     outlined
                     :class="skipTaskClass(item)"
                     @click="skipTodo(item)"
-                  >SKIP</v-btn>
+                  >SKIP</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -193,19 +195,20 @@
               </v-row>
               <v-divider class="my-4 default"></v-divider>
               <v-row no-gutters class>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6" class="mb-4 ml-2">
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
                     @click="completeTodo(item)"
                   >DONE</v-btn>
-                  <v-btn
+                  <confirmation-dialog :item="item"></confirmation-dialog>
+                  <!-- <v-btn
                     small
                     text
                     outlined
                     :class="skipTaskClass(item)"
                     @click="skipTodo(item)"
-                  >SKIP</v-btn>
+                  >SKIP</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -226,6 +229,7 @@
 </template>
 
 <script>
+import ConfirmationDialog from "~/components/Dialog";
 import moment from "moment";
 import AddNewHabitButton from "~/components/devices/sm-down/AddNewHabitButton";
 import TermsModal from "~/components/devices/sm-down/TermsModal";
@@ -234,6 +238,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "MobileView",
   components: {
+    ConfirmationDialog,
     AddNewHabitButton,
     TermsModal
   },
@@ -352,7 +357,8 @@ export default {
       if (isCompleted) {
         cardState = "hidden";
       } else if (isSkipped) {
-        cardState = "crumble";
+        //cardState = "crumble";
+        cardState = "d-none";
       }
 
       return status + " " + cardState;
@@ -362,6 +368,27 @@ export default {
 </script>
 
 <style>
+.container{
+  padding: 2px;
+}
+
+.v-list-item {
+  padding: 0 6px;
+}
+
+.v-list-item__title {
+  align-self: center;
+  font-size: 0.9rem;
+}
+
+.v-list-item__subtitle {
+  font-size: 0.7rem;
+}
+
+.v-list-item__subtitle {
+  font-size: 0.7rem;
+}
+
 .mobile-dotted-margin {
   min-height: 25vh;
 }

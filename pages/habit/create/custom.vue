@@ -73,11 +73,13 @@
                 <v-col cols="12">
                   <v-select
                     :items="items"
-                    :item-value="minDaysToRepeatValue"
+                    item-text="text"
+                    item-value="value"
+                    v-model="minDaysToRepeatValue"
                     label="Choose, number of days to repeat"
                     solo
                     prepend-inner-icon="mdi-repeat"
-                    @change="selectSchedule()"
+                    @change="selectSchedule"
                   ></v-select>
                 </v-col>
               </v-row>

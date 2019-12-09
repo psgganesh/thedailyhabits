@@ -59,13 +59,14 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -104,13 +105,14 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -131,7 +133,7 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
+          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)" >
             <v-row no-gutters>
               <v-col cols="2" sm="2">
                 <v-icon>mdi-drag</v-icon>
@@ -149,13 +151,14 @@
             </v-row>
             <v-divider class="my-4 default"></v-divider>
             <v-row no-gutters class>
-              <v-col cols="12" sm="6">
+              <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn>
+                <confirmation-dialog :item="item"></confirmation-dialog>
+                <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -173,17 +176,30 @@
 </template>
 
 <script>
+import ConfirmationDialog from "~/components/Dialog";
 import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
+  components: {
+    ConfirmationDialog,
+  },
   data: () => ({
+    dialog: false,
     today: moment(),
     snackbar: false,
     timeout: 1500
   }),
   computed: {
     ...mapGetters(["theme"]),
+    // isSkipped: {
+    //   get() {
+    //     return this.$store.state.isSkipped;
+    //   },
+    //   set(value) {
+    //     this.$store.commit("SKIP_STATUS", value);
+    //   }
+    // },
     habits: {
       get() {
         return this.$store.state.habits;
@@ -243,12 +259,16 @@ export default {
       // // this.snackbar = true;
     },
     skipTodo(habit) {
+      this.dialog = false;
       this.$store.dispatch("skipTodo", habit);
       // // this.snackbar = true;
     },
+
     skipTaskClass(habit) {
-      var todaysSkippedState = false;
+      //var todaysSkippedState = false;
+      var todaysSkippedState = true;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
+      console.log(habit);
       habit.scores.map(score => {
         habit.scores.map(score => {
           if (
@@ -267,6 +287,7 @@ export default {
       let status = "card-border-color card-border-color-" + habit.category;
       let cardState = "hidden";
       let isSkipped = false;
+      //this.isSkipped = false;
       let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
@@ -285,6 +306,7 @@ export default {
           ) {
             isCompleted = score.completed;
             isSkipped = score.skipped;
+            //this.isSkipped = score.skipped;
           }
         });
       });
@@ -292,7 +314,8 @@ export default {
       if (isCompleted) {
         cardState = "hidden";
       } else if (isSkipped) {
-        cardState = "crumble";
+        //cardState = "crumble";
+        cardState = "d-none";
       }
 
       return status + " " + cardState;
@@ -302,6 +325,18 @@ export default {
 </script>
 
 <style>
+.container{
+  padding: 2px;
+}
+.v-list-item {
+  padding: 0 6px;
+}
+
+.v-list-item__title {
+  align-self: center;
+  font-size: 0.9rem;
+}
+
 .v-application--is-ltr .v-list-item__icon:first-child {
   margin-right: 10px;
 }
