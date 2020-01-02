@@ -255,6 +255,7 @@ export default {
   },
   methods: {
     completeTodo(habit) {
+      console.log('DESKTOP: ',habit);
       this.$store.dispatch("completeTodo", habit);
       // // this.snackbar = true;
     },

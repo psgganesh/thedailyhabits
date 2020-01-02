@@ -55,6 +55,14 @@
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
           class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+          dragoverBubble=false
+          dataIdAttr='data-id'
+          delay=0
+          touchMoveSensitivity=0
+          touchStartThreshold=3
+          forceFallback=false
+          fallbackClass='sortable-fallback'
+          fallbackOnBody=false
         >
           <template v-for="(item, index) in morningHabits">
             <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
@@ -75,20 +83,18 @@
               </v-row>
               <v-divider class="my-4 default"></v-divider>
               <v-row no-gutters class>
-                <v-col cols="12" sm="6" class="mb-4 ml-2">
+                <v-col cols="12" sm="6">
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
                     @click="completeTodo(item)"
                   >DONE</v-btn>
-                  <confirmation-dialog :item="item"></confirmation-dialog>
+                  <confirmation-dialog :item="item"></confirmation-dialog> 
                   <!-- <v-btn
                     small
-                    text
-                    outlined
-                    :class="skipTaskClass(item)"
-                    @click="skipTodo(item)"
-                  >SKIP</v-btn> -->
+                    color="green accent-4 white--text ga-nunito"
+                    @click="completeTodo(item)"
+                  >DONE</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -115,6 +121,14 @@
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
           class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+          dragoverBubble=false
+          dataIdAttr='data-id'
+          delay=0
+          touchMoveSensitivity=0
+          touchStartThreshold=3
+          forceFallback=false
+          fallbackClass='sortable-fallback'
+          fallbackOnBody=false
         >
           <template v-for="(item, index) in afternoonHabits">
             <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
@@ -139,16 +153,9 @@
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
-                    @click="completeTodo(item)"
+                    v-on:click.native.once="completeTodo(item)"
                   >DONE</v-btn>
                   <confirmation-dialog :item="item"></confirmation-dialog>
-                  <!-- <v-btn
-                    small
-                    text
-                    outlined
-                    :class="skipTaskClass(item)"
-                    @click="skipTodo(item)"
-                  >SKIP</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -175,6 +182,14 @@
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
           class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+          dragoverBubble=false
+          dataIdAttr='data-id'
+          delay=0
+          touchMoveSensitivity=0
+          touchStartThreshold=3
+          forceFallback=false
+          fallbackClass='sortable-fallback'
+          fallbackOnBody=false
         >
           <template v-for="(item, index) in eveningHabits">
             <v-container class="lighten-5" :key="'mobile__'+index" :class="computedCardClass(item)">
@@ -199,16 +214,9 @@
                   <v-btn
                     small
                     color="green accent-4 white--text ga-nunito"
-                    @click="completeTodo(item)"
+                    v-on:click.native.once="completeTodo(item)"
                   >DONE</v-btn>
                   <confirmation-dialog :item="item"></confirmation-dialog>
-                  <!-- <v-btn
-                    small
-                    text
-                    outlined
-                    :class="skipTaskClass(item)"
-                    @click="skipTodo(item)"
-                  >SKIP</v-btn> -->
                 </v-col>
               </v-row>
             </v-container>
@@ -305,6 +313,7 @@ export default {
   },
   methods: {
     completeTodo(habit) {
+      console.log('MOBILE: ',habit);
       this.$store.dispatch("completeTodo", habit);
       // this.snackbar = true;
     },
@@ -368,9 +377,9 @@ export default {
 </script>
 
 <style>
-.container{
+/* .container{
   padding: 2px;
-}
+} */
 
 .v-list-item {
   padding: 0 6px;
