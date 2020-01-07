@@ -142,9 +142,21 @@ export default {
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
           if (obj.category === category.slug.toLocaleLowerCase()) {
-            totalCount.push(1);
+            obj.scores.map((score) => {
+              if (moment(score.dated).isSame(this.currentDate, 'day')) {
+                if(!score.completed) {
+                  totalCount.push(1);
+                }
+              }
+            });
           } else if (category.text.toLocaleLowerCase() === "all habits") {
-            totalCount.push(1);
+            obj.scores.map((score) => {
+              if (moment(score.dated).isSame(this.currentDate, 'day')) {
+                if(!score.completed) {
+                  totalCount.push(1);
+                }
+              }
+            });
           }
         });
       }
