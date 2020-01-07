@@ -143,18 +143,14 @@ export default {
         this.$store.state.atomicHabitsData.map(obj => {
           if (obj.category === category.slug.toLocaleLowerCase()) {
             obj.scores.map((score) => {
-              if (moment(score.dated).isSame(this.currentDate, 'day')) {
-                if(!score.completed) {
-                  totalCount.push(1);
-                }
+              if(!score.completed) {
+                totalCount.push(1);
               }
             });
           } else if (category.text.toLocaleLowerCase() === "all habits") {
             obj.scores.map((score) => {
-              if (moment(score.dated).isSame(this.currentDate, 'day')) {
-                if(!score.completed) {
-                  totalCount.push(1);
-                }
+              if(!score.completed) {
+                totalCount.push(1);
               }
             });
           }
