@@ -9,7 +9,7 @@ export const state = () => ({
   loading: false,
   drawer: null,
   selectedListitem: 0,
-  selectedDate: new Date(),
+  selectedDate: new Date().toISOString().substr(0, 10),
   theme: {
     dark: true,
     light: false
@@ -197,7 +197,6 @@ export const actions = {
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData && responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
-          commit('SAVE_WORKSPACE');
         }
         commit('SET_LOADING_STATE', false);
       });
@@ -222,7 +221,7 @@ export const actions = {
 
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
-    // commit('SAVE_WORKSPACE');
+    commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {

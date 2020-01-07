@@ -120,9 +120,10 @@ export default {
       selectedMessageOption: null,
       finishButtonDisabledState: true,
       startsFromDate: new Date().toISOString().substr(0, 10),
-      minDaysToRepeatValue: "21",
+      minDaysToRepeatValue: "1",
       endsOn: null,
       items: [
+        { text: "Select number of days to repeat this habit", value: "1" },
         { text: "Follow / repeat this habit for 21 days", value: "21" },
         { text: "Follow / repeat this habit for 42 days", value: "42" },
         { text: "Follow / repeat this habit for 30 days", value: "30" },
