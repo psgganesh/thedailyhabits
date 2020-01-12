@@ -177,7 +177,7 @@
         </v-row>
         <draggable
           v-model="eveningHabits"
-          :options="{group:'thedailyhabits'}"
+          :options="{group:'thedailyhabits', draggable:'.item'}"
           ghostClass="ghost"
           animation="150"
           easing="cubic-bezier(1, 0, 0, 1)"
@@ -312,6 +312,7 @@ export default {
     }
   },
   methods: {
+
     completeTodo(habit) {
       console.log('MOBILE: ',habit);
       this.$store.dispatch("completeTodo", habit);

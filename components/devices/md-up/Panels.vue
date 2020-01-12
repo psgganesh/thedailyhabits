@@ -65,7 +65,12 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                
+                <delete-dialog :item="item"></delete-dialog>
+                <v-icon 
+                @click="edit(item)">mdi-pencil</v-icon>
+                
                 <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -111,7 +116,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                <delete-dialog :item="item"></delete-dialog>
                 <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -157,7 +163,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                <delete-dialog :item="item"></delete-dialog>
                 <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -176,13 +183,15 @@
 </template>
 
 <script>
-import ConfirmationDialog from "~/components/Dialog";
+import SkipDialog from "~/components/Dialog";
+import DeleteDialog from "~/components/DeleteDialog";
 import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
-    ConfirmationDialog,
+    SkipDialog,
+    DeleteDialog
   },
   data: () => ({
     dialog: false,

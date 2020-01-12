@@ -177,6 +177,31 @@ export const mutations = {
       }
     });
   },
+
+  REMOVE_ALL_OCCURRENCES(state, habit) {
+    let id = habit.id
+    let zone = habit.parent
+
+    let index = state[zone].map(obj => {
+      return obj.id;
+    }).indexOf(id);
+    
+    state[zone].splice(index, 1);
+
+    // state[zone].map((obj) => {
+    //   // FIND AS PER THE OBJECT ID
+    //   if (obj.id === id) {
+    //     // TRACK TO TODAY'S DATED SCORE
+    //     obj.scores.map((score) => {
+    //       if (moment(score.dated).isSame(state.selectedDate, 'day')) {
+    //         score.skipped = true;
+    //       }
+    //     });
+    //     obj.lastUpdatedOn = moment();
+    //   }
+    // });
+  
+  },
 }
 
 export const actions = {
@@ -240,6 +265,14 @@ export const actions = {
     commit('SELECT_CATEGORY', selectedIndex);
   },
 
+  //REMOVE TODAY
+  
+
+  //REMOVE ALL
+  RemoveAllOccurrences({ commit }, habit) {
+    commit('REMOVE_ALL_OCCURRENCES', habit);
+    commit('SAVE_WORKSPACE');
+  },
 }
 
 export const getters = {

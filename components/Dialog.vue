@@ -33,29 +33,11 @@ import moment from "moment";
     },
 
     methods: {
-
       skipTodo(habit) {
         this.dialog = false;
         this.$store.dispatch("skipTodo", habit);
-        // // this.snackbar = true;
-      },
-
-      // skipClass(habit){
-      //   this.dialog = false;
-      //   var todaysSkippedState = true;
-        
-      //   let currentSelectedDate = moment(this.$store.state.selectedDate);
-      //   habit.scores.map(score => {
-      //     habit.scores.map(score => {
-      //       if (
-      //         moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-      //       ) {
-      //         todaysSkippedState = score.skipped;
-      //       }
-      //     });
-      //   });
-      //   return todaysSkippedState ? "skipped" : "";
-      // }
+        //this.snackbar = true;
+      }
     }
   }
 </script>
