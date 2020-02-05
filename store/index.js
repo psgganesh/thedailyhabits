@@ -246,7 +246,7 @@ export const actions = {
 
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
-    commit('SAVE_WORKSPACE');
+    // commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {
