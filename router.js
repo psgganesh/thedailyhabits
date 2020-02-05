@@ -10,12 +10,19 @@ const HabitCreateHome = () => import('~/pages/habit/create/index').then(m => m.d
 const HabitCreateFromTemplate = () => import('~/pages/habit/create/index').then(m => m.default || m);
 const HabitCreateFromCustomInput = () => import('~/pages/habit/create/index').then(m => m.default || m);
 
+
+const HabitUpdateHome = () => import('~/pages/habit/update/index').then(m => m.default || m);
+const HabitUpdateFromTemplate = () => import('~/pages/habit/update/index').then(m => m.default || m);
+const HabitUpdateFromCustomInput = () => import('~/pages/habit/update/index').then(m => m.default || m);
+
 const routes = [
 
   { path: '/', name: 'landing', component: Landing },
   { path: '/home', name: 'home', component: HomePage },
   { path: '/habit/create/template', name: 'habit-create-template', component: HabitCreateFromCustomInput },
   { path: '/habit/create/custom', name: 'habit-create-custom-input', component: HabitCreateFromCustomInput },
+  { path: '/habit/update/template', name: 'habit-update-template', component: HabitUpdateFromCustomInput },
+  { path: '/habit/update/custom', name: 'habit-update-custom-input', component: HabitUpdateFromCustomInput },
 
 ]
 

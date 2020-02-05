@@ -68,10 +68,7 @@
                 <skip-dialog :item="item"></skip-dialog>
                 
                 <delete-dialog :item="item"></delete-dialog>
-                <v-icon 
-                @click="edit(item)">mdi-pencil</v-icon>
-                
-                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
+                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -118,7 +115,7 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
+                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -165,8 +162,8 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
-              </v-col>
+                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
+               </v-col>
             </v-row>
           </v-container>
           <!-- <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
@@ -201,14 +198,7 @@ export default {
   }),
   computed: {
     ...mapGetters(["theme"]),
-    // isSkipped: {
-    //   get() {
-    //     return this.$store.state.isSkipped;
-    //   },
-    //   set(value) {
-    //     this.$store.commit("SKIP_STATUS", value);
-    //   }
-    // },
+   
     habits: {
       get() {
         return this.$store.state.habits;
@@ -263,11 +253,20 @@ export default {
     }
   },
   methods: {
+    edit(habit) {
+      console.log(habit);
+      console.log(habit.id);
+      this.$store.commit("SET_EDIT_ID",habit.id);
+      this.$store.commit("SET_SELECTED_CATEGORY",habit);
+      this.$router.push({ name: 'habit-update-template' });
+    },
+
     completeTodo(habit) {
       console.log('DESKTOP: ',habit);
       this.$store.dispatch("completeTodo", habit);
       // // this.snackbar = true;
     },
+
     skipTodo(habit) {
       this.dialog = false;
       this.$store.dispatch("skipTodo", habit);
