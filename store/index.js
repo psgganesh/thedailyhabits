@@ -221,17 +221,14 @@ export const actions = {
 
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
-    commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {
     commit('COMPLETE_TODO', habit);
-    commit('SAVE_WORKSPACE');
   },
 
   skipTodo({ commit }, habit) {
     commit('SKIP_TODO', habit);
-    commit('SAVE_WORKSPACE');
   },
 
   // DISABLED THIS FEATURE FOR NOW
