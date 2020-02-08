@@ -8,7 +8,7 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-1"
       >
         <template v-for="(item, index) in habits">
           <v-list-item :key="'desktop__'+item.id+'_'+index" :class="computedCardClass(item)">
@@ -38,7 +38,7 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in morningHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
@@ -65,7 +65,12 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                
+                <delete-dialog :item="item"></delete-dialog>
+                <v-icon 
+                @click="edit(item)">mdi-pencil</v-icon>
+                
                 <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -84,7 +89,7 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in afternoonHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
@@ -111,7 +116,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                <delete-dialog :item="item"></delete-dialog>
                 <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -130,7 +136,7 @@
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in eveningHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)" >
@@ -157,7 +163,8 @@
                   color="green accent-4 white--text ga-nunito"
                   @click="completeTodo(item)"
                 >DONE</v-btn>
-                <confirmation-dialog :item="item"></confirmation-dialog>
+                <skip-dialog :item="item"></skip-dialog>
+                <delete-dialog :item="item"></delete-dialog>
                 <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
               </v-col>
             </v-row>
@@ -176,13 +183,15 @@
 </template>
 
 <script>
-import ConfirmationDialog from "~/components/Dialog";
+import SkipDialog from "~/components/Dialog";
+import DeleteDialog from "~/components/DeleteDialog";
 import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
-    ConfirmationDialog,
+    SkipDialog,
+    DeleteDialog
   },
   data: () => ({
     dialog: false,
@@ -255,6 +264,7 @@ export default {
   },
   methods: {
     completeTodo(habit) {
+      console.log('DESKTOP: ',habit);
       this.$store.dispatch("completeTodo", habit);
       // // this.snackbar = true;
     },
@@ -284,7 +294,7 @@ export default {
       return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
     },
     computedCardClass(habit) {
-      let status = "card-border-color card-border-color-" + habit.category;
+      let status = "my-1 card-border-color card-border-color-" + habit.category;
       let cardState = "hidden";
       let isSkipped = false;
       //this.isSkipped = false;
