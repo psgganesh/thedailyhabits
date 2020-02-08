@@ -6,6 +6,7 @@
     transition="slide-x-transition"
     :light="theme.light"
     :dark="theme.dark"
+    floating
     app
   >
     <template v-slot:prepend>
@@ -22,17 +23,22 @@
     </template>
 
     <template>
-      <v-divider></v-divider>
-
       <div class="ma-2">
-        <v-btn nuxt to="/habit/create" color="deep-orange darken-4" block rounded large>
+        <v-btn @click="addNewHabit" color="deep-orange darken-4" block rounded large>
           <v-icon>mdi-plus</v-icon>&nbsp;Add new habit
         </v-btn>
       </div>
     </template>
-    <v-divider></v-divider>
 
-    <v-list id="categoryList" rounded>
+
+
+    <v-list id="categoryList" dense rounded>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="overline">Overview</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
       <v-list-item-group color="white">
         <v-list-item
           v-for="(category, i) in habitCategories"
@@ -53,7 +59,6 @@
 
     <!-- FOOTER OPTIONS START HERE -->
     <template v-slot:append>
-      <v-divider></v-divider>
       <v-list rounded>
         <v-list-item-group color="white">
           <v-list-item v-for="(item, i) in options" :key="i" @click="signOut()">
@@ -163,6 +168,11 @@ export default {
     tappedLabelLink(category, index) {
       // this.$store.dispatch("filterHabitsList", category, index);
       // this.collapseNavbar();
+    },
+
+    addNewHabit() {
+      this.$store.dispatch("saveWorkspace");
+      this.$router.push({ name: 'habit-create' });
     }
   }
 };

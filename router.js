@@ -14,7 +14,8 @@ const routes = [
 
   { path: '/', name: 'landing', component: Landing },
   { path: '/home', name: 'home', component: HomePage },
-  { path: '/habit/create/template', name: 'habit-create-template', component: HabitCreateFromCustomInput },
+  { path: '/habit/create', name: 'habit-create', component: HabitCreateHome },
+  { path: '/habit/create/template', name: 'habit-create-template', component: HabitCreateFromTemplate },
   { path: '/habit/create/custom', name: 'habit-create-custom-input', component: HabitCreateFromCustomInput },
 
 ]
