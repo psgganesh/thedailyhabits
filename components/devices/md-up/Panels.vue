@@ -68,7 +68,8 @@
                 <skip-dialog :item="item"></skip-dialog>
                 
                 <delete-dialog :item="item"></delete-dialog>
-                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
               </v-col>
             </v-row>
           </v-container>
@@ -115,7 +116,8 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
               </v-col>
             </v-row>
           </v-container>
@@ -162,7 +164,8 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <v-icon  @click="edit(item)">mdi-pencil</v-icon>
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
                </v-col>
             </v-row>
           </v-container>
@@ -182,13 +185,15 @@
 <script>
 import SkipDialog from "~/components/Dialog";
 import DeleteDialog from "~/components/DeleteDialog";
+import EditDialog from "~/components/EditDialog";
 import moment from "moment";
 import { mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
     SkipDialog,
-    DeleteDialog
+    DeleteDialog,
+    EditDialog
   },
   data: () => ({
     dialog: false,
@@ -198,7 +203,7 @@ export default {
   }),
   computed: {
     ...mapGetters(["theme"]),
-   
+
     habits: {
       get() {
         return this.$store.state.habits;
@@ -253,14 +258,6 @@ export default {
     }
   },
   methods: {
-    edit(habit) {
-      console.log(habit);
-      console.log(habit.id);
-      this.$store.commit("SET_EDIT_ID",habit.id);
-      this.$store.commit("SET_SELECTED_CATEGORY",habit);
-      this.$router.push({ name: 'habit-update-template' });
-    },
-
     completeTodo(habit) {
       console.log('DESKTOP: ',habit);
       this.$store.dispatch("completeTodo", habit);

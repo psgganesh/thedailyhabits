@@ -4,35 +4,43 @@
       <v-col>
         
         <v-stepper v-model="wizardStep" vertical light class="mt-2">
-          <v-stepper-step step="1" editable color="secondary">Choose Category</v-stepper-step>
+          <v-stepper-step step="1" editable color="secondary">Choose Category {{this.selectedHabitCategory}} - {{this.hasSelectedHabitCategory}}</v-stepper-step>
           
           <v-stepper-content step="1" color="secondary">
-            <v-list-item
-              color="indigo"
-              v-for="item in categoriesData"
-              :key="item.title"
-              @click="chooseCategory(item)"
-              
-            >
-              <v-list-item-avatar>
-                <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-chip class="ma-2">{{ item.count }}</v-chip>
-              </v-list-item-action>
-            </v-list-item>
+              <v-list-item 
+                color="indigo"
+                v-for="item in categoriesData"
+                :key="item.slug"
+                @click="chooseCategory(item)"
+                :class="classExtraction(item)"
+              >
+                <v-list-item-avatar>
+                  <v-icon :class="[item.iconClass]" v-text="item.icon"></v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content >
+                  <v-list-item-title 
+                    v-if="item.icon && item.slug == selectedHabitCategory" color="primary"
+                    v-text="item.title"
+                  ></v-list-item-title>
+                  <v-list-item-title 
+                    v-else
+                    v-text="item.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+                <v-icon v-if="item.icon && item.slug == selectedHabitCategory" color="primary">mdi-star</v-icon>
+                <v-list-item-action>
+                  <v-chip class="ma-2">
+                    {{ item.count }}
+                  </v-chip>
+                </v-list-item-action>
+              </v-list-item>
           </v-stepper-content>
 
           <v-stepper-step step="2" editable color="secondary">Choose Activity</v-stepper-step>
           <v-stepper-content step="2" color="secondary">
-           
-            <v-list-item
-              :class="{'selected_category': hasSelectedHabitCategory}"
+            <v-list-item 
               v-for="item in activitiesData[selectedCategorySlug]"
-              :key="item.title"
+              :key="item.slug"
               @click="chooseActivity(item)"
             >
               <v-list-item-avatar>
@@ -214,6 +222,11 @@ export default {
       this.$store.dispatch("updateHabit", habit);
       this.customQuestionOption = null;
       this.$router.push({ name: "home" });
+    },
+    classExtraction(item) {
+      if(item.slug == this.selectedHabitCategory){
+          return "selected_category";
+      }
     }
   },
   computed: {
@@ -241,6 +254,6 @@ export default {
 
 <style>
 .selected_category{
-  background-color: #f7f7f7;
+  background-color: gray;
 }
 </style>

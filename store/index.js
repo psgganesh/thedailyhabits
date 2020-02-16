@@ -197,8 +197,8 @@ export const mutations = {
     state.editHabit = habitId
   },
 
-  SET_SELECTED_CATEGORY(state, habit){
-    state.selectedHabitCategory = habit.category
+  SET_EDIT_CATEGORY(state, habitCategory){
+    state.selectedHabitCategory = habitCategory
     state.hasSelectedHabitCategory = true;
   },
 
@@ -257,8 +257,15 @@ export const actions = {
     // commit('SAVE_WORKSPACE');
   },
 
+  editHabit({ commit }, data) {
+    commit("SET_EDIT_ID", data.id);
+    commit("SET_EDIT_CATEGORY", data.category);
+    // commit('SAVE_WORKSPACE');
+  },
+
   updateHabit({ commit }, data) {
     commit('UPDATE_HABIT_DATA', data);
+    commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {
