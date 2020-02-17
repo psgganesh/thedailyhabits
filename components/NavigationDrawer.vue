@@ -88,6 +88,7 @@ export default {
     return {
       user: null,
       username: null,
+      today: moment(),
       options: [{ icon: "mdi-logout", text: "Logout" }]
     };
   },
@@ -143,25 +144,33 @@ export default {
     },
 
     habitCount(category) {
-      var totalCount = [];
+      let totalCount = [];
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
-          if (obj.category === category.slug.toLocaleLowerCase()) {
+          if (
+              obj.category === category.slug.toLocaleLowerCase()
+              ||
+              category.text.toLocaleLowerCase() === "all habits"
+          ) {
             obj.scores.map((score) => {
-              if(!score.completed) {
-                totalCount.push(1);
-              }
-            });
-          } else if (category.text.toLocaleLowerCase() === "all habits") {
-            obj.scores.map((score) => {
-              if(!score.completed) {
-                totalCount.push(1);
+              if(this.today.isSame(currentSelectedDate, "day")) {
+                if( (!score.completed) && (!score.skipped)) {
+                  totalCount.push(1);
+                } else {
+                  totalCount.push(0);
+                }  
               }
             });
           }
         });
       }
-      return totalCount.length > 0 ? arrSum(totalCount) : "";
+      let total = 0;
+      if(totalCount.length > 0) {
+        total = arrSum(totalCount);
+      }
+      return  (total === 0 )? "":total;
     },
 
     // DISABLED THIS FEATURE FOR NOW

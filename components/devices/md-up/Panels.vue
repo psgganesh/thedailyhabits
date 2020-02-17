@@ -57,8 +57,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -108,8 +108,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -155,8 +155,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -201,14 +201,6 @@ export default {
   }),
   computed: {
     ...mapGetters(["theme"]),
-    // isSkipped: {
-    //   get() {
-    //     return this.$store.state.isSkipped;
-    //   },
-    //   set(value) {
-    //     this.$store.commit("SKIP_STATUS", value);
-    //   }
-    // },
     habits: {
       get() {
         return this.$store.state.habits;
@@ -260,6 +252,10 @@ export default {
         this.$store.dispatch("moveHabit", data);
         // this.snackbar = true;
       }
+    },
+    cardActionTaskClass(habit) {
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+      return (this.today.isSame(currentSelectedDate, "day")) ? '' : 'd-none';
     }
   },
   methods: {
@@ -294,41 +290,28 @@ export default {
       return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
     },
     computedCardClass(habit) {
-      let status = "my-1 card-border-color card-border-color-" + habit.category;
-      let cardState = "hidden";
+      let statusClasses = [
+        'my-1',
+        'card-border-color'
+      ];
+      statusClasses.push('card-border-color-' + habit.category);
+
+      let cardStateClasses= [];
+      
       let isSkipped = false;
-      //this.isSkipped = false;
       let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
       // If it is same or before expiry date
-      if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
-        // If it is today
-        cardState = this.today.isSame(currentSelectedDate, "day")
-          ? "visible"
-          : "hidden";
-      }
-
+      cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction no-select'];
+      
       habit.scores.map(score => {
-        habit.scores.map(score => {
-          if (
-            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-          ) {
-            isCompleted = score.completed;
-            isSkipped = score.skipped;
-            //this.isSkipped = score.skipped;
-          }
-        });
+        let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
+        cardStateClasses.push(compiledClass);
       });
 
-      if (isCompleted) {
-        cardState = "hidden";
-      } else if (isSkipped) {
-        //cardState = "crumble";
-        cardState = "d-none";
-      }
-
-      return status + " " + cardState;
+      let computedCardClass = statusClasses.concat(cardStateClasses);
+      return computedCardClass.join(' ');
     }
   }
 };
