@@ -15,7 +15,7 @@
           </v-toolbar-items>
         </v-toolbar>
        <v-stepper v-model="wizardStep" vertical light class="mt-2">
-          <v-stepper-step step="1" editable color="secondary">Choose Category: {{this.selectedCategory}}</v-stepper-step>
+          <v-stepper-step step="1" editable color="secondary">Choose Category</v-stepper-step>
           
           <v-stepper-content step="1" color="secondary">
               <v-list-item 
@@ -40,7 +40,7 @@
           </v-stepper-content>
           <!--end chooseCategory-->
 
-          <v-stepper-step step="2" editable color="secondary">Choose Activity {{this.selectedActivitySlug}}</v-stepper-step>
+          <v-stepper-step step="2" editable color="secondary">Choose Activity</v-stepper-step>
           <v-stepper-content step="2" color="secondary">
             <v-list-item 
               v-for="item in activitiesData[categorySlug]"
@@ -58,7 +58,7 @@
           </v-stepper-content>
           <!--end chooseActivity-->
 
-          <v-stepper-step step="3" editable color="secondary">Select Option: {{this.questionSlug}}</v-stepper-step>
+          <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
           <v-stepper-content step="3" color="secondary" id="questions_list">
             <v-list label>
               <v-list-item-group olor="green" v-if="questionCustom == false" >
@@ -107,7 +107,7 @@
                       clearable
                       solo
                       name="input-7-4"
-                      v-model="selectedMessageOption"
+                      v-model="customQuestionOption"
                       label="Example: I would run 10k steps everyday."
                     ></v-textarea>
                   </v-col>
@@ -141,7 +141,7 @@
                     :items="items"
                     item-text="text"
                     item-value="value"
-                    v-model="minDaysToRepeatValue"
+                    v-model="computedMinDaysToRepeatValue"
                     label="Choose, number of days to repeat"
                     solo
                     prepend-inner-icon="mdi-repeat"
@@ -151,13 +151,6 @@
               </v-row>
             </v-container>
 
-            <!-- <v-btn
-              color="success"
-              :disabled="finishButtonDisabledState"
-              block
-              large
-              @click="updateHabit()"
-            >Update habit</v-btn> -->
           </v-stepper-content>
         </v-stepper>
       </v-card>
@@ -188,13 +181,18 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
         loading: false,
         wizardStep: 1,
         selection: 1,
-        //selectedCategory: null,
+        selectedCategory: null,
+        selectedActivity: null,
+        selectedMessageOption: null,
+        minDaysToRepeatValue: "",
+        startsFromDate: null,
+        endsOn: null,
+        calculateScores: false,
+        customQuestionOption: null,
+
         selectedCategorySlug: null,
         selectedActivitySlug: null,
         finishButtonDisabledState: true,
-        startsFromDate: new Date().toISOString().substr(0, 10),
-        customQuestionOption: "",
-        endsOn: null,
         items: [
           { text: "Follow / repeat this habit for 21 days", value: "21" },
           { text: "Follow / repeat this habit for 42 days", value: "42" },
@@ -205,23 +203,6 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
         dialog: false,
       };
     },
-
-    created(){
-      console.log('checkQuestionType',this.checkQuestionType);
-    },
-
-    watch: {
-      selectedActivity:function (newVal, oldVal) {
-        if(newVal != oldVal){
-          this.selectSchedule();
-        }
-      },
-      minDaysToRepeatValue: function (newVal, oldVal) {
-        if(newVal != oldVal){
-          this.selectSchedule();
-        }
-      }
-    },
   
     computed: {
       ...mapGetters(
@@ -231,74 +212,54 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
           "questionsData", 
          
       ]),
-      computedCategory(){
-        return this.selectedCategory == null ? { "icon": this.item.icon,
-                    "slug": this.item.category,
-                    "iconClass": this.item.iconClass,
-                  } : null;
-      },
-      computedActivity(){
-         return this.selectedActivitySlug == null ? { "title": this.item.activity } : null;
-      },
-      computedQuestion(){
-        return this.questionCustom == false ? ( this.selectedActivitySlug == null ? this.item.title : null) : this.item.title;
-       },
+       
       categorySlug() {
         return this.selectedCategorySlug == null ? this.item.category : this.selectedCategorySlug;
       },
+      checkActivityCase(){
+        return (/\s/g.test(this.item.activity)) ? this.item.activity.replace(/\s+/g, '_').toLowerCase() : this.item.activity.toLowerCase();
+      },
+        
       checkQuestionType(){
-        return this.questionsData[this.item.activity.replace(/\s+/g, '_').toLowerCase()].map(ques => {
-                  if( ques.option.replace(/\s+/g, '-').toLowerCase() == this.item.title.replace(/\s+/g, '-').toLowerCase()
-                  ){
-                    return false;
-                  }else{
-                    return true;
-                  }
-                }).includes(true)
+        //let checkActivityCase = (/\s/g.test(this.item.activity)) ? this.item.activity.replace(/\s+/g, '_').toLowerCase() : this.item.activity.toLowerCase();
+        return this.questionsData[this.checkActivityCase].map(ques => {
+                  let checkOption = (/\s/g.test(ques.option)) ? ques.option.replace(/\s+/g, '-').toLowerCase() : ques.option.toLowerCase();
+                  let checkTitle = (/\s/g.test(this.item.title)) ? this.item.title.replace(/\s+/g, '-').toLowerCase() : this.item.title.toLowerCase();
+                  
+                  if( checkOption == checkTitle){ return false; }
+                  else{ return true; }
+                }).includes(true);
       },
       questionCustom() {
-       return this.selectedActivitySlug !== null ? false : this.checkQuestionType;
+       return this.selectedActivitySlug == null ? false : this.checkQuestionType;
       },
       questionSlug() {
-        return this.selectedActivitySlug !== null ? this.selectedActivitySlug.slug : this.item.activity.replace(/\s+/g, '_').toLowerCase();
+        if(this.questionCustom == true){
+           this.customQuestionOption = this.item.title;
+        }
+        return this.selectedActivitySlug != null ? this.selectedActivitySlug : ( /\s/g.test(this.item.activity) ? this.item.activity.replace(/\s+/g, '_').toLowerCase() : this.item.activity.toLowerCase() );
       },
       computedDays() {
-        return moment(this.item.endsOn).diff(this.item.startsFrom, "days");
+        return moment(this.item.endsOn).diff(this.item.startsFrom, "days").toString();
       },
-      selectedCategory:{
+      computedstartsFromDate: {
         get: function () {
-          return this.selectedCategorySlug == null ?  
-                  { "icon": this.item.icon,
-                    "slug": this.item.category,
-                    "iconClass": this.item.iconClass,
-                  } : null;
+          return this.startsFromDate != null ?  this.startsFromDate : new Date().toISOString().substr(0, 10);
         },
-        set: function (value) {
-          return value;
+        set: function (newValue) {
+          if(newValue !=  null && newValue != ""){
+            this.startsFromDate = newValue;
+          }
         }
       },
-      selectedActivity:{
+      computedMinDaysToRepeatValue: {
         get: function () {
-          return this.selectedActivitySlug == null ? { "title": this.item.activity } : null;
+          return this.minDaysToRepeatValue != "" ?  this.minDaysToRepeatValue : this.computedDays;
         },
-        set: function (value) {
-          return value;
-        }
-      },
-      selectedMessageOption: {
-        get: function () {
-          return this.questionCustom == false ? ( this.selectedActivitySlug == null ? this.item.title : null) : this.item.title;
-        },
-        set: function (value) {
-          return value;
-        }
-      },
-      minDaysToRepeatValue: {
-        get: function () {
-          return this.selectedCategorySlug == null ? this.computedDays : '21';
-        },
-        set: function (value) {
-          return value;
+        set: function (newValue) {
+          if(newValue !=  null && newValue != ""){
+            this.minDaysToRepeatValue = String(newValue);
+          }
         }
       },
       computedDateFormattedMomentjs() {
@@ -310,13 +271,13 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
 
     methods: {
       chooseCategory(category) {
-        console.log('chooseCategory', category);
         this.selectedCategory = category;
         this.selectedCategorySlug = category.slug;
         this.wizardStep++;
       },
       chooseActivity(activity) {
-        this.selectedActivitySlug = activity;
+        this.selectedActivity = activity;
+        this.selectedActivitySlug = activity.slug;
         this.wizardStep++;
       },
       selectOption(question) {
@@ -330,8 +291,9 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
         }
       },
       selectSchedule() {
-        this.endsOn = moment(this.startsFromDate).add(
-          parseInt(this.minDaysToRepeatValue),
+        this.calculateScores = true;
+        this.endsOn = moment(this.computedstartsFromDate).add(
+          parseInt(this.computedMinDaysToRepeatValue),
           "day"
         );
         this.finishButtonDisabledState = false;
@@ -340,25 +302,24 @@ import { taskStructure, scoreStructure } from "~/utils/schema";
         this.confirmDialog = false;
       },
       updateHabit() {
-        
         const habit = taskStructure();
         habit.id = this.item.id
-        habit.title = this.selectedMessageOption; // task / habit title,
+        habit.title = (this.questionCustom == false ) ? 
+        ((this.selectedMessageOption != null) ? this.selectedMessageOption : this.item.title ) :
+        ((this.customQuestionOption != null) ? this.customQuestionOption : this.item.title ); // task / habit title,
         habit.parent = "habits";
-        habit.icon = this.selectedCategory.icon;
-        habit.iconClass = this.selectedCategory.iconClass;
-        habit.category = this.selectedCategory.slug; // ( Optional ) main-category / general
-        habit.activity = this.selectedActivity.title; // ( Optional ) tag for activity
+        habit.icon = (this.selectedCategory != null) ? this.selectedCategory.icon : this.item.icon;
+        habit.iconClass = (this.selectedCategory != null) ? this.selectedCategory.iconClass : this.item.iconClass; 
+        habit.category = (this.selectedCategory != null) ? this.selectedCategory.slug : this.item.category; // ( Optional ) main-category / general
+        habit.activity = (this.selectedActivity != null) ? this.selectedActivity.title : this.item.activity; // ( Optional ) tag for activity
         habit.recurring = true; // Boolean
-        habit.startsFrom = moment(this.startsFromDate);
-        habit.endsOn = moment(this.endsOn); // moment().format('YYYYMMDD') last date
-        habit.scores = scoreStructure(); // scores template from the schema.js
-        habit.createdOn = moment(); // date when task was created on
-        habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
-        
-        console.log('updateHabit', habit);
+        habit.startsFrom = (this.startsFromDate != null) ? moment(this.startsFromDate) : this.item.startsFrom;
+        habit.endsOn = (this.endsOn != null) ? moment(this.endsOn) : this.item.endsOn; // moment().format('YYYYMMDD') last date
+        habit.scores = (this.calculateScores == false) ? this.item.scores : scoreStructure(); // scores template from the schema.js
+        habit.createdOn = this.item.createdOn; // date when task was created on
+        habit.lastUpdatedOn = moment(); // latest updated date when task status was changed / detail was changed
         this.$store.dispatch("updateHabit", habit);
-        this.customQuestionOption = null;
+        
         this.dialog = false;
       },
       classExtraction(item, type) {
