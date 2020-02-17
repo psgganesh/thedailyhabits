@@ -33,8 +33,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/draggable', ssr: false },
-    { src: '@/plugins/ga.js', ssr: false }
+    { src: '@/plugins/draggable', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,8 +50,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/device',
     'nuxt-material-design-icons',
-    '@nuxtjs/ngrok',
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-TNLFJ35' }],
+    '@nuxtjs/ngrok'
   ],
   router: {
     middleware: ['check-auth']

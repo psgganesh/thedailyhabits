@@ -1129,11 +1129,6 @@
   resolved "https://registry.yarnpkg.com/@nuxtjs/device/-/device-1.2.3.tgz#0b9c744fef10fa6c9b5d0155c3fbcde2c8dd671f"
   integrity sha512-VKP8kYL7Ua7BLUStDhnT+N/nv5fta7E7S/aMuMsuWwcDDmlyN+8OCe/jBNAoe6z1LPw2MSiMQYC9VR9mUIZybg==
 
-"@nuxtjs/google-tag-manager@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/google-tag-manager/-/google-tag-manager-2.3.1.tgz#5b0a908b6651d4f0a090736114d407896e9ff787"
-  integrity sha512-3NzHqJ8yDG/RnovAITcJIVYXjWqY80ml9rdyKjsv9wXFb0YD7/RZHltzAsDFaTYYOZV0FgFPa0jw7fSTvJJRHg==
-
 "@nuxtjs/ngrok@^1.2.6":
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/@nuxtjs/ngrok/-/ngrok-1.2.7.tgz#c5421a20bcf5e1913a0a77def2d4a58341a2f85f"
