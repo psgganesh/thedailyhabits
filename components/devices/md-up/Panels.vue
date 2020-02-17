@@ -186,7 +186,7 @@
 import SkipDialog from "~/components/Dialog";
 import DeleteDialog from "~/components/DeleteDialog";
 import moment from "moment";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
@@ -259,14 +259,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['saveWorkspace']),
     completeTodo(habit) {
       console.log('DESKTOP: ',habit);
-      this.$store.dispatch("completeTodo", habit);
+      this.$store.dispatch("completeTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // // this.snackbar = true;
     },
     skipTodo(habit) {
       this.dialog = false;
-      this.$store.dispatch("skipTodo", habit);
+      this.$store.dispatch("skipTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // // this.snackbar = true;
     },
 

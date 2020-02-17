@@ -241,7 +241,7 @@ import ConfirmationDialog from "~/components/Dialog";
 import moment from "moment";
 import AddNewHabitButton from "~/components/devices/sm-down/AddNewHabitButton";
 import TermsModal from "~/components/devices/sm-down/TermsModal";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "MobileView",
@@ -312,14 +312,18 @@ export default {
     }
   },
   methods: {
-
+    ...mapActions(['saveWorkspace']),
     completeTodo(habit) {
       console.log('MOBILE: ',habit);
-      this.$store.dispatch("completeTodo", habit);
+      this.$store.dispatch("completeTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // this.snackbar = true;
     },
     skipTodo(habit) {
-      this.$store.dispatch("skipTodo", habit);
+      this.$store.dispatch("skipTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // this.snackbar = true;
     },
     skipTaskClass(habit) {
