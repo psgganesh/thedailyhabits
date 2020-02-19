@@ -2,17 +2,17 @@
   <v-navigation-drawer
     v-model="drawerState"
     width="280"
-    :clipped="$vuetify.breakpoint.lgAndUp"
+    clipped
     transition="slide-x-transition"
     :light="theme.light"
     :dark="theme.dark"
-    floating
+    fixed
     app
   >
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
-          <img :src="user.avatarUrl()" />
+          <img :src="avatarUrl" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -93,12 +93,17 @@ export default {
     };
   },
   beforeMount() {
-    if (!this.loggedUser.isUserSignedIn()) {
+
+    if (!this.$userSession.isUserSignedIn()) {
       this.redirectUserToLandingPage();
+    } else {
+      this.userData = this.$userSession.loadUserData();
+      this.username = this.userData.username;
+      this.user = new Person(this.userData.profile);
+      this.$store.commit("SET_USERSESSION", this.$userSession);
+      // console.log(this.user);
     }
-    this.userData = this.loggedUser.loadUserData();
-    this.user = new Person(this.userData.profile);
-    this.username = this.userData.username;
+
     if (this.$store.state.habits.length === 0) {
       this.$store.dispatch("fetchWorkspaceRecords");
     }
@@ -126,6 +131,14 @@ export default {
       set(value) {
         this.$store.commit("SET_DRAWER_STATE", value);
       }
+    },
+    avatarUrl() {
+      // if( (this.user !== null) && (this.user._profile !== null)) {
+      //   if(this.user._profile.image.length > 0) {
+      //     return this.user._profile.image[0].contentUrl;
+      //   }
+      // }
+      return "/images/blockstack.png";
     }
   },
   methods: {
@@ -182,7 +195,8 @@ export default {
     addNewHabit() {
       this.$store.dispatch("saveWorkspace");
       this.$router.push({ name: 'habit-create' });
-    }
+    },
+    
   }
 };
 </script>

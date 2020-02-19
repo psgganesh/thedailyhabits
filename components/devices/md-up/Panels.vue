@@ -4,7 +4,7 @@
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -34,7 +34,7 @@
       <!-- MORNING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="morningHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -85,7 +85,7 @@
       <!-- AFTERNOON HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="afternoonHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -132,7 +132,7 @@
       <!-- EVENING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="eveningHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
@@ -274,7 +274,9 @@ export default {
       });
       // // this.snackbar = true;
     },
-
+    getOptions() {
+      return {group:'thedailyhabits'};
+    },
     skipTaskClass(habit) {
       //var todaysSkippedState = false;
       var todaysSkippedState = true;
@@ -311,11 +313,14 @@ export default {
       cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction no-select'];
       
       habit.scores.map(score => {
-        let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
-        cardStateClasses.push(compiledClass);
+        if((this.today.isSame(score.dated, "day"))) {
+          let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
+          cardStateClasses.push(compiledClass);
+        }
       });
 
       let computedCardClass = statusClasses.concat(cardStateClasses);
+      console.log(computedCardClass.join(' '));
       return computedCardClass.join(' ');
     }
   }

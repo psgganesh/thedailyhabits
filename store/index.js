@@ -7,7 +7,7 @@ var STORAGE_FILE = 'atomic-habits-data-dino-build.json'
 export const state = () => ({
   atomicHabitsData: [],
   loading: false,
-  drawer: null,
+  drawer: true,
   selectedListitem: 0,
   selectedDate: new Date().toISOString().substr(0, 10),
   theme: {
@@ -31,7 +31,7 @@ export const state = () => ({
 export const mutations = {
 
   // BLOCKSTACK USER
-  SET_USER(state, userSession) {
+  SET_USERSESSION(state, userSession) {
     state.userSession = userSession || null
   },
 

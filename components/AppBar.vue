@@ -15,11 +15,11 @@
       <span class="ga-pacifico logo-title">thedailyhabits</span>
     </v-toolbar-title>
 
-    <v-tabs background-color="transparent">
+    <!-- <v-tabs background-color="transparent">
       <v-tab><v-icon :light="theme.light" :dark="theme.dark">mdi-home</v-icon> Home</v-tab>
       <v-tab><v-icon :light="theme.light" :dark="theme.dark">mdi-progress-check</v-icon> Streaks</v-tab>
       <v-tab>Item Three</v-tab>
-    </v-tabs>
+    </v-tabs> -->
 
     <div class="flex-grow-1"></div>
 

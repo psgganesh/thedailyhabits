@@ -2,7 +2,7 @@ const pkg = require('./package');
 const colors = require('vuetify/es5/util/colors').default;
 
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -13,7 +13,6 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'A habits journal centred around privacy' },
-      { name: 'google-site-verification', content: 'oRH3xHvUr0rK_acsWOzRChba0IlmeaWj0eb5eUel070' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -33,12 +32,13 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/draggable', ssr: false }
+    '@/plugins/draggable',
+    { src: '@/plugins/blockstack', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
   */
-  devModules: [
+  buildModules: [
     '@nuxtjs/vuetify',
   ],
   /*
@@ -52,9 +52,6 @@ module.exports = {
     'nuxt-material-design-icons',
     '@nuxtjs/ngrok'
   ],
-  router: {
-    middleware: ['check-auth']
-  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
