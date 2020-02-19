@@ -306,8 +306,10 @@ export default {
       cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction no-select'];
       
       habit.scores.map(score => {
-        let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
-        cardStateClasses.push(compiledClass);
+        if((this.today.isSame(score.dated, "day"))) {
+          let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
+          cardStateClasses.push(compiledClass);
+        }
       });
 
       let computedCardClass = statusClasses.concat(cardStateClasses);
