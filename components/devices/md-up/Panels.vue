@@ -4,11 +4,11 @@
       <!-- HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="habits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--two-line px-1"
       >
         <template v-for="(item, index) in habits">
           <v-list-item :key="'desktop__'+item.id+'_'+index" :class="computedCardClass(item)">
@@ -34,11 +34,11 @@
       <!-- MORNING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="morningHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in morningHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
@@ -57,8 +57,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -83,11 +83,11 @@
       <!-- AFTERNOON HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="afternoonHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in afternoonHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
@@ -106,8 +106,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -131,11 +131,11 @@
       <!-- EVENING HABITS DRAGGABLE LIST STARTS HERE -->
       <draggable
         v-model="eveningHabits"
-        :options="{group:'thedailyhabits'}"
+        v-bind="getOptions()"
         ghostClass="ghost"
         animation="150"
         easing="cubic-bezier(1, 0, 0, 1)"
-        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line"
+        class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in eveningHabits">
           <v-container class="lighten-5" :key="index" :class="computedCardClass(item)" >
@@ -154,8 +154,8 @@
                 <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
               </v-col>
             </v-row>
-            <v-divider class="my-4 default"></v-divider>
-            <v-row no-gutters class>
+            <v-row no-gutters :class="cardActionTaskClass">
+              <v-divider class="my-4 default"></v-divider>
               <v-col cols="12" class="mb-4 ml-2">
                 <v-btn
                   small
@@ -187,7 +187,7 @@ import SkipDialog from "~/components/Dialog";
 import DeleteDialog from "~/components/DeleteDialog";
 import EditDialog from "~/components/EditDialog";
 import moment from "moment";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
@@ -203,7 +203,6 @@ export default {
   }),
   computed: {
     ...mapGetters(["theme"]),
-
     habits: {
       get() {
         return this.$store.state.habits;
@@ -255,21 +254,32 @@ export default {
         this.$store.dispatch("moveHabit", data);
         // this.snackbar = true;
       }
+    },
+    cardActionTaskClass(habit) {
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+      return (this.today.isSame(currentSelectedDate, "day")) ? '' : 'd-none';
     }
   },
   methods: {
+    ...mapActions(['saveWorkspace']),
     completeTodo(habit) {
       console.log('DESKTOP: ',habit);
-      this.$store.dispatch("completeTodo", habit);
+      this.$store.dispatch("completeTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // // this.snackbar = true;
     },
 
     skipTodo(habit) {
       this.dialog = false;
-      this.$store.dispatch("skipTodo", habit);
+      this.$store.dispatch("skipTodo", habit).then(() => {
+        this.$store.dispatch("saveWorkspace");
+      });
       // // this.snackbar = true;
     },
-
+    getOptions() {
+      return {group:'thedailyhabits'};
+    },
     skipTaskClass(habit) {
       //var todaysSkippedState = false;
       var todaysSkippedState = true;
@@ -290,41 +300,31 @@ export default {
       return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
     },
     computedCardClass(habit) {
-      let status = "card-border-color card-border-color-" + habit.category;
-      let cardState = "hidden";
+      let statusClasses = [
+        'my-1',
+        'card-border-color'
+      ];
+      statusClasses.push('card-border-color-' + habit.category);
+
+      let cardStateClasses= [];
+      
       let isSkipped = false;
-      //this.isSkipped = false;
       let isCompleted = false;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
       // If it is same or before expiry date
-      if (moment(currentSelectedDate).isSameOrBefore(habit.endsOn, "day")) {
-        // If it is today
-        cardState = this.today.isSame(currentSelectedDate, "day")
-          ? "visible"
-          : "hidden";
-      }
-
+      cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction no-select'];
+      
       habit.scores.map(score => {
-        habit.scores.map(score => {
-          if (
-            moment(score.dated).isSame(this.$store.state.selectedDate, "day")
-          ) {
-            isCompleted = score.completed;
-            isSkipped = score.skipped;
-            //this.isSkipped = score.skipped;
-          }
-        });
+        if((this.today.isSame(score.dated, "day"))) {
+          let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
+          cardStateClasses.push(compiledClass);
+        }
       });
 
-      if (isCompleted) {
-        cardState = "hidden";
-      } else if (isSkipped) {
-        //cardState = "crumble";
-        cardState = "d-none";
-      }
-
-      return status + " " + cardState;
+      let computedCardClass = statusClasses.concat(cardStateClasses);
+      console.log(computedCardClass.join(' '));
+      return computedCardClass.join(' ');
     }
   }
 };

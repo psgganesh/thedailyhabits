@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="3" class="selectDate">
+    <v-col cols="2" class="selectDate pa-2">
       <v-menu
         id="selectCurrentDate"
         v-model="datepickerMenu"
@@ -9,16 +9,16 @@
       >
         <template v-slot:activator="{ on }">
           <v-text-field
+            prepend-icon="mdi-calendar"
             solo-inverted
             flat
             :value="computedDateFormattedMomentjs"
             v-on="on"
             :light="theme.light"
             :dark="theme.dark"
-            disabled
           ></v-text-field>
         </template>
-        <v-date-picker v-model="currentDate" @change="chooseDate()"></v-date-picker>
+        <v-date-picker color="deep-orange darken-4" v-model="currentDate" @change="chooseDate()"></v-date-picker>
       </v-menu>
     </v-col>
     <v-col cols="6"></v-col>
@@ -44,11 +44,12 @@ export default {
   data: () => {
     return {
       datepickerMenu: false,
-      currentDate: new Date(moment()).toString().substr(0, 15)
+      currentDate: new Date().toISOString().substr(0, 10)
     };
   },
   methods: {
     chooseDate() {
+      // this.$store.dispatch("saveWorkspace");
       this.datepickerMenu = false;
       this.$store.commit("SET_CURRENT_DATE", this.currentDate);
       this.$store.dispatch("fetchWorkspaceRecords");
@@ -58,7 +59,7 @@ export default {
     ...mapGetters(["theme"]),
     computedDateFormattedMomentjs() {
       return this.currentDate
-        ? moment(this.currentDate).format("dddd, MMMM Do YYYY")
+        ? new Date(this.currentDate).toISOString().substr(0, 10)
         : "";
     }
   }

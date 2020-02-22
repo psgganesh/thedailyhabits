@@ -2,16 +2,17 @@
   <v-navigation-drawer
     v-model="drawerState"
     width="280"
-    :clipped="$vuetify.breakpoint.lgAndUp"
+    clipped
     transition="slide-x-transition"
     :light="theme.light"
     :dark="theme.dark"
+    fixed
     app
   >
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
-          <img :src="user.avatarUrl()" />
+          <img :src="avatarUrl" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -22,17 +23,22 @@
     </template>
 
     <template>
-      <v-divider></v-divider>
-
       <div class="ma-2">
-        <v-btn nuxt to="/habit/create" color="deep-orange darken-4" block rounded large>
+        <v-btn @click="addNewHabit" color="deep-orange darken-4" block rounded large>
           <v-icon>mdi-plus</v-icon>&nbsp;Add new habit
         </v-btn>
       </div>
     </template>
-    <v-divider></v-divider>
 
-    <v-list id="categoryList" rounded>
+
+
+    <v-list id="categoryList" dense rounded>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="overline">Overview</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
       <v-list-item-group color="white">
         <v-list-item
           v-for="(category, i) in habitCategories"
@@ -53,7 +59,6 @@
 
     <!-- FOOTER OPTIONS START HERE -->
     <template v-slot:append>
-      <v-divider></v-divider>
       <v-list rounded>
         <v-list-item-group color="white">
           <v-list-item v-for="(item, i) in options" :key="i" @click="signOut()">
@@ -83,16 +88,22 @@ export default {
     return {
       user: null,
       username: null,
+      today: moment(),
       options: [{ icon: "mdi-logout", text: "Logout" }]
     };
   },
   beforeMount() {
-    if (!this.loggedUser.isUserSignedIn()) {
+
+    if (!this.$userSession.isUserSignedIn()) {
       this.redirectUserToLandingPage();
+    } else {
+      this.userData = this.$userSession.loadUserData();
+      this.username = this.userData.username;
+      this.user = new Person(this.userData.profile);
+      this.$store.commit("SET_USERSESSION", this.$userSession);
+      // console.log(this.user);
     }
-    this.userData = this.loggedUser.loadUserData();
-    this.user = new Person(this.userData.profile);
-    this.username = this.userData.username;
+
     if (this.$store.state.habits.length === 0) {
       this.$store.dispatch("fetchWorkspaceRecords");
     }
@@ -120,6 +131,14 @@ export default {
       set(value) {
         this.$store.commit("SET_DRAWER_STATE", value);
       }
+    },
+    avatarUrl() {
+      // if( (this.user !== null) && (this.user._profile !== null)) {
+      //   if(this.user._profile.image.length > 0) {
+      //     return this.user._profile.image[0].contentUrl;
+      //   }
+      // }
+      return "/images/blockstack.png";
     }
   },
   methods: {
@@ -138,24 +157,46 @@ export default {
     },
 
     habitCount(category) {
-      var totalCount = [];
+      let totalCount = [];
+      let currentSelectedDate = moment(this.$store.state.selectedDate);
+
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
-          if (obj.category === category.slug.toLocaleLowerCase()) {
-            totalCount.push(1);
-          } else if (category.text.toLocaleLowerCase() === "all habits") {
-            totalCount.push(1);
+          if (
+              obj.category === category.slug.toLocaleLowerCase()
+              ||
+              category.text.toLocaleLowerCase() === "all habits"
+          ) {
+            obj.scores.map((score) => {
+              if(this.today.isSame(currentSelectedDate, "day")) {
+                if( (!score.completed) && (!score.skipped)) {
+                  totalCount.push(1);
+                } else {
+                  totalCount.push(0);
+                }  
+              }
+            });
           }
         });
       }
-      return totalCount.length > 0 ? arrSum(totalCount) : "";
+      let total = 0;
+      if(totalCount.length > 0) {
+        total = arrSum(totalCount);
+      }
+      return  (total === 0 )? "":total;
     },
 
     // DISABLED THIS FEATURE FOR NOW
     tappedLabelLink(category, index) {
       // this.$store.dispatch("filterHabitsList", category, index);
       // this.collapseNavbar();
-    }
+    },
+
+    addNewHabit() {
+      this.$store.dispatch("saveWorkspace");
+      this.$router.push({ name: 'habit-create' });
+    },
+    
   }
 };
 </script>

@@ -31,7 +31,7 @@ export default {
 }
 .wrapper {
   display: flex;
-  height: 75vh;
+  height: 79vh;
 }
 #board > .column {
   display: flex;
@@ -50,6 +50,7 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1;
+  border-radius: 0px;
 }
 .theme--light.v-list,
 .theme--light.v-sheet {
