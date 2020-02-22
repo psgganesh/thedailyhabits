@@ -237,7 +237,7 @@
 </template>
 
 <script>
-import ConfirmationDialog from "~/components/Dialog";
+// import ConfirmationDialog from "~/components/Dialog";
 import moment from "moment";
 import AddNewHabitButton from "~/components/devices/sm-down/AddNewHabitButton";
 import TermsModal from "~/components/devices/sm-down/TermsModal";
@@ -246,7 +246,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MobileView",
   components: {
-    ConfirmationDialog,
+    // ConfirmationDialog,
     AddNewHabitButton,
     TermsModal
   },

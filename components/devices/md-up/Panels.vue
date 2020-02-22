@@ -41,39 +41,42 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in morningHabits">
-          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
-            <v-row no-gutters>
-              <v-col cols="2" sm="2">
-                <v-icon>mdi-drag</v-icon>
-              </v-col>
-              <v-col cols="8" sm="8">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.activity"></v-list-item-title>
-                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-                </v-list-item-content>
-              </v-col>
-              <v-col cols="2" sm="2">
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-col>
-            </v-row>
-            <v-row no-gutters :class="cardActionTaskClass">
-              <v-divider class="my-4 default"></v-divider>
-              <v-col cols="12" class="mb-4 ml-2">
-                <v-btn
-                  small
-                  color="green accent-4 white--text ga-nunito"
-                  @click="completeTodo(item)"
-                >DONE</v-btn>
-                <skip-dialog :item="item"></skip-dialog>
-                
-                <delete-dialog :item="item"></delete-dialog>
+          <v-card :key="index" :class="computedCardClass(item)">
+            <v-card-text class="white black--text">
+              <v-container fluid>
+                <v-row>
+                  <v-col cols="10">
+                    <h3 class="subtitle-1">{{ item.activity }}</h3>
+                    <p class="body-1">{{ item.title }}</p>
+                  </v-col>
+                  <v-col cols="2" class="text-right">
+                    <p class="grey--text">{{ computedDays(item) }}</p>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <!-- <v-progress-linear
+                      height="10"
+                      value="45"
+                      striped
+                      color="light-blue"
+                    ></v-progress-linear> -->
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions :class="cardActionTaskClass">
+              <v-btn small color="green darken-1 white--text ga-nunito mr-2" @click="completeTodo(item)" >DONE</v-btn>
+              <skip-dialog :item="item"></skip-dialog>
+              <v-spacer></v-spacer>
+              <v-btn icon>
                 <edit-dialog :item="item"></edit-dialog>
-                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
-              </v-col>
-            </v-row>
-          </v-container>
-          <!-- <v-divider v-if="index + 1 < morningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
+              </v-btn>
+              <v-btn icon>
+                <delete-dialog :item="item"></delete-dialog>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </template>
       </draggable>
       <!-- MORNING HABITS DRAGGABLE LIST ENDS HERE -->
@@ -90,38 +93,42 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in afternoonHabits">
-          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)">
-            <v-row no-gutters>
-              <v-col cols="2" sm="2">
-                <v-icon>mdi-drag</v-icon>
-              </v-col>
-              <v-col cols="8" sm="8">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.activity"></v-list-item-title>
-                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-                </v-list-item-content>
-              </v-col>
-              <v-col cols="2" sm="2">
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-col>
-            </v-row>
-            <v-row no-gutters :class="cardActionTaskClass">
-              <v-divider class="my-4 default"></v-divider>
-              <v-col cols="12" class="mb-4 ml-2">
-                <v-btn
-                  small
-                  color="green accent-4 white--text ga-nunito"
-                  @click="completeTodo(item)"
-                >DONE</v-btn>
-                <skip-dialog :item="item"></skip-dialog>
-                <delete-dialog :item="item"></delete-dialog>
+          <v-card :key="index" :class="computedCardClass(item)">
+            <v-card-text class="white black--text">
+              <v-container fluid>
+                <v-row>
+                  <v-col cols="10">
+                    <h3 class="subtitle-1">{{ item.activity }}</h3>
+                    <p class="body-1">{{ item.title }}</p>
+                  </v-col>
+                  <v-col cols="2" class="text-right">
+                    <p class="grey--text">{{ computedDays(item) }}</p>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <!-- <v-progress-linear
+                      height="10"
+                      value="45"
+                      striped
+                      color="light-blue"
+                    ></v-progress-linear> -->
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions :class="cardActionTaskClass">
+              <v-btn small color="green darken-1 white--text ga-nunito mr-2" @click="completeTodo(item)" >DONE</v-btn>
+              <skip-dialog :item="item"></skip-dialog>
+              <v-spacer></v-spacer>
+              <v-btn icon>
                 <edit-dialog :item="item"></edit-dialog>
-                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
-              </v-col>
-            </v-row>
-          </v-container>
-          <!-- <v-divider v-if="index + 1 < afternoonHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
+              </v-btn>
+              <v-btn icon>
+                <delete-dialog :item="item"></delete-dialog>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </template>
       </draggable>
       <!-- AFTERNOON HABITS DRAGGABLE LIST ENDS HERE -->
@@ -138,38 +145,42 @@
         class="v-list v-sheet v-sheet--tile theme--light v-list--subheader v-list--three-line px-1"
       >
         <template v-for="(item, index) in eveningHabits">
-          <v-container class="lighten-5" :key="index" :class="computedCardClass(item)" >
-            <v-row no-gutters>
-              <v-col cols="2" sm="2">
-                <v-icon>mdi-drag</v-icon>
-              </v-col>
-              <v-col cols="8" sm="8">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.activity"></v-list-item-title>
-                  <v-list-item-subtitle class="text--primary" v-text="item.title"></v-list-item-subtitle>
-                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-                </v-list-item-content>
-              </v-col>
-              <v-col cols="2" sm="2">
-                <v-list-item-action-text v-text="computedDays(item)"></v-list-item-action-text>
-              </v-col>
-            </v-row>
-            <v-row no-gutters :class="cardActionTaskClass">
-              <v-divider class="my-4 default"></v-divider>
-              <v-col cols="12" class="mb-4 ml-2">
-                <v-btn
-                  small
-                  color="green accent-4 white--text ga-nunito"
-                  @click="completeTodo(item)"
-                >DONE</v-btn>
-                <skip-dialog :item="item"></skip-dialog>
-                <delete-dialog :item="item"></delete-dialog>
+          <v-card :key="index" :class="computedCardClass(item)">
+            <v-card-text class="white black--text">
+              <v-container fluid>
+                <v-row>
+                  <v-col cols="10">
+                    <h3 class="subtitle-1">{{ item.activity }}</h3>
+                    <p class="body-1">{{ item.title }}</p>
+                  </v-col>
+                  <v-col cols="2" class="text-right">
+                    <p class="grey--text">{{ computedDays(item) }}</p>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <!-- <v-progress-linear
+                      height="10"
+                      value="45"
+                      striped
+                      color="light-blue"
+                    ></v-progress-linear> -->
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions :class="cardActionTaskClass">
+              <v-btn small color="green darken-1 white--text ga-nunito mr-2" @click="completeTodo(item)" >DONE</v-btn>
+              <skip-dialog :item="item"></skip-dialog>
+              <v-spacer></v-spacer>
+              <v-btn icon>
                 <edit-dialog :item="item"></edit-dialog>
-                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
-               </v-col>
-            </v-row>
-          </v-container>
-          <!-- <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
+              </v-btn>
+              <v-btn icon>
+                <delete-dialog :item="item"></delete-dialog>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </template>
       </draggable>
       <!-- EVENING HABITS DRAGGABLE LIST ENDS HERE -->
@@ -183,7 +194,7 @@
 </template>
 
 <script>
-import SkipDialog from "~/components/Dialog";
+import SkipDialog from "~/components/SkipDialog";
 import DeleteDialog from "~/components/DeleteDialog";
 import EditDialog from "~/components/EditDialog";
 import moment from "moment";
@@ -301,8 +312,9 @@ export default {
     },
     computedCardClass(habit) {
       let statusClasses = [
-        'my-1',
-        'card-border-color'
+        'my-2',
+        'card-border-color',
+        'mx-auto'
       ];
       statusClasses.push('card-border-color-' + habit.category);
 
@@ -313,7 +325,7 @@ export default {
       let currentSelectedDate = moment(this.$store.state.selectedDate);
 
       // If it is same or before expiry date
-      cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction no-select'];
+      cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction', 'no-select'];
       
       habit.scores.map(score => {
         if((this.today.isSame(score.dated, "day"))) {
@@ -323,7 +335,7 @@ export default {
       });
 
       let computedCardClass = statusClasses.concat(cardStateClasses);
-      console.log(computedCardClass.join(' '));
+      
       return computedCardClass.join(' ');
     }
   }
@@ -337,7 +349,9 @@ export default {
 .v-list-item {
   padding: 0 6px;
 }
-
+.theme--light.v-sheet {
+  border-color: unset;
+}
 .v-list-item__title {
   align-self: center;
   font-size: 0.9rem;
@@ -358,34 +372,34 @@ export default {
 }
 .card-border-color-health_nutrition {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #1b5e20;
+  border-color: #1b5e20 !important;
 }
 .card-border-color-sports_fitness {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #bf360c;
+  border-color: #bf360c !important;
 }
 .card-border-color-quit_a_bad_habit {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #263238;
+  border-color: #263238 !important;
 }
 .card-border-color-skills {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #004d40;
+  border-color: #004d40 !important;
 }
 .card-border-color-work_study {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #039be5;
+  border-color: #039be5 !important;
 }
 .card-border-color-household {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #f50057;
+  border-color: #f50057 !important;
 }
 .card-border-color-me_time {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #37474f;
+  border-color: #37474f !important;
 }
 .card-border-color-general {
   background: rgba(255, 255, 255, 0.83922);
-  border-color: #1e88e5;
+  border-color: #1e88e5 !important;
 }
 </style>

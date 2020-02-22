@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="290">
       <template v-slot:activator="{ on }">
-        <v-icon v-on="on">mdi-delete</v-icon>
+        <v-icon v-on="on">mdi-trash-can</v-icon>
       </template>
       <v-card>
         <v-card-title class="headline"></v-card-title>
