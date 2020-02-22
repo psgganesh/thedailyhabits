@@ -26,6 +26,9 @@ export const state = () => ({
   eveningHabits: [],
   userSession: null,
   isSkipped: false,
+  selectedHabitCategory: null,
+  hasSelectedHabitCategory: false,
+  editHabit:null,
 })
 
 export const mutations = {
@@ -187,21 +190,25 @@ export const mutations = {
     }).indexOf(id);
     
     state[zone].splice(index, 1);
-
-    // state[zone].map((obj) => {
-    //   // FIND AS PER THE OBJECT ID
-    //   if (obj.id === id) {
-    //     // TRACK TO TODAY'S DATED SCORE
-    //     obj.scores.map((score) => {
-    //       if (moment(score.dated).isSame(state.selectedDate, 'day')) {
-    //         score.skipped = true;
-    //       }
-    //     });
-    //     obj.lastUpdatedOn = moment();
-    //   }
-    // });
   
   },
+
+  SET_EDIT_ID(state, habitId){
+    state.editHabit = habitId
+  },
+
+  SET_EDIT_CATEGORY(state, habitCategory){
+    state.selectedHabitCategory = habitCategory
+    state.hasSelectedHabitCategory = true;
+  },
+
+  UPDATE_HABIT_DATA(state, data){
+    state.atomicHabitsData.map((obj) => {
+      if(obj.id === data.id){
+       Object.assign(obj, data)
+      }
+    })
+  }
 }
 
 export const actions = {
@@ -248,6 +255,17 @@ export const actions = {
     commit('UPDATE_HABIT_LIST', data);
   },
 
+  editHabit({ commit }, data) {
+    commit("SET_EDIT_ID", data.id);
+    commit("SET_EDIT_CATEGORY", data.category);
+    // commit('SAVE_WORKSPACE');
+  },
+
+  updateHabit({ commit }, data) {
+    commit('UPDATE_HABIT_DATA', data);
+    commit('SAVE_WORKSPACE');
+  },
+
   completeTodo({ commit }, habit) {
     commit('COMPLETE_TODO', habit);
   },
@@ -261,7 +279,7 @@ export const actions = {
     commit('SELECT_CATEGORY', selectedIndex);
   },
 
-  //REMOVE TODAY
+  //REMOVE TODAY USE SKIP
   
 
   //REMOVE ALL
@@ -281,5 +299,8 @@ export const getters = {
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
   questionsData: state => state.template.questions,
-  pageLoadingState: state => state.loading
+  pageLoadingState: state => state.loading,
+  selectedHabitCategory:  state => state.selectedHabitCategory,
+  hasSelectedHabitCategory:  state => state.hasSelectedHabitCategory,
+  editHabit: state => state.editHabit,
 }

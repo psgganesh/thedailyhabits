@@ -68,10 +68,8 @@
                 <skip-dialog :item="item"></skip-dialog>
                 
                 <delete-dialog :item="item"></delete-dialog>
-                <v-icon 
-                @click="edit(item)">mdi-pencil</v-icon>
-                
-                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
               </v-col>
             </v-row>
           </v-container>
@@ -118,7 +116,8 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <!-- <v-btn small text outlined :class="skipTaskClass(item)" @click="skipTodo(item)">SKIP</v-btn> -->
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
               </v-col>
             </v-row>
           </v-container>
@@ -165,8 +164,9 @@
                 >DONE</v-btn>
                 <skip-dialog :item="item"></skip-dialog>
                 <delete-dialog :item="item"></delete-dialog>
-                <!-- <v-btn small text outlined  @click="skipTodo(item)">SKIP</v-btn> -->
-              </v-col>
+                <edit-dialog :item="item"></edit-dialog>
+                <!-- <v-icon  @click="edit(item)">mdi-pencil</v-icon> -->
+               </v-col>
             </v-row>
           </v-container>
           <!-- <v-divider v-if="index + 1 < eveningHabits.length" :key="'desktop__divider__'+item.id"></v-divider> -->
@@ -185,13 +185,15 @@
 <script>
 import SkipDialog from "~/components/Dialog";
 import DeleteDialog from "~/components/DeleteDialog";
+import EditDialog from "~/components/EditDialog";
 import moment from "moment";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Panels",
   components: {
     SkipDialog,
-    DeleteDialog
+    DeleteDialog,
+    EditDialog
   },
   data: () => ({
     dialog: false,
@@ -267,6 +269,7 @@ export default {
       });
       // // this.snackbar = true;
     },
+
     skipTodo(habit) {
       this.dialog = false;
       this.$store.dispatch("skipTodo", habit).then(() => {
