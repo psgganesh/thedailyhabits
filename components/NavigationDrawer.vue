@@ -6,7 +6,7 @@
     transition="slide-x-transition"
     :light="theme.light"
     :dark="theme.dark"
-    fixed
+    floating
     app
   >
     <template v-slot:prepend>
@@ -101,7 +101,6 @@ export default {
       this.username = this.userData.username;
       this.user = new Person(this.userData.profile);
       this.$store.commit("SET_USERSESSION", this.$userSession);
-      // console.log(this.user);
     }
 
     if (this.$store.state.habits.length === 0) {
@@ -133,11 +132,11 @@ export default {
       }
     },
     avatarUrl() {
-      // if( (this.user !== null) && (this.user._profile !== null)) {
-      //   if(this.user._profile.image.length > 0) {
-      //     return this.user._profile.image[0].contentUrl;
-      //   }
-      // }
+      if( (this.user !== null) && (this.user._profile !== null)) {
+        if(this.user._profile.image.length > 0) {
+          return this.user._profile.image[0].contentUrl;
+        }
+      }
       return "/images/blockstack.png";
     }
   },
@@ -158,7 +157,7 @@ export default {
 
     habitCount(category) {
       let totalCount = [];
-      let currentSelectedDate = moment(this.$store.state.selectedDate);
+      let currentSelectedDate = this.$store.state.selectedDate;
 
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
@@ -169,6 +168,7 @@ export default {
           ) {
             obj.scores.map((score) => {
               if(this.today.isSame(currentSelectedDate, "day")) {
+                console.log(this.today, currentSelectedDate);
                 if( (!score.completed) && (!score.skipped)) {
                   totalCount.push(1);
                 } else {

@@ -53,16 +53,6 @@
                     <p class="grey--text">{{ computedDays(item) }}</p>
                   </v-col>
                 </v-row>
-                <v-row>
-                  <v-col cols="12">
-                    <!-- <v-progress-linear
-                      height="10"
-                      value="45"
-                      striped
-                      color="light-blue"
-                    ></v-progress-linear> -->
-                  </v-col>
-                </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions :class="cardActionTaskClass">
@@ -105,16 +95,6 @@
                     <p class="grey--text">{{ computedDays(item) }}</p>
                   </v-col>
                 </v-row>
-                <v-row>
-                  <v-col cols="12">
-                    <!-- <v-progress-linear
-                      height="10"
-                      value="45"
-                      striped
-                      color="light-blue"
-                    ></v-progress-linear> -->
-                  </v-col>
-                </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions :class="cardActionTaskClass">
@@ -155,16 +135,6 @@
                   </v-col>
                   <v-col cols="2" class="text-right">
                     <p class="grey--text">{{ computedDays(item) }}</p>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12">
-                    <!-- <v-progress-linear
-                      height="10"
-                      value="45"
-                      striped
-                      color="light-blue"
-                    ></v-progress-linear> -->
                   </v-col>
                 </v-row>
               </v-container>
@@ -289,7 +259,7 @@ export default {
       // // this.snackbar = true;
     },
     getOptions() {
-      return {group:'thedailyhabits'};
+      return { group:'thedailyhabits' };
     },
     skipTaskClass(habit) {
       //var todaysSkippedState = false;
