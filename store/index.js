@@ -258,22 +258,18 @@ export const actions = {
   editHabit({ commit }, data) {
     commit("SET_EDIT_ID", data.id);
     commit("SET_EDIT_CATEGORY", data.category);
-    commit('SAVE_WORKSPACE');
   },
 
   updateHabit({ commit }, data) {
     commit('UPDATE_HABIT_DATA', data);
-    commit('SAVE_WORKSPACE');
   },
 
   completeTodo({ commit }, habit) {
     commit('COMPLETE_TODO', habit);
-    commit('SAVE_WORKSPACE');
   },
 
   skipTodo({ commit }, habit) {
     commit('SKIP_TODO', habit);
-    commit('SAVE_WORKSPACE');
   },
 
   // DISABLED THIS FEATURE FOR NOW
