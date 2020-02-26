@@ -147,7 +147,7 @@ export default {
       selectedCategory: null,
       selectedMessageOption: null,
       finishButtonDisabledState: true,
-      startsFromDate: new Date(moment()).toString().substr(0, 15),
+      startsFromDate: new Date(moment()).toString().substr(0, 10),
       minDaysToRepeatValue: "1",
       customQuestionOption: "",
       endsOn: null,
@@ -173,13 +173,12 @@ export default {
     },
     selectOption(question) {
       if (question !== null) {
-        if (question.custom === true) {
-          this.selectedMessageOption = this.customQuestionOption;
-        } else {
-          this.selectedMessageOption = question.option;
-        }
-        this.wizardStep++;
+        this.selectedMessageOption = question.option;
       }
+      if (question.custom === true) {
+        this.selectedMessageOption = this.customQuestionOption;
+      }
+      this.wizardStep++;
     },
     selectSchedule() {
       this.endsOn = moment(this.startsFromDate).add(
