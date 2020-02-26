@@ -23,11 +23,11 @@
 
     <div class="flex-grow-1"></div>
 
-    <v-btn icon @click.stop="saveWorkspaceData()">
-      <v-icon :light="theme.light" :dark="theme.dark">mdi-content-save</v-icon>
+    <v-btn color="transparent" elevation="0" tile @click.stop="saveWorkspaceData()">
+      <v-icon :light="theme.light" :dark="theme.dark">mdi-content-save</v-icon> Save Changes
     </v-btn>
-    <v-btn icon @click.stop="dialog = true" class="hidden-sm-and-down">
-      <v-icon :light="theme.light" :dark="theme.dark">mdi-restart</v-icon>
+    <v-btn color="transparent" elevation="0" tile @click.stop="dialog = true">
+      <v-icon :light="theme.light" :dark="theme.dark">mdi-restart</v-icon> Restart
     </v-btn>
     <v-menu bottom left>
       <template v-slot:activator="{ on }" class="hidden-md-and-up">

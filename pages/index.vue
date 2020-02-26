@@ -29,7 +29,7 @@
 
       <!-- home
       ================================================== -->
-      <section id="home" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000>
+      <section id="home" data-parallax="scroll" data-image-src="frontend/images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000>
 
             <div class="overlay"></div>
             <div class="home-content">        
@@ -59,8 +59,8 @@
                     </div>
 
                     <div class="home-image-right">
-                        <img src="images/iphone-app-470.png" 
-                            srcset="images/iphone-app-470.png 1x, images/iphone-app-940.png 2x"  
+                        <img src="frontend/images/iphone-app-470.png" 
+                            srcset="frontend/images/iphone-app-470.png 1x, frontend/images/iphone-app-940.png 2x"  
                             data-aos="fade-up">
                     </div>
                 </div>
@@ -241,10 +241,10 @@
 
             <div class="row about-bottom-image">
 
-              <img src="images/app-screens-1200.png" 
-                    srcset="images/app-screens-600.png 600w, 
-                            images/app-screens-1200.png 1200w, 
-                            images/app-screens-2800.png 2800w" 
+              <img src="frontend/images/app-screens-1200.png" 
+                    srcset="frontend/images/app-screens-600.png 600w, 
+                            frontend/images/app-screens-1200.png 1200w, 
+                            frontend/images/app-screens-2800.png 2800w" 
                     sizes="(max-width: 2800px) 100vw, 2800px"
                     alt="App Screenshots" data-aos="fade-up">
 
@@ -345,7 +345,7 @@
                             </p> 
 
                             <div class="testimonial-author">
-                                    <img src="images/avatars/user-02.jpg" alt="Author image">
+                                    <img src="frontend/images/avatars/user-02.jpg" alt="Author image">
                                     <div class="author-info">
                                         Steve Jobs
                                         <span class="position">CEO, Apple.</span>
@@ -361,7 +361,7 @@
                             </p>
 
                             <div class="testimonial-author">
-                                    <img src="images/avatars/user-03.jpg" alt="Author image">
+                                    <img src="frontend/images/avatars/user-03.jpg" alt="Author image">
                                     <div class="author-info">
                                         John Doe
                                         <span>CEO, ABC Corp.</span>
@@ -522,9 +522,9 @@
         </div>   -->
 
         <!-- Java Script -->
-        <!-- <script src="js/jquery-2.1.3.min.js"></script> -->
-        <!-- <script src="js/plugins.js"></script> -->
-        <!-- <script src="js/main.js"></script> -->
+        <script src="frontend/js/jquery-2.1.3.min.js"></script>
+        <script src="frontend/js/plugins.js"></script>
+        <script src="frontend/js/main.js"></script>
 
     </div>
   </div>

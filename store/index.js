@@ -29,6 +29,7 @@ export const state = () => ({
   selectedHabitCategory: null,
   hasSelectedHabitCategory: false,
   editHabit:null,
+  showWalkthroughModal: false,
 })
 
 export const mutations = {
@@ -40,6 +41,10 @@ export const mutations = {
 
   SET_LOADING_STATE(state, flag) {
     state.loading = flag
+  },
+
+  SET_ON_BOARDING_WIZARD_STATE(state, flag) {
+    state.showWalkthroughModal = flag;
   },
 
   SET_CURRENT_DATE(state, param) {
@@ -224,18 +229,24 @@ export const actions = {
 
   async fetchWorkspaceRecords({ commit, state }) {
     commit('REFRESH_WORKSPACE')
-    try {
-      commit('SET_LOADING_STATE', true);
+    commit('SET_LOADING_STATE', true);
+    let blockstackListFiles = [];
+    await state.userSession.listFiles(filename => {
+      blockstackListFiles.push(filename);
+      return true;
+    });
+
+    if (blockstackListFiles.includes(STORAGE_FILE)) {
+      commit('SET_ON_BOARDING_WIZARD_STATE', false);
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData && responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
         }
-        commit('SET_LOADING_STATE', false);
       });
-
-    } catch (e) {
-      // console.log(e)
+    } else {
+      commit('SET_ON_BOARDING_WIZARD_STATE', true);
     }
+    commit('SET_LOADING_STATE', false);
   },
 
   createHabit({ commit }, params) {

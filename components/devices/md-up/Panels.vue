@@ -276,7 +276,7 @@ export default {
       return todaysSkippedState ? "skipped" : "";
     },
     computedDays(item) {
-      return moment(item.endsOn).diff(item.startsFrom, "days") + " days";
+      return moment(item.endsOn).diff(item.startsFrom, "days") + " D";
     },
     computedCardClass(habit) {
       let statusClasses = [
@@ -296,8 +296,15 @@ export default {
       cardStateClasses = (this.today.isSame(currentSelectedDate, "day")) ? ['visible', 'no-select'] : ['no-interaction', 'no-select'];
       
       habit.scores.map(score => {
-        if((this.today.isSame(score.dated, "day"))) {
-          let compiledClass = (score.completed)? "hidden":(score.skipped)? "hidden":"visible";
+        if(this.today.isSame(score.dated, "day")) {
+          let compiledClass = null;
+          if( (score.completed) || (score.skipped) ) {
+            // console.log( score.dated, (score.completed) || (score.skipped) );
+            compiledClass = "hidden";
+          } else {
+            // console.log( score.dated, (score.completed) || (score.skipped) );
+            compiledClass = "visible";
+          }
           cardStateClasses.push(compiledClass);
         }
       });
@@ -339,6 +346,7 @@ export default {
 .card-border-color:hover {
   cursor: -webkit-grab;
 }
+.ghost,
 .sortable-chosen,
 .sortable-chosen.ghost {
   cursor: -webkit-grabbing !important;
