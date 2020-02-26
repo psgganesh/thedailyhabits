@@ -38,59 +38,31 @@
             </v-list-item>
           </v-stepper-content>
 
-          <v-stepper-step step="3" editable color="secondary">Select Option</v-stepper-step>
-          <v-stepper-content step="3" color="secondary" id="questions_list">
-            <v-list label>
-              <v-list-item-group color="green">
-                <v-list-item
-                  v-for="question in questionsData[questionSlug]"
-                  :key="question.id"
-                  three-line
-                  class="outlined mb-2 select-option"
-                >
-                  <template v-if="question.custom === true">
-                    <v-list-item-content>
-                      <v-row>
-                        <v-col cols="12">
-                          <v-textarea
-                            outlined
-                            auto-grow
-                            clear-icon
-                            clearable
-                            solo
-                            name="input-7-4"
-                            v-model="customQuestionOption"
-                            label="Example: I will ______ daily."
-                            @keyup.enter.exact="selectOption(question)"
-                            hint="Press enter to move to next step"
-                          ></v-textarea>
-                        </v-col>
-                      </v-row>
-                    </v-list-item-content>
-                  </template>
-                  <template v-else>
-                    <v-list-item-content @click="selectOption(question)">
-                      <v-list-item-title class="subtitle-2 text--black">{{ question.option }}</v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-stepper-content>
-
-          <v-stepper-step step="4" editable color="secondary">Set Schedule</v-stepper-step>
-          <v-stepper-content step="4" color="secondary">
+          <v-stepper-step step="3" editable color="secondary">Define habit &amp; Set Schedule</v-stepper-step>
+          <v-stepper-content step="3" color="secondary">
             <v-container fluid>
               <v-row>
+                <v-col cols="12">
+                  <v-textarea
+                    outlined
+                    auto-grow
+                    clear-icon
+                    clearable
+                    solo
+                    name="input-7-4"
+                    v-model="selectedMessageOption"
+                    label="Example: I would run 10k steps everyday."
+                  ></v-textarea>
+                </v-col>
                 <v-col cols="12" class="d-none">
                   <v-menu v-model="datepickerMenu" :close-on-content-click="false" max-width="290">
                     <template v-slot:activator="{ on }">
                       <v-text-field
                         :value="computedDateFormattedMomentjs"
                         label="Start date"
+                        disabled
                         readonly
                         solo
-                        disabled
                         v-on="on"
                         prepend-inner-icon="mdi-calendar"
                       ></v-text-field>
@@ -107,7 +79,7 @@
                     label="Choose, number of days to repeat"
                     solo
                     prepend-inner-icon="mdi-repeat"
-                    @change="selectSchedule()"
+                    @change="selectSchedule"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -118,8 +90,8 @@
               :disabled="finishButtonDisabledState"
               block
               large
-              @click="buildHabit"
-            >Create habit</v-btn>
+              @click="updateHabit"
+            >Update habit</v-btn>
           </v-stepper-content>
         </v-stepper>
       </v-col>
@@ -134,7 +106,7 @@ import { uuidv4 } from "~/utils/helpers";
 import { taskStructure, scoreStructure } from "~/utils/schema";
 
 export default {
-  name: "TaskTemplateForm",
+  name: "CustomNewTaskForm",
   layout: "wizard",
   data: () => {
     return {
@@ -147,12 +119,10 @@ export default {
       selectedCategory: null,
       selectedMessageOption: null,
       finishButtonDisabledState: true,
-      startsFromDate: new Date(moment()).toString().substr(0, 10),
-      minDaysToRepeatValue: "1",
-      customQuestionOption: "",
+      startsFromDate: new Date().toISOString().substr(0, 10),
+      minDaysToRepeatValue: "21",
       endsOn: null,
       items: [
-        { text: "Select number of days to repeat this habit", value: "1" },
         { text: "Follow / repeat this habit for 21 days", value: "21" },
         { text: "Follow / repeat this habit for 42 days", value: "42" },
         { text: "Follow / repeat this habit for 30 days", value: "30" },
@@ -171,15 +141,6 @@ export default {
       this.selectedActivity = activity;
       this.wizardStep++;
     },
-    selectOption(question) {
-      if (question !== null) {
-        this.selectedMessageOption = question.option;
-      }
-      if (question.custom === true) {
-        this.selectedMessageOption = this.customQuestionOption;
-      }
-      this.wizardStep++;
-    },
     selectSchedule() {
       this.endsOn = moment(this.startsFromDate).add(
         parseInt(this.minDaysToRepeatValue),
@@ -190,9 +151,9 @@ export default {
     discardConfirmDialog() {
       this.confirmDialog = false;
     },
-    buildHabit() {
+    updateHabit() {
       const habit = taskStructure();
-      habit.id = uuidv4(); // uuid to be added
+      habit.id = this.editHabit
       habit.title = this.selectedMessageOption; // task / habit title,
       habit.parent = "habits";
       habit.icon = this.selectedCategory.icon;
@@ -205,13 +166,17 @@ export default {
       habit.scores = scoreStructure(); // scores template from the schema.js
       habit.createdOn = moment(); // date when task was created on
       habit.lastUpdatedOn = null; // latest updated date when task status was changed / detail was changed
-      this.$store.dispatch("createHabit", habit);
-      this.customQuestionOption = null;
+      this.$store.dispatch("updateHabit", habit);
       this.$router.push({ name: "home" });
     }
   },
   computed: {
-    ...mapGetters(["categoriesData", "activitiesData", "questionsData"]),
+    ...mapGetters([
+      "editHabit",
+      "categoriesData", 
+      "activitiesData", 
+      "questionsData"
+    ]),
     questionSlug() {
       return this.selectedActivity !== null ? this.selectedActivity.slug : "";
     },

@@ -7,7 +7,7 @@ var STORAGE_FILE = 'atomic-habits-data-dino-build.json'
 export const state = () => ({
   atomicHabitsData: [],
   loading: false,
-  drawer: null,
+  drawer: true,
   selectedListitem: 0,
   selectedDate: new Date().toISOString().substr(0, 10),
   theme: {
@@ -26,17 +26,25 @@ export const state = () => ({
   eveningHabits: [],
   userSession: null,
   isSkipped: false,
+  selectedHabitCategory: null,
+  hasSelectedHabitCategory: false,
+  editHabit:null,
+  showWalkthroughModal: false,
 })
 
 export const mutations = {
 
   // BLOCKSTACK USER
-  SET_USER(state, userSession) {
+  SET_USERSESSION(state, userSession) {
     state.userSession = userSession || null
   },
 
   SET_LOADING_STATE(state, flag) {
     state.loading = flag
+  },
+
+  SET_ON_BOARDING_WIZARD_STATE(state, flag) {
+    state.showWalkthroughModal = flag;
   },
 
   SET_CURRENT_DATE(state, param) {
@@ -187,21 +195,25 @@ export const mutations = {
     }).indexOf(id);
     
     state[zone].splice(index, 1);
-
-    // state[zone].map((obj) => {
-    //   // FIND AS PER THE OBJECT ID
-    //   if (obj.id === id) {
-    //     // TRACK TO TODAY'S DATED SCORE
-    //     obj.scores.map((score) => {
-    //       if (moment(score.dated).isSame(state.selectedDate, 'day')) {
-    //         score.skipped = true;
-    //       }
-    //     });
-    //     obj.lastUpdatedOn = moment();
-    //   }
-    // });
   
   },
+
+  SET_EDIT_ID(state, habitId){
+    state.editHabit = habitId
+  },
+
+  SET_EDIT_CATEGORY(state, habitCategory){
+    state.selectedHabitCategory = habitCategory
+    state.hasSelectedHabitCategory = true;
+  },
+
+  UPDATE_HABIT_DATA(state, data){
+    state.atomicHabitsData.map((obj) => {
+      if(obj.id === data.id){
+       Object.assign(obj, data)
+      }
+    })
+  }
 }
 
 export const actions = {
@@ -217,18 +229,24 @@ export const actions = {
 
   async fetchWorkspaceRecords({ commit, state }) {
     commit('REFRESH_WORKSPACE')
-    try {
-      commit('SET_LOADING_STATE', true);
+    commit('SET_LOADING_STATE', true);
+    let blockstackListFiles = [];
+    await state.userSession.listFiles(filename => {
+      blockstackListFiles.push(filename);
+      return true;
+    });
+
+    if (blockstackListFiles.includes(STORAGE_FILE)) {
+      commit('SET_ON_BOARDING_WIZARD_STATE', false);
       await state.userSession.getFile(STORAGE_FILE).then((responseData) => {
         if (responseData && responseData.length > 0) {
           commit('LOAD_WORKSPACE', responseData);
         }
-        commit('SET_LOADING_STATE', false);
       });
-
-    } catch (e) {
-      console.log(e)
+    } else {
+      commit('SET_ON_BOARDING_WIZARD_STATE', true);
     }
+    commit('SET_LOADING_STATE', false);
   },
 
   createHabit({ commit }, params) {
@@ -236,7 +254,7 @@ export const actions = {
       commit('CREATE_NEW_HABIT', params);
       commit('SAVE_WORKSPACE');
     } catch (e) {
-      console.log("Could not create new habit");
+      // console.log("Could not create new habit");
     }
   },
 
@@ -246,6 +264,15 @@ export const actions = {
 
   moveHabit({ commit }, data) {
     commit('UPDATE_HABIT_LIST', data);
+  },
+
+  editHabit({ commit }, data) {
+    commit("SET_EDIT_ID", data.id);
+    commit("SET_EDIT_CATEGORY", data.category);
+  },
+
+  updateHabit({ commit }, data) {
+    commit('UPDATE_HABIT_DATA', data);
   },
 
   completeTodo({ commit }, habit) {
@@ -261,7 +288,7 @@ export const actions = {
     commit('SELECT_CATEGORY', selectedIndex);
   },
 
-  //REMOVE TODAY
+  //REMOVE TODAY USE SKIP
   
 
   //REMOVE ALL
@@ -281,5 +308,8 @@ export const getters = {
   categoriesData: state => state.template.categories,
   activitiesData: state => state.template.activities,
   questionsData: state => state.template.questions,
-  pageLoadingState: state => state.loading
+  pageLoadingState: state => state.loading,
+  selectedHabitCategory:  state => state.selectedHabitCategory,
+  hasSelectedHabitCategory:  state => state.hasSelectedHabitCategory,
+  editHabit: state => state.editHabit,
 }

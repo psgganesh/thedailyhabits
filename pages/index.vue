@@ -374,17 +374,17 @@ export default {
     this.pageClass = "d-block";
   },
   beforeMount() {
-    if (this.loggedUser.isUserSignedIn()) {
+    if (this.$userSession.isUserSignedIn()) {
       this.redirectLoggedInUser();
-    } else if (this.loggedUser.isSignInPending()) {
-      this.loggedUser.handlePendingSignIn().then(userData => {
+    } else if (this.$userSession.isSignInPending()) {
+      this.$userSession.handlePendingSignIn().then(userData => {
         this.redirectLoggedInUser();
       });
     }
   },
   methods: {
     signIn() {
-      this.loggedUser.redirectToSignIn();
+      this.$userSession.redirectToSignIn();
     },
     redirectLoggedInUser() {
       window.location = `/home`;

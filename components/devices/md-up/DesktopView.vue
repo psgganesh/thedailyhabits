@@ -10,16 +10,19 @@
     <ActionBar />
     <PanelHeader />
     <Panels />
+    <OnBoardingWizard />
   </v-container>
 </template>
 
 <script>
 import ActionBar from "~/components/devices/md-up/ActionBar";
+import OnBoardingWizard from '~/components/OnBoardingWizard';
 import PanelHeader from "~/components/devices/md-up/PanelHeader";
 import Panels from "~/components/devices/md-up/Panels";
 export default {
   name: "DesktopView",
   components: {
+    OnBoardingWizard,
     PanelHeader,
     ActionBar,
     Panels

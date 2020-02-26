@@ -14,13 +14,20 @@
       </v-btn>
       <span class="ga-pacifico logo-title">thedailyhabits</span>
     </v-toolbar-title>
+
+    <!-- <v-tabs background-color="transparent">
+      <v-tab><v-icon :light="theme.light" :dark="theme.dark">mdi-home</v-icon> Home</v-tab>
+      <v-tab><v-icon :light="theme.light" :dark="theme.dark">mdi-progress-check</v-icon> Streaks</v-tab>
+      <v-tab>Item Three</v-tab>
+    </v-tabs> -->
+
     <div class="flex-grow-1"></div>
 
-    <v-btn icon @click.stop="saveWorkspaceData()">
-      <v-icon :light="theme.light" :dark="theme.dark">mdi-content-save</v-icon>
+    <v-btn color="transparent" elevation="0" tile @click.stop="saveWorkspaceData()">
+      <v-icon :light="theme.light" :dark="theme.dark">mdi-content-save</v-icon> Save Changes
     </v-btn>
-    <v-btn icon @click.stop="dialog = true" class="hidden-sm-and-down">
-      <v-icon :light="theme.light" :dark="theme.dark">mdi-restart</v-icon>
+    <v-btn color="transparent" elevation="0" tile @click.stop="dialog = true">
+      <v-icon :light="theme.light" :dark="theme.dark">mdi-restart</v-icon> Restart
     </v-btn>
     <v-menu bottom left>
       <template v-slot:activator="{ on }" class="hidden-md-and-up">
@@ -104,7 +111,6 @@ export default {
     background: #ffffff !important;
   }
 }
-
 .v-dialog__content.v-dialog__content--active .v-card.v-sheet.theme--light {
   background: #ffffff;
 }

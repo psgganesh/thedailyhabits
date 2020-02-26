@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-model="drawerState"
     width="280"
-    :clipped="$vuetify.breakpoint.lgAndUp"
+    clipped
     transition="slide-x-transition"
     :light="theme.light"
     :dark="theme.dark"
@@ -12,7 +12,7 @@
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
-          <img :src="user.avatarUrl()" />
+          <img :src="avatarUrl" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -59,16 +59,27 @@
 
     <!-- FOOTER OPTIONS START HERE -->
     <template v-slot:append>
-      <v-list rounded>
+      <v-list>
         <v-list-item-group color="white">
-          <v-list-item v-for="(item, i) in options" :key="i" @click="signOut()">
+
+          <v-list-item @click.stop="openWalkthrough">
             <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon>mdi-help-circle</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ item.text }} </v-list-item-title>
+              <v-list-item-title>Walkthrough</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item @click.stop="signOut">
+            <v-list-item-action>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Logout</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
         </v-list-item-group>
       </v-list>
     </template>
@@ -88,17 +99,20 @@ export default {
     return {
       user: null,
       username: null,
-      today: moment(),
-      options: [{ icon: "mdi-logout", text: "Logout" }]
+      today: moment()
     };
   },
   beforeMount() {
-    if (!this.loggedUser.isUserSignedIn()) {
+
+    if (!this.$userSession.isUserSignedIn()) {
       this.redirectUserToLandingPage();
+    } else {
+      this.userData = this.$userSession.loadUserData();
+      this.username = this.userData.username;
+      this.user = new Person(this.userData.profile);
+      this.$store.commit("SET_USERSESSION", this.$userSession);
     }
-    this.userData = this.loggedUser.loadUserData();
-    this.user = new Person(this.userData.profile);
-    this.username = this.userData.username;
+
     if (this.$store.state.habits.length === 0) {
       this.$store.dispatch("fetchWorkspaceRecords");
     }
@@ -126,26 +140,31 @@ export default {
       set(value) {
         this.$store.commit("SET_DRAWER_STATE", value);
       }
+    },
+    avatarUrl() {
+      // if( (this.user !== null) && (this.user._profile !== null)) {
+      //   if(this.user._profile.image.length > 0) {
+      //     return this.user._profile.image[0].contentUrl;
+      //   }
+      // }
+      return "/images/blockstack.png";
     }
   },
   methods: {
     signOut() {
       this.$store.dispatch("saveWorkspaceAndSignout", this.currentDate);
     },
-
     redirectUserToLandingPage() {
       window.location = `/`;
     },
-
     collapseNavbar() {
       if (this.$device.isMobile) {
         this.$store.commit("SET_DRAWER_STATE", null);
       }
     },
-
     habitCount(category) {
       let totalCount = [];
-      let currentSelectedDate = moment(this.$store.state.selectedDate);
+      let currentSelectedDate = this.$store.state.selectedDate;
 
       if (this.$store.state.atomicHabitsData.length > 0) {
         this.$store.state.atomicHabitsData.map(obj => {
@@ -155,8 +174,8 @@ export default {
               category.text.toLocaleLowerCase() === "all habits"
           ) {
             obj.scores.map((score) => {
-              if(this.today.isSame(currentSelectedDate, "day")) {
-                if( (!score.completed) && (!score.skipped)) {
+              if(this.today.isSame(score.dated, "day")) {
+                if( (!score.completed) && (!score.skipped) ) {
                   totalCount.push(1);
                 } else {
                   totalCount.push(0);
@@ -172,16 +191,17 @@ export default {
       }
       return  (total === 0 )? "":total;
     },
-
     // DISABLED THIS FEATURE FOR NOW
     tappedLabelLink(category, index) {
       // this.$store.dispatch("filterHabitsList", category, index);
       // this.collapseNavbar();
     },
-
     addNewHabit() {
       this.$store.dispatch("saveWorkspace");
       this.$router.push({ name: 'habit-create' });
+    },
+    openWalkthrough() {
+      this.$store.commit('SET_ON_BOARDING_WIZARD_STATE', true);
     }
   }
 };

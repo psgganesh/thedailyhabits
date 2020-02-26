@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     chooseDate() {
-      // this.$store.dispatch("saveWorkspace");
+      this.$store.dispatch("saveWorkspace");
       this.datepickerMenu = false;
       this.$store.commit("SET_CURRENT_DATE", this.currentDate);
       this.$store.dispatch("fetchWorkspaceRecords");

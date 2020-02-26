@@ -4,7 +4,7 @@
     <DesktopView class="hidden-sm-and-down" />
 
     <!-- sm-down components -->
-    <MobileView class="hidden-md-and-up" />
+    <!-- <MobileView class="hidden-md-and-up" /> -->
   </div>
 </template>
 
