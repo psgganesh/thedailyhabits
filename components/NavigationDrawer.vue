@@ -167,9 +167,8 @@ export default {
               category.text.toLocaleLowerCase() === "all habits"
           ) {
             obj.scores.map((score) => {
-              if(this.today.isSame(currentSelectedDate, "day")) {
-                console.log(this.today, currentSelectedDate);
-                if( (!score.completed) && (!score.skipped)) {
+              if(this.today.isSame(score.dated, "day")) {
+                if( (!score.completed) && (!score.skipped) ) {
                   totalCount.push(1);
                 } else {
                   totalCount.push(0);

@@ -244,7 +244,6 @@ export default {
   methods: {
     ...mapActions(['saveWorkspace']),
     completeTodo(habit) {
-      console.log('DESKTOP: ',habit);
       this.$store.dispatch("completeTodo", habit).then(() => {
         this.$store.dispatch("saveWorkspace");
       });
@@ -265,7 +264,6 @@ export default {
       //var todaysSkippedState = false;
       var todaysSkippedState = true;
       let currentSelectedDate = moment(this.$store.state.selectedDate);
-      console.log(habit);
       habit.scores.map(score => {
         habit.scores.map(score => {
           if (
@@ -303,6 +301,11 @@ export default {
           cardStateClasses.push(compiledClass);
         }
       });
+
+      // If both hidden and visible classes are attached, remove visible and only retain / respect hidden class
+      if ( cardStateClasses.includes('hidden') && cardStateClasses.includes('visible') ) {
+        cardStateClasses.splice(1, cardStateClasses.indexOf('visible'))
+      }
 
       let computedCardClass = statusClasses.concat(cardStateClasses);
       
