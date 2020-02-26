@@ -314,7 +314,6 @@ export default {
   methods: {
     ...mapActions(['saveWorkspace']),
     completeTodo(habit) {
-      console.log('MOBILE: ',habit);
       this.$store.dispatch("completeTodo", habit).then(() => {
         this.$store.dispatch("saveWorkspace");
       });
