@@ -47,11 +47,9 @@ import moment from "moment";
     methods: {
       remove(habit) {
         this.dialog = false;
-        console.log("dialogm1", this.dialogm1);
-        console.log("remove", habit);
-        if(this.dialogm1 == "today"){
+        if(this.dialogm1 === "today"){
           this.$store.dispatch("skipTodo", habit);
-        }else if(this.dialogm1 == "all"){
+        }else if(this.dialogm1 === "all"){
           this.$store.dispatch("RemoveAllOccurrences", habit);
         }
       }

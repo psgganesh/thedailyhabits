@@ -234,7 +234,7 @@ export const actions = {
       });
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   },
 
@@ -243,7 +243,7 @@ export const actions = {
       commit('CREATE_NEW_HABIT', params);
       commit('SAVE_WORKSPACE');
     } catch (e) {
-      console.log("Could not create new habit");
+      // console.log("Could not create new habit");
     }
   },
 
@@ -258,7 +258,7 @@ export const actions = {
   editHabit({ commit }, data) {
     commit("SET_EDIT_ID", data.id);
     commit("SET_EDIT_CATEGORY", data.category);
-    // commit('SAVE_WORKSPACE');
+    commit('SAVE_WORKSPACE');
   },
 
   updateHabit({ commit }, data) {
@@ -268,10 +268,12 @@ export const actions = {
 
   completeTodo({ commit }, habit) {
     commit('COMPLETE_TODO', habit);
+    commit('SAVE_WORKSPACE');
   },
 
   skipTodo({ commit }, habit) {
     commit('SKIP_TODO', habit);
+    commit('SAVE_WORKSPACE');
   },
 
   // DISABLED THIS FEATURE FOR NOW
